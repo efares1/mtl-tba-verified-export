@@ -29,7 +29,7 @@ the proofs. `proof/Audit_Revision_20261010.v` prints the assumptions of the main
 | `evaluation/` | benchmark data, TChecker and CASAAL comparison, results and generated tables |
 | `evaluation/baselines/` | ablations: invariant-free and acceptance-converted arms, same-driver timing |
 | `evaluation/uppaal/` | 311 UPPAAL models, runner and results |
-| `evaluation/differential/` | independent MTL evaluator and the 5,960,000-word differential test |
+| `evaluation/differential/` | independent MTL evaluator and the 6,160,000-word differential test |
 | `evaluation/mutation/` | 22 seeded defects in the extracted code; `rocq/` holds the Rocq-level rejection runs and logs |
 | `scripts/`, `reproduce.sh`, `build.ps1` | build, reproduction and table scripts |
 | `JSS_highlights.txt` | highlights |
@@ -49,11 +49,19 @@ redistributed here. The CASAAL automata that the comparison reads are stored und
 ## Limits of the artifact
 
 The mutation study changes copies of the extracted code only. The Rocq-level mutants are
-transcriptions of seven of the 22 mutants, tested in scratch copies of the proof sources that are not
+transcriptions of all 22 mutants, tested in scratch copies of the proof sources that are not
 stored here; `evaluation/mutation/rocq/run_mut.py` recreates them. Some scripts contain absolute
 paths of the authors' machine.
 
 ## Licence and citation
 
-MIT licence (`LICENSE`). `CITATION.cff` carries the citation metadata; the DOI of the archived
+MIT licence (`LICENSE`) for the Rocq sources, the OCaml tool, the scripts, the benchmark inputs and the
+results written by the authors.
+
+Third-party software is used but not redistributed here, and keeps its own licence: Rocq, OCaml and
+Spot (called by `mtl2tba`), TChecker, UPPAAL (free for academic use only) and CASAAL. The files in
+`evaluation/casaal_out/` are outputs of CASAAL on our inputs, kept for reproducibility. Files from
+publisher LaTeX templates (class and style files, fonts) are not covered by the MIT licence.
+
+`CITATION.cff` carries the citation metadata; the DOI of the archived
 release is added to it once Zenodo has issued it.
