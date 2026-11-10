@@ -1,0 +1,127 @@
+\subsection{Verified speedups of the implementation}
+\label{sec:speedups-detail}
+The definitions of the passes were first written for the proofs, with list
+scans that are linear in the transitions for every location or transition
+they inspect. On the larger automata of the evaluation these scans, not the
+passes themselves, dominated the time of the pipeline. We replaced them
+without changing what the passes compute, and each replacement carries a
+proof of equality with the definition it replaces, so that every theorem of
+the paper applies to the faster code that is extracted.
+\begin{itemize}[leftmargin=*]
+  \item \emph{Per-location tables} (\texttt{forward}, \texttt{propagate},
+    \texttt{split}): the entry guards, the incoming and outgoing transitions and the
+    invariant information of a location are computed once per location into a list
+    indexed by the location, with a fallback to the original function for
+    out-of-range locations (lemmas \path{forward_fast_eq}, \path{propagate_fast_eq} and
+    \path{split_fast_eq}; the last compares closures and uses functional extensionality,
+    which is already among the axioms of the development).
+  \item \emph{Location merging}: the test that two locations can be merged reads the
+    transitions leaving the two locations instead of the whole relation, and
+    evaluates the cheaper conjunct first (\path{states_mergeable_fast_eq}).
+  \item \emph{Initial-value check}: the search for the locations from which a clock
+    is read before it is reset keeps a set without duplicates and scans only the
+    transitions entering the locations found in the previous step. No equality
+    lemma is needed: the proof of \texttt{init\_free} uses only the checker that
+    validates whatever set the search returns.
+  \item \emph{Reset completion}: the list of clocks of the formula, a walk over all of its
+    timed subformulas, was recomputed for every transition; it is now computed once
+    (\path{compile_with_fast_eq}, by computation).
+\end{itemize}
+Two further changes concern the call to Spot and are not covered by the proofs;
+they sit outside the trust boundary already drawn around Spot. Spot's
+simulation-based reduction is switched off at level \texttt{any}
+(\texttt{-x ba-simul=0}), which halves Spot's time on the nested requirements
+without changing the automaton it returns on our benchmark, and the tool reads
+Spot's HOA output, whose guards are Boolean formulas, instead of LBTT. The
+two readers give the same automata: the messages of the tool, which report the
+sizes after every stage, are identical on 184 runs (the benchmark patterns other
+than N6--N8, R7 and R8, both polarities, both levels, with one and with the
+default number of rounds); the XML and DOT files are identical on 144 of them
+and differ on the others only in the order of the conjuncts of a guard or of the
+labels of a transition.
+The development still uses only standard axioms (excluded middle, functional
+extensionality, definite description and the Dedekind-real choice
+principle), and the generated automata are byte-identical to those of the
+previous implementation (UPPAAL XML, DOT and the messages of the tool) on 92
+runs: the benchmark patterns other than N6--N8, R7 and R8 (and, for the positive
+form, other than the largest ones), in both polarities, with one optimization
+round and with the default number of rounds. article Table~\ref{tab:speedups} gives the effect.
+(The table of speedups is article Table~\ref{tab:speedups} of the article.)
+
+\subsection{Input contract for an external TBA}
+\label{sec:generic-input-detail}
+The interface starts from a finite TBA value
+$(L,\ell_0,X,E,\mathit{Acc})$ in the Rocq representation. Its clock set
+$X$ is \path{Clock root}, the timed subformulas of a formula \path{root}
+fixed by the development; an automaton with $k$ clocks is represented by
+choosing any formula with at least $k$ distinct timed subformulas, which then
+serve only as clock names. Its transitions carry
+event conditions, finite conjunctions of unary clock comparisons, and reset
+sets; the starting value has no location-invariant annotation. The invariant
+synthesis pass derives that annotation from outgoing guards. The theorem
+does not require a complete or deterministic transition relation, a particular
+number of clocks, or a connection to a temporal-logic translator. A third-party
+producer can therefore use the proved functions after converting its automaton
+to this representation and naming its clocks in this way.
+
+The conversion is a semantic boundary: it must retain the alphabet and the
+meaning of each event condition, preserve which clocks are tested and reset,
+and map accepting locations without changing their marking. The paper's
+repository provides the Rocq type and extracted optimizer, but not a verified
+reader for arbitrary third-party formats. Any such reader belongs to the
+trusted interface until its correspondence with the Rocq value is proved. The
+same applies to interpreting the result in a target checker: export proves
+language preservation for the Rocq representation, while a separate bridge is
+needed to identify the checker's parsed model with that value. This boundary
+keeps the central optimization theorem independent of the producer while making the
+work needed to reuse it explicit.
+
+
+\subsection{Build and artifact layout}\label{sec:layout}
+The verified functions are defined under \texttt{proof/} and extracted into
+\texttt{tool/src/optim.ml}. The project Makefile compiles the Rocq
+development and extracts the executable functions. Hand-written components
+include the parser, Spot invocation, the reader of Spot's HOA (or LBTT) output, iteration driver, and
+XML/DOT printers; the script that removes unreachable extracted definitions
+and the Rocq/OCaml toolchains are also part of the implementation's trusted
+base. The repository includes the machine record, raw benchmark runs, TSV
+summaries, table generator, formulas, UPPAAL models and queries, and
+reproduction instructions in \texttt{README.md}.
+
+Table~\ref{tab:component-boundary} separates the verified transformations
+from the interfaces that connect them to the surrounding tools.
+\begin{table*}[t]
+\centering
+\caption{Runtime stages and their proof boundary. The preservation theorems begin
+with a TBA in the Rocq representation; the Spot-based formula front end is one
+client of the verified optimizer and exporter.}
+\label{tab:component-boundary}
+\footnotesize
+\begin{tabular}{@{}p{0.22\textwidth}p{0.35\textwidth}p{0.35\textwidth}@{}}
+\toprule
+Stage & Implementation & Guarantee or boundary\\
+\midrule
+TBA input and adapter & Rocq TBA value or a parser/converter supplied by the caller & Pass results start at this representation; an external adapter is outside the theorem unless separately verified.\\
+Spot-based front end & Spot call and hand-written HOA/LBTT reader in \texttt{mtl2tba} & Used by the integrated formula workflow; outside the TBA preservation theorems.\\
+Optimization rounds & Extracted from \texttt{MTL\_to\_TBA\_Optimizations.v} & \texttt{optimize\_accepts}, for every TBA and every round count.\\
+Iteration driver & Hand-written OCaml structural comparison; stops at equality or 50 rounds & The proof does not assume convergence or a particular stopping point.\\
+UPPAAL export & Extracted from \texttt{MTL\_to\_TBA\_Export.v} & \texttt{export\_accepts} and conjunctive guard/invariant results.\\
+Symbolic grouping & Extracted from \texttt{MTL\_to\_TBA\_Symbolic.v} & \texttt{symbolic\_ext\_accepts}.\\
+XML, DOT, and PDF output & Hand-written printers and Graphviz & Outside the Rocq language-preservation results.\\
+Numeric realization & OCaml floating point with integer bounds in $[0,2^{30}]$ & Exactness follows from inspection of the extracted operations, not a mechanized theorem.\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+In the extracted code, structural equality decides formula and clock
+identity, and Boolean checks implement conditions whose soundness is proved
+in Rocq. Real comparisons are realized by OCaml floating-point operations.
+Input constants lie in $[0,2^{30}]$; the inspected operations produce only
+such constants, their differences, or their negations. These values are
+exactly representable by the 53-bit significand of a double, and the printed
+constants fit UPPAAL's 32-bit integer domain. This arithmetic argument is
+based on inspection of the extracted implementation rather than a theorem
+about OCaml or the printer. Rational constants can be handled by a common time
+scaling only when every scaled bound remains an integer in $[0,2^{30}]$; timing
+constants in any surrounding system model must be scaled by the same factor.
+

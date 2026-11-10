@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+  <declaration>chan p, q, other;</declaration>
+  <template>
+    <name>Sys</name>
+    <declaration>clock y, z;</declaration>
+    <location id="s0" x="0" y="0">
+      <name>Idle</name>
+    </location>
+    <location id="s1" x="0" y="0">
+      <name>Busy</name>
+      <label kind="invariant">y &lt;= 6</label>
+    </location>
+    <init ref="s0"/>
+    <transition>
+      <source ref="s0"/>
+      <target ref="s1"/>
+      <label kind="guard">z &gt; 0</label>
+      <label kind="synchronisation">p!</label>
+      <label kind="assignment">y = 0, z = 0</label>
+    </transition>
+    <transition>
+      <source ref="s0"/>
+      <target ref="s0"/>
+      <label kind="guard">z &gt; 0</label>
+      <label kind="synchronisation">other!</label>
+      <label kind="assignment">z = 0</label>
+    </transition>
+    <transition>
+      <source ref="s1"/>
+      <target ref="s1"/>
+      <label kind="guard">z &gt; 0 &amp;&amp; y &lt; 6</label>
+      <label kind="synchronisation">other!</label>
+      <label kind="assignment">z = 0</label>
+    </transition>
+    <transition>
+      <source ref="s1"/>
+      <target ref="s0"/>
+      <label kind="guard">z &gt; 0 &amp;&amp; y &gt;= 1</label>
+      <label kind="synchronisation">q!</label>
+      <label kind="assignment">z = 0</label>
+    </transition>
+  </template>
+  <template>
+    <name>Recv</name>
+    <location id="r0" x="0" y="0">
+      <name>R</name>
+    </location>
+    <init ref="r0"/>
+    <transition>
+      <source ref="r0"/>
+      <target ref="r0"/>
+      <label kind="synchronisation">p?</label>
+    </transition>
+    <transition>
+      <source ref="r0"/>
+      <target ref="r0"/>
+      <label kind="synchronisation">q?</label>
+    </transition>
+    <transition>
+      <source ref="r0"/>
+      <target ref="r0"/>
+      <label kind="synchronisation">other?</label>
+    </transition>
+  </template>
+  <system>S = Sys();
+R = Recv();
+system S, R;</system>
+</nta>

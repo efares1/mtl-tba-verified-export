@@ -1,0 +1,10 @@
+# M12: two transitions guarded x<2 and x>2 (not mergeable: x==2 is accepted by neither)
+events e0 e1
+clocks 1
+init 0
+states 3
+acc 2
+t 0 1 | 1+ | | 0
+t 1 2 | 0+ | 0>2 |
+t 1 2 | 0+ | 0<2 |
+t 2 2 | 1+ | |

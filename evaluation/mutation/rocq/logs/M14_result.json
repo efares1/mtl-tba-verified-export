@@ -1,0 +1,11 @@
+{
+ "id": "M14",
+ "description": "split entry condition: difference constraint d_l <= d_k reversed (the copy with the SHORTEST delay is entered)",
+ "file": "MTL_to_TBA_Export",
+ "compiled": [],
+ "status": "rejected",
+ "failing_file": "MTL_to_TBA_Export",
+ "seconds_to_fail": 2.5,
+ "first_error": "File \".\\MTL_to_TBA_Export.v\", line 724, characters 4-115:\nError: Not convertible.",
+ "err_line": 724
+}

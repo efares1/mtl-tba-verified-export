@@ -1,0 +1,11 @@
+{
+ "id": "M19",
+ "description": "dprune: the initial location is no longer exempt from the incoming-transition test",
+ "file": "MTL_to_TBA_Export",
+ "compiled": [],
+ "status": "rejected",
+ "failing_file": "MTL_to_TBA_Export",
+ "seconds_to_fail": 7.7,
+ "first_error": "File \".\\MTL_to_TBA_Export.v\", line 1087, characters 14-36:\nWarning: Notation Nat.div_lt_upper_bound is deprecated since 8.17.\nUse Div0.div_lt_upper_bound instead.\n[deprecated-syntactic-definition-since-8.17,deprecated-since-8.17,deprecated-syntactic-definition,deprecated,default]\nFile \".\\MTL_to_TBA_Export.v\", line 1087, characters 14-36:\nWarning: Notation Nat.div_lt_upper_bound is deprecated since 8.17.\nUse Div0.div_lt_upper_bound instead.\n[deprecated-syntactic-definition-since-8.17,deprecated-since-8.17,deprecated-syntactic-definition,deprecated,default]\nFile \".\\MTL_to_TBA_Export.v\", line 1343, characters 14-36:\nWarning: Notation Nat.div_lt_upper_bound is deprecated since 8.17.\nUse Div0.div_lt_upper_bound instead.\n[deprecated-syntactic-definition-since-8.17,deprecated-since-8.17,deprecated-syntactic-definition,deprecated,default]\nFile \".\\MTL_to_TBA_Export.v\", line 1343, characters 14-36:\nWarning: Notation Nat.div_lt_upper_bound is deprecated since 8.17.\nUse Div0.div_lt_upper_bound instead.\n[deprecated-syntactic-definition-since-8.17,deprecated-since-8.17,deprecated-syntactic-definition,deprecated,default]\nFile \".\\MTL_to_TBA_Export.v\", line 1679, characters 54-66:\nError:\nIn environment\nroot : mtl\nD : DTA\nrho : ext_word root\nrun : nat -> nat\nHinit : run 0%nat = dta_init D\nHsteps :\n  forall i : nat,\n  (run i < dta_nstates D)%nat /\\\n  dinv_during rho i (dta_inv D (run i)) /\\\n  (exists t : dtrans,\n     In t (dta_trans D) /\\\n     dt_src t = run i /\\ dt_tgt t = run (S i) /\\ dtrans_",
+ "err_line": 1087
+}

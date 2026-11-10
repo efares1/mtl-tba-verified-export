@@ -1,0 +1,10 @@
+date: 2026-10-14T01:21Z
+CPU(s):                                  8
+Model name:                              Intel(R) Core(TM) i7-8650U CPU @ 1.90GHz
+memory (MB): 11765
+kernel: 6.18.54.1-microsoft-standard-WSL2
+PRETTY_NAME="Ubuntu 26.04.1 LTS"
+ltl2tgba (spot) 2.16
+The OCaml toplevel, version 5.4.0
+dune 3.20.2
+repetitions: 1, limit: 300 s

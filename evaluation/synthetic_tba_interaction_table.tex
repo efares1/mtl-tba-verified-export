@@ -1,0 +1,19 @@
+\begin{table*}[tp]
+\centering
+\caption{Measured direct TBA examples targeting propagation and pass interactions. Transition and clock counts are total records and active clocks. Leave-one-operation-out variants are experimental composites, not separately verified transformations.}
+\label{tab:synthetic-interactions}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}p{0.22\textwidth}cccp{0.39\textwidth}@{}}
+\toprule
+Case & Input $E/C$ & Full $E/C$ & Rounds & Measured target-pass effect when omitted\\
+\midrule
+Backward bound tightening & 2/1 & 2/1 & 1 & Incoming guard tightens from $x\leq5$ to $x\leq2$; omitting backward synthesis leaves $x\leq5$.\\
+Forward lower-bound propagation & 3/1 & 3/1 & 1 & Entry fact $x\geq2$ is added to the outgoing $q$ edge; edge count is unchanged.\\
+Forward contradiction cascade & 7/1 & 4/1 & 2 & Omitting forward propagation or contradiction removal retains 7 edges; the full run removes the $x\leq1$ branch and then prunes its unentered chain.\\
+Backward contradiction cascade & 5/1 & 1/0 & 2 & Omitting backward synthesis leaves 2 edges/1 clock; omitting contradiction removal leaves 5/1.\\
+Normalization and dead reset & 2/1 & 2/0 & 1 & Normalizing tautological $x\geq0$ enables reset removal; omitting either pass leaves 1 active clock.\\
+Synchronous-clock contradiction & 5/2 & 3/1 & 2 & Merging the synchronously reset clocks exposes $x\geq5\land x\leq3$; omitting clock merge or contradiction removal leaves 5 edges/2 clocks.\\
+\bottomrule
+\end{tabular}
+\end{table*}

@@ -1,0 +1,27 @@
+\begin{tikzpicture}[node distance=18mm]
+  % Without Init
+  \begin{scope}[xshift=0cm]
+    \node[font=\small] at (1.7,1.45) {Without explicit $\mathit{init}$};
+    \node[fmstate] (a0) at (0,0) {$s_0$};
+    \node[fmaccept] (a1) at (3.35,0) {$s_e$};
+    \draw[fmedge] ([xshift=-8mm]a0.west) -- (a0.west);
+    \draw[fmedge] (a0) edge[loop above] node[fmlabel] {$\mathit{other}$} (a0);
+    \draw[fmedge] (a0) -- node[fmlabel,above] {$x\le2,\;e$} (a1);
+    \draw[fmedge] (a1) edge[loop above] node[fmlabel] {$\top$} (a1);
+    \node[fmnote] at (1.7,-1.20) {$x$ starts at time $0$, not at the first event};
+  \end{scope}
+
+  % With Init
+  \begin{scope}[xshift=7.0cm]
+    \node[font=\small] at (2.2,1.45) {With explicit $\mathit{init}$};
+    \node[fmstate] (bI) at (0,0) {$s_I$};
+    \node[fmstate] (b0) at (2.3,0) {$s_0$};
+    \node[fmaccept] (b1) at (4.65,0) {$s_e$};
+    \draw[fmedge] ([xshift=-8mm]bI.west) -- (bI.west);
+    \draw[fmedge] (bI) -- node[fmlabel,above] {$\mathit{init}\,/\,\mathsf{rst}(x)$} (b0);
+    \draw[fmedge] (b0) edge[loop above] node[fmlabel] {$\mathit{other}$} (b0);
+    \draw[fmedge] (b0) -- node[fmlabel,above] {$x\le2,\;e$} (b1);
+    \draw[fmedge] (b1) edge[loop above] node[fmlabel] {$\top$} (b1);
+    \node[fmnote] at (2.3,-1.20) {the explicit initialization event fixes the reference};
+  \end{scope}
+\end{tikzpicture}

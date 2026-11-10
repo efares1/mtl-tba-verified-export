@@ -1,0 +1,9 @@
+digraph G {
+  0 [label="", style=invis, height=0]
+  0 -> 1
+  1 [label="G(!p | !q) & F(p & (1U[x<=3]!q))"]
+  1 -> 1 [label="!p\n"]
+  1 -> 2 [label="p & !q\n{Acc[p & (1U[x<=3]!q)]}"]
+  2 [label="G(!p | !q)"]
+  2 -> 2 [label="!p | !q\n{Acc[p & (1U[x<=3]!q)]}"]
+}

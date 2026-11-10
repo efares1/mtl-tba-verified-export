@@ -1,0 +1,11 @@
+{
+ "id": "M10",
+ "description": "sim: the subsumption test no longer compares the reset sets of the two transitions",
+ "file": "MTL_to_TBA_Optimizations",
+ "compiled": [],
+ "status": "rejected",
+ "failing_file": "MTL_to_TBA_Optimizations",
+ "seconds_to_fail": 3.8,
+ "first_error": "File \".\\MTL_to_TBA_Optimizations.v\", line 1783, characters 29-42:\nError: Unable to apply lemma of type\n \"forall b1 b2 : bool, b1 && b2 = true <-> b1 = true /\\ b2 = true\"\non hypothesis of type \"true = true\".",
+ "err_line": 1783
+}

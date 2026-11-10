@@ -1,0 +1,2 @@
+id	formula	P1	P2	S	init_free
+X74	(<> ((q) & (r))) -> (!(p))	NONEMPTY	empty	empty	1

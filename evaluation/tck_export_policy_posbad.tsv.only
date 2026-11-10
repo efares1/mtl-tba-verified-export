@@ -1,0 +1,11 @@
+id	variant	locs	trans	diag_guards	verdict	stored	seconds	peak_kb	visited_trans
+R2	opt_maxdelay	4	12	6	timeout	NA	NA	5552	NA
+R2	opt_allcopy	4	12	0	empty	48	0.000766	8212	62
+R2	n0_maxdelay	4	16	6	timeout	NA	NA	5468	NA
+R2	n0_allcopy	4	16	0	empty	48	0.0007511	8244	62
+R2	casaal	NA	NA	NA	empty	433	0.0056633	8620	568
+R3	opt_maxdelay	8	32	66	timeout	NA	NA	5848	NA
+R3	opt_allcopy	8	32	0	empty	48	0.0008977	8508	62
+R3	n0_maxdelay	8	64	66	timeout	NA	NA	5964	NA
+R3	n0_allcopy	8	64	0	empty	48	0.0008783	8424	62
+R3	casaal	NA	NA	NA	empty	4225	0.0751587	13116	5624

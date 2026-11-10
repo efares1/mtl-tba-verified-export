@@ -1,0 +1,9 @@
+2026-10-10T07:00:12Z
+user: efares
+kernel: 6.18.40.1-microsoft-standard-WSL2
+mtl2tba [options] 'formula'
+Usage: /home/efares/local/bin/tck-liveness [options] [file]
+   -a algorithm  liveness algorithm
+The OCaml toplevel, version 5.4.0
+TChecker: /home/efares/local/bin/tck-liveness: unrecognized option '--version'
+limit_seconds: 180

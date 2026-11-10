@@ -1,0 +1,784 @@
+AUTOMATON	backward_tightening_input	nstates=2	init=0	accepting=1
+EDGE	backward_tightening_input	e0	0 --[p ; x0 <= 5 ; reset -]--> 1
+EDGE	backward_tightening_input	e1	1 --[q ; x0 <= 2 ; reset -]--> 1
+AUTOMATON	round_1_backward_bound_synthesis	nstates=2	init=0	accepting=1
+EDGE	round_1_backward_bound_synthesis	e0	0 --[p ; x0 <= 2 ; reset -]--> 1
+EDGE	round_1_backward_bound_synthesis	e1	1 --[q ; x0 <= 2 ; reset -]--> 1
+AUTOMATON	round_1_forward_lower_bounds	nstates=2	init=0	accepting=1
+EDGE	round_1_forward_lower_bounds	e0	0 --[p ; x0 <= 2 ; reset -]--> 1
+EDGE	round_1_forward_lower_bounds	e1	1 --[q ; x0 <= 2 ; reset -]--> 1
+AUTOMATON	round_1_contradiction_removal	nstates=2	init=0	accepting=1
+EDGE	round_1_contradiction_removal	e0	0 --[p ; x0 <= 2 ; reset -]--> 1
+EDGE	round_1_contradiction_removal	e1	1 --[q ; x0 <= 2 ; reset -]--> 1
+AUTOMATON	round_1_unsatisfiable_label_removal	nstates=2	init=0	accepting=1
+EDGE	round_1_unsatisfiable_label_removal	e0	0 --[p ; x0 <= 2 ; reset -]--> 1
+EDGE	round_1_unsatisfiable_label_removal	e1	1 --[q ; x0 <= 2 ; reset -]--> 1
+AUTOMATON	round_1_unreachable_source_removal	nstates=2	init=0	accepting=1
+EDGE	round_1_unreachable_source_removal	e0	0 --[p ; x0 <= 2 ; reset -]--> 1
+EDGE	round_1_unreachable_source_removal	e1	1 --[q ; x0 <= 2 ; reset -]--> 1
+AUTOMATON	round_1_guard_normalization_1	nstates=2	init=0	accepting=1
+EDGE	round_1_guard_normalization_1	e0	0 --[p ; x0 <= 2 ; reset -]--> 1
+EDGE	round_1_guard_normalization_1	e1	1 --[q ; x0 <= 2 ; reset -]--> 1
+AUTOMATON	round_1_dead_reset_removal	nstates=2	init=0	accepting=1
+EDGE	round_1_dead_reset_removal	e0	0 --[p ; x0 <= 2 ; reset -]--> 1
+EDGE	round_1_dead_reset_removal	e1	1 --[q ; x0 <= 2 ; reset -]--> 1
+AUTOMATON	round_1_guard_normalization_2	nstates=2	init=0	accepting=1
+EDGE	round_1_guard_normalization_2	e0	0 --[p ; x0 <= 2 ; reset -]--> 1
+EDGE	round_1_guard_normalization_2	e1	1 --[q ; x0 <= 2 ; reset -]--> 1
+AUTOMATON	round_1_synchronous_clock_merge	nstates=2	init=0	accepting=1
+EDGE	round_1_synchronous_clock_merge	e0	0 --[p ; x0 <= 2 ; reset -]--> 1
+EDGE	round_1_synchronous_clock_merge	e1	1 --[q ; x0 <= 2 ; reset -]--> 1
+AUTOMATON	round_1_guard_normalization_3	nstates=2	init=0	accepting=1
+EDGE	round_1_guard_normalization_3	e0	0 --[p ; x0 <= 2 ; reset -]--> 1
+EDGE	round_1_guard_normalization_3	e1	1 --[q ; x0 <= 2 ; reset -]--> 1
+AUTOMATON	round_1_transition_subsumption	nstates=2	init=0	accepting=1
+EDGE	round_1_transition_subsumption	e0	0 --[p ; x0 <= 2 ; reset -]--> 1
+EDGE	round_1_transition_subsumption	e1	1 --[q ; x0 <= 2 ; reset -]--> 1
+AUTOMATON	round_1_equivalent_location_merge	nstates=2	init=0	accepting=1
+EDGE	round_1_equivalent_location_merge	e0	0 --[p ; x0 <= 2 ; reset -]--> 1
+EDGE	round_1_equivalent_location_merge	e1	1 --[q ; x0 <= 2 ; reset -]--> 1
+AUTOMATON	backward_tightening_after_round_1	nstates=2	init=0	accepting=1
+EDGE	backward_tightening_after_round_1	e0	0 --[p ; x0 <= 2 ; reset -]--> 1
+EDGE	backward_tightening_after_round_1	e1	1 --[q ; x0 <= 2 ; reset -]--> 1
+AUTOMATON	round_2_backward_bound_synthesis	nstates=2	init=0	accepting=1
+EDGE	round_2_backward_bound_synthesis	e0	0 --[p ; x0 <= 2 ; reset -]--> 1
+EDGE	round_2_backward_bound_synthesis	e1	1 --[q ; x0 <= 2 ; reset -]--> 1
+AUTOMATON	round_2_forward_lower_bounds	nstates=2	init=0	accepting=1
+EDGE	round_2_forward_lower_bounds	e0	0 --[p ; x0 <= 2 ; reset -]--> 1
+EDGE	round_2_forward_lower_bounds	e1	1 --[q ; x0 <= 2 ; reset -]--> 1
+AUTOMATON	round_2_contradiction_removal	nstates=2	init=0	accepting=1
+EDGE	round_2_contradiction_removal	e0	0 --[p ; x0 <= 2 ; reset -]--> 1
+EDGE	round_2_contradiction_removal	e1	1 --[q ; x0 <= 2 ; reset -]--> 1
+AUTOMATON	round_2_unsatisfiable_label_removal	nstates=2	init=0	accepting=1
+EDGE	round_2_unsatisfiable_label_removal	e0	0 --[p ; x0 <= 2 ; reset -]--> 1
+EDGE	round_2_unsatisfiable_label_removal	e1	1 --[q ; x0 <= 2 ; reset -]--> 1
+AUTOMATON	round_2_unreachable_source_removal	nstates=2	init=0	accepting=1
+EDGE	round_2_unreachable_source_removal	e0	0 --[p ; x0 <= 2 ; reset -]--> 1
+EDGE	round_2_unreachable_source_removal	e1	1 --[q ; x0 <= 2 ; reset -]--> 1
+AUTOMATON	round_2_guard_normalization_1	nstates=2	init=0	accepting=1
+EDGE	round_2_guard_normalization_1	e0	0 --[p ; x0 <= 2 ; reset -]--> 1
+EDGE	round_2_guard_normalization_1	e1	1 --[q ; x0 <= 2 ; reset -]--> 1
+AUTOMATON	round_2_dead_reset_removal	nstates=2	init=0	accepting=1
+EDGE	round_2_dead_reset_removal	e0	0 --[p ; x0 <= 2 ; reset -]--> 1
+EDGE	round_2_dead_reset_removal	e1	1 --[q ; x0 <= 2 ; reset -]--> 1
+AUTOMATON	round_2_guard_normalization_2	nstates=2	init=0	accepting=1
+EDGE	round_2_guard_normalization_2	e0	0 --[p ; x0 <= 2 ; reset -]--> 1
+EDGE	round_2_guard_normalization_2	e1	1 --[q ; x0 <= 2 ; reset -]--> 1
+AUTOMATON	round_2_synchronous_clock_merge	nstates=2	init=0	accepting=1
+EDGE	round_2_synchronous_clock_merge	e0	0 --[p ; x0 <= 2 ; reset -]--> 1
+EDGE	round_2_synchronous_clock_merge	e1	1 --[q ; x0 <= 2 ; reset -]--> 1
+AUTOMATON	round_2_guard_normalization_3	nstates=2	init=0	accepting=1
+EDGE	round_2_guard_normalization_3	e0	0 --[p ; x0 <= 2 ; reset -]--> 1
+EDGE	round_2_guard_normalization_3	e1	1 --[q ; x0 <= 2 ; reset -]--> 1
+AUTOMATON	round_2_transition_subsumption	nstates=2	init=0	accepting=1
+EDGE	round_2_transition_subsumption	e0	0 --[p ; x0 <= 2 ; reset -]--> 1
+EDGE	round_2_transition_subsumption	e1	1 --[q ; x0 <= 2 ; reset -]--> 1
+AUTOMATON	round_2_equivalent_location_merge	nstates=2	init=0	accepting=1
+EDGE	round_2_equivalent_location_merge	e0	0 --[p ; x0 <= 2 ; reset -]--> 1
+EDGE	round_2_equivalent_location_merge	e1	1 --[q ; x0 <= 2 ; reset -]--> 1
+STATUS	backward_tightening	stable_after_1_changed_rounds
+AUTOMATON	forward_lower_bound_input	nstates=3	init=0	accepting=2
+EDGE	forward_lower_bound_input	e0	0 --[p ; x0 >= 2 ; reset -]--> 1
+EDGE	forward_lower_bound_input	e1	1 --[q ; x0 <= 5 ; reset -]--> 2
+EDGE	forward_lower_bound_input	e2	2 --[r ; true ; reset -]--> 2
+AUTOMATON	round_1_backward_bound_synthesis	nstates=3	init=0	accepting=2
+EDGE	round_1_backward_bound_synthesis	e0	0 --[p ; x0 >= 2 & x0 <= 5 ; reset -]--> 1
+EDGE	round_1_backward_bound_synthesis	e1	1 --[q ; x0 <= 5 ; reset -]--> 2
+EDGE	round_1_backward_bound_synthesis	e2	2 --[r ; true ; reset -]--> 2
+AUTOMATON	round_1_forward_lower_bounds	nstates=3	init=0	accepting=2
+EDGE	round_1_forward_lower_bounds	e0	0 --[p ; x0 >= 2 & x0 <= 5 ; reset -]--> 1
+EDGE	round_1_forward_lower_bounds	e1	1 --[q ; x0 <= 5 & x0 >= 2 ; reset -]--> 2
+EDGE	round_1_forward_lower_bounds	e2	2 --[r ; true ; reset -]--> 2
+AUTOMATON	round_1_contradiction_removal	nstates=3	init=0	accepting=2
+EDGE	round_1_contradiction_removal	e0	0 --[p ; x0 >= 2 & x0 <= 5 ; reset -]--> 1
+EDGE	round_1_contradiction_removal	e1	1 --[q ; x0 <= 5 & x0 >= 2 ; reset -]--> 2
+EDGE	round_1_contradiction_removal	e2	2 --[r ; true ; reset -]--> 2
+AUTOMATON	round_1_unsatisfiable_label_removal	nstates=3	init=0	accepting=2
+EDGE	round_1_unsatisfiable_label_removal	e0	0 --[p ; x0 >= 2 & x0 <= 5 ; reset -]--> 1
+EDGE	round_1_unsatisfiable_label_removal	e1	1 --[q ; x0 <= 5 & x0 >= 2 ; reset -]--> 2
+EDGE	round_1_unsatisfiable_label_removal	e2	2 --[r ; true ; reset -]--> 2
+AUTOMATON	round_1_unreachable_source_removal	nstates=3	init=0	accepting=2
+EDGE	round_1_unreachable_source_removal	e0	0 --[p ; x0 >= 2 & x0 <= 5 ; reset -]--> 1
+EDGE	round_1_unreachable_source_removal	e1	1 --[q ; x0 <= 5 & x0 >= 2 ; reset -]--> 2
+EDGE	round_1_unreachable_source_removal	e2	2 --[r ; true ; reset -]--> 2
+AUTOMATON	round_1_guard_normalization_1	nstates=3	init=0	accepting=2
+EDGE	round_1_guard_normalization_1	e0	0 --[p ; x0 >= 2 & x0 <= 5 ; reset -]--> 1
+EDGE	round_1_guard_normalization_1	e1	1 --[q ; x0 <= 5 & x0 >= 2 ; reset -]--> 2
+EDGE	round_1_guard_normalization_1	e2	2 --[r ; true ; reset -]--> 2
+AUTOMATON	round_1_dead_reset_removal	nstates=3	init=0	accepting=2
+EDGE	round_1_dead_reset_removal	e0	0 --[p ; x0 >= 2 & x0 <= 5 ; reset -]--> 1
+EDGE	round_1_dead_reset_removal	e1	1 --[q ; x0 <= 5 & x0 >= 2 ; reset -]--> 2
+EDGE	round_1_dead_reset_removal	e2	2 --[r ; true ; reset -]--> 2
+AUTOMATON	round_1_guard_normalization_2	nstates=3	init=0	accepting=2
+EDGE	round_1_guard_normalization_2	e0	0 --[p ; x0 >= 2 & x0 <= 5 ; reset -]--> 1
+EDGE	round_1_guard_normalization_2	e1	1 --[q ; x0 <= 5 & x0 >= 2 ; reset -]--> 2
+EDGE	round_1_guard_normalization_2	e2	2 --[r ; true ; reset -]--> 2
+AUTOMATON	round_1_synchronous_clock_merge	nstates=3	init=0	accepting=2
+EDGE	round_1_synchronous_clock_merge	e0	0 --[p ; x0 >= 2 & x0 <= 5 ; reset -]--> 1
+EDGE	round_1_synchronous_clock_merge	e1	1 --[q ; x0 <= 5 & x0 >= 2 ; reset -]--> 2
+EDGE	round_1_synchronous_clock_merge	e2	2 --[r ; true ; reset -]--> 2
+AUTOMATON	round_1_guard_normalization_3	nstates=3	init=0	accepting=2
+EDGE	round_1_guard_normalization_3	e0	0 --[p ; x0 >= 2 & x0 <= 5 ; reset -]--> 1
+EDGE	round_1_guard_normalization_3	e1	1 --[q ; x0 <= 5 & x0 >= 2 ; reset -]--> 2
+EDGE	round_1_guard_normalization_3	e2	2 --[r ; true ; reset -]--> 2
+AUTOMATON	round_1_transition_subsumption	nstates=3	init=0	accepting=2
+EDGE	round_1_transition_subsumption	e0	0 --[p ; x0 >= 2 & x0 <= 5 ; reset -]--> 1
+EDGE	round_1_transition_subsumption	e1	1 --[q ; x0 <= 5 & x0 >= 2 ; reset -]--> 2
+EDGE	round_1_transition_subsumption	e2	2 --[r ; true ; reset -]--> 2
+AUTOMATON	round_1_equivalent_location_merge	nstates=3	init=0	accepting=2
+EDGE	round_1_equivalent_location_merge	e0	0 --[p ; x0 >= 2 & x0 <= 5 ; reset -]--> 1
+EDGE	round_1_equivalent_location_merge	e1	1 --[q ; x0 <= 5 & x0 >= 2 ; reset -]--> 2
+EDGE	round_1_equivalent_location_merge	e2	2 --[r ; true ; reset -]--> 2
+AUTOMATON	forward_lower_bound_after_round_1	nstates=3	init=0	accepting=2
+EDGE	forward_lower_bound_after_round_1	e0	0 --[p ; x0 >= 2 & x0 <= 5 ; reset -]--> 1
+EDGE	forward_lower_bound_after_round_1	e1	1 --[q ; x0 <= 5 & x0 >= 2 ; reset -]--> 2
+EDGE	forward_lower_bound_after_round_1	e2	2 --[r ; true ; reset -]--> 2
+AUTOMATON	round_2_backward_bound_synthesis	nstates=3	init=0	accepting=2
+EDGE	round_2_backward_bound_synthesis	e0	0 --[p ; x0 >= 2 & x0 <= 5 ; reset -]--> 1
+EDGE	round_2_backward_bound_synthesis	e1	1 --[q ; x0 <= 5 & x0 >= 2 ; reset -]--> 2
+EDGE	round_2_backward_bound_synthesis	e2	2 --[r ; true ; reset -]--> 2
+AUTOMATON	round_2_forward_lower_bounds	nstates=3	init=0	accepting=2
+EDGE	round_2_forward_lower_bounds	e0	0 --[p ; x0 >= 2 & x0 <= 5 ; reset -]--> 1
+EDGE	round_2_forward_lower_bounds	e1	1 --[q ; x0 <= 5 & x0 >= 2 ; reset -]--> 2
+EDGE	round_2_forward_lower_bounds	e2	2 --[r ; true ; reset -]--> 2
+AUTOMATON	round_2_contradiction_removal	nstates=3	init=0	accepting=2
+EDGE	round_2_contradiction_removal	e0	0 --[p ; x0 >= 2 & x0 <= 5 ; reset -]--> 1
+EDGE	round_2_contradiction_removal	e1	1 --[q ; x0 <= 5 & x0 >= 2 ; reset -]--> 2
+EDGE	round_2_contradiction_removal	e2	2 --[r ; true ; reset -]--> 2
+AUTOMATON	round_2_unsatisfiable_label_removal	nstates=3	init=0	accepting=2
+EDGE	round_2_unsatisfiable_label_removal	e0	0 --[p ; x0 >= 2 & x0 <= 5 ; reset -]--> 1
+EDGE	round_2_unsatisfiable_label_removal	e1	1 --[q ; x0 <= 5 & x0 >= 2 ; reset -]--> 2
+EDGE	round_2_unsatisfiable_label_removal	e2	2 --[r ; true ; reset -]--> 2
+AUTOMATON	round_2_unreachable_source_removal	nstates=3	init=0	accepting=2
+EDGE	round_2_unreachable_source_removal	e0	0 --[p ; x0 >= 2 & x0 <= 5 ; reset -]--> 1
+EDGE	round_2_unreachable_source_removal	e1	1 --[q ; x0 <= 5 & x0 >= 2 ; reset -]--> 2
+EDGE	round_2_unreachable_source_removal	e2	2 --[r ; true ; reset -]--> 2
+AUTOMATON	round_2_guard_normalization_1	nstates=3	init=0	accepting=2
+EDGE	round_2_guard_normalization_1	e0	0 --[p ; x0 >= 2 & x0 <= 5 ; reset -]--> 1
+EDGE	round_2_guard_normalization_1	e1	1 --[q ; x0 <= 5 & x0 >= 2 ; reset -]--> 2
+EDGE	round_2_guard_normalization_1	e2	2 --[r ; true ; reset -]--> 2
+AUTOMATON	round_2_dead_reset_removal	nstates=3	init=0	accepting=2
+EDGE	round_2_dead_reset_removal	e0	0 --[p ; x0 >= 2 & x0 <= 5 ; reset -]--> 1
+EDGE	round_2_dead_reset_removal	e1	1 --[q ; x0 <= 5 & x0 >= 2 ; reset -]--> 2
+EDGE	round_2_dead_reset_removal	e2	2 --[r ; true ; reset -]--> 2
+AUTOMATON	round_2_guard_normalization_2	nstates=3	init=0	accepting=2
+EDGE	round_2_guard_normalization_2	e0	0 --[p ; x0 >= 2 & x0 <= 5 ; reset -]--> 1
+EDGE	round_2_guard_normalization_2	e1	1 --[q ; x0 <= 5 & x0 >= 2 ; reset -]--> 2
+EDGE	round_2_guard_normalization_2	e2	2 --[r ; true ; reset -]--> 2
+AUTOMATON	round_2_synchronous_clock_merge	nstates=3	init=0	accepting=2
+EDGE	round_2_synchronous_clock_merge	e0	0 --[p ; x0 >= 2 & x0 <= 5 ; reset -]--> 1
+EDGE	round_2_synchronous_clock_merge	e1	1 --[q ; x0 <= 5 & x0 >= 2 ; reset -]--> 2
+EDGE	round_2_synchronous_clock_merge	e2	2 --[r ; true ; reset -]--> 2
+AUTOMATON	round_2_guard_normalization_3	nstates=3	init=0	accepting=2
+EDGE	round_2_guard_normalization_3	e0	0 --[p ; x0 >= 2 & x0 <= 5 ; reset -]--> 1
+EDGE	round_2_guard_normalization_3	e1	1 --[q ; x0 <= 5 & x0 >= 2 ; reset -]--> 2
+EDGE	round_2_guard_normalization_3	e2	2 --[r ; true ; reset -]--> 2
+AUTOMATON	round_2_transition_subsumption	nstates=3	init=0	accepting=2
+EDGE	round_2_transition_subsumption	e0	0 --[p ; x0 >= 2 & x0 <= 5 ; reset -]--> 1
+EDGE	round_2_transition_subsumption	e1	1 --[q ; x0 <= 5 & x0 >= 2 ; reset -]--> 2
+EDGE	round_2_transition_subsumption	e2	2 --[r ; true ; reset -]--> 2
+AUTOMATON	round_2_equivalent_location_merge	nstates=3	init=0	accepting=2
+EDGE	round_2_equivalent_location_merge	e0	0 --[p ; x0 >= 2 & x0 <= 5 ; reset -]--> 1
+EDGE	round_2_equivalent_location_merge	e1	1 --[q ; x0 <= 5 & x0 >= 2 ; reset -]--> 2
+EDGE	round_2_equivalent_location_merge	e2	2 --[r ; true ; reset -]--> 2
+STATUS	forward_lower_bound	stable_after_1_changed_rounds
+AUTOMATON	normalization_dead_reset_input	nstates=2	init=0	accepting=1
+EDGE	normalization_dead_reset_input	e0	0 --[p ; true ; reset x0]--> 1
+EDGE	normalization_dead_reset_input	e1	1 --[q ; x0 >= 0 ; reset -]--> 1
+AUTOMATON	round_1_backward_bound_synthesis	nstates=2	init=0	accepting=1
+EDGE	round_1_backward_bound_synthesis	e0	0 --[p ; true ; reset x0]--> 1
+EDGE	round_1_backward_bound_synthesis	e1	1 --[q ; x0 >= 0 ; reset -]--> 1
+AUTOMATON	round_1_forward_lower_bounds	nstates=2	init=0	accepting=1
+EDGE	round_1_forward_lower_bounds	e0	0 --[p ; true ; reset x0]--> 1
+EDGE	round_1_forward_lower_bounds	e1	1 --[q ; x0 >= 0 ; reset -]--> 1
+AUTOMATON	round_1_contradiction_removal	nstates=2	init=0	accepting=1
+EDGE	round_1_contradiction_removal	e0	0 --[p ; true ; reset x0]--> 1
+EDGE	round_1_contradiction_removal	e1	1 --[q ; x0 >= 0 ; reset -]--> 1
+AUTOMATON	round_1_unsatisfiable_label_removal	nstates=2	init=0	accepting=1
+EDGE	round_1_unsatisfiable_label_removal	e0	0 --[p ; true ; reset x0]--> 1
+EDGE	round_1_unsatisfiable_label_removal	e1	1 --[q ; x0 >= 0 ; reset -]--> 1
+AUTOMATON	round_1_unreachable_source_removal	nstates=2	init=0	accepting=1
+EDGE	round_1_unreachable_source_removal	e0	0 --[p ; true ; reset x0]--> 1
+EDGE	round_1_unreachable_source_removal	e1	1 --[q ; x0 >= 0 ; reset -]--> 1
+AUTOMATON	round_1_guard_normalization_1	nstates=2	init=0	accepting=1
+EDGE	round_1_guard_normalization_1	e0	0 --[p ; true ; reset x0]--> 1
+EDGE	round_1_guard_normalization_1	e1	1 --[q ; true ; reset -]--> 1
+AUTOMATON	round_1_dead_reset_removal	nstates=2	init=0	accepting=1
+EDGE	round_1_dead_reset_removal	e0	0 --[p ; true ; reset -]--> 1
+EDGE	round_1_dead_reset_removal	e1	1 --[q ; true ; reset -]--> 1
+AUTOMATON	round_1_guard_normalization_2	nstates=2	init=0	accepting=1
+EDGE	round_1_guard_normalization_2	e0	0 --[p ; true ; reset -]--> 1
+EDGE	round_1_guard_normalization_2	e1	1 --[q ; true ; reset -]--> 1
+AUTOMATON	round_1_synchronous_clock_merge	nstates=2	init=0	accepting=1
+EDGE	round_1_synchronous_clock_merge	e0	0 --[p ; true ; reset -]--> 1
+EDGE	round_1_synchronous_clock_merge	e1	1 --[q ; true ; reset -]--> 1
+AUTOMATON	round_1_guard_normalization_3	nstates=2	init=0	accepting=1
+EDGE	round_1_guard_normalization_3	e0	0 --[p ; true ; reset -]--> 1
+EDGE	round_1_guard_normalization_3	e1	1 --[q ; true ; reset -]--> 1
+AUTOMATON	round_1_transition_subsumption	nstates=2	init=0	accepting=1
+EDGE	round_1_transition_subsumption	e0	0 --[p ; true ; reset -]--> 1
+EDGE	round_1_transition_subsumption	e1	1 --[q ; true ; reset -]--> 1
+AUTOMATON	round_1_equivalent_location_merge	nstates=2	init=0	accepting=1
+EDGE	round_1_equivalent_location_merge	e0	0 --[p ; true ; reset -]--> 1
+EDGE	round_1_equivalent_location_merge	e1	1 --[q ; true ; reset -]--> 1
+AUTOMATON	normalization_dead_reset_after_round_1	nstates=2	init=0	accepting=1
+EDGE	normalization_dead_reset_after_round_1	e0	0 --[p ; true ; reset -]--> 1
+EDGE	normalization_dead_reset_after_round_1	e1	1 --[q ; true ; reset -]--> 1
+AUTOMATON	round_2_backward_bound_synthesis	nstates=2	init=0	accepting=1
+EDGE	round_2_backward_bound_synthesis	e0	0 --[p ; true ; reset -]--> 1
+EDGE	round_2_backward_bound_synthesis	e1	1 --[q ; true ; reset -]--> 1
+AUTOMATON	round_2_forward_lower_bounds	nstates=2	init=0	accepting=1
+EDGE	round_2_forward_lower_bounds	e0	0 --[p ; true ; reset -]--> 1
+EDGE	round_2_forward_lower_bounds	e1	1 --[q ; true ; reset -]--> 1
+AUTOMATON	round_2_contradiction_removal	nstates=2	init=0	accepting=1
+EDGE	round_2_contradiction_removal	e0	0 --[p ; true ; reset -]--> 1
+EDGE	round_2_contradiction_removal	e1	1 --[q ; true ; reset -]--> 1
+AUTOMATON	round_2_unsatisfiable_label_removal	nstates=2	init=0	accepting=1
+EDGE	round_2_unsatisfiable_label_removal	e0	0 --[p ; true ; reset -]--> 1
+EDGE	round_2_unsatisfiable_label_removal	e1	1 --[q ; true ; reset -]--> 1
+AUTOMATON	round_2_unreachable_source_removal	nstates=2	init=0	accepting=1
+EDGE	round_2_unreachable_source_removal	e0	0 --[p ; true ; reset -]--> 1
+EDGE	round_2_unreachable_source_removal	e1	1 --[q ; true ; reset -]--> 1
+AUTOMATON	round_2_guard_normalization_1	nstates=2	init=0	accepting=1
+EDGE	round_2_guard_normalization_1	e0	0 --[p ; true ; reset -]--> 1
+EDGE	round_2_guard_normalization_1	e1	1 --[q ; true ; reset -]--> 1
+AUTOMATON	round_2_dead_reset_removal	nstates=2	init=0	accepting=1
+EDGE	round_2_dead_reset_removal	e0	0 --[p ; true ; reset -]--> 1
+EDGE	round_2_dead_reset_removal	e1	1 --[q ; true ; reset -]--> 1
+AUTOMATON	round_2_guard_normalization_2	nstates=2	init=0	accepting=1
+EDGE	round_2_guard_normalization_2	e0	0 --[p ; true ; reset -]--> 1
+EDGE	round_2_guard_normalization_2	e1	1 --[q ; true ; reset -]--> 1
+AUTOMATON	round_2_synchronous_clock_merge	nstates=2	init=0	accepting=1
+EDGE	round_2_synchronous_clock_merge	e0	0 --[p ; true ; reset -]--> 1
+EDGE	round_2_synchronous_clock_merge	e1	1 --[q ; true ; reset -]--> 1
+AUTOMATON	round_2_guard_normalization_3	nstates=2	init=0	accepting=1
+EDGE	round_2_guard_normalization_3	e0	0 --[p ; true ; reset -]--> 1
+EDGE	round_2_guard_normalization_3	e1	1 --[q ; true ; reset -]--> 1
+AUTOMATON	round_2_transition_subsumption	nstates=2	init=0	accepting=1
+EDGE	round_2_transition_subsumption	e0	0 --[p ; true ; reset -]--> 1
+EDGE	round_2_transition_subsumption	e1	1 --[q ; true ; reset -]--> 1
+AUTOMATON	round_2_equivalent_location_merge	nstates=2	init=0	accepting=1
+EDGE	round_2_equivalent_location_merge	e0	0 --[p ; true ; reset -]--> 1
+EDGE	round_2_equivalent_location_merge	e1	1 --[q ; true ; reset -]--> 1
+STATUS	normalization_dead_reset	stable_after_1_changed_rounds
+AUTOMATON	forward_contradiction_cascade_input	nstates=6	init=0	accepting=0,3
+EDGE	forward_contradiction_cascade_input	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	forward_contradiction_cascade_input	e1	0 --[p ; x0 >= 2 ; reset -]--> 1
+EDGE	forward_contradiction_cascade_input	e2	1 --[q ; x0 <= 1 ; reset -]--> 2
+EDGE	forward_contradiction_cascade_input	e3	1 --[r ; x0 <= 10 ; reset -]--> 3
+EDGE	forward_contradiction_cascade_input	e4	2 --[a3 ; true ; reset -]--> 4
+EDGE	forward_contradiction_cascade_input	e5	4 --[!p ; true ; reset -]--> 5
+EDGE	forward_contradiction_cascade_input	e6	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_1_backward_bound_synthesis	nstates=6	init=0	accepting=0,3
+EDGE	round_1_backward_bound_synthesis	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_1_backward_bound_synthesis	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_1_backward_bound_synthesis	e2	1 --[q ; x0 <= 1 ; reset -]--> 2
+EDGE	round_1_backward_bound_synthesis	e3	1 --[r ; x0 <= 10 ; reset -]--> 3
+EDGE	round_1_backward_bound_synthesis	e4	2 --[a3 ; true ; reset -]--> 4
+EDGE	round_1_backward_bound_synthesis	e5	4 --[!p ; true ; reset -]--> 5
+EDGE	round_1_backward_bound_synthesis	e6	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_1_forward_lower_bounds	nstates=6	init=0	accepting=0,3
+EDGE	round_1_forward_lower_bounds	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_1_forward_lower_bounds	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_1_forward_lower_bounds	e2	1 --[q ; x0 <= 1 & x0 >= 2 ; reset -]--> 2
+EDGE	round_1_forward_lower_bounds	e3	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	round_1_forward_lower_bounds	e4	2 --[a3 ; true ; reset -]--> 4
+EDGE	round_1_forward_lower_bounds	e5	4 --[!p ; true ; reset -]--> 5
+EDGE	round_1_forward_lower_bounds	e6	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_1_contradiction_removal	nstates=6	init=0	accepting=0,3
+EDGE	round_1_contradiction_removal	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_1_contradiction_removal	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_1_contradiction_removal	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	round_1_contradiction_removal	e3	2 --[a3 ; true ; reset -]--> 4
+EDGE	round_1_contradiction_removal	e4	4 --[!p ; true ; reset -]--> 5
+EDGE	round_1_contradiction_removal	e5	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_1_unsatisfiable_label_removal	nstates=6	init=0	accepting=0,3
+EDGE	round_1_unsatisfiable_label_removal	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_1_unsatisfiable_label_removal	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_1_unsatisfiable_label_removal	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	round_1_unsatisfiable_label_removal	e3	2 --[a3 ; true ; reset -]--> 4
+EDGE	round_1_unsatisfiable_label_removal	e4	4 --[!p ; true ; reset -]--> 5
+EDGE	round_1_unsatisfiable_label_removal	e5	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_1_unreachable_source_removal	nstates=6	init=0	accepting=0,3
+EDGE	round_1_unreachable_source_removal	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_1_unreachable_source_removal	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_1_unreachable_source_removal	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	round_1_unreachable_source_removal	e3	4 --[!p ; true ; reset -]--> 5
+EDGE	round_1_unreachable_source_removal	e4	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_1_guard_normalization_1	nstates=6	init=0	accepting=0,3
+EDGE	round_1_guard_normalization_1	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_1_guard_normalization_1	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_1_guard_normalization_1	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	round_1_guard_normalization_1	e3	4 --[!p ; true ; reset -]--> 5
+EDGE	round_1_guard_normalization_1	e4	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_1_dead_reset_removal	nstates=6	init=0	accepting=0,3
+EDGE	round_1_dead_reset_removal	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_1_dead_reset_removal	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_1_dead_reset_removal	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	round_1_dead_reset_removal	e3	4 --[!p ; true ; reset -]--> 5
+EDGE	round_1_dead_reset_removal	e4	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_1_guard_normalization_2	nstates=6	init=0	accepting=0,3
+EDGE	round_1_guard_normalization_2	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_1_guard_normalization_2	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_1_guard_normalization_2	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	round_1_guard_normalization_2	e3	4 --[!p ; true ; reset -]--> 5
+EDGE	round_1_guard_normalization_2	e4	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_1_synchronous_clock_merge	nstates=6	init=0	accepting=0,3
+EDGE	round_1_synchronous_clock_merge	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_1_synchronous_clock_merge	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_1_synchronous_clock_merge	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	round_1_synchronous_clock_merge	e3	4 --[!p ; true ; reset -]--> 5
+EDGE	round_1_synchronous_clock_merge	e4	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_1_guard_normalization_3	nstates=6	init=0	accepting=0,3
+EDGE	round_1_guard_normalization_3	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_1_guard_normalization_3	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_1_guard_normalization_3	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	round_1_guard_normalization_3	e3	4 --[!p ; true ; reset -]--> 5
+EDGE	round_1_guard_normalization_3	e4	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_1_transition_subsumption	nstates=6	init=0	accepting=0,3
+EDGE	round_1_transition_subsumption	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_1_transition_subsumption	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_1_transition_subsumption	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	round_1_transition_subsumption	e3	4 --[!p ; true ; reset -]--> 5
+EDGE	round_1_transition_subsumption	e4	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_1_equivalent_location_merge	nstates=6	init=0	accepting=0,3
+EDGE	round_1_equivalent_location_merge	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_1_equivalent_location_merge	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_1_equivalent_location_merge	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	round_1_equivalent_location_merge	e3	4 --[!p ; true ; reset -]--> 2
+EDGE	round_1_equivalent_location_merge	e4	3 --[p ; true ; reset -]--> 3
+AUTOMATON	forward_contradiction_cascade_after_round_1	nstates=6	init=0	accepting=0,3
+EDGE	forward_contradiction_cascade_after_round_1	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	forward_contradiction_cascade_after_round_1	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	forward_contradiction_cascade_after_round_1	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	forward_contradiction_cascade_after_round_1	e3	4 --[!p ; true ; reset -]--> 2
+EDGE	forward_contradiction_cascade_after_round_1	e4	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_2_backward_bound_synthesis	nstates=6	init=0	accepting=0,3
+EDGE	round_2_backward_bound_synthesis	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_2_backward_bound_synthesis	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_2_backward_bound_synthesis	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	round_2_backward_bound_synthesis	e3	4 --[!p ; true ; reset -]--> 2
+EDGE	round_2_backward_bound_synthesis	e4	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_2_forward_lower_bounds	nstates=6	init=0	accepting=0,3
+EDGE	round_2_forward_lower_bounds	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_2_forward_lower_bounds	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_2_forward_lower_bounds	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	round_2_forward_lower_bounds	e3	4 --[!p ; true ; reset -]--> 2
+EDGE	round_2_forward_lower_bounds	e4	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_2_contradiction_removal	nstates=6	init=0	accepting=0,3
+EDGE	round_2_contradiction_removal	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_2_contradiction_removal	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_2_contradiction_removal	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	round_2_contradiction_removal	e3	4 --[!p ; true ; reset -]--> 2
+EDGE	round_2_contradiction_removal	e4	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_2_unsatisfiable_label_removal	nstates=6	init=0	accepting=0,3
+EDGE	round_2_unsatisfiable_label_removal	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_2_unsatisfiable_label_removal	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_2_unsatisfiable_label_removal	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	round_2_unsatisfiable_label_removal	e3	4 --[!p ; true ; reset -]--> 2
+EDGE	round_2_unsatisfiable_label_removal	e4	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_2_unreachable_source_removal	nstates=6	init=0	accepting=0,3
+EDGE	round_2_unreachable_source_removal	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_2_unreachable_source_removal	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_2_unreachable_source_removal	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	round_2_unreachable_source_removal	e3	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_2_guard_normalization_1	nstates=6	init=0	accepting=0,3
+EDGE	round_2_guard_normalization_1	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_2_guard_normalization_1	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_2_guard_normalization_1	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	round_2_guard_normalization_1	e3	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_2_dead_reset_removal	nstates=6	init=0	accepting=0,3
+EDGE	round_2_dead_reset_removal	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_2_dead_reset_removal	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_2_dead_reset_removal	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	round_2_dead_reset_removal	e3	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_2_guard_normalization_2	nstates=6	init=0	accepting=0,3
+EDGE	round_2_guard_normalization_2	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_2_guard_normalization_2	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_2_guard_normalization_2	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	round_2_guard_normalization_2	e3	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_2_synchronous_clock_merge	nstates=6	init=0	accepting=0,3
+EDGE	round_2_synchronous_clock_merge	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_2_synchronous_clock_merge	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_2_synchronous_clock_merge	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	round_2_synchronous_clock_merge	e3	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_2_guard_normalization_3	nstates=6	init=0	accepting=0,3
+EDGE	round_2_guard_normalization_3	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_2_guard_normalization_3	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_2_guard_normalization_3	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	round_2_guard_normalization_3	e3	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_2_transition_subsumption	nstates=6	init=0	accepting=0,3
+EDGE	round_2_transition_subsumption	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_2_transition_subsumption	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_2_transition_subsumption	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	round_2_transition_subsumption	e3	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_2_equivalent_location_merge	nstates=6	init=0	accepting=0,3
+EDGE	round_2_equivalent_location_merge	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_2_equivalent_location_merge	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_2_equivalent_location_merge	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	round_2_equivalent_location_merge	e3	3 --[p ; true ; reset -]--> 3
+AUTOMATON	forward_contradiction_cascade_after_round_2	nstates=6	init=0	accepting=0,3
+EDGE	forward_contradiction_cascade_after_round_2	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	forward_contradiction_cascade_after_round_2	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	forward_contradiction_cascade_after_round_2	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	forward_contradiction_cascade_after_round_2	e3	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_3_backward_bound_synthesis	nstates=6	init=0	accepting=0,3
+EDGE	round_3_backward_bound_synthesis	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_3_backward_bound_synthesis	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_3_backward_bound_synthesis	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	round_3_backward_bound_synthesis	e3	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_3_forward_lower_bounds	nstates=6	init=0	accepting=0,3
+EDGE	round_3_forward_lower_bounds	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_3_forward_lower_bounds	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_3_forward_lower_bounds	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	round_3_forward_lower_bounds	e3	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_3_contradiction_removal	nstates=6	init=0	accepting=0,3
+EDGE	round_3_contradiction_removal	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_3_contradiction_removal	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_3_contradiction_removal	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	round_3_contradiction_removal	e3	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_3_unsatisfiable_label_removal	nstates=6	init=0	accepting=0,3
+EDGE	round_3_unsatisfiable_label_removal	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_3_unsatisfiable_label_removal	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_3_unsatisfiable_label_removal	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	round_3_unsatisfiable_label_removal	e3	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_3_unreachable_source_removal	nstates=6	init=0	accepting=0,3
+EDGE	round_3_unreachable_source_removal	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_3_unreachable_source_removal	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_3_unreachable_source_removal	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	round_3_unreachable_source_removal	e3	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_3_guard_normalization_1	nstates=6	init=0	accepting=0,3
+EDGE	round_3_guard_normalization_1	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_3_guard_normalization_1	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_3_guard_normalization_1	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	round_3_guard_normalization_1	e3	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_3_dead_reset_removal	nstates=6	init=0	accepting=0,3
+EDGE	round_3_dead_reset_removal	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_3_dead_reset_removal	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_3_dead_reset_removal	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	round_3_dead_reset_removal	e3	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_3_guard_normalization_2	nstates=6	init=0	accepting=0,3
+EDGE	round_3_guard_normalization_2	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_3_guard_normalization_2	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_3_guard_normalization_2	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	round_3_guard_normalization_2	e3	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_3_synchronous_clock_merge	nstates=6	init=0	accepting=0,3
+EDGE	round_3_synchronous_clock_merge	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_3_synchronous_clock_merge	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_3_synchronous_clock_merge	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	round_3_synchronous_clock_merge	e3	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_3_guard_normalization_3	nstates=6	init=0	accepting=0,3
+EDGE	round_3_guard_normalization_3	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_3_guard_normalization_3	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_3_guard_normalization_3	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	round_3_guard_normalization_3	e3	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_3_transition_subsumption	nstates=6	init=0	accepting=0,3
+EDGE	round_3_transition_subsumption	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_3_transition_subsumption	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_3_transition_subsumption	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	round_3_transition_subsumption	e3	3 --[p ; true ; reset -]--> 3
+AUTOMATON	round_3_equivalent_location_merge	nstates=6	init=0	accepting=0,3
+EDGE	round_3_equivalent_location_merge	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_3_equivalent_location_merge	e1	0 --[p ; x0 >= 2 & x0 <= 10 ; reset -]--> 1
+EDGE	round_3_equivalent_location_merge	e2	1 --[r ; x0 <= 10 & x0 >= 2 ; reset -]--> 3
+EDGE	round_3_equivalent_location_merge	e3	3 --[p ; true ; reset -]--> 3
+STATUS	forward_contradiction_cascade	stable_after_2_changed_rounds
+AUTOMATON	backward_contradiction_cascade_input	nstates=5	init=0	accepting=0
+EDGE	backward_contradiction_cascade_input	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	backward_contradiction_cascade_input	e1	0 --[p ; x0 >= 2 ; reset -]--> 1
+EDGE	backward_contradiction_cascade_input	e2	1 --[q ; x0 <= 1 ; reset -]--> 2
+EDGE	backward_contradiction_cascade_input	e3	2 --[r ; x0 <= 1 ; reset -]--> 3
+EDGE	backward_contradiction_cascade_input	e4	3 --[!p ; x0 <= 1 ; reset -]--> 4
+AUTOMATON	round_1_backward_bound_synthesis	nstates=5	init=0	accepting=0
+EDGE	round_1_backward_bound_synthesis	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_1_backward_bound_synthesis	e1	0 --[p ; x0 >= 2 & x0 <= 1 ; reset -]--> 1
+EDGE	round_1_backward_bound_synthesis	e2	1 --[q ; x0 <= 1 ; reset -]--> 2
+EDGE	round_1_backward_bound_synthesis	e3	2 --[r ; x0 <= 1 ; reset -]--> 3
+EDGE	round_1_backward_bound_synthesis	e4	3 --[!p ; x0 <= 1 ; reset -]--> 4
+AUTOMATON	round_1_forward_lower_bounds	nstates=5	init=0	accepting=0
+EDGE	round_1_forward_lower_bounds	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_1_forward_lower_bounds	e1	0 --[p ; x0 >= 2 & x0 <= 1 ; reset -]--> 1
+EDGE	round_1_forward_lower_bounds	e2	1 --[q ; x0 <= 1 & x0 >= 2 ; reset -]--> 2
+EDGE	round_1_forward_lower_bounds	e3	2 --[r ; x0 <= 1 ; reset -]--> 3
+EDGE	round_1_forward_lower_bounds	e4	3 --[!p ; x0 <= 1 ; reset -]--> 4
+AUTOMATON	round_1_contradiction_removal	nstates=5	init=0	accepting=0
+EDGE	round_1_contradiction_removal	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_1_contradiction_removal	e1	2 --[r ; x0 <= 1 ; reset -]--> 3
+EDGE	round_1_contradiction_removal	e2	3 --[!p ; x0 <= 1 ; reset -]--> 4
+AUTOMATON	round_1_unsatisfiable_label_removal	nstates=5	init=0	accepting=0
+EDGE	round_1_unsatisfiable_label_removal	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_1_unsatisfiable_label_removal	e1	2 --[r ; x0 <= 1 ; reset -]--> 3
+EDGE	round_1_unsatisfiable_label_removal	e2	3 --[!p ; x0 <= 1 ; reset -]--> 4
+AUTOMATON	round_1_unreachable_source_removal	nstates=5	init=0	accepting=0
+EDGE	round_1_unreachable_source_removal	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_1_unreachable_source_removal	e1	3 --[!p ; x0 <= 1 ; reset -]--> 4
+AUTOMATON	round_1_guard_normalization_1	nstates=5	init=0	accepting=0
+EDGE	round_1_guard_normalization_1	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_1_guard_normalization_1	e1	3 --[!p ; x0 <= 1 ; reset -]--> 4
+AUTOMATON	round_1_dead_reset_removal	nstates=5	init=0	accepting=0
+EDGE	round_1_dead_reset_removal	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_1_dead_reset_removal	e1	3 --[!p ; x0 <= 1 ; reset -]--> 4
+AUTOMATON	round_1_guard_normalization_2	nstates=5	init=0	accepting=0
+EDGE	round_1_guard_normalization_2	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_1_guard_normalization_2	e1	3 --[!p ; x0 <= 1 ; reset -]--> 4
+AUTOMATON	round_1_synchronous_clock_merge	nstates=5	init=0	accepting=0
+EDGE	round_1_synchronous_clock_merge	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_1_synchronous_clock_merge	e1	3 --[!p ; x0 <= 1 ; reset -]--> 4
+AUTOMATON	round_1_guard_normalization_3	nstates=5	init=0	accepting=0
+EDGE	round_1_guard_normalization_3	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_1_guard_normalization_3	e1	3 --[!p ; x0 <= 1 ; reset -]--> 4
+AUTOMATON	round_1_transition_subsumption	nstates=5	init=0	accepting=0
+EDGE	round_1_transition_subsumption	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_1_transition_subsumption	e1	3 --[!p ; x0 <= 1 ; reset -]--> 4
+AUTOMATON	round_1_equivalent_location_merge	nstates=5	init=0	accepting=0
+EDGE	round_1_equivalent_location_merge	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_1_equivalent_location_merge	e1	3 --[!p ; x0 <= 1 ; reset -]--> 1
+AUTOMATON	backward_contradiction_cascade_after_round_1	nstates=5	init=0	accepting=0
+EDGE	backward_contradiction_cascade_after_round_1	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	backward_contradiction_cascade_after_round_1	e1	3 --[!p ; x0 <= 1 ; reset -]--> 1
+AUTOMATON	round_2_backward_bound_synthesis	nstates=5	init=0	accepting=0
+EDGE	round_2_backward_bound_synthesis	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_2_backward_bound_synthesis	e1	3 --[!p ; x0 <= 1 ; reset -]--> 1
+AUTOMATON	round_2_forward_lower_bounds	nstates=5	init=0	accepting=0
+EDGE	round_2_forward_lower_bounds	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_2_forward_lower_bounds	e1	3 --[!p ; x0 <= 1 ; reset -]--> 1
+AUTOMATON	round_2_contradiction_removal	nstates=5	init=0	accepting=0
+EDGE	round_2_contradiction_removal	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_2_contradiction_removal	e1	3 --[!p ; x0 <= 1 ; reset -]--> 1
+AUTOMATON	round_2_unsatisfiable_label_removal	nstates=5	init=0	accepting=0
+EDGE	round_2_unsatisfiable_label_removal	e0	0 --[a3 ; true ; reset -]--> 0
+EDGE	round_2_unsatisfiable_label_removal	e1	3 --[!p ; x0 <= 1 ; reset -]--> 1
+AUTOMATON	round_2_unreachable_source_removal	nstates=5	init=0	accepting=0
+EDGE	round_2_unreachable_source_removal	e0	0 --[a3 ; true ; reset -]--> 0
+AUTOMATON	round_2_guard_normalization_1	nstates=5	init=0	accepting=0
+EDGE	round_2_guard_normalization_1	e0	0 --[a3 ; true ; reset -]--> 0
+AUTOMATON	round_2_dead_reset_removal	nstates=5	init=0	accepting=0
+EDGE	round_2_dead_reset_removal	e0	0 --[a3 ; true ; reset -]--> 0
+AUTOMATON	round_2_guard_normalization_2	nstates=5	init=0	accepting=0
+EDGE	round_2_guard_normalization_2	e0	0 --[a3 ; true ; reset -]--> 0
+AUTOMATON	round_2_synchronous_clock_merge	nstates=5	init=0	accepting=0
+EDGE	round_2_synchronous_clock_merge	e0	0 --[a3 ; true ; reset -]--> 0
+AUTOMATON	round_2_guard_normalization_3	nstates=5	init=0	accepting=0
+EDGE	round_2_guard_normalization_3	e0	0 --[a3 ; true ; reset -]--> 0
+AUTOMATON	round_2_transition_subsumption	nstates=5	init=0	accepting=0
+EDGE	round_2_transition_subsumption	e0	0 --[a3 ; true ; reset -]--> 0
+AUTOMATON	round_2_equivalent_location_merge	nstates=5	init=0	accepting=0
+EDGE	round_2_equivalent_location_merge	e0	0 --[a3 ; true ; reset -]--> 0
+AUTOMATON	backward_contradiction_cascade_after_round_2	nstates=5	init=0	accepting=0
+EDGE	backward_contradiction_cascade_after_round_2	e0	0 --[a3 ; true ; reset -]--> 0
+AUTOMATON	round_3_backward_bound_synthesis	nstates=5	init=0	accepting=0
+EDGE	round_3_backward_bound_synthesis	e0	0 --[a3 ; true ; reset -]--> 0
+AUTOMATON	round_3_forward_lower_bounds	nstates=5	init=0	accepting=0
+EDGE	round_3_forward_lower_bounds	e0	0 --[a3 ; true ; reset -]--> 0
+AUTOMATON	round_3_contradiction_removal	nstates=5	init=0	accepting=0
+EDGE	round_3_contradiction_removal	e0	0 --[a3 ; true ; reset -]--> 0
+AUTOMATON	round_3_unsatisfiable_label_removal	nstates=5	init=0	accepting=0
+EDGE	round_3_unsatisfiable_label_removal	e0	0 --[a3 ; true ; reset -]--> 0
+AUTOMATON	round_3_unreachable_source_removal	nstates=5	init=0	accepting=0
+EDGE	round_3_unreachable_source_removal	e0	0 --[a3 ; true ; reset -]--> 0
+AUTOMATON	round_3_guard_normalization_1	nstates=5	init=0	accepting=0
+EDGE	round_3_guard_normalization_1	e0	0 --[a3 ; true ; reset -]--> 0
+AUTOMATON	round_3_dead_reset_removal	nstates=5	init=0	accepting=0
+EDGE	round_3_dead_reset_removal	e0	0 --[a3 ; true ; reset -]--> 0
+AUTOMATON	round_3_guard_normalization_2	nstates=5	init=0	accepting=0
+EDGE	round_3_guard_normalization_2	e0	0 --[a3 ; true ; reset -]--> 0
+AUTOMATON	round_3_synchronous_clock_merge	nstates=5	init=0	accepting=0
+EDGE	round_3_synchronous_clock_merge	e0	0 --[a3 ; true ; reset -]--> 0
+AUTOMATON	round_3_guard_normalization_3	nstates=5	init=0	accepting=0
+EDGE	round_3_guard_normalization_3	e0	0 --[a3 ; true ; reset -]--> 0
+AUTOMATON	round_3_transition_subsumption	nstates=5	init=0	accepting=0
+EDGE	round_3_transition_subsumption	e0	0 --[a3 ; true ; reset -]--> 0
+AUTOMATON	round_3_equivalent_location_merge	nstates=5	init=0	accepting=0
+EDGE	round_3_equivalent_location_merge	e0	0 --[a3 ; true ; reset -]--> 0
+STATUS	backward_contradiction_cascade	stable_after_2_changed_rounds
+AUTOMATON	clock_merge_contradiction_cascade_input	nstates=5	init=0	accepting=1
+EDGE	clock_merge_contradiction_cascade_input	e0	0 --[a3 ; true ; reset x0,x1]--> 1
+EDGE	clock_merge_contradiction_cascade_input	e1	1 --[a3 ; x0 <= 10 & x1 <= 10 ; reset x0,x1]--> 1
+EDGE	clock_merge_contradiction_cascade_input	e2	0 --[p ; true ; reset x0,x1]--> 2
+EDGE	clock_merge_contradiction_cascade_input	e3	2 --[q ; x0 >= 5 & x1 <= 3 ; reset -]--> 3
+EDGE	clock_merge_contradiction_cascade_input	e4	3 --[r ; true ; reset -]--> 4
+AUTOMATON	round_1_backward_bound_synthesis	nstates=5	init=0	accepting=1
+EDGE	round_1_backward_bound_synthesis	e0	0 --[a3 ; true ; reset x0,x1]--> 1
+EDGE	round_1_backward_bound_synthesis	e1	1 --[a3 ; x0 <= 10 & x1 <= 10 ; reset x0,x1]--> 1
+EDGE	round_1_backward_bound_synthesis	e2	0 --[p ; true ; reset x0,x1]--> 2
+EDGE	round_1_backward_bound_synthesis	e3	2 --[q ; x0 >= 5 & x1 <= 3 ; reset -]--> 3
+EDGE	round_1_backward_bound_synthesis	e4	3 --[r ; true ; reset -]--> 4
+AUTOMATON	round_1_forward_lower_bounds	nstates=5	init=0	accepting=1
+EDGE	round_1_forward_lower_bounds	e0	0 --[a3 ; true ; reset x0,x1]--> 1
+EDGE	round_1_forward_lower_bounds	e1	1 --[a3 ; x0 <= 10 & x1 <= 10 & x0 >= 0 & x1 >= 0 ; reset x0,x1]--> 1
+EDGE	round_1_forward_lower_bounds	e2	0 --[p ; true ; reset x0,x1]--> 2
+EDGE	round_1_forward_lower_bounds	e3	2 --[q ; x0 >= 5 & x1 <= 3 & x1 >= 0 ; reset -]--> 3
+EDGE	round_1_forward_lower_bounds	e4	3 --[r ; x0 >= 5 ; reset -]--> 4
+AUTOMATON	round_1_contradiction_removal	nstates=5	init=0	accepting=1
+EDGE	round_1_contradiction_removal	e0	0 --[a3 ; true ; reset x0,x1]--> 1
+EDGE	round_1_contradiction_removal	e1	1 --[a3 ; x0 <= 10 & x1 <= 10 & x0 >= 0 & x1 >= 0 ; reset x0,x1]--> 1
+EDGE	round_1_contradiction_removal	e2	0 --[p ; true ; reset x0,x1]--> 2
+EDGE	round_1_contradiction_removal	e3	2 --[q ; x0 >= 5 & x1 <= 3 & x1 >= 0 ; reset -]--> 3
+EDGE	round_1_contradiction_removal	e4	3 --[r ; x0 >= 5 ; reset -]--> 4
+AUTOMATON	round_1_unsatisfiable_label_removal	nstates=5	init=0	accepting=1
+EDGE	round_1_unsatisfiable_label_removal	e0	0 --[a3 ; true ; reset x0,x1]--> 1
+EDGE	round_1_unsatisfiable_label_removal	e1	1 --[a3 ; x0 <= 10 & x1 <= 10 & x0 >= 0 & x1 >= 0 ; reset x0,x1]--> 1
+EDGE	round_1_unsatisfiable_label_removal	e2	0 --[p ; true ; reset x0,x1]--> 2
+EDGE	round_1_unsatisfiable_label_removal	e3	2 --[q ; x0 >= 5 & x1 <= 3 & x1 >= 0 ; reset -]--> 3
+EDGE	round_1_unsatisfiable_label_removal	e4	3 --[r ; x0 >= 5 ; reset -]--> 4
+AUTOMATON	round_1_unreachable_source_removal	nstates=5	init=0	accepting=1
+EDGE	round_1_unreachable_source_removal	e0	0 --[a3 ; true ; reset x0,x1]--> 1
+EDGE	round_1_unreachable_source_removal	e1	1 --[a3 ; x0 <= 10 & x1 <= 10 & x0 >= 0 & x1 >= 0 ; reset x0,x1]--> 1
+EDGE	round_1_unreachable_source_removal	e2	0 --[p ; true ; reset x0,x1]--> 2
+EDGE	round_1_unreachable_source_removal	e3	2 --[q ; x0 >= 5 & x1 <= 3 & x1 >= 0 ; reset -]--> 3
+EDGE	round_1_unreachable_source_removal	e4	3 --[r ; x0 >= 5 ; reset -]--> 4
+AUTOMATON	round_1_guard_normalization_1	nstates=5	init=0	accepting=1
+EDGE	round_1_guard_normalization_1	e0	0 --[a3 ; true ; reset x0,x1]--> 1
+EDGE	round_1_guard_normalization_1	e1	1 --[a3 ; x0 <= 10 & x1 <= 10 ; reset x0,x1]--> 1
+EDGE	round_1_guard_normalization_1	e2	0 --[p ; true ; reset x0,x1]--> 2
+EDGE	round_1_guard_normalization_1	e3	2 --[q ; x0 >= 5 & x1 <= 3 ; reset -]--> 3
+EDGE	round_1_guard_normalization_1	e4	3 --[r ; x0 >= 5 ; reset -]--> 4
+AUTOMATON	round_1_dead_reset_removal	nstates=5	init=0	accepting=1
+EDGE	round_1_dead_reset_removal	e0	0 --[a3 ; true ; reset x0,x1]--> 1
+EDGE	round_1_dead_reset_removal	e1	1 --[a3 ; x0 <= 10 & x1 <= 10 ; reset x0,x1]--> 1
+EDGE	round_1_dead_reset_removal	e2	0 --[p ; true ; reset x0,x1]--> 2
+EDGE	round_1_dead_reset_removal	e3	2 --[q ; x0 >= 5 & x1 <= 3 ; reset -]--> 3
+EDGE	round_1_dead_reset_removal	e4	3 --[r ; x0 >= 5 ; reset -]--> 4
+AUTOMATON	round_1_guard_normalization_2	nstates=5	init=0	accepting=1
+EDGE	round_1_guard_normalization_2	e0	0 --[a3 ; true ; reset x0,x1]--> 1
+EDGE	round_1_guard_normalization_2	e1	1 --[a3 ; x0 <= 10 & x1 <= 10 ; reset x0,x1]--> 1
+EDGE	round_1_guard_normalization_2	e2	0 --[p ; true ; reset x0,x1]--> 2
+EDGE	round_1_guard_normalization_2	e3	2 --[q ; x0 >= 5 & x1 <= 3 ; reset -]--> 3
+EDGE	round_1_guard_normalization_2	e4	3 --[r ; x0 >= 5 ; reset -]--> 4
+AUTOMATON	round_1_synchronous_clock_merge	nstates=5	init=0	accepting=1
+EDGE	round_1_synchronous_clock_merge	e0	0 --[a3 ; true ; reset x0,x1]--> 1
+EDGE	round_1_synchronous_clock_merge	e1	1 --[a3 ; x0 <= 10 & x0 <= 10 ; reset x0,x1]--> 1
+EDGE	round_1_synchronous_clock_merge	e2	0 --[p ; true ; reset x0,x1]--> 2
+EDGE	round_1_synchronous_clock_merge	e3	2 --[q ; x0 >= 5 & x0 <= 3 ; reset -]--> 3
+EDGE	round_1_synchronous_clock_merge	e4	3 --[r ; x0 >= 5 ; reset -]--> 4
+AUTOMATON	round_1_guard_normalization_3	nstates=5	init=0	accepting=1
+EDGE	round_1_guard_normalization_3	e0	0 --[a3 ; true ; reset x0,x1]--> 1
+EDGE	round_1_guard_normalization_3	e1	1 --[a3 ; x0 <= 10 ; reset x0,x1]--> 1
+EDGE	round_1_guard_normalization_3	e2	0 --[p ; true ; reset x0,x1]--> 2
+EDGE	round_1_guard_normalization_3	e3	2 --[q ; x0 >= 5 & x0 <= 3 ; reset -]--> 3
+EDGE	round_1_guard_normalization_3	e4	3 --[r ; x0 >= 5 ; reset -]--> 4
+AUTOMATON	round_1_transition_subsumption	nstates=5	init=0	accepting=1
+EDGE	round_1_transition_subsumption	e0	0 --[a3 ; true ; reset x0,x1]--> 1
+EDGE	round_1_transition_subsumption	e1	1 --[a3 ; x0 <= 10 ; reset x0,x1]--> 1
+EDGE	round_1_transition_subsumption	e2	0 --[p ; true ; reset x0,x1]--> 2
+EDGE	round_1_transition_subsumption	e3	2 --[q ; x0 >= 5 & x0 <= 3 ; reset -]--> 3
+EDGE	round_1_transition_subsumption	e4	3 --[r ; x0 >= 5 ; reset -]--> 4
+AUTOMATON	round_1_equivalent_location_merge	nstates=5	init=0	accepting=1
+EDGE	round_1_equivalent_location_merge	e0	0 --[a3 ; true ; reset x0,x1]--> 1
+EDGE	round_1_equivalent_location_merge	e1	1 --[a3 ; x0 <= 10 ; reset x0,x1]--> 1
+EDGE	round_1_equivalent_location_merge	e2	0 --[p ; true ; reset x0,x1]--> 2
+EDGE	round_1_equivalent_location_merge	e3	2 --[q ; x0 >= 5 & x0 <= 3 ; reset -]--> 3
+EDGE	round_1_equivalent_location_merge	e4	3 --[r ; x0 >= 5 ; reset -]--> 4
+AUTOMATON	clock_merge_contradiction_cascade_after_round_1	nstates=5	init=0	accepting=1
+EDGE	clock_merge_contradiction_cascade_after_round_1	e0	0 --[a3 ; true ; reset x0,x1]--> 1
+EDGE	clock_merge_contradiction_cascade_after_round_1	e1	1 --[a3 ; x0 <= 10 ; reset x0,x1]--> 1
+EDGE	clock_merge_contradiction_cascade_after_round_1	e2	0 --[p ; true ; reset x0,x1]--> 2
+EDGE	clock_merge_contradiction_cascade_after_round_1	e3	2 --[q ; x0 >= 5 & x0 <= 3 ; reset -]--> 3
+EDGE	clock_merge_contradiction_cascade_after_round_1	e4	3 --[r ; x0 >= 5 ; reset -]--> 4
+AUTOMATON	round_2_backward_bound_synthesis	nstates=5	init=0	accepting=1
+EDGE	round_2_backward_bound_synthesis	e0	0 --[a3 ; true ; reset x0,x1]--> 1
+EDGE	round_2_backward_bound_synthesis	e1	1 --[a3 ; x0 <= 10 ; reset x0,x1]--> 1
+EDGE	round_2_backward_bound_synthesis	e2	0 --[p ; true ; reset x0,x1]--> 2
+EDGE	round_2_backward_bound_synthesis	e3	2 --[q ; x0 >= 5 & x0 <= 3 ; reset -]--> 3
+EDGE	round_2_backward_bound_synthesis	e4	3 --[r ; x0 >= 5 ; reset -]--> 4
+AUTOMATON	round_2_forward_lower_bounds	nstates=5	init=0	accepting=1
+EDGE	round_2_forward_lower_bounds	e0	0 --[a3 ; true ; reset x0,x1]--> 1
+EDGE	round_2_forward_lower_bounds	e1	1 --[a3 ; x0 <= 10 & x0 >= 0 & x1 >= 0 ; reset x0,x1]--> 1
+EDGE	round_2_forward_lower_bounds	e2	0 --[p ; true ; reset x0,x1]--> 2
+EDGE	round_2_forward_lower_bounds	e3	2 --[q ; x0 >= 5 & x0 <= 3 & x1 >= 0 ; reset -]--> 3
+EDGE	round_2_forward_lower_bounds	e4	3 --[r ; x0 >= 5 ; reset -]--> 4
+AUTOMATON	round_2_contradiction_removal	nstates=5	init=0	accepting=1
+EDGE	round_2_contradiction_removal	e0	0 --[a3 ; true ; reset x0,x1]--> 1
+EDGE	round_2_contradiction_removal	e1	1 --[a3 ; x0 <= 10 & x0 >= 0 & x1 >= 0 ; reset x0,x1]--> 1
+EDGE	round_2_contradiction_removal	e2	0 --[p ; true ; reset x0,x1]--> 2
+EDGE	round_2_contradiction_removal	e3	3 --[r ; x0 >= 5 ; reset -]--> 4
+AUTOMATON	round_2_unsatisfiable_label_removal	nstates=5	init=0	accepting=1
+EDGE	round_2_unsatisfiable_label_removal	e0	0 --[a3 ; true ; reset x0,x1]--> 1
+EDGE	round_2_unsatisfiable_label_removal	e1	1 --[a3 ; x0 <= 10 & x0 >= 0 & x1 >= 0 ; reset x0,x1]--> 1
+EDGE	round_2_unsatisfiable_label_removal	e2	0 --[p ; true ; reset x0,x1]--> 2
+EDGE	round_2_unsatisfiable_label_removal	e3	3 --[r ; x0 >= 5 ; reset -]--> 4
+AUTOMATON	round_2_unreachable_source_removal	nstates=5	init=0	accepting=1
+EDGE	round_2_unreachable_source_removal	e0	0 --[a3 ; true ; reset x0,x1]--> 1
+EDGE	round_2_unreachable_source_removal	e1	1 --[a3 ; x0 <= 10 & x0 >= 0 & x1 >= 0 ; reset x0,x1]--> 1
+EDGE	round_2_unreachable_source_removal	e2	0 --[p ; true ; reset x0,x1]--> 2
+AUTOMATON	round_2_guard_normalization_1	nstates=5	init=0	accepting=1
+EDGE	round_2_guard_normalization_1	e0	0 --[a3 ; true ; reset x0,x1]--> 1
+EDGE	round_2_guard_normalization_1	e1	1 --[a3 ; x0 <= 10 ; reset x0,x1]--> 1
+EDGE	round_2_guard_normalization_1	e2	0 --[p ; true ; reset x0,x1]--> 2
+AUTOMATON	round_2_dead_reset_removal	nstates=5	init=0	accepting=1
+EDGE	round_2_dead_reset_removal	e0	0 --[a3 ; true ; reset x0]--> 1
+EDGE	round_2_dead_reset_removal	e1	1 --[a3 ; x0 <= 10 ; reset x0]--> 1
+EDGE	round_2_dead_reset_removal	e2	0 --[p ; true ; reset -]--> 2
+AUTOMATON	round_2_guard_normalization_2	nstates=5	init=0	accepting=1
+EDGE	round_2_guard_normalization_2	e0	0 --[a3 ; true ; reset x0]--> 1
+EDGE	round_2_guard_normalization_2	e1	1 --[a3 ; x0 <= 10 ; reset x0]--> 1
+EDGE	round_2_guard_normalization_2	e2	0 --[p ; true ; reset -]--> 2
+AUTOMATON	round_2_synchronous_clock_merge	nstates=5	init=0	accepting=1
+EDGE	round_2_synchronous_clock_merge	e0	0 --[a3 ; true ; reset x0]--> 1
+EDGE	round_2_synchronous_clock_merge	e1	1 --[a3 ; x0 <= 10 ; reset x0]--> 1
+EDGE	round_2_synchronous_clock_merge	e2	0 --[p ; true ; reset -]--> 2
+AUTOMATON	round_2_guard_normalization_3	nstates=5	init=0	accepting=1
+EDGE	round_2_guard_normalization_3	e0	0 --[a3 ; true ; reset x0]--> 1
+EDGE	round_2_guard_normalization_3	e1	1 --[a3 ; x0 <= 10 ; reset x0]--> 1
+EDGE	round_2_guard_normalization_3	e2	0 --[p ; true ; reset -]--> 2
+AUTOMATON	round_2_transition_subsumption	nstates=5	init=0	accepting=1
+EDGE	round_2_transition_subsumption	e0	0 --[a3 ; true ; reset x0]--> 1
+EDGE	round_2_transition_subsumption	e1	1 --[a3 ; x0 <= 10 ; reset x0]--> 1
+EDGE	round_2_transition_subsumption	e2	0 --[p ; true ; reset -]--> 2
+AUTOMATON	round_2_equivalent_location_merge	nstates=5	init=0	accepting=1
+EDGE	round_2_equivalent_location_merge	e0	0 --[a3 ; true ; reset x0]--> 1
+EDGE	round_2_equivalent_location_merge	e1	1 --[a3 ; x0 <= 10 ; reset x0]--> 1
+EDGE	round_2_equivalent_location_merge	e2	0 --[p ; true ; reset -]--> 2
+AUTOMATON	clock_merge_contradiction_cascade_after_round_2	nstates=5	init=0	accepting=1
+EDGE	clock_merge_contradiction_cascade_after_round_2	e0	0 --[a3 ; true ; reset x0]--> 1
+EDGE	clock_merge_contradiction_cascade_after_round_2	e1	1 --[a3 ; x0 <= 10 ; reset x0]--> 1
+EDGE	clock_merge_contradiction_cascade_after_round_2	e2	0 --[p ; true ; reset -]--> 2
+AUTOMATON	round_3_backward_bound_synthesis	nstates=5	init=0	accepting=1
+EDGE	round_3_backward_bound_synthesis	e0	0 --[a3 ; true ; reset x0]--> 1
+EDGE	round_3_backward_bound_synthesis	e1	1 --[a3 ; x0 <= 10 ; reset x0]--> 1
+EDGE	round_3_backward_bound_synthesis	e2	0 --[p ; true ; reset -]--> 2
+AUTOMATON	round_3_forward_lower_bounds	nstates=5	init=0	accepting=1
+EDGE	round_3_forward_lower_bounds	e0	0 --[a3 ; true ; reset x0]--> 1
+EDGE	round_3_forward_lower_bounds	e1	1 --[a3 ; x0 <= 10 & x0 >= 0 ; reset x0]--> 1
+EDGE	round_3_forward_lower_bounds	e2	0 --[p ; true ; reset -]--> 2
+AUTOMATON	round_3_contradiction_removal	nstates=5	init=0	accepting=1
+EDGE	round_3_contradiction_removal	e0	0 --[a3 ; true ; reset x0]--> 1
+EDGE	round_3_contradiction_removal	e1	1 --[a3 ; x0 <= 10 & x0 >= 0 ; reset x0]--> 1
+EDGE	round_3_contradiction_removal	e2	0 --[p ; true ; reset -]--> 2
+AUTOMATON	round_3_unsatisfiable_label_removal	nstates=5	init=0	accepting=1
+EDGE	round_3_unsatisfiable_label_removal	e0	0 --[a3 ; true ; reset x0]--> 1
+EDGE	round_3_unsatisfiable_label_removal	e1	1 --[a3 ; x0 <= 10 & x0 >= 0 ; reset x0]--> 1
+EDGE	round_3_unsatisfiable_label_removal	e2	0 --[p ; true ; reset -]--> 2
+AUTOMATON	round_3_unreachable_source_removal	nstates=5	init=0	accepting=1
+EDGE	round_3_unreachable_source_removal	e0	0 --[a3 ; true ; reset x0]--> 1
+EDGE	round_3_unreachable_source_removal	e1	1 --[a3 ; x0 <= 10 & x0 >= 0 ; reset x0]--> 1
+EDGE	round_3_unreachable_source_removal	e2	0 --[p ; true ; reset -]--> 2
+AUTOMATON	round_3_guard_normalization_1	nstates=5	init=0	accepting=1
+EDGE	round_3_guard_normalization_1	e0	0 --[a3 ; true ; reset x0]--> 1
+EDGE	round_3_guard_normalization_1	e1	1 --[a3 ; x0 <= 10 ; reset x0]--> 1
+EDGE	round_3_guard_normalization_1	e2	0 --[p ; true ; reset -]--> 2
+AUTOMATON	round_3_dead_reset_removal	nstates=5	init=0	accepting=1
+EDGE	round_3_dead_reset_removal	e0	0 --[a3 ; true ; reset x0]--> 1
+EDGE	round_3_dead_reset_removal	e1	1 --[a3 ; x0 <= 10 ; reset x0]--> 1
+EDGE	round_3_dead_reset_removal	e2	0 --[p ; true ; reset -]--> 2
+AUTOMATON	round_3_guard_normalization_2	nstates=5	init=0	accepting=1
+EDGE	round_3_guard_normalization_2	e0	0 --[a3 ; true ; reset x0]--> 1
+EDGE	round_3_guard_normalization_2	e1	1 --[a3 ; x0 <= 10 ; reset x0]--> 1
+EDGE	round_3_guard_normalization_2	e2	0 --[p ; true ; reset -]--> 2
+AUTOMATON	round_3_synchronous_clock_merge	nstates=5	init=0	accepting=1
+EDGE	round_3_synchronous_clock_merge	e0	0 --[a3 ; true ; reset x0]--> 1
+EDGE	round_3_synchronous_clock_merge	e1	1 --[a3 ; x0 <= 10 ; reset x0]--> 1
+EDGE	round_3_synchronous_clock_merge	e2	0 --[p ; true ; reset -]--> 2
+AUTOMATON	round_3_guard_normalization_3	nstates=5	init=0	accepting=1
+EDGE	round_3_guard_normalization_3	e0	0 --[a3 ; true ; reset x0]--> 1
+EDGE	round_3_guard_normalization_3	e1	1 --[a3 ; x0 <= 10 ; reset x0]--> 1
+EDGE	round_3_guard_normalization_3	e2	0 --[p ; true ; reset -]--> 2
+AUTOMATON	round_3_transition_subsumption	nstates=5	init=0	accepting=1
+EDGE	round_3_transition_subsumption	e0	0 --[a3 ; true ; reset x0]--> 1
+EDGE	round_3_transition_subsumption	e1	1 --[a3 ; x0 <= 10 ; reset x0]--> 1
+EDGE	round_3_transition_subsumption	e2	0 --[p ; true ; reset -]--> 2
+AUTOMATON	round_3_equivalent_location_merge	nstates=5	init=0	accepting=1
+EDGE	round_3_equivalent_location_merge	e0	0 --[a3 ; true ; reset x0]--> 1
+EDGE	round_3_equivalent_location_merge	e1	1 --[a3 ; x0 <= 10 ; reset x0]--> 1
+EDGE	round_3_equivalent_location_merge	e2	0 --[p ; true ; reset -]--> 2
+STATUS	clock_merge_contradiction_cascade	stable_after_2_changed_rounds

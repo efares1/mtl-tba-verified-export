@@ -1,0 +1,90 @@
+{
+ "M01": {
+  "class": "survives, changes language",
+  "evidence": "counterexamples/M01.tba: 852 accepted words become 0 (first mismatch word 743 of 100000)"
+ },
+ "M02": {
+  "class": "caught by T2",
+  "evidence": ""
+ },
+ "M03": {
+  "class": "caught by T2",
+  "evidence": ""
+ },
+ "M04": {
+  "class": "caught by T2",
+  "evidence": ""
+ },
+ "M05": {
+  "class": "equivalent (language)",
+  "evidence": "output differs (T1 46/296, 32/84) but language identical on all 100000-word tests; argument: every pass is individually language-preserving, so omitting one normalization changes only the form"
+ },
+ "M06": {
+  "class": "caught by T2",
+  "evidence": ""
+ },
+ "M07": {
+  "class": "caught by T2",
+  "evidence": ""
+ },
+ "M08": {
+  "class": "equivalent (argued)",
+  "evidence": "counterexamples/M08.tba: 0 mismatches. After the first transition from the initial location both merged clocks have been reset together and stay equal, and neither is tested before that, so re-entering the initial location cannot expose a difference"
+ },
+ "M09": {
+  "class": "caught by T2",
+  "evidence": ""
+ },
+ "M10": {
+  "class": "survives, changes language",
+  "evidence": "counterexamples/M10.tba: 2395 vs 1452 accepted words, 943 mismatches (first word 210)"
+ },
+ "M11": {
+  "class": "caught by T2",
+  "evidence": ""
+ },
+ "M12": {
+  "class": "survives, changes language",
+  "evidence": "counterexamples/M12.tba: 3234 vs 3564 accepted words, 330 mismatches (first word 530)"
+ },
+ "M13": {
+  "class": "caught by T2",
+  "evidence": ""
+ },
+ "M14": {
+  "class": "caught by T2",
+  "evidence": ""
+ },
+ "M15": {
+  "class": "caught by T2",
+  "evidence": ""
+ },
+ "M16": {
+  "class": "survives, changes language",
+  "evidence": "counterexamples/M16b.tba, max-delay policy: 1278 vs 1216 accepted words, 62 mismatches (first word 323); the all-copy export is unaffected"
+ },
+ "M17": {
+  "class": "equivalent (language, not proved)",
+  "evidence": "output differs on 1 of 296 inputs (a redundant, weaker-looking disjunct is kept) but no language mismatch on 100000 words and on two hand-built disjunctive guards"
+ },
+ "M18": {
+  "class": "caught by T2",
+  "evidence": ""
+ },
+ "M19": {
+  "class": "caught by T2",
+  "evidence": ""
+ },
+ "M20": {
+  "class": "caught by T2",
+  "evidence": ""
+ },
+ "M21": {
+  "class": "equivalent (argued)",
+  "evidence": "counterexamples/M21.tba: 0 mismatches. The live set is closed under predecessors (live_step) and iterated |T|+1 times, so the removed check already holds by construction"
+ },
+ "M22": {
+  "class": "equivalent (language)",
+  "evidence": "counterexamples/M22.tba: 0 mismatches. A weaker invariant (5 instead of 3) is implied by the guard 0<=3 that stays on the transition, so only the invariant text changes"
+ }
+}

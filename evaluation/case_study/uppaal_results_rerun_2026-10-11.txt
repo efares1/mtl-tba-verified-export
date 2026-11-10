@@ -1,0 +1,8 @@
+spor_ok          E<> P.A4            -- Formula is NOT satisfied.
+spor_bad         E<> P.A4            -- Formula is satisfied.
+resp_ok          E<> P.A4            -- Formula is NOT satisfied.
+resp_bad         E<> P.A4            -- Formula is satisfied.
+spor_ok_alone    A[] not deadlock    -- Formula is satisfied.
+spor_bad_alone   A[] not deadlock    -- Formula is satisfied.
+resp_ok_alone    A[] not deadlock    -- Formula is satisfied.
+resp_bad_alone   A[] not deadlock    -- Formula is satisfied.

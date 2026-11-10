@@ -1,0 +1,23 @@
+digraph G {
+  0 [label="", style=invis, height=0]
+  0 -> 1
+  1 [label="G(((1U[x>2]q) | !p) & (!p | !q))"]
+  1 -> 2 [label="!q & reset(x0)\n"]
+  1 -> 1 [label="!p\n{Acc[q]}"]
+  2 [label="(G(((1U[x>2]q) | !p) & (!p | !q)) & (1U[x>2-x0]q)) | (G(((1U[x>2]q) | !p) & (!p | !q)) & \"x0>2\" & Fq)"]
+  2 -> 3 [label="!p & \"x0>2\"\n"]
+  2 -> 2 [label="q & !p\n{Acc[q]}"]
+  2 -> 2 [label="!p\n"]
+  2 -> 2 [label="!q & reset(x0)\n"]
+  2 -> 1 [label="q & !p & \"x0>2\"\n{Acc[q]}"]
+  3 [label="G(((1U[x>2]q) | !p) & (!p | !q)) & Fq"]
+  3 -> 3 [label="!p\n"]
+  3 -> 1 [label="q & !p\n{Acc[q]}"]
+  3 -> 4 [label="!q & reset(x0)\n"]
+  4 [label="(G(((1U[x>2]q) | !p) & (!p | !q)) & \"x0>2\" & Fq) | (G(((1U[x>2]q) | !p) & (!p | !q)) & (1U[x>2-x0]q) & Fq)"]
+  4 -> 3 [label="!p & \"x0>2\"\n"]
+  4 -> 2 [label="q & !p\n{Acc[q]}"]
+  4 -> 1 [label="q & !p & \"x0>2\"\n{Acc[q]}"]
+  4 -> 4 [label="!p\n"]
+  4 -> 4 [label="!q & reset(x0)\n"]
+}

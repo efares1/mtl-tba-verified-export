@@ -1,0 +1,17 @@
+id	variant	locs	trans	diag_guards	verdict	stored	seconds	peak_kb	visited_trans
+R5	opt_allcopy	7	17	0	timeout	NA	NA	1631312	NA
+R5	casaal	NA	NA	NA	timeout	NA	NA	1532956	NA
+R6	opt_allcopy	8	20	0	timeout	NA	NA	1338948	NA
+R6	casaal	NA	NA	NA	timeout	NA	NA	1348076	NA
+R7	opt_allcopy	9	23	0	timeout	NA	NA	1096380	NA
+R7	casaal	NA	NA	NA	timeout	NA	NA	1064396	NA
+N4	opt_allcopy	17	137	0	empty	498087	148.64	687888	9157480
+N4	casaal	NA	NA	NA	empty	498087	230.933	913580	13952984
+N5	opt_allcopy	33	461	0	timeout	NA	NA	1041964	NA
+N5	casaal	NA	NA	NA	timeout	NA	NA	1028332	NA
+N6	opt_allcopy	65	1541	0	timeout	NA	NA	1005084	NA
+N6	casaal	NA	NA	NA	timeout	NA	NA	951412	NA
+N7	opt_allcopy	NA	NA	NA	tool-timeout	NA	NA	NA	NA
+N7	casaal	NA	NA	NA	timeout	NA	NA	926684	NA
+N8	opt_allcopy	NA	NA	NA	tool-timeout	NA	NA	NA	NA
+N8	casaal	NA	NA	NA	timeout	NA	NA	1006520	NA

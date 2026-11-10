@@ -1,0 +1,24 @@
+\section{Introduction}
+\label{sec:introduction}
+Safety and liveness requirements of real-time systems are commonly written in Metric Temporal Logic (MTL) and checked by translating the negated requirement into a timed B\"uchi automaton (TBA), which a timed model checker such as UPPAAL~\cite{uppaal} or TChecker~\cite{tchecker} composes with the system model. The size and shape of that automaton matter in practice. Clocks multiply the symbolic state space the checker has to explore; repeated bounds and resets that never influence a later guard enlarge the automaton without changing its language; and UPPAAL accepts only conjunctive guards and conjunctive upper-bound invariants, whereas merging transitions naturally produces disjunctions.
+
+Optimizing a TBA is nevertheless risky. A pass that is wrong in a rare case silently changes the set of timed words the property accepts, and a model checker then reports a verdict about a different requirement. The passes also interact: propagating a lower bound can make a transition contradictory, but a synthetic nonnegativity guard can keep an otherwise dead clock live unless guards are normalized before reset analysis; and splitting a disjunctive invariant into copies is correct only if the entry condition picks a copy whose invariant admits no less time than the others. Such interactions are hard to find by testing.
+
+This paper presents a post-processing pipeline for TBAs whose every pass is mechanically verified in Rocq, together with its use in a translator from MTL. The pipeline has two stages. The \emph{optimization} stage synthesizes upper-bound location invariants, propagates them backward into guards and entry lower bounds forward, removes contradictory transitions and dead resets, merges clocks that are always reset together, normalizes guards, and merges equivalent transitions and locations. The \emph{export} stage merges transitions that differ only in their Boolean labels, eliminates disjunctive invariants by creating copies with conjunctive invariants and clock-difference entry conditions, and normalizes the result so that guards and invariants are conjunctive. We prove that each pass preserves the timed-word language of every input TBA, that the optimizer does so for every number of rounds, and that the output of export has the conjunctive shape UPPAAL needs.
+
+The passes act on TBAs, whatever their origin. To obtain an end-to-end guarantee for MTL requirements we compose them with a translation whose correctness has been established separately in Rocq~\cite{faresmtl}: a verified translation of MTL$_{0,\infty}$ into a TBA, factored through clocked Linear Temporal Logic and proved correct for a verified propositional B\"uchi backend. Section~\ref{sec:composition} states the resulting theorem, which has no hypothesis on the backend. This paper does not repeat the translation proofs, and everything it proves about optimization and export is new; Section~\ref{sec:model} fixes the definitions the passes are stated over, so the article can be read on its own.
+
+The verified passes are extracted to OCaml and run inside the translator \texttt{mtl2tba}, which calls Spot~\cite{spot} for the propositional automaton and writes UPPAAL XML. We ask three questions of the pipeline.
+\begin{description}[leftmargin=0pt,labelindent=0pt]
+  \item[RQ1] How much smaller are the optimized and exported automata than the translator's raw output, and which passes contribute?
+  \item[RQ2] How do the automata compare with those of an independent translator, CASAAL~\cite{casaal}, in size and in the cost they impose on a timed model checker?
+  \item[RQ3] What does export cost, and where does optimization fail to help?
+\end{description}
+The contributions are:
+\begin{itemize}[leftmargin=*]
+  \item a Rocq development of language-preserving TBA transformations (invariant synthesis and propagation, clock and location simplification, transition merging, and disjunctive-invariant elimination), with preservation theorems for every TBA of the formula-indexed clock interface and every number of optimization rounds;
+  \item a verified export whose guards and invariants are conjunctive, and an end-to-end theorem for MTL requirements that composes it with a verified translation without hypotheses on the propositional backend;
+  \item an extracted implementation with an explicit account of its trust boundary: Spot, the LBTT reader, the XML printer and UPPAAL lie outside the proofs; and
+  \item an evaluation on requirement patterns, synthetic TBAs and system models, including a comparison with CASAAL in output size and in the number of states TChecker stores, and a report of the negative results.
+\end{itemize}
+All proofs, the tool, the inputs and the raw results are available as a single archive (Section~\ref{sec:availability}).

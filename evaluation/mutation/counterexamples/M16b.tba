@@ -1,0 +1,10 @@
+# M16 variant: split needed, two clocks, target reset only x
+events e0 e1
+clocks 2
+init 0
+states 3
+acc 2
+t 0 1 | 0+ | | 0
+t 1 2 | 1+ | 0<=0 | 0
+t 1 2 | 1+ | 1<=4 | 1
+t 2 2 | 0+ | | 0 1

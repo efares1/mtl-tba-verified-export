@@ -1,0 +1,13 @@
+\begin{tabular}{@{}lll@{}}
+\toprule
+Mutant & First failing lemma & Rocq-level change\\
+\midrule
+M01 & \texttt{inv\_guard\_w\_eq} & $0\le M$ test changed to $0<M$\\
+M10 & \texttt{sim\_spec} & reset-set equality dropped from simulation\\
+M12 & \texttt{compl\_cases} & complement of $<$ made $>$\\
+M16 & \texttt{const\_true\_spec} & $0\le b$ test changed to $0<b$\\
+M13 & \texttt{min\_all\_le} & Rmin replaced by Rmax\\
+M14 & \texttt{notlonger\_complete} & difference bound reversed\\
+M19 & \texttt{dprune\_accepts} & initial edges no longer kept\\
+\bottomrule
+\end{tabular}

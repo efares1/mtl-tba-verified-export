@@ -1,0 +1,34 @@
+id	tool	locs	trans	clocks	status	seconds
+R2	ours	4	8	2	ok	0.06
+R2	ours_n0	4	8	2	ok	0.04
+R2	casaal	4	8		ok	
+R3	ours	5	11	3	ok	0.04
+R3	ours_n0	5	11	3	ok	0.04
+R3	casaal	5	11		ok	
+R4	ours	6	14	4	ok	0.04
+R4	ours_n0	6	14	4	ok	0.04
+R4	casaal	6	14		ok	
+R5	ours	7	17	5	ok	0.04
+R5	ours_n0	7	17	5	ok	0.04
+R5	casaal	7	17		ok	
+R6	ours	8	20	6	ok	0.04
+R6	ours_n0	8	20	6	ok	0.04
+R6	casaal	8	20		ok	
+R7	ours	9	23	7	ok	0.04
+R7	ours_n0	9	23	7	ok	0.04
+R7	casaal	9	23		ok	
+R8	ours	10	26	8	ok	0.04
+R8	ours_n0	10	26	8	ok	0.04
+R8	casaal	10	26		ok	
+N5	ours	33	461	5	ok	0.68
+N5	ours_n0	33	688	5	ok	0.65
+N5	casaal	33	461		ok	
+N6	ours	65	1541	6	ok	15.13
+N6	ours_n0	65	2737	6	ok	14.62
+N6	casaal	65	1541		ok	
+N7	ours	129	5105	7	ok	406.13
+N7	ours_n0	129	10930	7	ok	421.35
+N7	casaal	129	5105		ok	
+N8	ours				timeout	900.0
+N8	ours_n0				timeout	900.0
+N8	casaal	257	16769		ok	

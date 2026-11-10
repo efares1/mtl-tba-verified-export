@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this artifact, please cite the article."
+title: "Verified optimization, export and evaluation of a translation from real-time requirements to timed Büchi automata (artifact)"
+type: software
+authors:
+  - family-names: Fares
+    given-names: Elie
+    affiliation: "Higher Colleges of Technology, Sharjah, United Arab Emirates"
+  - family-names: Bodeveix
+    given-names: Jean-Paul
+    affiliation: "IRIT, Université de Toulouse, France"
+  - family-names: Al-Aqrabi
+    given-names: Hussain
+    affiliation: "Higher Colleges of Technology, Sharjah, United Arab Emirates"
+  - family-names: Salami
+    given-names: Azar
+    affiliation: "Higher Colleges of Technology, Sharjah, United Arab Emirates"
+license: MIT
+repository-code: "https://github.com/efares1/mtl-tba-verified-export"
+keywords:
+  - timed automata
+  - Metric Temporal Logic
+  - Rocq
+  - verified optimization
+  - UPPAAL

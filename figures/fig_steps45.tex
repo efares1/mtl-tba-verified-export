@@ -1,0 +1,45 @@
+\begin{tikzpicture}[x=1cm,y=1cm,lab/.style={fmlabel}]
+% Left: automaton returned by Spot (state numbers of Spot; 2 and 4 accepting)
+\begin{scope}[xshift=0cm]
+  \node[fmnote,font=\small\bfseries] at (2.4,6.0) {Spot output};
+  \node[fmstate] (l0) at (0.0,4.8) {$0$};
+  \node[fmstate] (l1) at (0.0,2.4) {$1$};
+  \node[fmaccept] (l2) at (4.8,4.8) {$2$};
+  \node[fmstate] (l3) at (4.8,2.4) {$3$};
+  \node[fmaccept] (l4) at (2.4,0.0) {$4$};
+  \draw[fmedge] (-1.0,4.8) -- (l0);
+  \draw[fmedge] (l0) -- node[lab,left] {$!p\land\neg p\land\mathsf{rst}(y)$} (l1);
+  \draw[fmedge] (l0) -- node[lab,above] {$p\land\neg p\land\mathsf{rst}(y)$} (l2);
+  \draw[fmedge] (l1) edge[loop left,looseness=5] node[lab,left] {$\begin{array}{r}\mathsf{unch}(x)\land x\le5\\{}\land\,!p\land\neg p\\{}\land\,!(y\ge2)\end{array}$} (l1);
+  \draw[fmedge] (l1) -- node[lab,pos=.42,sloped,above] {$\begin{array}{c}x\le5\land p\land\neg p\\{}\land\,!(y\ge2)\end{array}$} (l2);
+  \draw[fmedge] (l1) -- node[lab,below] {$\begin{array}{c}\mathsf{unch}(x)\land x\le5\\{}\land\,!p\land y\ge2\end{array}$} (l3);
+  \draw[fmedge] (l1) -- node[lab,left,pos=.45] {$\begin{array}{r}x\le5\land p\\{}\land y\ge2\end{array}$} (l4);
+  \draw[fmedge] (l2) edge[loop right,looseness=5] node[lab,right] {$\begin{array}{l}\neg p\\{}\land\,!(y\ge2)\end{array}$} (l2);
+  \draw[fmedge] (l2) to[out=-15,in=10,looseness=1.3] node[lab,right,pos=.3] {$y\ge2$} (l4);
+  \draw[fmedge] (l3) edge[loop right,looseness=5] node[lab,right] {$\begin{array}{l}\mathsf{unch}(x)\\{}\land x\le5\land\,!p\end{array}$} (l3);
+  \draw[fmedge] (l3) -- node[lab,right,pos=.4] {$x\le5\land p$} (l4);
+  \draw[fmedge] (l4) edge[loop below,looseness=5] node[lab,below] {$\top$} (l4);
+\end{scope}
+
+% Right: relaxation and reset completion
+\begin{scope}[xshift=9.6cm]
+  \node[fmnote,font=\small\bfseries] at (2.4,6.0) {After relaxation and reset completion};
+  \node[fmstate] (r0) at (0.0,4.8) {$0$};
+  \node[fmstate] (r1) at (0.0,2.4) {$1$};
+  \node[fmaccept] (r2) at (4.8,4.8) {$2$};
+  \node[fmstate] (r3) at (4.8,2.4) {$3$};
+  \node[fmaccept] (r4) at (2.4,0.0) {$4$};
+  \draw[fmedge] (-1.0,4.8) -- (r0);
+  \draw[fmedge] (r0) -- node[lab,left] {$\begin{array}{r}\neg p\\/\;\mathsf{rst}(x),\mathsf{rst}(y)\end{array}$} (r1);
+  \draw[fmedge] (r0) -- node[lab,above] {$p\land\neg p\;/\;\mathsf{rst}(x),\mathsf{rst}(y)$} (r2);
+  \draw[fmedge] (r1) edge[loop left,looseness=5] node[lab,left] {$x\le5,\;\neg p$} (r1);
+  \draw[fmedge] (r1) -- node[lab,pos=.42,sloped,above] {$x\le5,\;p\land\neg p\;/\;\mathsf{rst}(x)$} (r2);
+  \draw[fmedge] (r1) -- node[lab,below] {$x\le5\land y\ge2,\;\neg p$} (r3);
+  \draw[fmedge] (r1) -- node[lab,left,pos=.45] {$\begin{array}{r}x\le5\land y\ge2,\;p\\/\;\mathsf{rst}(x)\end{array}$} (r4);
+  \draw[fmedge] (r2) edge[loop right,looseness=5] node[lab,right] {$\begin{array}{l}\neg p\\/\;\mathsf{rst}(x)\end{array}$} (r2);
+  \draw[fmedge] (r2) to[out=-15,in=10,looseness=1.3] node[lab,right,pos=.3] {$\begin{array}{l}y\ge2,\;\top\\/\;\mathsf{rst}(x)\end{array}$} (r4);
+  \draw[fmedge] (r3) edge[loop right,looseness=5] node[lab,right] {$x\le5,\;\neg p$} (r3);
+  \draw[fmedge] (r3) -- node[lab,right,pos=.4] {$\begin{array}{l}x\le5,\;p\\/\;\mathsf{rst}(x)\end{array}$} (r4);
+  \draw[fmedge] (r4) edge[loop below,looseness=5] node[lab,below] {$\top\;/\;\mathsf{rst}(x)$} (r4);
+\end{scope}
+\end{tikzpicture}

@@ -1,0 +1,20 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \node[fmstate,minimum size=13mm] (s1) at (0,0) {$\begin{array}{c}1\\[-1mm]x_{u0}\le5\end{array}$};
+  \node[fmstate,minimum size=18mm] (s4) at (4.4,3.0) {$\begin{array}{c}4\\[-1mm]x_{u1}\le2\;\lor\;x_{u0}\le5\end{array}$};
+  \node[fmstate,minimum size=14mm] (s3) at (8.3,-0.5) {$\begin{array}{c}3\\[-1mm]x_{u1}\le2\end{array}$};
+  \node[fmaccept] (s2) at (12.4,2.2) {$2$};
+  \draw[fmedge] (-1.1,0) -- (s1);
+  \draw[fmedge] (s1) edge[loop above,looseness=4] node[fmlabel] {$\mathit{other}/\mathsf{rst}(x_{u1})$} (s1);
+  \draw[fmedge] (s1) to[bend left=8] node[fmlabel,pos=.45,above,sloped] {$p/\mathsf{rst}(x_{u1})$} (s4);
+  \draw[fmedge] (s4) to[bend left=13] node[fmlabel,pos=.50,below,sloped] {$\begin{array}{c}x_{u0}\le5,\;\mathit{other}/\\\mathsf{rst}(x_{u1})\end{array}$} (s1);
+  \draw[fmedge] (s1) to[bend right=8] node[fmlabel,pos=.63,below] {$p/\mathsf{rst}(x_{u1})$} (s3);
+  \draw[fmedge] (s1) to[bend right=48] node[fmlabel,pos=.4,below,sloped] {$q$} (s2);
+  \draw[fmedge] (s4) edge[loop above,looseness=5] node[fmlabel] {$\begin{array}{c}x_{u0}\le5\\p/\mathsf{rst}(x_{u1})\end{array}$} (s4);
+  \draw[fmedge] (s4) to[bend left=21] node[fmlabel,pos=.54,above,sloped] {$x_{u0}\le5,\;q$} (s2);
+  \draw[fmedge] (s4) to[bend left=8] node[fmlabel,pos=.56,below,sloped] {$x_{u1}\le2,\;q$} (s2);
+  \draw[fmedge] (s4) to[bend left=5] node[fmlabel,pos=.53,above,sloped] {$\begin{array}{c}x_{u0}\le5\\p/\mathsf{rst}(x_{u1})\end{array}$} (s3);
+  \draw[fmedge] (s4) to[bend right=32] node[fmlabel,pos=.5,below,sloped] {$x_{u1}\le2,\;p$} (s3);
+  \draw[fmedge] (s3) edge[loop right,looseness=5] node[fmlabel,right] {$p$} (s3);
+  \draw[fmedge] (s3) -- node[fmlabel,above,sloped] {$q$} (s2);
+  \draw[fmedge] (s2) edge[loop right,looseness=5] node[fmlabel,right] {$p,\;q,\;\mathit{other}$} (s2);
+\end{tikzpicture}

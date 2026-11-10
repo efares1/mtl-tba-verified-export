@@ -1,0 +1,2 @@
+formula_clocks	spot_states	spot_trans	spot_s	comp_locs	comp_trans	comp_clocks	opt_rounds	opt_locs	opt_trans	opt_clocks	exp_locs	exp_trans	exp_clocks	exp_invs	exp_diffs	opt_s	exp_s	total_s	init_free	sym_trans
+1	3	5	0.024	3	5	1	0	3	5	1	3	5	1	0	0	0.000	0.000	0.034	1	5

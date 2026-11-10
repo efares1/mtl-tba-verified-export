@@ -1,0 +1,21 @@
+digraph G {
+  0 [label="", style=invis, height=0]
+  0 -> 1
+  1 [label="(0R[x<=3]((q | !q)U[x<2]!r)) & G(!q | !r)"]
+  1 -> 2 [label="!r & reset(x1)\n"]
+  1 -> 3 [label="!q & reset(x0) & reset(x1)\n"]
+  2 [label="(G(!q | !r) & (0R[x<=3-x1]((q | !q)U[x<2]!r))) | (G(!q | !r) & !\"x1<=3\")"]
+  2 -> 2 [label="!r\n"]
+  2 -> 4 [label="(!q & !\"x1<=3\") | (!r & !\"x1<=3\")\n"]
+  2 -> 3 [label="!q & reset(x0)\n"]
+  3 [label="(G(!q | !r) & ((q | !q)U[x<2-x0]!r) & \"x0<2\" & (0R[x<=3-x1]((q | !q)U[x<2]!r))) | (G(!q | !r) & ((q | !q)U[x<2-x0]!r) & \"x0<2\" & !\"x1<=3\")"]
+  3 -> 2 [label="!r & \"x0<2\"\n"]
+  3 -> 5 [label="!q & \"x0<2\" & !\"x1<=3\"\n"]
+  3 -> 4 [label="!r & \"x0<2\" & !\"x1<=3\"\n"]
+  3 -> 3 [label="!q & \"x0<2\"\n"]
+  4 [label="G(!q | !r)"]
+  4 -> 4 [label="!q | !r\n"]
+  5 [label="G(!q | !r) & ((q | !q)U[x<2-x0]!r) & \"x0<2\""]
+  5 -> 5 [label="!q & \"x0<2\"\n"]
+  5 -> 4 [label="!r & \"x0<2\"\n"]
+}

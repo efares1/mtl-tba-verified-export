@@ -1,0 +1,34 @@
+digraph TA {
+  rankdir=LR;
+  node [shape=circle];
+  init [shape=point];
+  init -> L0;
+  L0 [shape=doublecircle, label="L0"];
+  L4 [shape=doublecircle, label="L4\nx0 <= 5"];
+  L6 [shape=doublecircle, label="L6\nx1 <= 5"];
+  L8 [shape=circle, label="L8\nx0 <= 5 && x1 <= 5"];
+  L10 [shape=circle, label="L10\nx0 <= 5"];
+  L12 [shape=circle, label="L12\nx1 <= 5"];
+  L14 [shape=circle, label="L14\nx0 <= 5 && x1 <= 5"];
+  L0 -> L0 [label="b1|b2|other\nx0, x1 := 0"];
+  L0 -> L4 [label="a1\nx0, x1 := 0"];
+  L0 -> L6 [label="a2\nx0, x1 := 0"];
+  L4 -> L0 [label="x0 <= 5: b1\nx0, x1 := 0"];
+  L4 -> L14 [label="x0 <= 0: a2\nx0 <= 5 && x0 >= -0: a2\nx1 := 0"];
+  L4 -> L10 [label="x0 <= 5: a1|b2|other\nx1 := 0"];
+  L6 -> L0 [label="x1 <= 5: b2\nx0, x1 := 0"];
+  L6 -> L8 [label="x1 <= 5 && x1 >= -0: a1\nx1 <= 0: a1\nx0 := 0"];
+  L6 -> L12 [label="x1 <= 5: a2|b1|other\nx0 := 0"];
+  L8 -> L8 [label="x0 <= 5 && x1 <= 5 && x0 - x1 <= 0: a1|a2|other\nx0 <= 5 && x1 <= 5 && x1 - x0 <= 0: a1|a2|other"];
+  L8 -> L10 [label="x1 <= 5 && x0 <= 5: b2\nx1 := 0"];
+  L8 -> L12 [label="x0 <= 5 && x1 <= 5: b1\nx0 := 0"];
+  L10 -> L0 [label="x0 <= 5: b1\nx0, x1 := 0"];
+  L10 -> L14 [label="x0 <= 0: a2\nx0 <= 5 && x0 >= -0: a2\nx1 := 0"];
+  L10 -> L10 [label="x0 <= 5: a1|b2|other\nx1 := 0"];
+  L12 -> L0 [label="x1 <= 5: b2\nx0, x1 := 0"];
+  L12 -> L8 [label="x1 <= 5 && x1 >= -0: a1\nx1 <= 0: a1\nx0 := 0"];
+  L12 -> L12 [label="x1 <= 5: a2|b1|other\nx0 := 0"];
+  L14 -> L6 [label="x0 <= 5 && x1 <= 5: b1\nx0 := 0"];
+  L14 -> L14 [label="x0 <= 5 && x1 <= 5 && x0 - x1 <= 0: a1|a2|other\nx0 <= 5 && x1 <= 5 && x1 - x0 <= 0: a1|a2|other"];
+  L14 -> L10 [label="x1 <= 5 && x0 <= 5: b2\nx1 := 0"];
+}

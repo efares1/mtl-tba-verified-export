@@ -1,0 +1,28 @@
+\begin{table*}[t]
+\centering
+\caption{Sixteen translator-independent synthetic TBA records. Count tuples are declared locations / transitions / distinct clocks / reset occurrences / unary guard atoms; the export tuple adds diagonal guard atoms. The $I$ field gives nonempty invariant locations:bound atoms. Optimization and export times are per-call means over 200 repeated in-memory runs; RSS is the peak for a separate single-model process. Full per-pass and reachability data are supplied in the artifact.}
+\label{tab:synthetic-tba}
+\scriptsize
+\begin{tabular}{@{}lrrrrrrr@{}}
+\toprule
+Model & Input & Optimized & Rounds & Opt. (ms) & RSS (KiB) & Export & Exp. (ms)\\
+\midrule
+stable & 1/1/0/0/0 & 1/1/0/0/0; $I=0:0$ & 0 & 0.008 & 6364 & 2/1/0/0/0/0; $I=1:0$ & 0.089\\
+redundant\_guard & 2/2/1/1/3 & 2/2/1/1/2; $I=2:2$ & 1 & 0.133 & 6460 & 4/2/1/1/2/0; $I=2:2$ & 0.197\\
+contradictory\_guard & 2/2/1/0/2 & 2/1/0/0/0; $I=0:0$ & 1 & 0.042 & 6428 & 4/1/0/0/0/0; $I=1:0$ & 0.073\\
+unsatisfiable\_label & 2/2/0/0/0 & 2/1/0/0/0; $I=0:0$ & 1 & 0.026 & 6352 & 4/1/0/0/0/0; $I=1:0$ & 0.143\\
+isolated\_source & 3/2/0/0/0 & 3/1/0/0/0; $I=0:0$ & 1 & 0.027 & 6340 & 6/1/0/0/0/0; $I=1:0$ & 0.264\\
+dead\_reset & 2/2/1/2/0 & 2/2/0/0/0; $I=0:0$ & 1 & 0.052 & 6468 & 4/2/0/0/0/0; $I=2:0$ & 0.150\\
+normalization\_dead\_reset & 2/2/1/1/1 & 2/2/0/0/0; $I=0:0$ & 1 & 0.110 & 6336 & 4/2/0/0/0/0; $I=2:0$ & 0.491\\
+synchronous\_clock\_merge & 2/3/2/2/2 & 2/3/1/1/2; $I=1:1$ & 2 & 0.673 & 6300 & 4/3/1/1/2/0; $I=2:1$ & 1.279\\
+duplicate\_transition & 2/3/1/2/3 & 2/2/1/1/2; $I=2:2$ & 1 & 0.267 & 6364 & 4/2/1/1/2/0; $I=2:2$ & 0.478\\
+equivalent\_locations & 3/4/0/0/0 & 3/2/0/0/0; $I=0:0$ & 2 & 0.104 & 6404 & 6/2/0/0/0/0; $I=2:0$ & 0.220\\
+disjunctive\_invariant\_export & 3/3/2/0/2 & 3/3/2/0/2; $I=0:0$ & 0 & 0.095 & 6488 & 9/6/2/0/12/6; $I=3:2$ & 1.154\\
+backward\_tightening & 2/2/1/0/2 & 2/2/1/0/2; $I=2:2$ & 1 & 0.093 & 6360 & 4/2/1/0/2/0; $I=2:2$ & 0.204\\
+forward\_lower\_bound & 3/3/1/0/2 & 3/3/1/0/4; $I=2:2$ & 1 & 0.141 & 6460 & 6/3/1/0/4/0; $I=3:2$ & 0.654\\
+forward\_contradiction\_cascade & 6/7/1/0/3 & 6/4/1/0/4; $I=1:1$ & 2 & 0.437 & 6428 & 12/4/1/0/4/0; $I=3:1$ & 1.082\\
+backward\_contradiction\_cascade & 5/5/1/0/4 & 5/1/0/0/0; $I=0:0$ & 2 & 0.201 & 6320 & 10/1/0/0/0/0; $I=1:0$ & 0.180\\
+clock\_merge\_contradiction\_cascade & 5/5/2/6/4 & 5/3/1/2/1; $I=1:1$ & 2 & 0.622 & 6484 & 10/2/1/2/1/0; $I=2:1$ & 0.598\\
+\bottomrule
+\end{tabular}
+\end{table*}

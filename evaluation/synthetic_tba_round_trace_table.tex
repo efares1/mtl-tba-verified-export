@@ -1,0 +1,20 @@
+\begin{table*}[t]
+\centering
+\caption{Measured trace for the six-clock synchronous-reset synthetic input. Counts are declared / reachable locations, transitions, active clocks, reset occurrences, guard atoms, invariant locations / atoms, and diagonal guard atoms. The export row is the internal explicit DTA.}
+\label{tab:synchronous-trace}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}p{0.27\textwidth}rrrrrrr@{}}
+\toprule
+Stage & $L/R$ & $E$ & $C$ & Resets & Guard atoms & Inv. $L/A$ & Diag.\\
+\midrule
+Input & 2/2 & 7 & 6 & 6 & 6 & 0/0 & 0 \\
+R1: unsatisfiable-label removal & 2/2 & 5 & 6 & 6 & 4 & 0/0 & 0 \\
+R1: dead-reset elimination & 2/2 & 5 & 4 & 4 & 4 & 0/0 & 0 \\
+R1: synchronous-clock pass & 2/2 & 5 & 4 & 4 & 4 & 1/1 & 0 \\
+R2: dead-reset elimination & 2/2 & 5 & 1 & 1 & 4 & 1/1 & 0 \\
+Optimized fixed point & 2/2 & 5 & 1 & 1 & 4 & 1/1 & 0 \\
+Explicit export & 4/2 & 5 & 1 & 1 & 4 & 2/1 & 0 \\
+\bottomrule
+\end{tabular}
+\end{table*}

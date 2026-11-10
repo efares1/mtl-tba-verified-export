@@ -1,0 +1,63 @@
+\ProvidesFile{se-ascii.def}[2011/12/02 v1.10 stringenc: ascii]
+\def\SE@this{ascii}
+%%http://www.fileformat.info/info/unicode/char/21f8/index.htm
+\global\expandafter\let\csname\SE@PrefixTo\SE@this\endcsname
+                       \SE@to@general
+\global\expandafter\let\csname\SE@PrefixSurrogateTo\SE@this\endcsname
+                       \SE@to@general@surrogate
+\global\expandafter\let\csname\SE@PrefixFrom\SE@this\endcsname
+                       \SE@from@general
+\SE@MapDeclare{ascii}{3A}{2208}% ELEMENT OF E28888
+\SE@MapDeclare{ascii}{2D 3E}{2192}% RIGHT ARROW E28692
+\SE@MapDeclare{ascii}{5C 2F}{222A}% UNION E288AA
+\SE@MapDeclare{ascii}{7B 7D}{2205}% EMPTY SET E28885
+\SE@MapDeclare{ascii}{50 4F 57}{2119}% POW E28499
+\SE@MapDeclare{ascii}{2A 2A}{00D7}% TIMES C397
+\SE@MapDeclare{ascii}{2A}{2217}% TIMES E28897
+\SE@MapDeclare{ascii}{20 44 49 56 20}{00F7}% DIV C3B7
+\SE@MapDeclare{ascii}{2F 3A}{2209}% NOT ELEMENT OF E28889
+\SE@MapDeclare{ascii}{7C 2D 3E}{21A6}% RIGHTWARDS ARROW FROM BAR E286A6
+\SE@MapDeclare{ascii}{3D 3E}{21D2}% RIGHTWARDS DOUBLE ARROW E28792
+\SE@MapDeclare{ascii}{25}{03BB}% GREEK SMALL LETTER LAMDA' (U+03BB)
+\SE@MapDeclare{ascii}{2E}{00B7}%'MIDDLE DOT' (U+00B7)
+\SE@MapDeclare{ascii}{21}{2200}%FOR ALL' (U+2200)
+\SE@MapDeclare{ascii}{23}{2203}%'THERE EXISTS' (U+2203)
+\SE@MapDeclare{ascii}{3E 3C}{2297}%'DIRECT PRODUCT(U+2297)
+\SE@MapDeclare{ascii}{3C 3C 3A}{2282}%'SUBSET OF' (U+2282)
+\SE@MapDeclare{ascii}{3C 3A}{2286}%SUBSET OF OR EQUAL TO' (U+2286)
+\SE@MapDeclare{ascii}{7C}{2223}%DIVIDES' (U+2223)
+\SE@MapDeclare{ascii}{3C 7C}{25C1}%WHITE LEFT-POINTING TRIANGLE' (U+25C1)
+\SE@MapDeclare{ascii}{3C 2B}{EE8384}%
+\SE@MapDeclare{ascii}{26}{2227}%LOGICAL AND' (U+2227)
+\SE@MapDeclare{ascii}{7C 3E}{25B7}%WHITE RIGHT-POINTING TRIANGLE' (U+25B7)
+\SE@MapDeclare{ascii}{2B 2D 3E}{21F8}%RIGHTWARDS ARROW WITH VERTICAL STROKE' (U+21F8)
+\SE@MapDeclare{ascii}{5C 2F}{22AA}%'UNION' (U+222A)
+\SE@MapDeclare{ascii}{2F 5C}{2229}%'INTERSECTION' (U+2229)
+\SE@MapDeclare{ascii}{2F 3C 3C 3A}{2284}%'NOT A SUBSET OF' (U+2284)
+\SE@MapDeclare{ascii}{2F 3C 3A}{2288}%'NEITHER A SUBSET OF NOR EQUAL TO' (U+2288)
+\SE@MapDeclare{ascii}{2F 3A}{2209}%'NOT AN ELEMENT OF' (U+2209)
+\SE@MapDeclare{ascii}{2F 3D}{2260}%'NOT EQUAL TO' (U+2260)
+\SE@MapDeclare{ascii}{3C 3D}{2264}%'LESS-THAN OR EQUAL TO' (U+2264)
+\SE@MapDeclare{ascii}{3E 3D}{2265}%'GREATER-THAN OR EQUAL TO' (U+2265)
+\SE@MapDeclare{ascii}{3C 3D 3E}{21D4}%'LEFT RIGHT DOUBLE ARROW' (U+21D4)
+\SE@MapDeclare{ascii}{3C 2B}{E103}%'RELATION OVERRIDING' (U+E103)
+\SE@MapDeclare{ascii}{5C}{2216}%'SET MINUS' (U+2216)
+\SE@MapDeclare{ascii}{74 72 75 65}{22A4}%'DOWN TACK' (U+22A4)
+\SE@MapDeclare{ascii}{66 61 6C 73 65}{22A5}%'UP TACK' (U+22A5)
+\SE@MapDeclare{ascii}{7C 7C}{2228}%'LOGICAL OR' (U+2228)
+\SE@MapDeclare{ascii}{2D 3E 3E}{21A0}%'RIGHTWARDS TWO HEADED ARROW' (U+21A0)
+\SE@MapDeclare{ascii}{3E 2D 3E}{21A3}%'RIGHTWARDS ARROW WITH TAIL' (U+21A3)
+\SE@MapDeclare{ascii}{3C 2D 3E}{2194}%'LEFT RIGHT ARROW' (U+2194)
+\SE@MapDeclare{ascii}{5C 27 65}{00E9}% e accent aigu C3A9
+\SE@MapDeclare{ascii}{5C 60 65}{00E8}% e accent grave
+\SE@MapDeclare{ascii}{5C 60 61}{00E0}% a accent grave
+\SE@MapDeclare{ascii}{3A 3D}{2254}% COLON EQUAL
+\SE@MapDeclare{ascii}{2D}{2212}% MINUS
+\SE@MapDeclare{ascii}{2E 2E}{2025}% TWO DOT
+\SE@MapDeclare{ascii}{7E}{223C}%'TILDE OPERATOR' (U+223C)
+\SE@MapDeclare{ascii}{4E 41 54}{2115}%'DOUBLE-STRUCK CAPITAL N' (U+2115)
+\SE@MapDeclare{ascii}{49 4E 54}{2124}%'DOUBLE-STRUCK CAPITAL Z' (U+2124)
+\SE@MapDeclare{ascii}{3C 3C 7C}{2A64}% Z NOTATION DOMAIN ANTIRESTRICTION
+\endinput
+%%
+%% End of file `se-ascii.def'.

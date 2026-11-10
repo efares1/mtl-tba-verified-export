@@ -1,0 +1,43 @@
+(* Reproducible theorem and assumption audit for the Paper 2 revision. *)
+Require Import MTL_to_TBA_Shared_Clock_Derived_Strict_Direct_Core.
+Require Import MTL_to_TBA_Export.
+Require Import MTL_to_TBA_Optimizations.
+Require Import MTL_to_TBA_Symbolic.
+Require Import MTL_to_TBA_Initialization.
+Require Import EncodingCorrect_Shared_Clock_Derived_Strict_Direct_Proof.
+Require Import MTL_to_TBA_Recur.
+
+Check optimize_accepts.
+Print Assumptions optimize_accepts.
+Check split_accepts.
+Print Assumptions split_accepts.
+Check split_all_accepts.
+Print Assumptions split_all_accepts.
+Check export_accepts.
+Print Assumptions export_accepts.
+Check export_guards_conjunctive.
+Print Assumptions export_guards_conjunctive.
+Check export_invariants_conjunctive.
+Print Assumptions export_invariants_conjunctive.
+Check export_all_accepts.
+Print Assumptions export_all_accepts.
+Check export_all_guards_conjunctive.
+Print Assumptions export_all_guards_conjunctive.
+Check export_all_invariants_conjunctive.
+Print Assumptions export_all_invariants_conjunctive.
+Check symbolic_ext_accepts.
+Print Assumptions symbolic_ext_accepts.
+Check MTL_to_TBA_correct_with.
+Print Assumptions MTL_to_TBA_correct_with.
+Check MTL_to_exported_correct_with.
+Print Assumptions MTL_to_exported_correct_with.
+Check MTL_to_exported_correct0_with.
+Print Assumptions MTL_to_exported_correct0_with.
+Check MTL_to_exported_all_correct_with.
+Print Assumptions MTL_to_exported_all_correct_with.
+Check LTL_TO_BUCHI_CORRECT.
+Print Assumptions LTL_TO_BUCHI_CORRECT.
+Check MTL_to_exported_correct_recur_weak_with.
+Print Assumptions MTL_to_exported_correct_recur_weak_with.
+Check MTL_to_exported_correct0_recur_weak_with.
+Print Assumptions MTL_to_exported_correct0_recur_weak_with.

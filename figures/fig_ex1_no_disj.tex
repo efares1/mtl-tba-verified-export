@@ -1,0 +1,35 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+  % Location 4 of the original automaton is split into 4 (Inv x_u1<=2) and 5 (Inv x_u0<=5).
+  % Every entry into the split location resets x_u1, so copy 4 allows a delay of 2 and
+  % copy 5 a delay of 5 - x_u0; the entry guards select the copy with the longer delay.
+  \node[fmstate,minimum size=13mm] (s1) at (0,0) {$\begin{array}{c}1\\[-1mm]x_{u0}\le5\end{array}$};
+  \node[fmstate,minimum size=14mm] (s4) at (4.6,2.5) {$\begin{array}{c}4\\[-1mm]x_{u1}\le2\end{array}$};
+  \node[fmstate,minimum size=14mm] (s5) at (4.6,-2.5) {$\begin{array}{c}5\\[-1mm]x_{u0}\le5\end{array}$};
+  \node[fmstate,minimum size=14mm] (s3) at (9.4,0) {$\begin{array}{c}3\\[-1mm]x_{u1}\le2\end{array}$};
+  \node[fmaccept] (s2) at (13.2,0) {$2$};
+  \draw[fmedge] (-1.2,0) -- (s1);
+  % location 1
+  \draw[fmedge] (s1) edge[loop below,looseness=4] node[fmlabel,below] {$\mathit{other}/\mathsf{rst}(x_{u1})$} (s1);
+  \draw[fmedge] (s1) to[bend left=10] node[fmlabel,pos=.45,above,sloped] {$x_{u0}\ge3,\;p/\mathsf{rst}(x_{u1})$} (s4);
+  \draw[fmedge] (s1) to[bend right=10] node[fmlabel,pos=.45,below,sloped] {$x_{u0}\le3,\;p/\mathsf{rst}(x_{u1})$} (s5);
+  \draw[fmedge] (s1) -- node[fmlabel,pos=.9,below] {$p/\mathsf{rst}(x_{u1})$} (s3);
+  \draw[fmedge] (s1) to[bend left=88] node[fmlabel,above] {$q$} (s2);
+  % location 4 (Inv x_u1 <= 2)
+  \draw[fmedge] (s4) to[bend left=10] node[fmlabel,pos=.55,below,sloped] {$x_{u0}\le5,\;\mathit{other}/\mathsf{rst}(x_{u1})$} (s1);
+  \draw[fmedge] (s4) edge[loop above,looseness=4] node[fmlabel,above] {$3\le x_{u0}\le5,\;p/\mathsf{rst}(x_{u1})$} (s4);
+  \draw[fmedge] (s4) to[bend left=14] node[fmlabel,right] {$\begin{array}{l}x_{u0}\le3,\\p/\mathsf{rst}(x_{u1})\end{array}$} (s5);
+  \draw[fmedge] (s4) to[bend left=10] node[fmlabel,pos=.5,above,sloped] {$x_{u0}\le5,\;p/\mathsf{rst}(x_{u1})$} (s3);
+  \draw[fmedge] (s4) to[bend right=12] node[fmlabel,pos=.55,below,sloped] {$p$} (s3);
+  \draw[fmedge] (s4) to[bend left=28] node[fmlabel,pos=.6,above,sloped] {$q$} (s2);
+  % location 5 (Inv x_u0 <= 5)
+  \draw[fmedge] (s5) to[bend right=10] node[fmlabel,pos=.55,above,sloped] {$\mathit{other}/\mathsf{rst}(x_{u1})$} (s1);
+  \draw[fmedge] (s5) edge[loop below,looseness=4] node[fmlabel,below] {$x_{u0}\le3,\;p/\mathsf{rst}(x_{u1})$} (s5);
+  \draw[fmedge] (s5) to[bend left=14] node[fmlabel,left] {$\begin{array}{r}x_{u0}\ge3,\\p/\mathsf{rst}(x_{u1})\end{array}$} (s4);
+  \draw[fmedge] (s5) to[bend right=10] node[fmlabel,pos=.5,below,sloped] {$p/\mathsf{rst}(x_{u1})$} (s3);
+  \draw[fmedge] (s5) to[bend right=30] node[fmlabel,pos=.6,below,sloped] {$x_{u1}\le2,\;p$} (s3);
+  \draw[fmedge] (s5) to[bend right=28] node[fmlabel,pos=.6,below,sloped] {$q$} (s2);
+  % locations 3 and 2
+  \draw[fmedge] (s3) edge[loop below,looseness=5] node[fmlabel,below] {$p$} (s3);
+  \draw[fmedge] (s3) -- node[fmlabel,above] {$q$} (s2);
+  \draw[fmedge] (s2) edge[loop right,looseness=5] node[fmlabel,right] {$p,\;q,\;\mathit{other}$} (s2);
+\end{tikzpicture}

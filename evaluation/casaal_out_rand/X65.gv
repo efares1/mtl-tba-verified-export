@@ -1,0 +1,22 @@
+digraph G {
+  0 [label="", style=invis, height=0]
+  0 -> 1
+  1 [label="((0R[x>1](1U[x>2]p)) | q) & G(!p | !q)"]
+  1 -> 2 [label="q & !p\n{Acc[p]}"]
+  1 -> 3 [label="!q & reset(x1)\n{Acc[p]}"]
+  1 -> 4 [label="!q\n{Acc[p]}"]
+  2 [label="G(!p | !q)"]
+  2 -> 2 [label="!p | !q\n{Acc[p]}"]
+  3 [label="G(!p | !q) & (0R[x>1-x1](1U[x>2]p)) & !\"x1>1\""]
+  3 -> 5 [label="(!p & !\"x1>1\") | (!q & !\"x1>1\")\n{Acc[p]}"]
+  4 [label="G((1U[x>2]p) & (!p | !q))"]
+  4 -> 6 [label="p & !q & reset(x0)\n{Acc[p]}"]
+  4 -> 6 [label="!p & reset(x0)\n"]
+  5 [label="(G(!p | !q) & (0R[x>1-x1](1U[x>2]p)) & !\"x1>1\") | G((1U[x>2]p) & (!p | !q))"]
+  5 -> 6 [label="p & !q & reset(x0)\n{Acc[p]}"]
+  5 -> 6 [label="!p & reset(x0)\n"]
+  5 -> 5 [label="(!p & !\"x1>1\") | (!q & !\"x1>1\")\n{Acc[p]}"]
+  6 [label="G((1U[x>2]p) & (!p | !q)) | (\"x0>2\" & G((1U[x>2]p) & (!p | !q)) & Fp)"]
+  6 -> 6 [label="p & !q & reset(x0)\n{Acc[p]}"]
+  6 -> 6 [label="!p & reset(x0)\n"]
+}

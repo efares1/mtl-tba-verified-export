@@ -1,0 +1,30 @@
+% T1 = number of the 296+84 runs whose output differs from the unmutated tool; T2 = first random word (index) on which the language test disagrees.
+% * output differs, no language difference found (not proved).
+\begin{tabular}{@{}llrrl@{}}
+\toprule
+Mutant & Seeded defect (pass) & T1 & T2 first word & Outcome \\
+\midrule
+M01 & closed bound 0 on a just-reset clock & 0 & \textemdash{} & \textbf{survives} \\
+M02 & invariant from min, not max, of branch bounds & 30 & 44 & caught \\
+M03 & x$\ge$2, x$\le$2 always empty (strictness ignored) & 120 & 0 & caught \\
+M04 & lower-bound tests ignored for clock liveness & 104 & 0 & caught \\
+M05 & normalization before dead-reset removal omitted & 78 & \textemdash{} & equivalent \\
+M06 & guard $x>0$ treated as trivially true & 38 & 0 & caught \\
+M07 & clocks merged without equal reset sets & 14 & 0 & caught \\
+M08 & entry into initial location not excluded & 0 & \textemdash{} & equivalent \\
+M09 & accepting and non-accepting locations merged & 6 & 0 & caught \\
+M10 & resets ignored in simulation test & 0 & \textemdash{} & \textbf{survives} \\
+M11 & parallel transitions merged without comparing resets & 62 & 1 & caught \\
+M12 & complement of $x<c$ taken as $x>c$ & 0 & \textemdash{} & \textbf{survives} \\
+M13 & entry lower bound from max, not min & 88 & 0 & caught \\
+M14 & split copies entered the wrong way round & 15 & 0 & caught \\
+M15 & entry condition not updated for resets & 40 & 0 & caught \\
+M16 & reset clock with $x\le0$ judged false & 0 & \textemdash{} & \textbf{survives} \\
+M17 & implication direction in disjunct pruning & 1 & \textemdash{} & equivalent$^{*}$ \\
+M18 & invariants ignored when merging exported locations & 8 & 84 & caught \\
+M19 & initial location pruned as unreachable & 376 & 0 & caught \\
+M20 & $x\le u$ taken to imply $x<w$ for $u\le w$ & 24 & 40 & caught \\
+M21 & safety check of dead-reset pass removed & 0 & \textemdash{} & equivalent \\
+M22 & weaker bound for conjunctive guard & 0 & \textemdash{} & equivalent \\
+\bottomrule
+\end{tabular}

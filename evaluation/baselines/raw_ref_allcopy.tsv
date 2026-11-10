@@ -1,0 +1,15 @@
+id	workload	arm	verdict	stored	seconds	peak_kb
+F1	ref	ours	empty	280	0.0061977	8764
+F1	ref	raw	empty	280	0.0053107	8668
+F7	ref	ours	empty	280	0.0043487	8336
+F7	ref	raw	empty	280	0.0049604	8504
+F12	ref	ours	empty	1688	0.0752394	12332
+F12	ref	raw	empty	1790	0.0692756	12476
+R2	ref	ours	empty	7513	0.466721	18996
+R2	ref	raw	empty	7513	0.484044	19000
+R3	ref	ours	empty	168484	22.3246	139548
+R3	ref	raw	empty	168484	25.9833	139460
+N2	ref	ours	empty	967	0.0434637	12704
+N2	ref	raw	empty	967	0.0390064	12560
+N3	ref	ours	empty	22885	3.60559	37076
+N3	ref	raw	empty	22885	4.02663	37156

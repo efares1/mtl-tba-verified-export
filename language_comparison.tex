@@ -1,0 +1,37 @@
+\label{sec:cross-tool}
+The table's language column records inclusions checked with TChecker 0.8,
+using its \texttt{couvscc} timed B\"uchi emptiness algorithm. Write $O$ and
+$O'$ for our automata for a formula $\varphi$ and its negation, and $C$ and
+$C'$ for the corresponding CASAAL automata. The checks ask whether
+$O\times C'$, $C\times O'$, and $O\times O'$ are empty; as a sanity check,
+$O\times C$ must be nonempty. Two auxiliary processes restrict products to
+one event per position, strictly increasing timestamps, and divergent time.
+Because CASAAL marks acceptance on transitions, its output is converted to
+state-based acceptance with committed intermediate locations. The format
+conversion is a repository script and is not verified.
+
+Assuming the verified theorem and a correct Spot automaton, $O$ and $O'$ are
+complementary. Emptiness of $O\times C'$ then establishes $C'\subseteq O'$, and
+emptiness of $C\times O'$ establishes $C\subseteq O$. These are inclusions
+from CASAAL into the verified tool's languages. They do not establish
+equality: timed B\"uchi automata cannot in general be complemented, and the
+correctness of CASAAL's automata is not proved here. The $O\times O'$ check
+serves as a consistency check on the converted formats and the product setup.
+
+Of the 29 configurations whose formulas are comparable, all checks conclude
+as expected on the exported automata for 17. On F14, R2, and R3, the exported
+automata contain clock-difference constraints and TChecker does not conclude
+within 600 seconds; the checks conclude on the automata after reset
+completion but before optimization. For R4--R6, TChecker remains inconclusive
+even on those pre-optimization automata. It also does not conclude for N5 and
+N6, while the integrated tool exceeds its own 300-second limit on R7, R8,
+and the negations of N7 and N8. Thus 3 configurations have an inclusion
+established only before post-processing and 9 have no conclusion within the
+limits; no completed check reports a disagreement.
+
+The pre-optimization comparisons are observations rather than consequences
+of the Coq pass theorem. The products initialize clocks to zero, whereas the
+generic preservation contract existentially quantifies over initial clock
+values, and the product checker and format conversion are outside the proof.
+We report these results as translation validation on the tracked benchmark,
+not as a second proof of the optimization or export pipeline.

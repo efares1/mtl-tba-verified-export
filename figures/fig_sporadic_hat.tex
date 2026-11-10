@@ -1,0 +1,53 @@
+\begin{tikzpicture}[x=1cm,y=1cm,
+  tick/.style={line width=0.5pt},
+  ticklab/.style={font=\scriptsize,below=1pt},
+  verdict/.style={fmnote}]
+  % (a) Hatted operator: the intended reading
+  \begin{scope}[xshift=0cm]
+    \node[font=\small] at (2.4,1.35) {(a) $\Box(e\Rightarrow\widehat{\Box}_{<\theta}\neg e)$};
+    \draw[fmtimeline] (0,0) -- (5.0,0);
+    \node[fmreference] (a0) at (0.5,0) {};
+    \node[fmevent] (a1) at (1.7,0) {};
+    \node[fmevent] (a2) at (4.1,0) {};
+    \node[above=2pt of a0,font=\scriptsize] {$e$};
+    \node[above=2pt of a1,font=\scriptsize] {$a$};
+    \node[above=2pt of a2,font=\scriptsize] {$e$};
+    \node[verdict] at (4.1,0.78) {accepted};
+    \draw[tick] (3.5,0.12) -- (3.5,-0.12) node[ticklab] {$t_e{+}\theta$};
+    \node[ticklab] at (0.5,-0.12) {$t_e$};
+    \draw[fmbracebottom] (0.5,-0.62) -- node[below=4pt,fmnote] {$\neg e$ required on $(t_e,t_e{+}\theta)$} (3.5,-0.62);
+  \end{scope}
+
+  % (b) Replacing the hat by a leading Next
+  \begin{scope}[xshift=5.9cm]
+    \node[font=\small] at (2.4,1.35) {(b) $\Box(e\Rightarrow\bigcirc\Box_{<\theta}\neg e)$};
+    \draw[fmtimeline] (0,0) -- (5.0,0);
+    \node[fmevent] (b0) at (0.5,0) {};
+    \node[fmreference] (b1) at (1.7,0) {};
+    \node[fmevent] (b2) at (4.1,0) {};
+    \node[above=2pt of b0,font=\scriptsize] {$e$};
+    \node[above=2pt of b1,font=\scriptsize] {$a$};
+    \node[above=2pt of b2,font=\scriptsize] {$e$};
+    \node[verdict] at (4.1,0.78) {rejected};
+    \draw[tick] (3.5,0.12) -- (3.5,-0.12) node[ticklab] {$t_e{+}\theta$};
+    \draw[tick] (4.7,0.12) -- (4.7,-0.12) node[ticklab] {$t_a{+}\theta$};
+    \node[ticklab] at (1.7,-0.12) {$t_a$};
+    \draw[fmbracebottom] (1.7,-0.62) -- node[below=4pt,fmnote] {window measured from the next event} (4.7,-0.62);
+  \end{scope}
+
+  % (c) Dropping the Next
+  \begin{scope}[xshift=11.8cm]
+    \node[font=\small] at (2.4,1.35) {(c) $\Box(e\Rightarrow\Box_{<\theta}\neg e)$};
+    \draw[fmtimeline] (0,0) -- (5.0,0);
+    \node[fmreference] (c0) at (0.5,0) {};
+    \node[fmevent] (c1) at (1.7,0) {};
+    \node[fmevent] (c2) at (4.1,0) {};
+    \node[above=2pt of c0,font=\scriptsize] {$e$};
+    \node[above=2pt of c1,font=\scriptsize] {$a$};
+    \node[above=2pt of c2,font=\scriptsize] {$e$};
+    \node[verdict] at (0.5,0.78) {violated at $t_e$};
+    \draw[tick] (3.5,0.12) -- (3.5,-0.12) node[ticklab] {$t_e{+}\theta$};
+    \node[ticklab] at (0.5,-0.12) {$t_e$};
+    \draw[fmbracebottom] (0.5,-0.62) -- node[below=4pt,fmnote] {$\neg e$ required on $[t_e,t_e{+}\theta)$} (3.5,-0.62);
+  \end{scope}
+\end{tikzpicture}

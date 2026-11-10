@@ -1,0 +1,18 @@
+digraph G {
+  0 [label="", style=invis, height=0]
+  0 -> 1
+  1 [label="!r & (!pR[x>1]r) & (!rR[x<=2]!q) & G((!p | !q) & (!r | !p) & (!r | !q))"]
+  1 -> 2 [label="!r & !p & !q\n"]
+  1 -> 3 [label="!r & !q & reset(x0)\n"]
+  1 -> 4 [label="!r & !q\n"]
+  2 [label="G((!p | !q) & (!r | !p) & (!r | !q))"]
+  2 -> 2 [label="(!r & !p) | (!r & !q) | (!p & !q)\n"]
+  3 [label="G((!p | !q) & (!r | !p) & (!r | !q)) & (!pR[x>1-x0]r) & !\"x0>1\""]
+  3 -> 5 [label="!r & !q & !\"x0>1\"\n"]
+  3 -> 2 [label="(!r & !p & !\"x0>1\") | (!p & !q & !\"x0>1\")\n"]
+  4 [label="G((!p | !q) & (!r | !p) & (!r | !q)) & (!p R r)"]
+  4 -> 2 [label="r & !p & !q\n"]
+  5 [label="(G((!p | !q) & (!r | !p) & (!r | !q)) & (!pR[x>1-x0]r) & !\"x0>1\") | (G((!p | !q) & (!r | !p) & (!r | !q)) & (!p R r))"]
+  5 -> 5 [label="!r & !q & !\"x0>1\"\n"]
+  5 -> 2 [label="(!r & !p & !\"x0>1\") | (r & !p & !q)\n"]
+}

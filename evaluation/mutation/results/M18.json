@@ -1,0 +1,27 @@
+{
+ "id": "M18",
+ "T1_corpus_changed": 8,
+ "corpus_runs": 296,
+ "crashes": 0,
+ "bench_crashes": 0,
+ "T2_corpus": {
+  "budget": 1000,
+  "inputs_with_mismatch": 2,
+  "min_first_word": 84,
+  "example": [
+   "rnd_006/ac",
+   "rnd_006/md"
+  ],
+  "unreadable_output": 0
+ },
+ "T2_bench": {
+  "budget": 1000,
+  "inputs_with_mismatch": 0,
+  "min_first_word": null,
+  "example": []
+ },
+ "T1_bench_changed": 0,
+ "bench_runs": 84,
+ "budget_tried": 1000,
+ "seconds": 21
+}

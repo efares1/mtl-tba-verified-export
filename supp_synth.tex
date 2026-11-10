@@ -1,0 +1,113 @@
+\subsection{Translator-independent synthetic TBA suite and pass ablation}\label{sec:synthetic-detail}
+To exercise the interface without the MTL translator, we construct
+16 small synthetic automata directly as Rocq-representation TBA records in
+\path{evaluation/synthetic_tba_bench.ml}. Their clocks are named by the six
+timed subformulas of a fixed formula, the conjunction of six hatted primitive
+formulas over three events; this formula is never translated and serves only
+as a supply of six clock names. Locations, event labels, unary guards,
+resets, and accepting locations are written by hand for each record. The suite is explicitly
+synthetic: it does not parse a third-party format and is not evidence of
+industrial-model performance. Its records cover redundant guards,
+contradictory guards, unsatisfiable labels, a source with no incoming edge,
+dead resets, synchronously reset clocks, duplicate transitions, equivalent
+locations, a disjunctive-invariant export, a stable no-change input, and
+targeted backward/forward propagation and pass-interaction cases.
+\input{evaluation/synthetic_tba_table}
+
+The harness reports counts after every pass in every round and checks that
+its profiled pass sequence is structurally equal to the extracted
+\texttt{optimize\_step} on each round. It also times the unprofiled iterative
+optimizer and export as means over 200 repeated in-memory calls per model.
+Standalone process RSS ranges from 6,184 to 6,484 KiB. These short timings
+and small, purpose-built records are microbenchmark evidence only; the raw
+pass table and per-model RSS file are supplied for reproduction. Per-pass
+times are recorded but are too small to support fine-grained speed rankings.
+
+The targeted examples exercise both bound-propagation directions. Backward
+synthesis tightens an incoming $x\leq5$ guard to $x\leq2$. Forward
+propagation adds an entry lower bound $x\geq2$ to outgoing edges. In the
+forward-cascade input, an alternate $x\leq10$ branch prevents backward
+synthesis from creating the contradiction; forward propagation makes the
+$x\leq1$ branch contradictory, and the following pruning stages remove its
+unentered chain. Omitting forward propagation retains all seven input edges,
+while the full optimizer leaves four. A separate backward cascade isolates
+that pass. article Table~\ref{tab:synthetic-interactions} shows input/output counts
+and leave-one-operation-out effects.
+
+The normalization/reset example removes a tautological $x\geq0$ guard before
+dead-reset analysis, allowing its reset and active clock to be removed. The
+synchronous-clock example first merges the clocks, then a later round detects
+the conflicting $x\geq5\land x\leq3$ guard and prunes the branch. Other
+records measure unsatisfiable-label elimination, no-incoming-source pruning,
+transition subsumption, and equivalent-location merging. The no-incoming
+operation is a local predecessor test, not full graph reachability. These
+interactions explain the iterative design; preservation for each finite
+iteration count follows from the proved pass composition.
+
+
+Table~\ref{tab:synchronous-trace} gives the measured stage interaction for
+the largest synchronously reset synthetic input. Unsatisfiable-label removal
+first reduces the relation from seven edges to five. Dead-reset elimination
+then lowers the active-clock count from six to four. The synchronous-clock
+pass changes the synthesized invariant, and the next round's dead-reset pass
+removes the remaining redundant resets, leaving one active clock. This is a
+measurement of the extracted implementation; the language-preservation
+claim follows separately from the proved pass composition.
+\input{evaluation/synthetic_tba_round_trace_table}
+
+The synthetic disjunctive-invariant case is unchanged by optimization, then
+grows from three locations and three transitions to nine locations and six
+explicit transitions after export. The output has conjunctive invariants and
+six diagonal guard atoms that select maximal-delay copies. This is a
+measured size cost of export; the output-shape guarantee itself follows from
+\texttt{export\_guards\_conjunctive} and
+\texttt{export\_invariants\_conjunctive}.
+
+\subsection{Pass ablation and parameterized synthetic families}
+To measure pass interactions, we repeated the same composite pipeline while
+omitting one operation at a time from sixteen fixed synthetic input records. Each
+modified composite was iterated to structural stability (at most 50 changed
+rounds); this is a measurement driver, not a separate Rocq theorem about the
+ablated variants. The full variant was checked for structural equality with
+the extracted optimizer on each input. Table~\ref{tab:synthetic-ablation}
+reports aggregate reachable locations, total transition records, active
+clocks, changed rounds, and median repeated-call time. The raw TSV gives each
+record and its counts under every pass.
+
+The aggregate ablation shows effects that selected records were designed to
+expose. Relative to the full variant (33 transitions and nine active clocks
+summed across the suite), omitting backward synthesis leaves 34 transitions
+and ten clocks; omitting forward propagation leaves 36 transitions; and
+omitting contradiction removal leaves 43 transitions. Omitting pruning of
+sources without incoming edges leaves 39 transitions. Normalization and
+dead-reset omission raise the aggregate active-clock count to 12 and 13,
+respectively. Omitting synchronous-clock merging leaves 35 edges and 11
+clocks; omitting transition merging leaves 35 edges, while omitting
+equivalent-location merging leaves one more reachable location. These are
+descriptive differences on a deliberately selected synthetic suite, not
+estimates of typical pass effects. Per-call medians are too small for
+fine-grained pass runtime rankings; process RSS includes runtime overhead.
+\input{evaluation/synthetic_tba_ablation_table}
+
+We also constructed five size-parameterized families directly in the formal
+TBA representation, without a third-party parser. Table~\ref{tab:parameterized-synthetic}
+reports every tested size. In the duplicate-edge family, inputs grow from
+two to 33 edges while optimization reduces each nontrivial instance to two.
+The unreachable-cascade sweep includes sizes 1--50, 51, and 64; rows at the
+50-round driver cap are marked and report capped, not necessarily stable,
+outputs. A separate probe confirms that size 51 still changes on round 51
+(two edges remain after round 50), while size 64 still changes on rounds 51
+and 52. The size-50 chain has one edge after round 50 and is unchanged by
+round 51, but the driver conservatively warns because it did not perform that
+stability check. Synchronously reset families with two to six clocks reduce
+to one active clock in two rounds.
+The disjunctive-invariant export grows from 10 edges and 10 diagonal guard
+occurrences at $k=2$ to 68 edges and 204 diagonal occurrences at $k=6$.
+These counts expose representation costs in a deliberately constructed
+stress family; they are not industrial-model measurements or a complexity
+bound. For every finite number of rounds, including a capped result,
+\texttt{optimize\_accepts} preserves language. Reaching the iteration cap
+does not justify calling that result a fixed point. Per-size intermediate
+records and the exact cap probe are preserved in the dated run artifacts.
+\input{evaluation/synthetic_tba_parameterized_table}
+

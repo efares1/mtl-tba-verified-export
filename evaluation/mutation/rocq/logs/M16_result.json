@@ -1,0 +1,11 @@
+{
+ "id": "M16",
+ "description": "const_true: x <= b judged true at x = 0 iff 0 < b (instead of 0 <= b)",
+ "file": "MTL_to_TBA_Export",
+ "compiled": [],
+ "status": "rejected",
+ "failing_file": "MTL_to_TBA_Export",
+ "seconds_to_fail": 3.0,
+ "first_error": "File \".\\MTL_to_TBA_Export.v\", line 816, characters 43-54:\nError:\nIn environment\nroot : mtl\nk : clock_constraint root\nH, r : 0 <= guard_bound k\nUnable to unify \"true\" with\n \"if Rlt_dec 0 (guard_bound k) then true else false\".",
+ "err_line": 816
+}

@@ -1,0 +1,5 @@
+system	optimization	init_free	verdict	checker_seconds	wall_seconds	peak_rss_kib	stored_states	visited_states	visited_transitions	certificate_bytes	status
+resp_ok	before	1	false	0.0005511	0.10	8220	77	77	127	20529	0
+resp_ok	after	1	false	0.0005968	0.20	8240	77	77	127	20529	0
+resp_bad	before	1	true	0.0001821	0.10	7988	15	7	19	3069	0
+resp_bad	after	1	true	0.0001805	0.10	8024	15	7	19	3069	0

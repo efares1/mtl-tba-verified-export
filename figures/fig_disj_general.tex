@@ -1,0 +1,53 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+  % Original automaton
+  \node[font=\small\bfseries] at (0,3.45) {Original automaton};
+\node[
+  fmstatewide,minimum width=31mm,minimum height=11mm,
+  align=center
+] (L) at (0,2.25)
+  {$L$\\[-1mm]{\scriptsize $\mathit{Inv}: I_1\lor\cdots\lor I_r$}};
+
+  \node[fmstate] (q1) at (-4.0,2.8) {$q_1$};
+  \node[fmstate] (qm) at (-4.0,1.7) {$q_m$};
+  \node[fmnote] at (-4.0,2.25) {$\vdots$};
+  \draw[fmedge] (q1) -- node[fmlabel,above] {$g'_1,Z'_1$} (L);
+  \draw[fmedge] (qm) -- node[fmlabel,below] {$g'_m,Z'_m$} (L);
+
+  \node[fmstate] (qp1) at (4.0,2.8) {$q'_1$};
+  \node[fmstate] (qpn) at (4.0,1.7) {$q'_n$};
+  \node[fmnote] at (4.0,2.25) {$\vdots$};
+  \draw[fmedge] (L) -- node[fmlabel,above] {$g_1,Z_1$} (qp1);
+  \draw[fmedge] (L) -- node[fmlabel,below] {$g_n,Z_n$} (qpn);
+
+  \draw[fmguide] (-5.1,0.55) -- (5.1,0.55);
+  \node[fmnote] at (0,0.55) {$\Downarrow$};
+
+  % Transformed automaton
+  \node[font=\small\bfseries] at (0,-0.15) {Transformed automaton};
+  \node[fmstatewide,minimum width=26mm,minimum height=10mm,
+  align=center] (L1) at (0,-1.25)
+    {$L_1$\\[-1mm]\scriptsize $\mathit{Inv}: I_1$};
+
+  \node[fmstatewide,minimum width=26mm,minimum height=10mm,
+  align=center] (Lp) at (0,-2.75)
+    {$L_r$\\[-1mm]\scriptsize $\mathit{Inv}: I_r$};
+  \node[fmnote] at (0,-2.0) {$\vdots$};
+
+  \node[fmstate] (r1) at (-4.0,-1.25) {$q_1$};
+  \node[fmstate] (rm) at (-4.0,-2.75) {$q_m$};
+  \node[fmnote] at (-4.0,-2.0) {$\vdots$};
+
+  \draw[fmedge] (r1) -- node[fmlabel,above,sloped] {$g'_1\land \mathit{Ent}_1[Z'_1:=0],\,Z'_1$} (L1);
+  \draw[fmedge] (r1) -- (Lp);
+  \draw[fmedge] (rm) -- (L1);
+  \draw[fmedge] (rm) -- node[fmlabel,below,sloped] {$g'_m\land \mathit{Ent}_r[Z'_m:=0],\,Z'_m$} (Lp);
+
+  \node[fmstate] (s1) at (4.0,-1.25) {$q'_1$};
+  \node[fmstate] (sn) at (4.0,-2.75) {$q'_n$};
+  \node[fmnote] at (4.0,-2.0) {$\vdots$};
+
+  \draw[fmedge] (L1) -- node[fmlabel,above] {$g_1,Z_1$} (s1);
+  \draw[fmedge] (L1) -- (sn);
+  \draw[fmedge] (Lp) -- (s1);
+  \draw[fmedge] (Lp) -- node[fmlabel,below] {$g_n,Z_n$} (sn);
+\end{tikzpicture}

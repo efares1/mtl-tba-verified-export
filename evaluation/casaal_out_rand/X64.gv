@@ -1,0 +1,19 @@
+digraph G {
+  0 [label="", style=invis, height=0]
+  0 -> 1
+  1 [label="r & ((1U[x<=1]r)U[x<=3]q) & G(!r | !q)"]
+  1 -> 2 [label="r & !q & reset(x1)\n"]
+  2 [label="G(!r | !q) & ((1U[x<=1]r)U[x<=3-x1]q) & \"x1<=3\""]
+  2 -> 2 [label="r & !q & \"x1<=3\"\n"]
+  2 -> 3 [label="q & !r & \"x1<=3\"\n"]
+  2 -> 4 [label="!q & reset(x0) & \"x1<=3\"\n"]
+  3 [label="G(!r | !q)"]
+  3 -> 3 [label="!r | !q\n"]
+  4 [label="G(!r | !q) & (1U[x<=1-x0]r) & \"x0<=1\" & ((1U[x<=1]r)U[x<=3-x1]q) & \"x1<=3\""]
+  4 -> 2 [label="r & !q & \"x0<=1\" & \"x1<=3\"\n"]
+  4 -> 4 [label="!q & \"x0<=1\" & \"x1<=3\"\n"]
+  4 -> 5 [label="q & !r & \"x0<=1\" & \"x1<=3\"\n"]
+  5 [label="G(!r | !q) & (1U[x<=1-x0]r) & \"x0<=1\""]
+  5 -> 3 [label="r & !q & \"x0<=1\"\n"]
+  5 -> 5 [label="!r & \"x0<=1\"\n"]
+}

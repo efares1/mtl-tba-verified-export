@@ -1,0 +1,13 @@
+{
+ "id": "M08",
+ "T1_corpus_changed": 0,
+ "corpus_runs": 296,
+ "crashes": 0,
+ "bench_crashes": 0,
+ "T2_corpus": null,
+ "T2_bench": null,
+ "T1_bench_changed": 0,
+ "bench_runs": 84,
+ "budget_tried": 100000,
+ "seconds": 1132
+}

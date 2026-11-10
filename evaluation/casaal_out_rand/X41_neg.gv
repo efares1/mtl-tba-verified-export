@@ -1,0 +1,12 @@
+digraph G {
+  0 [label="", style=invis, height=0]
+  0 -> 1
+  1 [label="G(!r | !q) & (!qR[x<=2](q | !r))"]
+  1 -> 2 [label="!r & reset(x0)\n"]
+  1 -> 3 [label="!r & !q\n"]
+  2 [label="(G(!r | !q) & (!qR[x<=2-x0](q | !r))) | (G(!r | !q) & !\"x0<=2\")"]
+  2 -> 2 [label="!r\n"]
+  2 -> 3 [label="(!r & !q) | (!r & !\"x0<=2\") | (!q & !\"x0<=2\")\n"]
+  3 [label="G(!r | !q)"]
+  3 -> 3 [label="!r | !q\n"]
+}

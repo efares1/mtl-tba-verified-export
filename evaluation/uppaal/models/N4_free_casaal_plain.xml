@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+  <declaration>chan p1, p2, p3, p4, other;</declaration>
+  <template>
+    <name>Property</name>
+    <declaration>clock x0, x1, x2, x3;</declaration>
+    <location id="id0" x="0" y="0"><name>L0</name></location>
+    <location id="id1" x="0" y="0"><name>L1</name></location>
+    <location id="id2" x="0" y="0"><name>L2</name></location>
+    <location id="id3" x="0" y="0"><name>L3</name></location>
+    <location id="id4" x="0" y="0"><name>L4</name></location>
+    <location id="id5" x="0" y="0"><name>L5</name></location>
+    <location id="id6" x="0" y="0"><name>L6</name></location>
+    <location id="id7" x="0" y="0"><name>L7</name></location>
+    <location id="id8" x="0" y="0"><name>L8</name></location>
+    <location id="id9" x="0" y="0"><name>L9</name></location>
+    <location id="id10" x="0" y="0"><name>L10</name></location>
+    <location id="id11" x="0" y="0"><name>L11</name></location>
+    <location id="id12" x="0" y="0"><name>L12</name></location>
+    <location id="id13" x="0" y="0"><name>L13</name></location>
+    <location id="id14" x="0" y="0"><name>L14</name></location>
+    <location id="id15" x="0" y="0"><name>L15</name></location>
+    <location id="id16" x="0" y="0"><name>L16</name></location>
+    <init ref="id0"/>
+    <transition><source ref="id0"/><target ref="id1"/><label kind="synchronisation">p1?</label><label kind="assignment">x2 = 0, x3 = 0</label></transition>
+    <transition><source ref="id0"/><target ref="id1"/><label kind="synchronisation">other?</label><label kind="assignment">x2 = 0, x3 = 0</label></transition>
+    <transition><source ref="id0"/><target ref="id2"/><label kind="synchronisation">p4?</label><label kind="assignment">x3 = 0</label></transition>
+    <transition><source ref="id0"/><target ref="id2"/><label kind="synchronisation">other?</label><label kind="assignment">x3 = 0</label></transition>
+    <transition><source ref="id0"/><target ref="id2"/><label kind="synchronisation">p3?</label><label kind="assignment">x3 = 0</label></transition>
+    <transition><source ref="id0"/><target ref="id2"/><label kind="synchronisation">other?</label><label kind="assignment">x3 = 0</label></transition>
+    <transition><source ref="id0"/><target ref="id2"/><label kind="synchronisation">p2?</label><label kind="assignment">x3 = 0</label></transition>
+    <transition><source ref="id0"/><target ref="id2"/><label kind="synchronisation">other?</label><label kind="assignment">x3 = 0</label></transition>
+    <transition><source ref="id1"/><target ref="id1"/><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id1"/><target ref="id1"/><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id1"/><target ref="id1"/><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id1"/><target ref="id1"/><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id1"/><target ref="id1"/><label kind="synchronisation">p1?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id1"/><target ref="id1"/><label kind="synchronisation">other?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id1"/><target ref="id2"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id1"/><target ref="id2"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id1"/><target ref="id2"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id1"/><target ref="id2"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id1"/><target ref="id2"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id1"/><target ref="id2"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id1"/><target ref="id3"/><label kind="synchronisation">p2?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id1"/><target ref="id3"/><label kind="synchronisation">other?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id1"/><target ref="id4"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id1"/><target ref="id4"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id1"/><target ref="id4"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id1"/><target ref="id4"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id1"/><target ref="id4"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id1"/><target ref="id4"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id1"/><target ref="id5"/><label kind="guard">x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id1"/><target ref="id5"/><label kind="guard">x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id1"/><target ref="id5"/><label kind="guard">x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id1"/><target ref="id5"/><label kind="guard">x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id1"/><target ref="id5"/><label kind="guard">x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id1"/><target ref="id5"/><label kind="guard">x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id1"/><target ref="id5"/><label kind="guard">x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id1"/><target ref="id5"/><label kind="guard">x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id1"/><target ref="id6"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">p2?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id1"/><target ref="id6"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">other?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id2"/><target ref="id1"/><label kind="synchronisation">p1?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id2"/><target ref="id1"/><label kind="synchronisation">other?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id2"/><target ref="id2"/><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id2"/><target ref="id2"/><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id2"/><target ref="id2"/><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id2"/><target ref="id2"/><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id2"/><target ref="id2"/><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id2"/><target ref="id2"/><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id2"/><target ref="id5"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id2"/><target ref="id5"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id2"/><target ref="id5"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id2"/><target ref="id5"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id2"/><target ref="id5"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id2"/><target ref="id5"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id2"/><target ref="id5"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id2"/><target ref="id5"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id3"/><target ref="id3"/><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id3"/><target ref="id3"/><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id3"/><target ref="id3"/><label kind="synchronisation">p2?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id3"/><target ref="id3"/><label kind="synchronisation">other?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id3"/><target ref="id3"/><label kind="synchronisation">p1?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id3"/><target ref="id3"/><label kind="synchronisation">other?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id3"/><target ref="id7"/><label kind="synchronisation">p3?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id3"/><target ref="id7"/><label kind="synchronisation">other?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id3"/><target ref="id4"/><label kind="guard">x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id3"/><target ref="id4"/><label kind="guard">x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id3"/><target ref="id4"/><label kind="guard">x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id3"/><target ref="id4"/><label kind="guard">x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id3"/><target ref="id4"/><label kind="guard">x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id3"/><target ref="id4"/><label kind="guard">x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id3"/><target ref="id6"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id3"/><target ref="id6"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id3"/><target ref="id6"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id3"/><target ref="id6"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id3"/><target ref="id6"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">p2?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id3"/><target ref="id6"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">other?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id3"/><target ref="id8"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">p3?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id3"/><target ref="id8"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">other?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id3"/><target ref="id9"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id3"/><target ref="id9"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id3"/><target ref="id9"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id3"/><target ref="id9"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id3"/><target ref="id10"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">p3?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id3"/><target ref="id10"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">other?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id3"/><target ref="id11"/><label kind="guard">x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id3"/><target ref="id11"/><label kind="guard">x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id3"/><target ref="id11"/><label kind="guard">x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id3"/><target ref="id11"/><label kind="guard">x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id3"/><target ref="id11"/><label kind="guard">x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id3"/><target ref="id11"/><label kind="guard">x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id3"/><target ref="id12"/><label kind="guard">x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p3?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id3"/><target ref="id12"/><label kind="guard">x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id3"/><target ref="id2"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id3"/><target ref="id2"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id3"/><target ref="id2"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id3"/><target ref="id2"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id3"/><target ref="id2"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id3"/><target ref="id2"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id3"/><target ref="id5"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id3"/><target ref="id5"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id3"/><target ref="id5"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id3"/><target ref="id5"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id3"/><target ref="id5"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id3"/><target ref="id5"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id3"/><target ref="id5"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id3"/><target ref="id5"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id3"/><target ref="id1"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id3"/><target ref="id1"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id3"/><target ref="id1"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id3"/><target ref="id1"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id3"/><target ref="id1"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">p1?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id3"/><target ref="id1"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">other?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id4"/><target ref="id4"/><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id4"/><target ref="id4"/><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id4"/><target ref="id4"/><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id4"/><target ref="id4"/><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id4"/><target ref="id4"/><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id4"/><target ref="id4"/><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id4"/><target ref="id5"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id4"/><target ref="id5"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id4"/><target ref="id5"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id4"/><target ref="id5"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id4"/><target ref="id5"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id4"/><target ref="id5"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id4"/><target ref="id5"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id4"/><target ref="id5"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id4"/><target ref="id6"/><label kind="synchronisation">p2?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id4"/><target ref="id6"/><label kind="synchronisation">other?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id5"/><target ref="id5"/><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id5"/><target ref="id5"/><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id5"/><target ref="id5"/><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id5"/><target ref="id5"/><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id5"/><target ref="id5"/><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id5"/><target ref="id5"/><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id5"/><target ref="id5"/><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id5"/><target ref="id5"/><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id6"/><target ref="id8"/><label kind="synchronisation">p3?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id6"/><target ref="id8"/><label kind="synchronisation">other?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id6"/><target ref="id11"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id6"/><target ref="id11"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id6"/><target ref="id11"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id6"/><target ref="id11"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id6"/><target ref="id11"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id6"/><target ref="id11"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id6"/><target ref="id4"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id6"/><target ref="id4"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id6"/><target ref="id4"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id6"/><target ref="id4"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id6"/><target ref="id4"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id6"/><target ref="id4"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id6"/><target ref="id5"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id6"/><target ref="id5"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id6"/><target ref="id5"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id6"/><target ref="id5"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id6"/><target ref="id5"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id6"/><target ref="id5"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id6"/><target ref="id5"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id6"/><target ref="id5"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id6"/><target ref="id12"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">p3?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id6"/><target ref="id12"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">other?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id6"/><target ref="id6"/><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id6"/><target ref="id6"/><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id6"/><target ref="id6"/><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id6"/><target ref="id6"/><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id6"/><target ref="id6"/><label kind="synchronisation">p2?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id6"/><target ref="id6"/><label kind="synchronisation">other?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id7"/><target ref="id13"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id7"/><target ref="id13"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id7"/><target ref="id13"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">p1?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id7"/><target ref="id13"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">other?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id7"/><target ref="id3"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id7"/><target ref="id3"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id7"/><target ref="id3"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">p2?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id7"/><target ref="id3"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">other?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id7"/><target ref="id3"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">p1?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id7"/><target ref="id3"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">other?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id7"/><target ref="id7"/><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id7"/><target ref="id7"/><label kind="synchronisation">p3?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id7"/><target ref="id7"/><label kind="synchronisation">other?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id7"/><target ref="id7"/><label kind="synchronisation">p2?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id7"/><target ref="id7"/><label kind="synchronisation">other?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id7"/><target ref="id7"/><label kind="synchronisation">p1?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id7"/><target ref="id7"/><label kind="synchronisation">other?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id7"/><target ref="id14"/><label kind="guard">x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id7"/><target ref="id14"/><label kind="guard">x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id7"/><target ref="id14"/><label kind="guard">x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id7"/><target ref="id14"/><label kind="guard">x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id7"/><target ref="id4"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id7"/><target ref="id4"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id7"/><target ref="id4"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id7"/><target ref="id4"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id7"/><target ref="id4"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id7"/><target ref="id4"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id7"/><target ref="id6"/><label kind="guard">x0&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id7"/><target ref="id6"/><label kind="guard">x0&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id7"/><target ref="id6"/><label kind="guard">x0&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id7"/><target ref="id6"/><label kind="guard">x0&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id7"/><target ref="id6"/><label kind="guard">x0&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p2?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id7"/><target ref="id6"/><label kind="guard">x0&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id7"/><target ref="id8"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id7"/><target ref="id8"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id7"/><target ref="id8"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">p3?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id7"/><target ref="id8"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">other?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id7"/><target ref="id8"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">p2?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id7"/><target ref="id8"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">other?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id7"/><target ref="id15"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id7"/><target ref="id15"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id7"/><target ref="id15"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id7"/><target ref="id15"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id7"/><target ref="id9"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id7"/><target ref="id9"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id7"/><target ref="id9"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id7"/><target ref="id9"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id7"/><target ref="id10"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id7"/><target ref="id10"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id7"/><target ref="id10"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">p3?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id7"/><target ref="id10"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">other?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id7"/><target ref="id16"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id7"/><target ref="id16"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id7"/><target ref="id16"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id7"/><target ref="id16"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id7"/><target ref="id16"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id7"/><target ref="id16"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id7"/><target ref="id11"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id7"/><target ref="id11"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id7"/><target ref="id11"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id7"/><target ref="id11"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id7"/><target ref="id11"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id7"/><target ref="id11"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id7"/><target ref="id12"/><label kind="guard">x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id7"/><target ref="id12"/><label kind="guard">x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id7"/><target ref="id12"/><label kind="guard">x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id7"/><target ref="id12"/><label kind="guard">x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id7"/><target ref="id12"/><label kind="guard">x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p3?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id7"/><target ref="id12"/><label kind="guard">x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id7"/><target ref="id2"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id7"/><target ref="id2"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id7"/><target ref="id2"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id7"/><target ref="id2"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id7"/><target ref="id2"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id7"/><target ref="id2"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id7"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id7"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id7"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id7"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id7"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id7"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id7"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id7"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id7"/><target ref="id1"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id7"/><target ref="id1"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id7"/><target ref="id1"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id7"/><target ref="id1"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id7"/><target ref="id1"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5</label><label kind="synchronisation">p1?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id7"/><target ref="id1"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5</label><label kind="synchronisation">other?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id8"/><target ref="id14"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id8"/><target ref="id14"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id8"/><target ref="id14"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id8"/><target ref="id14"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id8"/><target ref="id8"/><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id8"/><target ref="id8"/><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id8"/><target ref="id8"/><label kind="synchronisation">p3?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id8"/><target ref="id8"/><label kind="synchronisation">other?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id8"/><target ref="id8"/><label kind="synchronisation">p2?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id8"/><target ref="id8"/><label kind="synchronisation">other?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id8"/><target ref="id11"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id8"/><target ref="id11"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id8"/><target ref="id11"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id8"/><target ref="id11"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id8"/><target ref="id11"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id8"/><target ref="id11"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id8"/><target ref="id16"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id8"/><target ref="id16"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id8"/><target ref="id16"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id8"/><target ref="id16"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id8"/><target ref="id16"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id8"/><target ref="id16"/><label kind="guard">x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id8"/><target ref="id4"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id8"/><target ref="id4"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id8"/><target ref="id4"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id8"/><target ref="id4"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id8"/><target ref="id4"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id8"/><target ref="id4"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id8"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id8"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id8"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id8"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id8"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id8"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id8"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id8"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id8"/><target ref="id6"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id8"/><target ref="id6"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id8"/><target ref="id6"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id8"/><target ref="id6"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id8"/><target ref="id6"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">p2?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id8"/><target ref="id6"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">other?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id8"/><target ref="id12"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id8"/><target ref="id12"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id8"/><target ref="id12"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id8"/><target ref="id12"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id8"/><target ref="id12"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">p3?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id8"/><target ref="id12"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">other?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id9"/><target ref="id1"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">p1?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id9"/><target ref="id1"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">other?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id9"/><target ref="id9"/><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id9"/><target ref="id9"/><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id9"/><target ref="id9"/><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id9"/><target ref="id9"/><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id9"/><target ref="id11"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id9"/><target ref="id11"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id9"/><target ref="id11"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id9"/><target ref="id11"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id9"/><target ref="id11"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id9"/><target ref="id11"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id9"/><target ref="id2"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id9"/><target ref="id2"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id9"/><target ref="id2"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id9"/><target ref="id2"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id9"/><target ref="id2"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id9"/><target ref="id2"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id9"/><target ref="id10"/><label kind="synchronisation">p3?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id9"/><target ref="id10"/><label kind="synchronisation">other?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id9"/><target ref="id3"/><label kind="synchronisation">p1?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id9"/><target ref="id3"/><label kind="synchronisation">other?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id9"/><target ref="id5"/><label kind="guard">x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id9"/><target ref="id5"/><label kind="guard">x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id9"/><target ref="id5"/><label kind="guard">x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id9"/><target ref="id5"/><label kind="guard">x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id9"/><target ref="id5"/><label kind="guard">x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id9"/><target ref="id5"/><label kind="guard">x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id9"/><target ref="id5"/><label kind="guard">x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id9"/><target ref="id5"/><label kind="guard">x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id9"/><target ref="id12"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">p3?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id9"/><target ref="id12"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">other?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id10"/><target ref="id13"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">p1?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id10"/><target ref="id13"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">other?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id10"/><target ref="id3"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">p1?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id10"/><target ref="id3"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">other?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id10"/><target ref="id7"/><label kind="synchronisation">p1?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id10"/><target ref="id7"/><label kind="synchronisation">other?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id10"/><target ref="id15"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id10"/><target ref="id15"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id10"/><target ref="id15"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id10"/><target ref="id15"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id10"/><target ref="id9"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id10"/><target ref="id9"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id10"/><target ref="id9"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id10"/><target ref="id9"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id10"/><target ref="id10"/><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id10"/><target ref="id10"/><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id10"/><target ref="id10"/><label kind="synchronisation">p3?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id10"/><target ref="id10"/><label kind="synchronisation">other?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id10"/><target ref="id16"/><label kind="guard">x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id10"/><target ref="id16"/><label kind="guard">x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id10"/><target ref="id16"/><label kind="guard">x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id10"/><target ref="id16"/><label kind="guard">x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id10"/><target ref="id16"/><label kind="guard">x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id10"/><target ref="id16"/><label kind="guard">x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id10"/><target ref="id11"/><label kind="guard">x0&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id10"/><target ref="id11"/><label kind="guard">x0&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id10"/><target ref="id11"/><label kind="guard">x0&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id10"/><target ref="id11"/><label kind="guard">x0&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id10"/><target ref="id11"/><label kind="guard">x0&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id10"/><target ref="id11"/><label kind="guard">x0&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id10"/><target ref="id12"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id10"/><target ref="id12"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id10"/><target ref="id12"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id10"/><target ref="id12"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id10"/><target ref="id12"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">p3?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id10"/><target ref="id12"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">other?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id10"/><target ref="id2"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id10"/><target ref="id2"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id10"/><target ref="id2"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id10"/><target ref="id2"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id10"/><target ref="id2"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id10"/><target ref="id2"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id10"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id10"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id10"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id10"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id10"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id10"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id10"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id10"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id10"/><target ref="id1"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5</label><label kind="synchronisation">p1?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id10"/><target ref="id1"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5</label><label kind="synchronisation">other?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id11"/><target ref="id11"/><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id11"/><target ref="id11"/><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id11"/><target ref="id11"/><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id11"/><target ref="id11"/><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id11"/><target ref="id11"/><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id11"/><target ref="id11"/><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id11"/><target ref="id5"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id11"/><target ref="id5"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id11"/><target ref="id5"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id11"/><target ref="id5"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id11"/><target ref="id5"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id11"/><target ref="id5"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id11"/><target ref="id5"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id11"/><target ref="id5"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id11"/><target ref="id12"/><label kind="synchronisation">p3?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id11"/><target ref="id12"/><label kind="synchronisation">other?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id12"/><target ref="id11"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id12"/><target ref="id11"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id12"/><target ref="id11"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id12"/><target ref="id11"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id12"/><target ref="id11"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id12"/><target ref="id11"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id12"/><target ref="id16"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id12"/><target ref="id16"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id12"/><target ref="id16"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id12"/><target ref="id16"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id12"/><target ref="id16"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id12"/><target ref="id16"/><label kind="guard">x1&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id12"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id12"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id12"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id12"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id12"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id12"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id12"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id12"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x1&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id12"/><target ref="id12"/><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id12"/><target ref="id12"/><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id12"/><target ref="id12"/><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id12"/><target ref="id12"/><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id12"/><target ref="id12"/><label kind="synchronisation">p3?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id12"/><target ref="id12"/><label kind="synchronisation">other?</label><label kind="assignment">x0 = 0</label></transition>
+    <transition><source ref="id13"/><target ref="id13"/><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id13"/><target ref="id13"/><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id13"/><target ref="id13"/><label kind="synchronisation">p1?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id13"/><target ref="id13"/><label kind="synchronisation">other?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id13"/><target ref="id3"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">p2?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id13"/><target ref="id3"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">other?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id13"/><target ref="id7"/><label kind="synchronisation">p2?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id13"/><target ref="id7"/><label kind="synchronisation">other?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id13"/><target ref="id14"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id13"/><target ref="id14"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id13"/><target ref="id14"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id13"/><target ref="id14"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id13"/><target ref="id4"/><label kind="guard">x0&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id13"/><target ref="id4"/><label kind="guard">x0&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id13"/><target ref="id4"/><label kind="guard">x0&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id13"/><target ref="id4"/><label kind="guard">x0&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id13"/><target ref="id4"/><label kind="guard">x0&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id13"/><target ref="id4"/><label kind="guard">x0&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id13"/><target ref="id6"/><label kind="guard">x0&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p2?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id13"/><target ref="id6"/><label kind="guard">x0&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id13"/><target ref="id8"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">p2?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id13"/><target ref="id8"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">other?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id13"/><target ref="id15"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id13"/><target ref="id15"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id13"/><target ref="id15"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id13"/><target ref="id15"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id13"/><target ref="id16"/><label kind="guard">x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id13"/><target ref="id16"/><label kind="guard">x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id13"/><target ref="id16"/><label kind="guard">x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id13"/><target ref="id16"/><label kind="guard">x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id13"/><target ref="id16"/><label kind="guard">x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id13"/><target ref="id16"/><label kind="guard">x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id13"/><target ref="id2"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id13"/><target ref="id2"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id13"/><target ref="id2"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id13"/><target ref="id2"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id13"/><target ref="id2"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id13"/><target ref="id2"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id13"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id13"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id13"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id13"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id13"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id13"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id13"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id13"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id13"/><target ref="id1"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id13"/><target ref="id1"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id13"/><target ref="id1"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id13"/><target ref="id1"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id13"/><target ref="id1"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">p1?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id13"/><target ref="id1"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">other?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id14"/><target ref="id14"/><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id14"/><target ref="id14"/><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id14"/><target ref="id14"/><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id14"/><target ref="id14"/><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id14"/><target ref="id8"/><label kind="synchronisation">p2?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id14"/><target ref="id8"/><label kind="synchronisation">other?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id14"/><target ref="id16"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id14"/><target ref="id16"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id14"/><target ref="id16"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id14"/><target ref="id16"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id14"/><target ref="id16"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id14"/><target ref="id16"/><label kind="guard">x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id14"/><target ref="id4"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id14"/><target ref="id4"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id14"/><target ref="id4"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id14"/><target ref="id4"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id14"/><target ref="id4"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id14"/><target ref="id4"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id14"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id14"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id14"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id14"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id14"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id14"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id14"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id14"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x2&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id14"/><target ref="id6"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">p2?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id14"/><target ref="id6"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">other?</label><label kind="assignment">x1 = 0</label></transition>
+    <transition><source ref="id15"/><target ref="id1"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">p1?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id15"/><target ref="id1"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">other?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id15"/><target ref="id15"/><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id15"/><target ref="id15"/><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id15"/><target ref="id15"/><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id15"/><target ref="id15"/><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id15"/><target ref="id2"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id15"/><target ref="id2"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id15"/><target ref="id2"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id15"/><target ref="id2"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id15"/><target ref="id2"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id15"/><target ref="id2"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id15"/><target ref="id16"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id15"/><target ref="id16"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id15"/><target ref="id16"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id15"/><target ref="id16"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id15"/><target ref="id16"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id15"/><target ref="id16"/><label kind="guard">x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id15"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id15"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id15"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id15"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id15"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id15"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id15"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id15"/><target ref="id5"/><label kind="guard">x0&gt;5 &amp;&amp; x3&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id15"/><target ref="id13"/><label kind="synchronisation">p1?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id15"/><target ref="id13"/><label kind="synchronisation">other?</label><label kind="assignment">x2 = 0</label></transition>
+    <transition><source ref="id16"/><target ref="id16"/><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id16"/><target ref="id16"/><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id16"/><target ref="id16"/><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id16"/><target ref="id16"/><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id16"/><target ref="id16"/><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id16"/><target ref="id16"/><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id16"/><target ref="id5"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">p4?</label></transition>
+    <transition><source ref="id16"/><target ref="id5"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id16"/><target ref="id5"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">p3?</label></transition>
+    <transition><source ref="id16"/><target ref="id5"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id16"/><target ref="id5"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">p2?</label></transition>
+    <transition><source ref="id16"/><target ref="id5"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">other?</label></transition>
+    <transition><source ref="id16"/><target ref="id5"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">p1?</label></transition>
+    <transition><source ref="id16"/><target ref="id5"/><label kind="guard">x0&gt;5</label><label kind="synchronisation">other?</label></transition>
+  </template>
+  <template>
+    <name>Sys</name>
+    <declaration>clock z;</declaration>
+    <location id="s0" x="0" y="0">
+      <name>S</name>
+    </location>
+    <init ref="s0"/>
+    <transition>
+      <source ref="s0"/>
+      <target ref="s0"/>
+      <label kind="guard">z &gt; 0</label>
+      <label kind="synchronisation">p1!</label>
+      <label kind="assignment">z = 0</label>
+    </transition>
+    <transition>
+      <source ref="s0"/>
+      <target ref="s0"/>
+      <label kind="guard">z &gt; 0</label>
+      <label kind="synchronisation">p2!</label>
+      <label kind="assignment">z = 0</label>
+    </transition>
+    <transition>
+      <source ref="s0"/>
+      <target ref="s0"/>
+      <label kind="guard">z &gt; 0</label>
+      <label kind="synchronisation">p3!</label>
+      <label kind="assignment">z = 0</label>
+    </transition>
+    <transition>
+      <source ref="s0"/>
+      <target ref="s0"/>
+      <label kind="guard">z &gt; 0</label>
+      <label kind="synchronisation">p4!</label>
+      <label kind="assignment">z = 0</label>
+    </transition>
+    <transition>
+      <source ref="s0"/>
+      <target ref="s0"/>
+      <label kind="guard">z &gt; 0</label>
+      <label kind="synchronisation">other!</label>
+      <label kind="assignment">z = 0</label>
+    </transition>
+  </template>
+  <system>P = Property();
+S = Sys();
+system P, S;</system>
+</nta>

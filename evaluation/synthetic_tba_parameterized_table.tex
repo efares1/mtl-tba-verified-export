@@ -1,0 +1,41 @@
+\begin{table*}[t]
+\centering
+\caption{Complete parameter sweeps for five translator-independent synthetic TBA families. Tuples report declared locations / graph-reachable locations / transitions / active clocks. The optimizer count is the number of structurally changed rounds; optimization time is the mean over 200 in-memory calls. Export diagonals are explicit clock-difference guard occurrences.}
+\label{tab:parameterized-synthetic}
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}p{0.19\textwidth}r p{0.16\textwidth}p{0.16\textwidth}r p{0.16\textwidth}rr@{}}
+\toprule
+Family & $k$ & Input $L/R/E/C$ & Opt. $L/R/E/C$ & Rnds. & Export $L/R/E/C$ & Opt. (ms) & Diag.\\
+\midrule
+Duplicate edges & 1 & 2/2/2/0 & 2/2/2/0 & 0 & 4/2/2/0 & 0.017 & 0 \\
+Duplicate edges & 2 & 2/2/3/0 & 2/2/2/0 & 1 & 4/2/2/0 & 0.030 & 0 \\
+Duplicate edges & 4 & 2/2/5/0 & 2/2/2/0 & 1 & 4/2/2/0 & 0.046 & 0 \\
+Duplicate edges & 8 & 2/2/9/0 & 2/2/2/0 & 1 & 4/2/2/0 & 0.057 & 0 \\
+Duplicate edges & 16 & 2/2/17/0 & 2/2/2/0 & 1 & 4/2/2/0 & 0.073 & 0 \\
+Duplicate edges & 32 & 2/2/33/0 & 2/2/2/0 & 1 & 4/2/2/0 & 0.216 & 0 \\
+Unreachable cascade & 1 & 3/1/2/0 & 3/1/1/0 & 1 & 6/1/1/0 & 0.027 & 0 \\
+Unreachable cascade & 2 & 4/1/3/0 & 4/1/1/0 & 2 & 8/1/1/0 & 0.075 & 0 \\
+Unreachable cascade & 4 & 6/1/5/0 & 6/1/1/0 & 4 & 12/1/1/0 & 0.253 & 0 \\
+Unreachable cascade & 8 & 10/1/9/0 & 10/1/1/0 & 8 & 20/1/1/0 & 1.752 & 0 \\
+Unreachable cascade & 16 & 18/1/17/0 & 18/1/1/0 & 16 & 36/1/1/0 & 9.324 & 0 \\
+Unreachable cascade & 32 & 34/1/33/0 & 34/1/1/0 & 32 & 68/1/1/0 & 47.381 & 0 \\
+Unreachable cascade & 50 & 52/1/51/0 & 52/1/1/0 & 50 & 104/1/1/0 & 227.747 & 0 \\
+Unreachable cascade & 51 & 53/1/52/0 & 53/1/2/0 & 50 & 106/1/1/0 & 239.316 & 0 \\
+Unreachable cascade & 64 & 66/1/65/0 & 66/1/15/0 & 50 & 132/1/1/0 & 531.813 & 0 \\
+Redundant bounds & 1 & 2/2/2/1 & 2/2/2/1 & 0 & 4/2/2/1 & 0.017 & 0 \\
+Redundant bounds & 2 & 2/2/2/1 & 2/2/2/1 & 1 & 4/2/2/1 & 0.025 & 0 \\
+Redundant bounds & 4 & 2/2/2/1 & 2/2/2/1 & 1 & 4/2/2/1 & 0.027 & 0 \\
+Redundant bounds & 8 & 2/2/2/1 & 2/2/2/1 & 1 & 4/2/2/1 & 0.036 & 0 \\
+Redundant bounds & 16 & 2/2/2/1 & 2/2/2/1 & 1 & 4/2/2/1 & 0.034 & 0 \\
+Synchronous resets & 2 & 2/2/3/2 & 2/2/3/1 & 2 & 4/2/3/1 & 0.230 & 0 \\
+Synchronous resets & 3 & 2/2/4/3 & 2/2/4/1 & 2 & 4/2/4/1 & 0.316 & 0 \\
+Synchronous resets & 4 & 2/2/5/4 & 2/2/4/1 & 2 & 4/2/4/1 & 0.318 & 0 \\
+Synchronous resets & 6 & 2/2/7/6 & 2/2/5/1 & 2 & 4/2/5/1 & 0.618 & 0 \\
+Disjunctive invariant & 2 & 2/2/3/2 & 2/2/3/2 & 0 & 6/3/10/2 & 0.030 & 10 \\
+Disjunctive invariant & 3 & 2/2/4/3 & 2/2/4/3 & 0 & 8/4/30/3 & 0.047 & 60 \\
+Disjunctive invariant & 4 & 2/2/5/4 & 2/2/4/3 & 1 & 8/4/30/3 & 0.117 & 60 \\
+Disjunctive invariant & 6 & 2/2/7/6 & 2/2/5/4 & 1 & 10/5/68/4 & 0.213 & 204 \\
+\bottomrule
+\end{tabular}
+\end{table*}

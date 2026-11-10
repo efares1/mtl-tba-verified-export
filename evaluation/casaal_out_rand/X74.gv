@@ -1,0 +1,8 @@
+digraph G {
+  0 [label="", style=invis, height=0]
+  0 -> 1
+  1 [label="(!p | G(!q | !r)) & G((!p | !q) & (!p | !r) & (!q | !r))"]
+  1 -> 2 [label="(!p & !q) | (!p & !r) | (!q & !r)\n"]
+  2 [label="G((!p | !q) & (!p | !r) & (!q | !r))"]
+  2 -> 2 [label="(!p & !q) | (!p & !r) | (!q & !r)\n"]
+}

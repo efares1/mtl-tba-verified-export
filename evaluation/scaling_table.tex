@@ -1,0 +1,29 @@
+\begin{table}[t]
+\centering
+\caption{Scalability on the families R$n$ and N$n$: median time of the Spot, optimization, and export stages and of the whole chain, minimum and maximum of the five runs, peak memory, and exported transitions with Spot options \texttt{-B --small} (default) and \texttt{-B -D}.  Times in seconds, memory in MB.  The total also includes the stages not listed: reading of the output of Spot, reset completion, check $\mathsf{init\_free}$, symbolic transitions, and printing.}
+\label{tab:scaling}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lrrrrrrrr@{}}
+\toprule
+Id & Spot & Opt. & Exp. & Total & [min, max] & Mem. & tr & tr \texttt{-D}\\
+\midrule
+R1 & 0.01 & 0.00 & 0.00 & 0.03 & [0.02, 0.04] & 17 & 5 & 5\\
+R2 & 0.01 & 0.00 & 0.00 & 0.03 & [0.03, 0.05] & 17 & 19 & 19\\
+R3 & 0.02 & 0.01 & 0.01 & 0.06 & [0.05, 0.09] & 18 & 67 & 67\\
+R4 & 0.08 & 0.06 & 0.16 & 0.38 & [0.38, 0.54] & 19 & 217 & 217\\
+R5 & 0.54 & 0.94 & 1.45 & 3.63 & [3.15, 4.11] & 23 & 651 & 651\\
+R6 & 6.98 & 17.81 & 10.67 & 39.00 & [37.44, 1609.07] & 106 & 1837 & 1837\\
+R7 & \multicolumn{8}{c}{timeout (limit 300~s)}\\
+R8 & \multicolumn{8}{c}{timeout (limit 300~s)}\\
+N1 & 0.01 & 0.00 & 0.00 & 0.03 & [0.02, 0.04] & 17 & 5 & 5\\
+N2 & 0.02 & 0.00 & 0.00 & 0.03 & [0.03, 0.05] & 17 & 9 & 26\\
+N3 & 0.02 & 0.00 & 0.00 & 0.06 & [0.04, 0.08] & 18 & 16 & 173\\
+N4 & 0.07 & 0.00 & 0.01 & 0.10 & [0.10, 0.13] & 19 & 25 & 1035\\
+N5 & 0.30 & 0.01 & 0.02 & 0.35 & [0.34, 0.41] & 22 & 36 & 5461\\
+N6 & 1.14 & 0.03 & 0.06 & 1.29 & [1.28, 1.31] & 35 & 49 & timeout\\
+N7 & 7.88 & 0.10 & 0.23 & 8.37 & [8.05, 8.66] & 140 & 64 & timeout\\
+N8 & 96.24 & 0.33 & 0.70 & 98.33 & [97.79, 105.01] & 961 & 81 & timeout\\
+\bottomrule
+\end{tabular}
+\end{table}

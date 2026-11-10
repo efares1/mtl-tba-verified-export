@@ -1,0 +1,39 @@
+\begin{tikzpicture}[x=1.35cm,y=1.05cm,
+  ival/.style={line width=0.5pt},
+  ivallab/.style={font=\scriptsize,above=1pt}]
+  % Ordinary Until
+  \node[anchor=east,font=\small,align=right] at (-0.20,1.30) {$p\Until_{\le 2}q$\\{\scriptsize holds}};
+  \draw[fmtimeline] (0,1.30) -- (4.25,1.30);
+  \node[fmreference] (u0) at (0.45,1.30) {};
+  \node[fmevent] (u1) at (1.75,1.30) {};
+  \node[fmevent] (u2) at (3.10,1.30) {};
+  \node[above=2pt of u0,font=\scriptsize] {$p$};
+  \node[above=2pt of u1,font=\scriptsize] {$p$};
+  \node[above=2pt of u2,font=\scriptsize] {$q$};
+  \node[below=1.5pt of u0,font=\scriptsize] {$t_i=0$};
+  \node[below=1.5pt of u1,font=\scriptsize] {$1.0$};
+  \node[below=1.5pt of u2,font=\scriptsize] {$2.0$};
+  \draw[ival] (0.45,2.05) -- (2.95,2.05);
+  \node[font=\scriptsize] at (0.45,2.05) {$[$};
+  \node[font=\scriptsize] at (2.95,2.05) {$)$};
+  \node[ivallab] at (1.70,2.05) {$p$ required on $[i,j)$};
+  \draw[fmbracebottom] (0.45,0.70) -- node[below=5pt,font=\scriptsize] {time measured from the current event} (3.10,0.70);
+
+  % Hatted Until
+  \node[anchor=east,font=\small,align=right] at (-0.20,-1.15) {$p\hUntil_{\le 2}q$\\{\scriptsize holds}};
+  \draw[fmtimeline] (0,-1.15) -- (4.25,-1.15);
+  \node[fmreference] (h0) at (0.45,-1.15) {};
+  \node[fmevent] (h1) at (1.75,-1.15) {};
+  \node[fmevent] (h2) at (3.10,-1.15) {};
+  \node[above=2pt of h0,font=\scriptsize] {$r$};
+  \node[above=2pt of h1,font=\scriptsize] {$p$};
+  \node[above=2pt of h2,font=\scriptsize] {$q$};
+  \node[below=3pt of h0,font=\scriptsize] {$t_i=0.5$};
+  \node[below=3pt of h1,font=\scriptsize] {$1.0$};
+  \node[below=3pt of h2,font=\scriptsize] {$2.0$};
+  \draw[ival] (0.60,-0.52) -- (2.95,-0.52);
+  \node[font=\scriptsize] at (0.60,-0.52) {$($};
+  \node[font=\scriptsize] at (2.95,-0.52) {$)$};
+  \node[ivallab] at (1.78,-0.52) {$p$ required on $(i,j)$; $r$ is skipped};
+  \draw[fmbracebottom] (0.45,-1.85) -- node[below=5pt,font=\scriptsize] {elapsed time is still measured from $t_i$} (3.10,-1.85);
+\end{tikzpicture}

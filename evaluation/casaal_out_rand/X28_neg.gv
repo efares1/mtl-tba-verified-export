@@ -1,0 +1,16 @@
+digraph G {
+  0 [label="", style=invis, height=0]
+  0 -> 1
+  1 [label="(0R[x>=2]G(!q & !r)) & G(!q | !r)"]
+  1 -> 2 [label="(!q & reset(x0)) | (!r & reset(x0))\n"]
+  1 -> 3 [label="!q | !r\n"]
+  2 [label="G(!q | !r) & (0R[x>=2-x0]G(!q & !r)) & !\"x0>=2\""]
+  2 -> 4 [label="(!q & !\"x0>=2\") | (!r & !\"x0>=2\")\n"]
+  3 [label="G(G(!q & !r) & (!q | !r))"]
+  3 -> 5 [label="!q & !r\n"]
+  4 [label="(G(!q | !r) & (0R[x>=2-x0]G(!q & !r)) & !\"x0>=2\") | G(G(!q & !r) & (!q | !r))"]
+  4 -> 5 [label="!q & !r\n"]
+  4 -> 4 [label="(!q & !\"x0>=2\") | (!r & !\"x0>=2\")\n"]
+  5 [label="G(!q & !r & G(!q & !r) & (!q | !r))"]
+  5 -> 5 [label="!q & !r\n"]
+}

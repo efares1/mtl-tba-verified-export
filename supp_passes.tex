@@ -1,0 +1,458 @@
+\section{The Verified Post-Processing Passes}
+\label{sec:supp-passes}
+This section details the passes summarized in Table~\ref{main-tab:post-passes} of
+the article.
+
+\subsection{Location Invariants on the Trace Model}
+\label{sec:inv-semantics}
+A location invariant maps every clock $x$ either to an upper bound
+$M\in\mathbb R$, standing for the constraint $x\le M$, or to $+\infty$ (no
+constraint).  We interpret automata with invariants on the extended words of
+Section~\ref{main-sec:model}, as we do for automata without invariants.
+Along a run $r$, the automaton stays in location $r(i)$ between the events
+$i-1$ and $i$, and the invariant of $r(i)$ must hold during the whole stay,
+that is, at the clock values $\CVal_\rho(i,x)-\tau$ for every delay
+$\tau\in[0,\Delta_{i-1}]$, where $\Delta_{i-1}=t_i-t_{i-1}$ (and at the values $\CVal_\rho(0,x)$ for the
+initial location).  This is the condition of Section~\ref{main-sec:model}, read at
+the event that ends the stay.  Since clocks increase while time elapses, an
+invariant made of upper bounds holds during the stay if and only if it holds at
+the event that ends it (lemma \texttt{inv\_\allowbreak{}during\_\allowbreak{}iff\_\allowbreak{}at\_\allowbreak{}event}).
+For the two-sided invariants of Section~\ref{sec:forward}, a lower bound
+$x\ge m$ must likewise hold during the whole stay, hence at its beginning.
+
+\subsection{Invariant Synthesis and Backward Propagation}
+\label{sec:uppaal-invariants}
+In the exported timed automaton, upper-bounded guards need invariants so that
+time does not elapse past all useful outgoing transitions.  We compute location
+invariants from outgoing upper bounds and propagate successor requirements
+backward, following the standard timed-automata intuition of propagating
+admissible time domains~\cite{[BGD04]}.
+
+\paragraph{Upper bound of a guard.}
+For a conjunctive guard $g$ and a clock $x$, let $\mathit{ub}_x(g)$ be the
+smallest bound $m$ of the constraints $x\le m$, $x<m$, and $x=m$ occurring in
+$g$, and $+\infty$ if $g$ contains none.  Other constraints are ignored.  A
+valuation satisfying $g$ satisfies $x\le\mathit{ub}_x(g)$.
+
+\paragraph{Invariant synthesis.}
+For a location $\ell$ with outgoing transitions
+$\ell\xrightarrow{g_i,Z_i}\ell_i$, $i=1,\dots,m$, the synthesized invariant is
+\[
+  \mathit{Inv}(\ell)(x)=\max_{1\le i\le m}\mathit{ub}_x(g_i),
+\]
+with $\mathit{Inv}(\ell)(x)=+\infty$ when $\ell$ has no outgoing transition.
+Thus a clock that some outgoing guard does not bound does not appear in the
+invariant.  The bound is always non-strict, even when it comes from a strict
+guard $x<m$: the invariant only needs to be implied by the guard of the next
+transition, and strictness is kept in the guards themselves.
+
+\begin{theorem}[Invariant synthesis]
+\label{thm:inv-synthesis}
+For every TBA $\mathcal A$, the automaton $\mathcal A$ with the synthesized
+invariants accepts the same timed words as $\mathcal A$.
+\end{theorem}
+
+\begin{proof}
+Adding invariants can only remove runs.  Conversely, let $r$ be an accepting
+run on $\rho$.  At every event $i$, the transition taken from $r(i)$ is enabled,
+so its guard holds at the values $\CVal_\rho(i,x)$, which are therefore at most
+$\mathit{Inv}(r(i))(x)$.  By the lemma \texttt{inv\_\allowbreak{}during\_\allowbreak{}iff\_\allowbreak{}at\_\allowbreak{}event}, the invariant of $r(i)$ holds during
+the whole stay.  (Coq: \texttt{add\_\allowbreak{}invariants\_\allowbreak{}correct}.)
+\end{proof}
+
+\paragraph{Backward propagation.}
+One propagation step strengthens every transition
+$\ell\xrightarrow{g,Z}\ell'$ with the invariant of its target after the
+resets:
+\[
+  g := g\wedge\mathit{Inv}(\ell')[Z:=0],
+\]
+where $\mathit{Inv}(\ell')[Z:=0]$ replaces every bound $x\le M$ on a reset clock
+$x\in Z$ by the constant constraint $0\le M$, that is, by $\top$ if $M\ge0$ and
+by $\bot$ otherwise.  Invariants are then synthesized again from the
+strengthened guards.
+
+\begin{theorem}[Backward propagation]
+\label{thm:propagation}
+For every TBA $\mathcal A$ and every $n\in\mathbb N$, the automaton obtained by
+$n$ propagation steps accepts the same timed words as $\mathcal A$.
+\end{theorem}
+
+\begin{proof}
+Strengthening guards can only remove runs.  Conversely, consider an accepting
+run that takes $\ell\xrightarrow{g,Z}\ell'$ at event $i$ and then a transition
+$\ell'\xrightarrow{g',Z'}\ell''$ at event $i+1$.  The second guard holds at event
+$i+1$, so the values at that event are bounded by $\mathit{Inv}(\ell')$.  Clock
+consistency gives $\CVal_\rho(i+1,x)=\Delta_i$ for $x\in Z$ and
+$\CVal_\rho(i+1,x)=\CVal_\rho(i,x)+\Delta_i\ge\CVal_\rho(i,x)$ otherwise; hence
+the strengthened guard $g\wedge\mathit{Inv}(\ell')[Z:=0]$ holds at event $i$.
+The argument uses clock consistency, so the theorem is stated on timed words.
+(Coq: \texttt{propagate\_\allowbreak{}accepts} and
+\texttt{propagate\_\allowbreak{}n\_\allowbreak{}accepts}.)
+\end{proof}
+
+Each round of the optimization pipeline of Section~\ref{main-sec:main-pipeline}
+applies one propagation step.  The tool repeats the rounds until the
+automaton is structurally equal to the previous one, as an OCaml value, or
+until 50 rounds have been performed; the bound guarantees termination, and the
+theorem holds for every number of steps, whether or not a fixpoint is
+reached.  On our benchmarks, the rounds reach a fixpoint after at most six
+rounds (six for R6, at most five for every other completed configuration).
+The invariant computation at one location is summarized in the article's
+Figure~\ref{main-fig:main-inv-unified}.
+
+\paragraph{Example.}
+We illustrate the algorithm on the automaton of Fig.~\ref{fig:inv-example},
+which contains a two-location cycle $\ell_1\to\ell_2\to\ell_1$ and a self-loop
+at $\ell_2$.  It has one clock $x$, the initial location $\ell_0$, and the
+transitions
+\[
+\begin{aligned}
+&\ell_0 \xrightarrow{a,\;Z=\{x\}} \ell_1,\quad
+ \ell_1 \xrightarrow{b,\;x\le 2,\;Z=\emptyset} \ell_2,\\
+&\ell_2 \xrightarrow{c,\;\top,\;Z=\emptyset} \ell_1,\quad
+ \ell_2 \xrightarrow{d,\;x\le 1,\;Z=\emptyset} \ell_2.
+\end{aligned}
+\]
+The edge $\ell_1\xrightarrow{b}\ell_2$ requires $x\le2$, and the self-loop at
+$\ell_2$ requires the tighter bound $x\le1$.
+
+\begin{figure}[t]
+\centering
+\input{figures/fig_invariant_example}
+\caption{Automaton used to illustrate invariant propagation, with one clock $x$
+and actions $a$--$d$.  Edges are labeled ``guard, action / resets'' (the guard
+is omitted when it is $\top$); only the edge $\ell_0\to\ell_1$ resets $x$.  The
+incoming arrow marks the initial location; acceptance plays no role here.  The
+computed fixpoint is $\mathit{Inv}(\ell_1)=\mathit{Inv}(\ell_2)=(x\le2)$.}
+\label{fig:inv-example}
+\end{figure}
+
+\begin{enumerate}
+\item \emph{Synthesis.}  $\mathit{Inv}(\ell_1)(x)=\mathit{ub}_x(x\le2)=2$.  At
+$\ell_2$, $\mathit{Inv}(\ell_2)(x)=\max(1,+\infty)=+\infty$, because the
+transition toward $\ell_1$ does not bound $x$.  At $\ell_0$, the only outgoing
+guard is $\top$, so $\mathit{Inv}(\ell_0)(x)=+\infty$.
+
+\item \emph{Propagation.}  The transition
+$\ell_2\xrightarrow{c,\;Z=\emptyset}\ell_1$ becomes guarded by
+$\top\wedge\mathit{Inv}(\ell_1)=(x\le2)$.  The transition
+$\ell_0\xrightarrow{a,\;Z=\{x\}}\ell_1$ receives $(0\le2)\equiv\top$ and is
+unchanged.
+
+\item \emph{Synthesis.}  At $\ell_2$, the outgoing guards are now $x\le1$ and
+$x\le2$, so $\mathit{Inv}(\ell_2)(x)=\max(1,2)=2$.
+
+\item \emph{Propagation.}  The transition $\ell_1\xrightarrow{b,\;x\le2}\ell_2$
+receives $x\le2$, which it already contains, and the self-loop at $\ell_2$
+receives $x\le2$, which is implied by $x\le1$.  Nothing changes.
+\end{enumerate}
+The fixpoint is $\mathit{Inv}(\ell_0)=\top$ and
+$\mathit{Inv}(\ell_1)=\mathit{Inv}(\ell_2)=(x\le2)$.  While the automaton
+remains in the cycle $\ell_1\leftrightarrow\ell_2$, the clock $x$ cannot exceed
+$2$, and at every reachable valuation at least one outgoing transition of the
+current location is enabled.  The invariants do not remove every blocking
+behavior: since $x$ is never reset in the cycle, time is blocked once $x=2$.
+They make the upper bounds of the property automaton explicit, and
+Theorems~\ref{thm:inv-synthesis} and~\ref{thm:propagation} guarantee that they
+do not change its language.
+
+\subsection{Forward Propagation of Lower Bounds and Simplification}
+\label{sec:forward}
+\paragraph{Entry bounds.}
+Dually, for a transition $t=\ell\xrightarrow{g,Z}\ell'$ and a clock $x$, the
+\emph{entry bound} of $x$ along $t$ is $0$ if $x\in Z$ and otherwise the
+largest bound $\mathit{lb}_x(g)$ of the constraints $x\ge m$, $x>m$, and $x=m$
+of $g$, if any.  The entry bound of $x$ at a location $\ell'$ is the minimum of
+the entry bounds of $x$ along the transitions entering $\ell'$; for the initial
+location, the initial entry, with bound $0$, also counts.  If some entering
+transition gives no bound on $x$, the clock $x$ has no entry bound at $\ell'$.
+Since clocks are nonnegative and do not decrease while time elapses, every
+clock with entry bound $m$ at $\ell'$ satisfies $x\ge m$ during every stay in
+$\ell'$.
+
+\paragraph{Forward propagation.}
+The forward step adds $x\ge m$ to the guard of every transition leaving
+$\ell'$, for every clock $x$ with entry bound $m$ at $\ell'$ (Coq:
+\texttt{forward\_\allowbreak{}accepts}).  The entry bounds can also be read as lower-bound
+invariants: the two-sided automaton that carries the synthesized upper-bound
+invariants and the entry bounds as lower-bound invariants accepts the same
+timed words (\texttt{add\_\allowbreak{}two\_\allowbreak{}sided\_\allowbreak{}invariants\_\allowbreak{}accepts}).  UPPAAL
+rejects lower-bound invariants, and their only role is to make infeasible
+transitions visible: after forward and backward propagation, a transition whose
+source location bounds a clock from below and whose target bounds it from above
+carries both bounds in its guard.
+
+\paragraph{Simplification.}
+Three simplifications follow.  First, a transition whose guard contains
+contradictory constraints is removed: a lower bound and an upper bound on the
+same clock with $u<l$, or with $u=l$ and one of them strict, or an upper bound
+$x\le u$ with $u<0$ or $x<u$ with $u\le0$.  Such a transition is never enabled (Coq:
+\texttt{remove\_\allowbreak{}contradictory\_\allowbreak{}accepts}).  Second, the transitions
+leaving a non-initial location that has no entering transition
+are removed: such a location never occurs on a run after position~$0$ (Coq:
+\texttt{remove\_\allowbreak{}unreachable\_\allowbreak{}accepts}).  The iteration of the pipeline
+removes chains of such locations one step at a time.  A location whose only
+entering transitions are self-loops keeps them, but it is unreachable from
+the initial location; the tool counts and prints only the locations
+reachable from the initial one and their transitions.  Third, a transition whose
+action label is unsatisfiable, because it requires two different actions or an
+action and its negation, is removed (Coq:
+\texttt{remove\_\allowbreak{}unsat\_\allowbreak{}accepts}).  Such labels arise when the
+translator receives an action $a$ and the atom $\neg a$ of $\T(f)$ as independent
+propositions (the tool option \texttt{-indep-neg} of the translation article;
+its default negates the atom for $a$, which avoids most of them) or when a cube
+requires two different actions; removing them also enables clock merging, since the resets of a
+transition that can never be taken would otherwise prevent it.
+
+\subsection{Dead Resets and Merging of Synchronously Reset Clocks}
+\label{sec:dead-merge}
+\paragraph{Dead resets.}
+A clock $x$ is \emph{live} at a location $\ell$ if some transition that tests
+$x$ in its guard can be taken from $\ell$, possibly after other transitions.
+The live locations are computed as a backward closure, along all
+transitions, from the sources of the transitions that test $x$; the other
+locations are \emph{dead} for $x$.  Since the correctness of the pass does
+not depend on how this closure is computed, the pass checks the two
+properties that the proof uses, namely that no transition leads from a dead
+location to a live one and that none tests $x$ from a dead location, and then removes $x$ from the reset sets of the
+transitions that enter a dead location.  After such a transition, the value of
+$x$ is never read again, so whether it is reset does not matter.  The proof
+builds, from every accepted extended word, an extended word that differs only
+in the reset decisions of $x$, and conversely (Coq:
+\texttt{remove\_\allowbreak{}dead\_\allowbreak{}resets\_\allowbreak{}clock\_\allowbreak{}accepts}).  The pass is applied
+to every clock (\texttt{remove\_\allowbreak{}dead\_\allowbreak{}resets\_\allowbreak{}accepts}).
+
+\paragraph{Synchronous clocks.}
+The verified translation shares the clock of syntactically identical timed
+subformulas.  Clocks of \emph{different} subformulas can also be merged when
+they are reset synchronously.  Two clocks $x\neq y$ are \emph{mergeable} if
+\begin{enumerate}[label=(\roman*)]
+  \item every transition resets $x$ if and only if it resets $y$;
+  \item no transition enters the initial location; and
+  \item every transition leaving the initial location resets $x$ and does not
+        test it.
+\end{enumerate}
+Then, after the first event, $x$ and $y$ always have the same value, and every
+test of $x$ can be replaced by the same test on $y$ (Coq:
+\texttt{merge\_\allowbreak{}accepts}).  The condition is checked by a Boolean function
+proved to imply it, and the pass tries all pairs of reset clocks
+(\texttt{merge\_\allowbreak{}all\_\allowbreak{}accepts}).  The merged clock $x$ is no longer tested,
+so its remaining resets are removed by the dead-reset pass in the next round.
+This verified merging is restricted to synchronously reset clocks; merging
+clocks whose values coincide for other reasons is not covered.
+
+\subsection{Normalization of Guards}
+\label{sec:normalize}
+Backward and forward propagation add constraints to guards.  Every time a
+guard is strengthened, it is \emph{tightened}: a constraint implied by another
+constraint of the same guard on the same clock is dropped, so that a guard
+keeps at most one lower bound and one upper bound per clock (an equality
+counting as both); for instance, $x\le5\land x<2$ becomes $x<2$.  The
+implication test compares bounds and strictness, and is proved sound (Coq:
+\texttt{tighten\_\allowbreak{}holds}).  Normalization tightens every guard and also
+removes the lower bounds $x\ge m$ with $m\le0$ and $x>m$ with $m<0$, which every
+clock value satisfies; it is needed after the merging of clocks, which renames
+constraints.  The removal of trivial lower bounds relies on the nonnegativity
+of clock values, so the theorem is stated on timed words (Coq:
+\texttt{normalize\_\allowbreak{}accepts}).
+
+\subsection{Merging of Transitions and of Locations}
+\label{sec:merge-ts}
+\paragraph{Transitions.}
+Two transitions with the same source, target, and resets are merged when the
+union of their enabling conditions is again a conjunction.  A transition is
+removed when another transition with the same source, target, and resets is
+\emph{weaker}, that is, when its label and guard imply those of the other
+transition, constraint by constraint (subsumption).  Two transitions
+whose labels, or guards, differ only by a literal and its negation, such as
+$p$ and $\neg p$, $x<2$ and $x\ge2$, or $x\le5$ and $x>5$, are replaced by one
+transition without that literal (resolution).  The pass preserves the language
+because every enabled transition has an enabled counterpart with the same
+source and target, and conversely (Coq: \texttt{merge\_\allowbreak{}trans\_\allowbreak{}accepts}).
+The other unions are disjunctive; they are formed by the export
+(Section~\ref{subsec:disjunctive-invariants}).
+
+\paragraph{Locations.}
+A location $\ell'$ is merged into a location $\ell$ when both are accepting or
+both are not, and when (i) every transition leaving $\ell'$ is subsumed by a
+transition leaving $\ell$, and (ii) every transition leaving $\ell$ is subsumed
+by one leaving $\ell'$.  A transition $u$ subsumes $t$ when it has a weaker
+label, the same resets, the same target once $\ell'$ is replaced by $\ell$, and
+every constraint of its guard is implied by a constraint of the guard of $t$.
+In (i) the guard of $t$ is conjoined with the \emph{entry invariant} of
+$\ell'$: the lower bounds $x\ge m$ that hold at every visit of $\ell'$.  They
+are the entry bounds of forward propagation, except that a self-loop of
+$\ell'$ that does not reset $x$ is ignored, because it preserves a lower bound
+(Coq: \texttt{entry\_\allowbreak{}lb\_\allowbreak{}loop\_\allowbreak{}sound}).
+Both orders of a pair are tried.  The transitions entering
+$\ell'$ are redirected to $\ell$, and those leaving $\ell'$ are removed.  A run
+of the original automaton becomes a run of the merged one by replacing $\ell'$
+by $\ell$, using (i) and the invariant; conversely, a run of the merged
+automaton is followed in the original one, taking in $\ell'$ a transition that
+subsumes the one taken in $\ell$, by (ii)
+(Coq: \texttt{merge\_\allowbreak{}states\_\allowbreak{}all\_\allowbreak{}accepts}; ``state'' in a Coq name
+means location).  The condition on the B\"uchi marking is necessary: merging
+an accepting location with a non-accepting one would accept runs that visit only the latter infinitely
+often.
+
+
+\subsection{Transition Merging and Elimination of Disjunctive Invariants}
+\label{subsec:disjunctive-invariants}
+
+The export works on a model whose guards are in disjunctive normal form over
+clock constraints and clock-difference constraints $x-y\le b$, and whose
+location invariants are disjunctions of conjunctions of upper bounds.  It is
+interpreted on the same trace model as before.  The export merges
+transitions, splits locations, splits disjunctive guards, normalizes the
+result, and merges the initial location with an equivalent one, each pass
+being proved to preserve the language of timed words; it
+ends with an
+automaton whose guards and invariants are conjunctive, as UPPAAL requires
+(Coq: \texttt{export\_\allowbreak{}accepts},
+\texttt{export\_\allowbreak{}guards\_\allowbreak{}conjunctive}, and
+\texttt{export\_\allowbreak{}invariants\_\allowbreak{}conjunctive}).
+
+\paragraph{Transition merging.}
+Transitions with the same source, target, action label, and reset set are
+merged into one transition whose guard is the disjunction of their guards (Coq:
+\texttt{merge\_\allowbreak{}transitions\_\allowbreak{}accepts}).  The invariant of a location
+$\ell$ is then naturally disjunctive: it has one disjunct
+$\mathit{ub}(g)$, the conjunction of the upper bounds of $g$, for every
+conjunct $g$ of every guard leaving $\ell$:
+\[
+  I = I_1 \lor \cdots \lor I_r.
+\]
+A disjunct that implies another disjunct is redundant and is dropped.  The
+resulting invariant is more precise than the clock-by-clock maximum of
+Section~\ref{sec:uppaal-invariants}, which is its conjunctive
+over-approximation.
+
+\paragraph{Splitting locations.}
+UPPAAL does not allow disjunctive location invariants: invariants must be
+conjunctions of clock constraints defining convex, past-closed zones.  A
+location with invariant $I_1\lor\cdots\lor I_r$ is therefore replaced by
+locations with conjunctive invariants and the same timed behavior.  Bodeveix
+and Filali proposed, informally, a split into one copy per disjunct for
+UPPAAL~\cite{[BF03]}.
+Figure~\ref{fig:disj-general} summarizes the transformation.
+
+\begin{figure}[t]
+\centering
+\resizebox{\columnwidth}{!}{\input{figures/fig_disj_general}}
+\caption{General splitting of a location with a disjunctive invariant
+$I_1\lor\cdots\lor I_r$ into one copy per disjunct.}
+\label{fig:disj-general}
+\end{figure}
+
+The location $L$ is replaced by one copy $L_k$ for each disjunct $I_k$, with
+the conjunctive invariant $I_k$.  Every transition entering $L$ is replicated
+toward every copy $L_k$, and its guard is strengthened with the entry condition
+$\mathit{Ent}_k$ after the resets; every transition leaving $L$ is replicated from every
+copy.  The disjunctive invariant itself is never built: the copies introduce
+the conjunctive invariants directly, and the theorem compares the split
+automaton with the automaton without invariants.  The run starts in a dedicated
+copy of the initial location, without an invariant, since it is not entered by a
+transition.  In the Coq development, the copy $k$ of location $\ell$ is numbered
+$\ell\cdot\kappa+k$, where $\kappa-1$ is the largest number of disjuncts and the copy
+$\kappa-1$ is the initial one; numbers that correspond to no disjunct are unreachable
+locations.
+
+\paragraph{Entry condition.}
+The disjuncts need not be mutually exclusive, so simple replication would
+introduce nondeterministic choices and could select a copy that permits less
+time to elapse than another one.  The entry condition therefore selects a copy
+with the \emph{longest} admissible delay.  The synthesized invariants have
+non-strict bounds only (Section~\ref{sec:uppaal-invariants}); let
+\[
+  I_k = \bigwedge_{c\in C_k} c\le m^k_c.
+\]
+From a valuation $v$, $I_k$ admits the delays up to
+$\mathit{Del}_k(v)=\min_{c\in C_k}(m^k_c-v(c))$, with $\mathit{Del}_k(v)=+\infty$ when $C_k$ is
+empty.  The entry condition of $L_k$ requires $I_k$ and $\mathit{Del}_l(v)\le \mathit{Del}_k(v)$ for
+every other copy $l$.  The comparison $\mathit{Del}_l\le \mathit{Del}_k$ holds when some bound
+$c'\in C_l$ is reached no later than every bound $c\in C_k$, which is expressed
+with clock differences:
+\[
+\mathit{Ent}_k\triangleq I_k \land
+\bigwedge_{l\neq k}\ \bigvee_{c'\in C_l}\ \bigwedge_{c\in C_k}
+ \bigl(c-c'\le m^k_c-m^l_{c'}\bigr).
+\]
+When $C_k$ is empty, the copy admits every delay and, since redundant
+disjuncts are removed beforehand, no other $C_l$ is empty, so that the
+conjunction over $l$ is true.  Ties are allowed: when two copies admit the same delay, both entry
+conditions hold.
+
+\begin{theorem}[Elimination of disjunctive invariants]
+\label{thm:split}
+The split automaton accepts the same timed words as the automaton without
+invariants.
+\end{theorem}
+
+\begin{proof}
+Every copy $L_k$ behaves as $L$ with additional constraints, so the split
+automaton accepts no new word.  Conversely, consider an accepting run that
+enters $L$ with the valuation $v$ (after the resets) and leaves it after a
+delay $\tau$ along a transition whose guard has a conjunct $g$.  This
+conjunct holds at $v+\tau$, hence so does the disjunct $\mathit{ub}(g)=I_j$,
+and $\mathit{Del}_j(v)\ge\tau$.  If $I_j$ was dropped because it implies a kept disjunct, that disjunct admits
+at least the same delays, so we may assume that $I_j$ is kept (Coq:
+\texttt{disj\_\allowbreak{}inv\_\allowbreak{}cover}).  Choose a copy $k$ whose delay
+$\mathit{Del}_k(v)$ is maximal (Coq: \texttt{best}).  Its entry condition holds at $v$, and
+$\mathit{Del}_k(v)\ge \mathit{Del}_j(v)\ge\tau$,
+so $I_k$ holds during the whole stay.  The successor copies are chosen in the
+same way at every position.  Clock-difference constraints are invariant under
+the elapse of time, so $\mathit{Ent}_k$ can be checked on the valuation after the resets,
+and $\mathit{Ent}_k[Z:=0]$ on the valuation before them.  (Coq:
+\texttt{split\_\allowbreak{}accepts}.)
+\end{proof}
+
+The substitution $[Z:=0]$ maps a difference $c-c'\le b$ to $0\le b$ when both
+clocks are reset, to $c'\ge -b$ when only $c$ is reset, and to $c\le b$ when
+only $c'$ is reset.  The disjunctions over $c'$ in $\mathit{Ent}_k$, and those created by
+transition merging, are finally eliminated by putting the guards into
+disjunctive normal form and splitting every transition into one copy per
+disjunct (Coq: \texttt{explode\_\allowbreak{}accepts}).  In the worst case, the number
+of copies is the product of the sizes of the disjunctions.
+
+\paragraph{Final normalization.}
+The guards are normalized before and after the split (Coq:
+\texttt{normalize\_\allowbreak{}d\_\allowbreak{}accepts}): in every conjunction, constraints
+implied by another one are removed, as in Section~\ref{sec:normalize}, together
+with the trivial differences $x-x\le b$ with $b\ge0$; conjunctions containing a
+difference $x-x\le b$ with $b<0$ are unsatisfiable and are removed; and a
+conjunction that implies another conjunction of the same guard is removed.
+Finally, the transitions leaving a location that is neither initial nor the
+target of a transition are removed, until nothing changes (Coq:
+\texttt{dprune\_\allowbreak{}n\_\allowbreak{}accepts}); this removes in particular the
+transitions of the copies that correspond to no disjunct.  The dedicated copy
+of the initial location is then merged into another location when both have
+the same acceptance status, equivalent invariants (an invariant with an empty
+disjunct being equivalent to no invariant), and the same outgoing
+transitions, compared as sets after redirection; this is the case, for
+instance, when the initial location has no invariant (Coq:
+\texttt{dmerge\_\allowbreak{}states\_\allowbreak{}all\_\allowbreak{}accepts}).  The resulting
+automaton has conjunctive guards with difference constraints and conjunctive
+location invariants made of upper bounds.
+
+\paragraph{Symbolic transitions.}
+Each transition of the exported automaton reads a cube: a conjunction of
+action literals and a conjunction of clock constraints.  For the drawing and
+for the comparison with tools whose transitions carry Boolean formulas, the
+last pass merges all the transitions with the same source, target, and
+resets into one \emph{symbolic transition}, labeled by a disjunction of cases
+$E_1\wedge c_1\vee\dots\vee E_k\wedge c_k$, where $E_j$ is a set of events,
+either finite or the complement of a finite set, and $c_j$ a conjunction of
+clock constraints; the cases with the same constraints are merged by union of
+their sets of events.  A symbolic transition is enabled when the current
+event belongs to some $E_j$ whose constraints $c_j$ hold, and its resets match
+those of the extended word.  The symbolic automaton accepts the same extended
+words as the exported one, hence the same timed words for both the
+existential and the conventional acceptance (Coq:
+\texttt{symbolic\_\allowbreak{}ext\_\allowbreak{}accepts},
+\texttt{MTL\_\allowbreak{}to\_\allowbreak{}symbolic\_\allowbreak{}correct\_\allowbreak{}with}, and
+\texttt{MTL\_\allowbreak{}to\_\allowbreak{}symbolic\_\allowbreak{}correct0\_\allowbreak{}with}).
+The UPPAAL model keeps the conjunctive transitions, since a UPPAAL edge
+synchronizes on one channel and its clock guard must be a conjunction.
+
+

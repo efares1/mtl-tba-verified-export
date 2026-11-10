@@ -1,0 +1,23 @@
+% Unified monochrome figure style for the paper.
+% All automata and timing diagrams use white states, black borders and black arrows.
+\tikzset{
+  fmstate/.style={
+    circle, draw=black, fill=white, line width=0.6pt,
+    minimum size=9mm, inner sep=1pt, font=\small
+  },
+  fmstatewide/.style={
+    rounded rectangle, draw=black, fill=white, line width=0.6pt,
+    minimum height=8mm, inner xsep=3pt, inner ysep=1.5pt, font=\small
+  },
+  fmaccept/.style={fmstate,double,double distance=1.2pt},
+  fmerror/.style={fmstate,double,double distance=1.2pt,fill=gray!12},
+  fmedge/.style={->,>=Stealth,line width=0.6pt},
+  fmlabel/.style={font=\scriptsize,align=center,fill=white,inner sep=1.2pt},
+  fminvariant/.style={font=\scriptsize,align=center},
+  fmnote/.style={font=\scriptsize,align=center},
+  fmtimeline/.style={->,>=Stealth,line width=0.6pt},
+  fmevent/.style={circle,draw=black,fill=white,line width=0.6pt,minimum size=4.5mm,inner sep=0.5pt},
+  fmreference/.style={fmevent,double,double distance=0.8pt},
+  fmguide/.style={densely dashed,line width=0.45pt},
+  fmbrace/.style={decorate,decoration={brace,amplitude=4pt},line width=0.5pt}
+}

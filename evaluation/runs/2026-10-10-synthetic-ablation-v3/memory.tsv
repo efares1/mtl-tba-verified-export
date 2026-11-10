@@ -1,0 +1,16 @@
+model	peak_rss_kib	measurement
+stable	6484	single-model process, includes 200 timing repetitions
+redundant_guard	6396	single-model process, includes 200 timing repetitions
+contradictory_guard	6372	single-model process, includes 200 timing repetitions
+unsatisfiable_label	6360	single-model process, includes 200 timing repetitions
+isolated_source	6336	single-model process, includes 200 timing repetitions
+dead_reset	6336	single-model process, includes 200 timing repetitions
+synchronous_clock_merge	6252	single-model process, includes 200 timing repetitions
+duplicate_transition	6352	single-model process, includes 200 timing repetitions
+equivalent_locations	6252	single-model process, includes 200 timing repetitions
+disjunctive_invariant_export	6604	single-model process, includes 200 timing repetitions
+backward_tightening	6324	single-model process, includes 200 timing repetitions
+forward_lower_bound	6308	single-model process, includes 200 timing repetitions
+forward_contradiction_cascade	6360	single-model process, includes 200 timing repetitions
+backward_contradiction_cascade	6324	single-model process, includes 200 timing repetitions
+clock_merge_contradiction_cascade	6332	single-model process, includes 200 timing repetitions

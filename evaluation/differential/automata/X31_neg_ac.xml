@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+  <declaration>chan p, r, other;</declaration>
+  <template>
+    <name>Property</name>
+    <declaration>clock x2, x1, x0;</declaration>
+    <location id="id2" x="0" y="0">
+      <name>A2</name>
+    </location>
+    <location id="id3" x="200" y="0">
+      <name>A3</name>
+      <label kind="invariant">x1 &lt;= 1</label>
+    </location>
+    <location id="id4" x="400" y="0">
+      <name>A4</name>
+      <label kind="invariant">x0 &lt;= 2</label>
+    </location>
+    <location id="id6" x="600" y="0">
+      <name>A6</name>
+    </location>
+    <location id="id9" x="800" y="0">
+      <name>A9</name>
+      <label kind="invariant">x0 &lt;= 2</label>
+    </location>
+    <location id="id12" x="0" y="150">
+      <name>A12</name>
+      <label kind="invariant">x1 &lt;= 1</label>
+    </location>
+    <location id="id15" x="200" y="150">
+      <name>A15</name>
+    </location>
+    <location id="id18" x="400" y="150">
+      <name>A18</name>
+    </location>
+    <location id="id21" x="600" y="150">
+      <name>A21</name>
+    </location>
+    <init ref="id2"/>
+    <transition>
+      <source ref="id21"/>
+      <target ref="id21"/>
+      <label kind="synchronisation">r?</label>
+      <label kind="assignment">x1 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id21"/>
+      <target ref="id15"/>
+      <label kind="guard">x2 &gt; 2</label>
+      <label kind="synchronisation">r?</label>
+    </transition>
+    <transition>
+      <source ref="id21"/>
+      <target ref="id15"/>
+      <label kind="guard">x2 &gt; 2</label>
+      <label kind="synchronisation">other?</label>
+    </transition>
+    <transition>
+      <source ref="id21"/>
+      <target ref="id12"/>
+      <label kind="synchronisation">r?</label>
+      <label kind="assignment">x1 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id18"/>
+      <target ref="id18"/>
+      <label kind="guard">x0 &lt;= 2</label>
+      <label kind="synchronisation">p?</label>
+    </transition>
+    <transition>
+      <source ref="id18"/>
+      <target ref="id18"/>
+      <label kind="guard">x0 &lt;= 2</label>
+      <label kind="synchronisation">r?</label>
+    </transition>
+    <transition>
+      <source ref="id18"/>
+      <target ref="id18"/>
+      <label kind="guard">x0 &lt;= 2</label>
+      <label kind="synchronisation">other?</label>
+    </transition>
+    <transition>
+      <source ref="id18"/>
+      <target ref="id15"/>
+      <label kind="synchronisation">r?</label>
+    </transition>
+    <transition>
+      <source ref="id18"/>
+      <target ref="id15"/>
+      <label kind="synchronisation">other?</label>
+    </transition>
+    <transition>
+      <source ref="id15"/>
+      <target ref="id15"/>
+      <label kind="synchronisation">r?</label>
+    </transition>
+    <transition>
+      <source ref="id15"/>
+      <target ref="id15"/>
+      <label kind="synchronisation">other?</label>
+    </transition>
+    <transition>
+      <source ref="id12"/>
+      <target ref="id12"/>
+      <label kind="guard">x1 &lt;= 1</label>
+      <label kind="synchronisation">r?</label>
+    </transition>
+    <transition>
+      <source ref="id12"/>
+      <target ref="id12"/>
+      <label kind="guard">x1 &lt;= 1</label>
+      <label kind="synchronisation">other?</label>
+    </transition>
+    <transition>
+      <source ref="id9"/>
+      <target ref="id9"/>
+      <label kind="guard">x0 &lt;= 2</label>
+      <label kind="synchronisation">p?</label>
+    </transition>
+    <transition>
+      <source ref="id6"/>
+      <target ref="id21"/>
+      <label kind="synchronisation">r?</label>
+      <label kind="assignment">x1 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id6"/>
+      <target ref="id18"/>
+      <label kind="guard">x0 &lt;= 2 &amp;&amp; x2 &gt; 2</label>
+      <label kind="synchronisation">p?</label>
+    </transition>
+    <transition>
+      <source ref="id6"/>
+      <target ref="id18"/>
+      <label kind="guard">x0 &lt;= 2 &amp;&amp; x2 &gt; 2</label>
+      <label kind="synchronisation">r?</label>
+    </transition>
+    <transition>
+      <source ref="id6"/>
+      <target ref="id18"/>
+      <label kind="guard">x0 &lt;= 2 &amp;&amp; x2 &gt; 2</label>
+      <label kind="synchronisation">other?</label>
+    </transition>
+    <transition>
+      <source ref="id6"/>
+      <target ref="id15"/>
+      <label kind="guard">x2 &gt; 2</label>
+      <label kind="synchronisation">r?</label>
+    </transition>
+    <transition>
+      <source ref="id6"/>
+      <target ref="id15"/>
+      <label kind="guard">x2 &gt; 2</label>
+      <label kind="synchronisation">other?</label>
+    </transition>
+    <transition>
+      <source ref="id6"/>
+      <target ref="id12"/>
+      <label kind="synchronisation">r?</label>
+      <label kind="assignment">x1 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id6"/>
+      <target ref="id6"/>
+      <label kind="guard">x0 &lt;= 2</label>
+      <label kind="synchronisation">r?</label>
+      <label kind="assignment">x1 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id6"/>
+      <target ref="id3"/>
+      <label kind="guard">x0 &lt;= 2</label>
+      <label kind="synchronisation">r?</label>
+      <label kind="assignment">x1 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id6"/>
+      <target ref="id4"/>
+      <label kind="guard">x0 &lt;= 2</label>
+      <label kind="synchronisation">r?</label>
+      <label kind="assignment">x1 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id3"/>
+      <target ref="id12"/>
+      <label kind="guard">x1 &lt;= 1</label>
+      <label kind="synchronisation">r?</label>
+    </transition>
+    <transition>
+      <source ref="id3"/>
+      <target ref="id12"/>
+      <label kind="guard">x1 &lt;= 1</label>
+      <label kind="synchronisation">other?</label>
+    </transition>
+    <transition>
+      <source ref="id4"/>
+      <target ref="id12"/>
+      <label kind="guard">x1 &lt;= 1</label>
+      <label kind="synchronisation">r?</label>
+    </transition>
+    <transition>
+      <source ref="id4"/>
+      <target ref="id12"/>
+      <label kind="guard">x1 &lt;= 1</label>
+      <label kind="synchronisation">other?</label>
+    </transition>
+    <transition>
+      <source ref="id3"/>
+      <target ref="id9"/>
+      <label kind="guard">x0 &lt;= 2</label>
+      <label kind="synchronisation">p?</label>
+    </transition>
+    <transition>
+      <source ref="id4"/>
+      <target ref="id9"/>
+      <label kind="guard">x0 &lt;= 2</label>
+      <label kind="synchronisation">p?</label>
+    </transition>
+    <transition>
+      <source ref="id3"/>
+      <target ref="id3"/>
+      <label kind="guard">x0 &lt;= 2 &amp;&amp; x1 &lt;= 1</label>
+      <label kind="synchronisation">p?</label>
+    </transition>
+    <transition>
+      <source ref="id3"/>
+      <target ref="id3"/>
+      <label kind="guard">x0 &lt;= 2 &amp;&amp; x1 &lt;= 1</label>
+      <label kind="synchronisation">r?</label>
+    </transition>
+    <transition>
+      <source ref="id3"/>
+      <target ref="id3"/>
+      <label kind="guard">x0 &lt;= 2 &amp;&amp; x1 &lt;= 1</label>
+      <label kind="synchronisation">other?</label>
+    </transition>
+    <transition>
+      <source ref="id3"/>
+      <target ref="id4"/>
+      <label kind="guard">x0 &lt;= 2 &amp;&amp; x1 &lt;= 1</label>
+      <label kind="synchronisation">p?</label>
+    </transition>
+    <transition>
+      <source ref="id3"/>
+      <target ref="id4"/>
+      <label kind="guard">x0 &lt;= 2 &amp;&amp; x1 &lt;= 1</label>
+      <label kind="synchronisation">r?</label>
+    </transition>
+    <transition>
+      <source ref="id3"/>
+      <target ref="id4"/>
+      <label kind="guard">x0 &lt;= 2 &amp;&amp; x1 &lt;= 1</label>
+      <label kind="synchronisation">other?</label>
+    </transition>
+    <transition>
+      <source ref="id4"/>
+      <target ref="id3"/>
+      <label kind="guard">x0 &lt;= 2 &amp;&amp; x1 &lt;= 1</label>
+      <label kind="synchronisation">p?</label>
+    </transition>
+    <transition>
+      <source ref="id4"/>
+      <target ref="id3"/>
+      <label kind="guard">x0 &lt;= 2 &amp;&amp; x1 &lt;= 1</label>
+      <label kind="synchronisation">r?</label>
+    </transition>
+    <transition>
+      <source ref="id4"/>
+      <target ref="id3"/>
+      <label kind="guard">x0 &lt;= 2 &amp;&amp; x1 &lt;= 1</label>
+      <label kind="synchronisation">other?</label>
+    </transition>
+    <transition>
+      <source ref="id4"/>
+      <target ref="id4"/>
+      <label kind="guard">x0 &lt;= 2 &amp;&amp; x1 &lt;= 1</label>
+      <label kind="synchronisation">p?</label>
+    </transition>
+    <transition>
+      <source ref="id4"/>
+      <target ref="id4"/>
+      <label kind="guard">x0 &lt;= 2 &amp;&amp; x1 &lt;= 1</label>
+      <label kind="synchronisation">r?</label>
+    </transition>
+    <transition>
+      <source ref="id4"/>
+      <target ref="id4"/>
+      <label kind="guard">x0 &lt;= 2 &amp;&amp; x1 &lt;= 1</label>
+      <label kind="synchronisation">other?</label>
+    </transition>
+    <transition>
+      <source ref="id2"/>
+      <target ref="id6"/>
+      <label kind="synchronisation">r?</label>
+      <label kind="assignment">x0 = 0, x1 = 0, x2 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id2"/>
+      <target ref="id3"/>
+      <label kind="synchronisation">r?</label>
+      <label kind="assignment">x0 = 0, x1 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id2"/>
+      <target ref="id4"/>
+      <label kind="synchronisation">r?</label>
+      <label kind="assignment">x0 = 0, x1 = 0</label>
+    </transition>
+  </template>
+  <template>
+    <name>Env</name>
+    <location id="env0" x="0" y="0"/>
+    <init ref="env0"/>
+    <transition>
+      <source ref="env0"/>
+      <target ref="env0"/>
+      <label kind="synchronisation">p!</label>
+    </transition>
+    <transition>
+      <source ref="env0"/>
+      <target ref="env0"/>
+      <label kind="synchronisation">r!</label>
+    </transition>
+    <transition>
+      <source ref="env0"/>
+      <target ref="env0"/>
+      <label kind="synchronisation">other!</label>
+    </transition>
+  </template>
+  <system>P = Property();
+E = Env();
+system P, E;</system>
+</nta>

@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<nta><template>
+    <name>Property</name>
+    <declaration>clock x0, x1;</declaration>
+    <location id="s0" x="0" y="0">
+      <name>Idle</name>
+    </location>
+    <location id="s1" x="0" y="0">
+      <name>Busy</name>
+      <label kind="invariant">x0 &lt;= 6</label>
+    </location>
+    <init ref="s0" />
+    <transition>
+      <source ref="s0" />
+      <target ref="s1" />
+      <label kind="guard">x1 &gt; 0</label>
+      <label kind="synchronisation">p?</label>
+      <label kind="assignment">x0 = 0, x1 = 0</label>
+    </transition>
+    <transition>
+      <source ref="s0" />
+      <target ref="s0" />
+      <label kind="guard">x1 &gt; 0</label>
+      <label kind="synchronisation">other?</label>
+      <label kind="assignment">x1 = 0</label>
+    </transition>
+    <transition>
+      <source ref="s1" />
+      <target ref="s1" />
+      <label kind="guard">x1 &gt; 0 &amp;&amp; x0 &lt; 6</label>
+      <label kind="synchronisation">other?</label>
+      <label kind="assignment">x1 = 0</label>
+    </transition>
+    <transition>
+      <source ref="s1" />
+      <target ref="s0" />
+      <label kind="guard">x1 &gt; 0 &amp;&amp; x0 &gt;= 1</label>
+      <label kind="synchronisation">q?</label>
+      <label kind="assignment">x1 = 0</label>
+    </transition>
+  </template>
+  </nta>

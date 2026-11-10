@@ -1,0 +1,17 @@
+digraph G {
+  0 [label="", style=invis, height=0]
+  0 -> 1
+  1 [label="(1U[x>=1]!r) & (q | !q) & G(!r | !q)"]
+  1 -> 2 [label="!r & reset(x0)\n{Acc[!r]}"]
+  1 -> 2 [label="!q & reset(x0)\n"]
+  2 [label="(G(!r | !q) & (1U[x>=1-x0]!r)) | (G(!r | !q) & \"x0>=1\" & F!r)"]
+  2 -> 3 [label="!r & \"x0>=1\"\n{Acc[!r]}"]
+  2 -> 2 [label="!r\n{Acc[!r]}"]
+  2 -> 2 [label="!q\n"]
+  2 -> 4 [label="!q & \"x0>=1\"\n"]
+  3 [label="G(!r | !q)"]
+  3 -> 3 [label="!r | !q\n{Acc[!r]}"]
+  4 [label="G(!r | !q) & F!r"]
+  4 -> 3 [label="!r\n{Acc[!r]}"]
+  4 -> 4 [label="!q\n"]
+}

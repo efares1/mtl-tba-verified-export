@@ -1,0 +1,15 @@
+digraph G {
+  0 [label="", style=invis, height=0]
+  0 -> 1
+  1 [label="(q U r) & (0R[x<3]q) & G(!q | !r) & (!rR[x>1]!r)"]
+  1 -> 2 [label="q & !r & reset(x0)\n"]
+  2 [label="((q U r) & G(!q | !r) & (0R[x<3-x0]q)) | ((q U r) & G(!q | !r) & !\"x0<3\")"]
+  2 -> 3 [label="r & !q & !\"x0<3\"\n{Acc[r]}"]
+  2 -> 2 [label="q & !r\n"]
+  2 -> 4 [label="q & !r & !\"x0<3\"\n"]
+  3 [label="G(!q | !r)"]
+  3 -> 3 [label="!q | !r\n{Acc[r]}"]
+  4 [label="(q U r) & G(!q | !r)"]
+  4 -> 3 [label="r & !q\n{Acc[r]}"]
+  4 -> 4 [label="q & !r\n"]
+}

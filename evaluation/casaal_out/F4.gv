@@ -1,0 +1,10 @@
+digraph G {
+  0 [label="", style=invis, height=0]
+  0 -> 1
+  1 [label="G((pU[x<=4]q) | !p)"]
+  1 -> 2 [label="reset(x0)\n"]
+  1 -> 1 [label="q | !p\n"]
+  2 [label="G((pU[x<=4]q) | !p) & (pU[x<=4-x0]q) & \"x0<=4\""]
+  2 -> 2 [label="p & \"x0<=4\"\n"]
+  2 -> 1 [label="q & \"x0<=4\"\n"]
+}

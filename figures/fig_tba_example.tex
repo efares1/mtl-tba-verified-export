@@ -1,0 +1,8 @@
+\begin{tikzpicture}[node distance=22mm]
+  \node[fmstate] (q0) {$\begin{array}{c} q_0 \\ {[}x\le5{]}\end{array}$};
+  \node[fmaccept,right=of q0] (q1) {$q_1$};
+  \draw[fmedge] ([xshift=-8mm]q0.west) -- (q0.west);
+  \draw[fmedge] (q0) edge[loop above] node[fmlabel] {$\neg p$} (q0);
+  \draw[fmedge] (q0) -- node[fmlabel,above] {$x\ge 2,\;p$} (q1);
+  \draw[fmedge] (q1) edge[loop above] node[fmlabel] {$\top$} (q1);
+\end{tikzpicture}

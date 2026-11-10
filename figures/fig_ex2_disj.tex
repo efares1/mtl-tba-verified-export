@@ -1,0 +1,31 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+  % Output of mtl2tba -init after optimization, before the export
+  % (clocks printed x0, x1, x2 by the tool are x_u0, x_r2, x_u1).
+  \node[fmstate,minimum size=13mm] (s1) at (0,0) {$\begin{array}{c}1\\[-1mm]x_{u0}\le5\end{array}$};
+  \node[fmstate,minimum size=19mm] (s4) at (4.6,3.4) {$\begin{array}{c}4\\[-1mm]x_{u1}\le2\;\lor\;x_{u0}\le5\end{array}$};
+  \node[fmstate,minimum size=14mm] (s3) at (8.4,-0.6) {$\begin{array}{c}3\\[-1mm]x_{u1}\le2\end{array}$};
+  \node[fmaccept] (s5) at (11.2,3.4) {$5$};
+  \node[fmaccept] (s2) at (13.6,0.4) {$2$};
+  \draw[fmedge] (-1.1,0) -- (s1);
+  % location 1
+  \draw[fmedge] (s1) edge[loop below,looseness=4] node[fmlabel,below] {$p,\;\mathit{other}/\mathsf{rst}(x_{u1})$} (s1);
+  \draw[fmedge] (s1) to[bend left=8] node[fmlabel,pos=.42,above,sloped] {$p/\mathsf{rst}(x_{r2}),\mathsf{rst}(x_{u1})$} (s4);
+  \draw[fmedge] (s1) to[bend right=6] node[fmlabel,pos=.55,below] {$p/\mathsf{rst}(x_{r2}),\mathsf{rst}(x_{u1})$} (s3);
+  \draw[fmedge] (s1) to[bend right=38] node[fmlabel,pos=.5,below] {$q$} (s2);
+  % location 4
+  \draw[fmedge] (s4) to[bend left=14] node[fmlabel,pos=.5,below,sloped] {$\begin{array}{c}x_{u0}\le5,\;p,\;\mathit{other}\\/\mathsf{rst}(x_{u1})\end{array}$} (s1);
+  \draw[fmedge] (s4) edge[loop above,looseness=5] node[fmlabel] {$\begin{array}{c}x_{u0}\le5,\;p\\/\mathsf{rst}(x_{r2}),\mathsf{rst}(x_{u1})\end{array}$} (s4);
+  \draw[fmedge] (s4) to[bend left=10] node[fmlabel,pos=.5,above,sloped] {$\begin{array}{c}x_{u0}\le5,\;p\\/\mathsf{rst}(x_{r2}),\mathsf{rst}(x_{u1})\end{array}$} (s3);
+  \draw[fmedge] (s4) to[bend right=22] node[fmlabel,pos=.5,below,sloped] {$x_{u1}\le2,\;p/\mathsf{rst}(x_{r2})$} (s3);
+  \draw[fmedge] (s4) -- node[fmlabel,above] {$x_{u1}\le2,\;q$} (s5);
+  \draw[fmedge] (s4) to[bend left=6] node[fmlabel,pos=.62,above,sloped] {$x_{u0}\le5,\;q$} (s2);
+  \draw[fmedge] (s4) to[bend right=4] node[fmlabel,pos=.62,below,sloped] {$x_{r2}>3\land x_{u1}\le2,\;q$} (s2);
+  % location 3
+  \draw[fmedge] (s3) edge[loop below,looseness=5] node[fmlabel,below] {$p/\mathsf{rst}(x_{r2})$} (s3);
+  \draw[fmedge] (s3) -- node[fmlabel,right,pos=.4] {$q$} (s5);
+  \draw[fmedge] (s3) -- node[fmlabel,below,sloped] {$x_{r2}>3,\;q$} (s2);
+  % location 5
+  \draw[fmedge] (s5) edge[loop above,looseness=5] node[fmlabel] {$p,\;q$} (s5);
+  \draw[fmedge] (s5) -- node[fmlabel,right] {$x_{r2}>3,\;p,\;q,\;\mathit{other}$} (s2);
+  \draw[fmedge] (s2) edge[loop right,looseness=5] node[fmlabel,right] {$p,\;q,\;\mathit{other}$} (s2);
+\end{tikzpicture}

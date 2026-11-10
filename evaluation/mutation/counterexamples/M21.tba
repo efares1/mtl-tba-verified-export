@@ -1,0 +1,9 @@
+# M21: dead reset
+events e0 e1
+clocks 1
+init 0
+states 3
+acc 2
+t 0 1 | 0+ | | 0
+t 1 2 | 1+ | 0<=2 | 0
+t 2 2 | 0+ | | 0

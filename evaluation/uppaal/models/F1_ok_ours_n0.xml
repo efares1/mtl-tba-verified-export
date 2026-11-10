@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+  <declaration>chan p, q, other;</declaration>
+  <template>
+    <name>Property</name>
+    <declaration>clock x0;</declaration>
+    <location id="id0" x="0" y="0">
+      <name>L0</name>
+    </location>
+    <location id="id2" x="200" y="0">
+      <name>A2</name>
+    </location>
+    <location id="id4" x="400" y="0">
+      <name>A4</name>
+    </location>
+    <init ref="id0"/>
+    <transition>
+      <source ref="id4"/>
+      <target ref="id4"/>
+      <label kind="synchronisation">p?</label>
+    </transition>
+    <transition>
+      <source ref="id4"/>
+      <target ref="id4"/>
+      <label kind="synchronisation">q?</label>
+    </transition>
+    <transition>
+      <source ref="id4"/>
+      <target ref="id4"/>
+      <label kind="synchronisation">other?</label>
+    </transition>
+    <transition>
+      <source ref="id2"/>
+      <target ref="id4"/>
+      <label kind="guard">x0 &gt; 5</label>
+      <label kind="synchronisation">p?</label>
+    </transition>
+    <transition>
+      <source ref="id2"/>
+      <target ref="id4"/>
+      <label kind="guard">x0 &gt; 5</label>
+      <label kind="synchronisation">q?</label>
+    </transition>
+    <transition>
+      <source ref="id2"/>
+      <target ref="id4"/>
+      <label kind="guard">x0 &gt; 5</label>
+      <label kind="synchronisation">other?</label>
+    </transition>
+    <transition>
+      <source ref="id2"/>
+      <target ref="id2"/>
+      <label kind="synchronisation">p?</label>
+    </transition>
+    <transition>
+      <source ref="id2"/>
+      <target ref="id2"/>
+      <label kind="synchronisation">other?</label>
+    </transition>
+    <transition>
+      <source ref="id0"/>
+      <target ref="id2"/>
+      <label kind="synchronisation">p?</label>
+      <label kind="assignment">x0 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id0"/>
+      <target ref="id0"/>
+      <label kind="synchronisation">p?</label>
+    </transition>
+    <transition>
+      <source ref="id0"/>
+      <target ref="id0"/>
+      <label kind="synchronisation">q?</label>
+    </transition>
+    <transition>
+      <source ref="id0"/>
+      <target ref="id0"/>
+      <label kind="synchronisation">other?</label>
+    </transition>
+  </template>
+  <template>
+    <name>Sys</name>
+    <declaration>clock y, z;</declaration>
+    <location id="s0" x="0" y="0">
+      <name>Idle</name>
+    </location>
+    <location id="s1" x="0" y="0">
+      <name>Busy</name>
+      <label kind="invariant">y &lt;= 4</label>
+    </location>
+    <init ref="s0"/>
+    <transition>
+      <source ref="s0"/>
+      <target ref="s1"/>
+      <label kind="guard">z &gt; 0</label>
+      <label kind="synchronisation">p!</label>
+      <label kind="assignment">y = 0, z = 0</label>
+    </transition>
+    <transition>
+      <source ref="s0"/>
+      <target ref="s0"/>
+      <label kind="guard">z &gt; 0</label>
+      <label kind="synchronisation">other!</label>
+      <label kind="assignment">z = 0</label>
+    </transition>
+    <transition>
+      <source ref="s1"/>
+      <target ref="s1"/>
+      <label kind="guard">z &gt; 0 &amp;&amp; y &lt; 4</label>
+      <label kind="synchronisation">other!</label>
+      <label kind="assignment">z = 0</label>
+    </transition>
+    <transition>
+      <source ref="s1"/>
+      <target ref="s0"/>
+      <label kind="guard">z &gt; 0 &amp;&amp; y &gt;= 1</label>
+      <label kind="synchronisation">q!</label>
+      <label kind="assignment">z = 0</label>
+    </transition>
+  </template>
+  <system>P = Property();
+S = Sys();
+system P, S;</system>
+</nta>

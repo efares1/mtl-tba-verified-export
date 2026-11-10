@@ -1,0 +1,22 @@
+# Boundary and overlapping-activation tests of the exported automata.
+# Each automaton is produced for the negation of a safety requirement; its
+# accepting sink is reached exactly when a finite prefix violates the requirement.
+# id	requirement (for information)	negation given to mtl2tba	timed word prefix (event@time ...)	expected violation
+S1	[](e -> ^[][<2] !e)	<>(e & ^<>[<2] e)	e@1 e@3	no
+S2	[](e -> ^[][<2] !e)	<>(e & ^<>[<2] e)	e@1 e@2.5	yes
+S3	[](e -> ^[][<2] !e)	<>(e & ^<>[<2] e)	e@1 a@2 e@2.9	yes
+S4	[](e -> ^[][<2] !e)	<>(e & ^<>[<2] e)	e@1 e@3 e@5 e@7	no
+S5	[](e -> ^[][<=2] !e)	<>(e & ^<>[<=2] e)	e@1 e@3	yes
+S6	[](e -> ^[][<=2] !e)	<>(e & ^<>[<=2] e)	e@1 e@3.01	no
+B1	[](p -> <>[<=5] q)	<>(p & [][<=5] !q)	p@1 q@6	no
+B2	[](p -> <>[<=5] q)	<>(p & [][<=5] !q)	p@1 q@6.01	yes
+B3	[](p -> <>[<5] q)	<>(p & [][<5] !q)	p@1 q@6	yes
+B4	[](p -> <>[<5] q)	<>(p & [][<5] !q)	p@1 q@5.99	no
+B5	[](p -> <>[<=5] q)	<>(p & [][<=5] !q)	p@1 p@3 q@5.5	no
+B6	[](p -> <>[<=5] q)	<>(p & [][<=5] !q)	p@1 p@3 q@6.5 a@9	yes
+B7	[](p -> <>[<=5] q)	<>(p & [][<=5] !q)	p@1 p@3 q@6 p@7 q@11.5	no
+M1	[](p -> [][<2] !q)	<>(p & <>[<2] q)	p@1 q@3	no
+M2	[](p -> [][<2] !q)	<>(p & <>[<2] q)	p@1 q@2.9	yes
+M3	[](p -> [][<2] !q)	<>(p & <>[<2] q)	p@1 p@2 q@3.5	yes
+M4	[](p -> [][<2] !q)	<>(p & <>[<2] q)	p@1 p@2 q@4	no
+M5	[](p -> [][<=2] !q)	<>(p & <>[<=2] q)	p@1 p@2 q@4	yes

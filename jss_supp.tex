@@ -1,0 +1,83 @@
+\documentclass[preprint,12pt]{elsarticle}
+
+\usepackage{amsmath,amssymb,amsfonts,mathtools}
+\usepackage{amsthm}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{xspace}
+\usepackage{comment}
+\usepackage{tikz}
+\usepackage{float}
+\usepackage[caption=false]{subfig}
+\usepackage{expl3}
+\usepackage{xparse}
+\usetikzlibrary{arrows.meta,shapes,automata,positioning,calc,fit,tikzmark,decorations.pathreplacing,decorations.markings}
+\input{figures/figure_style}
+\DeclareUrlCommand\path{\urlstyle{tt}}
+\providecommand{\href}[2]{#2}
+
+\providecommand{\Nat}{\mathbb{N}}
+\providecommand{\Real}{\mathbb{R}}
+\providecommand{\CVal}{\mathsf{val}}
+\providecommand{\Val}{\mathsf{val}}
+\providecommand{\Inv}{\mathit{Inv}}
+\providecommand{\T}{\mathcal{T}}
+\providecommand{\hEventually}{\widehat{\Diamond}}
+\providecommand{\hAlways}{\widehat{\Box}}
+\providecommand{\optimize}{\mathsf{optimize}}
+\providecommand{\export}{\mathsf{export}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{definition}[theorem]{Definition}
+\journal{Journal of Systems and Software}
+
+\InputIfFileExists{articleref}{}{}
+\begin{document}
+\begin{frontmatter}
+\title{Supplementary Material: Verified Optimization, Export and Evaluation of a Translation from Real-Time Requirements to Timed B\"uchi Automata}
+\author{Elie Fares, Jean-Paul Bodeveix, Hussain Al-Aqrabi, Azar Salami}
+\begin{abstract}
+This supplement contains the proof details and the material that the article summarizes: the definitions and proofs of the verified passes, the general split construction with its two policies, the tool details (speedups, input contract, build and artifact layout) the translator-independent synthetic evaluation, and the random-formula and export-policy results. References to the article are marked ``article; all other numbers refer to this supplement.
+\end{abstract}
+\end{frontmatter}
+
+\section{Verified passes: definitions and proofs}\label{sec:passes}
+\input{proof_passes_main}
+
+\section{General split construction and the two split policies}
+\input{supp_split}
+
+\section{Tool details}\label{sec:tool-details}
+\input{supp_tool}
+
+\section{Translator-independent synthetic evaluation}
+\input{supp_synth}
+
+\section{Generated-group optimizer results}\label{sec:generated}
+\input{supp_gen}
+
+\section{Contract table and related-work scope comparison}
+\input{supp_tabs}
+
+\section{Generated continuation example}
+\input{supp_fig}
+
+\section{Additional evaluation details and tables}\label{sec:eval-extra}
+\input{supp_eval_extra}
+
+\section{Random formulas and export policies on every configuration}\label{sec:random}
+\input{supp_random}
+
+\bibliographystyle{elsarticle-num}
+\bibliography{paper2_references}
+\end{document}

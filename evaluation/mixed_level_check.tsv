@@ -1,0 +1,23 @@
+case	depth	width	neg_low	neg_any
+nest d2 w1	2	1	0.0s	0.0s
+nest d2 w2	2	2	0.0s	0.0s
+nest d2 w3	2	3	0.0s	0.1s
+nest d4 w1	4	1	0.1s	0.1s
+nest d4 w2	4	2	2.0s	0.1s
+nest d4 w3	4	3	>30s	0.1s
+nest d5 w1	5	1	0.1s	0.1s
+nest d5 w2	5	2	>30s	0.2s
+nest d5 w3	5	3	>30s	8.9s
+nest d6 w1	6	1	1.3s	0.3s
+nest d6 w2	6	2	>30s	1.7s
+nest d6 w3	6	3	>30s	>30s
+inv d5 w2	5	2	>30s	0.2s
+inv d6 w2	6	2	>30s	3.2s
+inv d3 w3	3	3	3.1s	0.4s
+inv d5 w3	5	3	>30s	14.4s
+nest d2 + 4 resp	2	5	0.2s	0.2s
+nest d3 + 4 resp	3	5	0.2s	0.3s
+nest d5 + 3 resp	5	4	0.3s	0.8s
+nest d6 + 3 resp	6	4	1.7s	1.3s
+nest d3 + 6 resp	3	7	0.2s	1.2s
+nest d5 + 5 resp	5	6	0.3s	7.7s

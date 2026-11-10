@@ -1,0 +1,14 @@
+digraph TA {
+  rankdir=LR;
+  node [shape=circle];
+  init [shape=point];
+  init -> L0;
+  L0 [shape=circle, label="L0"];
+  L2 [shape=doublecircle, label="L2"];
+  L4 [shape=doublecircle, label="L4"];
+  L0 -> L0 [label="any"];
+  L0 -> L2 [label="p\nx0 := 0"];
+  L2 -> L2 [label="p|other"];
+  L2 -> L4 [label="x0 > 5: any"];
+  L4 -> L4 [label="any"];
+}

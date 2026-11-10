@@ -1,0 +1,187 @@
+id	formula	mode	status	states	edges	acc_sets	time_s
+F1	U	-B	ok	3	6	1	0.11
+F1	U	-b	ok	2	4	1	0.11
+F1	U	--tgba	ok	2	4	1	0.11
+F1	W	-B	ok	2	4	1	0.11
+F1	W	-b	ok	2	4	1	0.11
+F1	W	--tgba	ok	2	4	0	0.11
+F2	U	-B	ok	2	4	1	0.11
+F2	U	-b	ok	2	4	1	0.11
+F2	U	--tgba	ok	2	4	0	0.11
+F2	W	-B	ok	2	4	1	0.11
+F2	W	-b	ok	2	4	1	0.11
+F2	W	--tgba	ok	2	4	0	0.11
+F3	U	-B	ok	2	4	1	0.11
+F3	U	-b	ok	2	4	1	0.11
+F3	U	--tgba	ok	2	4	0	0.11
+F3	W	-B	ok	2	4	1	0.11
+F3	W	-b	ok	2	4	1	0.11
+F3	W	--tgba	ok	2	4	0	0.11
+F3b	U	-B	ok	1	1	1	0.11
+F3b	U	-b	ok	1	1	1	0.11
+F3b	U	--tgba	ok	1	1	0	0.11
+F3b	W	-B	ok	1	1	1	0.11
+F3b	W	-b	ok	1	1	1	0.11
+F3b	W	--tgba	ok	1	1	0	0.11
+F4	U	-B	ok	3	6	1	0.11
+F4	U	-b	ok	2	4	1	0.11
+F4	U	--tgba	ok	2	4	1	0.11
+F4	W	-B	ok	2	4	1	0.11
+F4	W	-b	ok	2	4	1	0.11
+F4	W	--tgba	ok	2	4	0	0.11
+F5	U	-B	ok	7	24	1	0.11
+F5	U	-b	ok	6	21	1	0.11
+F5	U	--tgba	ok	5	21	2	0.11
+F5	W	-B	ok	7	24	1	0.11
+F5	W	-b	ok	6	21	1	0.11
+F5	W	--tgba	ok	5	21	2	0.11
+F6	U	-B	ok	7	24	1	0.11
+F6	U	-b	ok	6	21	1	0.11
+F6	U	--tgba	ok	5	21	2	0.11
+F6	W	-B	ok	7	24	1	0.11
+F6	W	-b	ok	6	21	1	0.11
+F6	W	--tgba	ok	5	21	2	0.11
+F7	U	-B	ok	3	6	1	0.11
+F7	U	-b	ok	2	4	1	0.11
+F7	U	--tgba	ok	2	4	1	0.11
+F7	W	-B	ok	2	4	1	0.11
+F7	W	-b	ok	2	4	1	0.11
+F7	W	--tgba	ok	2	4	0	0.11
+F8	U	-B	ok	2	4	1	0.11
+F8	U	-b	ok	1	2	1	0.11
+F8	U	--tgba	ok	1	2	1	0.11
+F8	W	-B	ok	2	4	1	0.11
+F8	W	-b	ok	1	2	1	0.11
+F8	W	--tgba	ok	1	2	1	0.11
+F9	U	-B	ok	4	9	1	0.11
+F9	U	-b	ok	4	9	1	0.11
+F9	U	--tgba	ok	4	9	1	0.11
+F9	W	-B	ok	4	9	1	0.11
+F9	W	-b	ok	4	9	1	0.11
+F9	W	--tgba	ok	4	9	0	0.11
+F10	U	-B	ok	5	12	1	0.11
+F10	U	-b	ok	5	12	1	0.11
+F10	U	--tgba	ok	5	12	1	0.11
+F10	W	-B	ok	5	12	1	0.11
+F10	W	-b	ok	5	12	1	0.11
+F10	W	--tgba	ok	5	12	0	0.11
+F11	U	-B	ok	4	7	1	0.11
+F11	U	-b	ok	4	7	1	0.11
+F11	U	--tgba	ok	4	7	1	0.11
+F11	W	-B	ok	4	7	1	0.11
+F11	W	-b	ok	4	7	1	0.11
+F11	W	--tgba	ok	4	7	0	0.11
+F12	U	-B	ok	4	11	1	0.11
+F12	U	-b	ok	3	8	1	0.11
+F12	U	--tgba	ok	3	8	1	0.11
+F12	W	-B	ok	3	8	1	0.11
+F12	W	-b	ok	3	8	1	0.11
+F12	W	--tgba	ok	3	8	0	0.11
+F13	U	-B	ok	4	9	1	0.11
+F13	U	-b	ok	3	6	1	0.11
+F13	U	--tgba	ok	3	6	1	0.11
+F13	W	-B	ok	3	5	1	0.11
+F13	W	-b	ok	3	5	1	0.11
+F13	W	--tgba	ok	3	5	0	0.11
+F14	U	-B	ok	7	23	1	0.11
+F14	U	-b	ok	6	19	1	0.11
+F14	U	--tgba	ok	5	16	2	0.11
+F14	W	-B	ok	6	18	1	0.11
+F14	W	-b	ok	6	18	1	0.11
+F14	W	--tgba	ok	6	18	0	0.11
+R1	U	-B	ok	3	6	1	0.11
+R1	U	-b	ok	2	4	1	0.11
+R1	U	--tgba	ok	2	4	1	0.11
+R1	W	-B	ok	2	4	1	0.11
+R1	W	-b	ok	2	4	1	0.11
+R1	W	--tgba	ok	2	4	0	0.11
+R2	U	-B	ok	8	32	1	0.11
+R2	U	-b	ok	6	24	1	0.11
+R2	U	--tgba	ok	4	16	2	0.11
+R2	W	-B	ok	4	16	1	0.11
+R2	W	-b	ok	4	16	1	0.11
+R2	W	--tgba	ok	4	16	0	0.11
+R3	U	-B	ok	20	160	1	0.11
+R3	U	-b	ok	16	128	1	0.11
+R3	U	--tgba	ok	8	64	3	0.11
+R3	W	-B	ok	8	64	1	0.11
+R3	W	-b	ok	8	64	1	0.11
+R3	W	--tgba	ok	8	64	0	0.11
+R4	U	-B	ok	48	768	1	0.21
+R4	U	-b	ok	40	640	1	0.11
+R4	U	--tgba	ok	16	256	4	0.11
+R4	W	-B	ok	16	256	1	0.11
+R4	W	-b	ok	16	256	1	0.11
+R4	W	--tgba	ok	16	256	0	0.11
+R5	U	-B	ok	112	3584	1	2.21
+R5	U	-b	ok	96	3072	1	0.91
+R5	U	--tgba	ok	32	1024	5	0.91
+R5	W	-B	ok	32	1024	1	0.41
+R5	W	-b	ok	32	1024	1	0.31
+R5	W	--tgba	ok	32	1024	0	0.31
+R6	U	-B	extract_timeout				
+R6	U	-b	extract_timeout				
+R6	U	--tgba	extract_timeout				
+R6	W	-B	ok	64	4096	1	5.92
+R6	W	-b	ok	64	4096	1	3.52
+R6	W	--tgba	ok	64	4096	0	3.92
+R7	U	-B	extract_timeout				
+R7	U	-b	extract_timeout				
+R7	U	--tgba	extract_timeout				
+R7	W	-B	extract_timeout				
+R7	W	-b	extract_timeout				
+R7	W	--tgba	extract_timeout				
+R8	U	-B	extract_timeout				
+R8	U	-b	extract_timeout				
+R8	U	--tgba	extract_timeout				
+R8	W	-B	extract_timeout				
+R8	W	-b	extract_timeout				
+R8	W	--tgba	extract_timeout				
+N1	U	-B	ok	3	5	1	0.11
+N1	U	-b	ok	3	5	1	0.11
+N1	U	--tgba	ok	3	5	1	0.11
+N1	W	-B	ok	3	5	1	0.11
+N1	W	-b	ok	3	5	1	0.11
+N1	W	--tgba	ok	3	5	0	0.11
+N2	U	-B	ok	4	9	1	0.11
+N2	U	-b	ok	4	9	1	0.11
+N2	U	--tgba	ok	4	9	1	0.11
+N2	W	-B	ok	4	9	1	0.11
+N2	W	-b	ok	4	9	1	0.11
+N2	W	--tgba	ok	4	9	0	0.11
+N3	U	-B	ok	5	14	1	0.11
+N3	U	-b	ok	5	14	1	0.11
+N3	U	--tgba	ok	5	14	1	0.11
+N3	W	-B	ok	5	14	1	0.11
+N3	W	-b	ok	5	14	1	0.11
+N3	W	--tgba	ok	5	14	0	0.11
+N4	U	-B	ok	6	20	1	0.11
+N4	U	-b	ok	6	20	1	0.11
+N4	U	--tgba	ok	6	20	1	0.11
+N4	W	-B	ok	6	20	1	0.11
+N4	W	-b	ok	6	20	1	0.11
+N4	W	--tgba	ok	6	20	0	0.11
+N5	U	-B	ok	7	27	1	0.21
+N5	U	-b	ok	7	27	1	0.21
+N5	U	--tgba	ok	7	27	1	0.21
+N5	W	-B	ok	7	27	1	0.31
+N5	W	-b	ok	7	27	1	0.21
+N5	W	--tgba	ok	7	27	0	0.21
+N6	U	-B	ok	8	35	1	0.91
+N6	U	-b	ok	8	35	1	0.91
+N6	U	--tgba	ok	8	35	1	0.91
+N6	W	-B	ok	8	35	1	1.41
+N6	W	-b	ok	8	35	1	1.21
+N6	W	--tgba	ok	8	35	0	1.21
+N7	U	-B	ok	9	44	1	7.32
+N7	U	-b	ok	9	44	1	6.52
+N7	U	--tgba	ok	9	44	1	6.62
+N7	W	-B	ok	9	44	1	8.02
+N7	W	-b	ok	9	44	1	6.72
+N7	W	--tgba	ok	9	44	0	6.32
+N8	U	-B	extract_timeout				
+N8	U	-b	extract_timeout				
+N8	U	--tgba	extract_timeout				
+N8	W	-B	extract_timeout				
+N8	W	-b	extract_timeout				
+N8	W	--tgba	extract_timeout				

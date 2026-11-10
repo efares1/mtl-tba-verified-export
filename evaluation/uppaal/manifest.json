@@ -1,0 +1,3543 @@
+[
+ {
+  "name": "F1_ok_ours_default",
+  "case": "F1",
+  "system": "ok",
+  "variant": "ours_default",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "F1_bad_ours_default",
+  "case": "F1",
+  "system": "bad",
+  "variant": "ours_default",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "F1_ok_ours_n0",
+  "case": "F1",
+  "system": "ok",
+  "variant": "ours_n0",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "F1_bad_ours_n0",
+  "case": "F1",
+  "system": "bad",
+  "variant": "ours_n0",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "F1_ok_ours_allcopy",
+  "case": "F1",
+  "system": "ok",
+  "variant": "ours_allcopy",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "F1_bad_ours_allcopy",
+  "case": "F1",
+  "system": "bad",
+  "variant": "ours_allcopy",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "F1_ok_casaal_plain",
+  "case": "F1",
+  "system": "ok",
+  "variant": "casaal_plain",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A2"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "F1_bad_casaal_plain",
+  "case": "F1",
+  "system": "bad",
+  "variant": "casaal_plain",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A2"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "F1_ok_casaal_n0",
+  "case": "F1",
+  "system": "ok",
+  "variant": "casaal_n0",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "F1_bad_casaal_n0",
+  "case": "F1",
+  "system": "bad",
+  "variant": "casaal_n0",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "F1_ok_casaal_opt",
+  "case": "F1",
+  "system": "ok",
+  "variant": "casaal_opt",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "F1_bad_casaal_opt",
+  "case": "F1",
+  "system": "bad",
+  "variant": "casaal_opt",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "F1_ok_casaal_allcopy",
+  "case": "F1",
+  "system": "ok",
+  "variant": "casaal_allcopy",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "F1_bad_casaal_allcopy",
+  "case": "F1",
+  "system": "bad",
+  "variant": "casaal_allcopy",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "F1_free_ours_default",
+  "case": "F1",
+  "system": "free",
+  "variant": "ours_default",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F1_free_ours_n0",
+  "case": "F1",
+  "system": "free",
+  "variant": "ours_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F1_free_ours_allcopy",
+  "case": "F1",
+  "system": "free",
+  "variant": "ours_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F1_free_casaal_plain",
+  "case": "F1",
+  "system": "free",
+  "variant": "casaal_plain",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F1_free_casaal_n0",
+  "case": "F1",
+  "system": "free",
+  "variant": "casaal_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F1_free_casaal_opt",
+  "case": "F1",
+  "system": "free",
+  "variant": "casaal_opt",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F1_free_casaal_allcopy",
+  "case": "F1",
+  "system": "free",
+  "variant": "casaal_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F1_ok_pos_ours_default",
+  "case": "F1",
+  "system": "ok",
+  "variant": "ours_default",
+  "block": "pos",
+  "expected": "(acceptance check)",
+  "sinks": [
+   "A0",
+   "A2"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "F1_ok_pos_ours_n0",
+  "case": "F1",
+  "system": "ok",
+  "variant": "ours_n0",
+  "block": "pos",
+  "expected": "(acceptance check)",
+  "sinks": [
+   "A0",
+   "A2"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "F1_ok_pos_ours_allcopy",
+  "case": "F1",
+  "system": "ok",
+  "variant": "ours_allcopy",
+  "block": "pos",
+  "expected": "(acceptance check)",
+  "sinks": [
+   "A0",
+   "A2"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "F3_ok_ours_default",
+  "case": "F3",
+  "system": "ok",
+  "variant": "ours_default",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "F3_bad_ours_default",
+  "case": "F3",
+  "system": "bad",
+  "variant": "ours_default",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "F3_ok_ours_n0",
+  "case": "F3",
+  "system": "ok",
+  "variant": "ours_n0",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "F3_bad_ours_n0",
+  "case": "F3",
+  "system": "bad",
+  "variant": "ours_n0",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "F3_ok_ours_allcopy",
+  "case": "F3",
+  "system": "ok",
+  "variant": "ours_allcopy",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "F3_bad_ours_allcopy",
+  "case": "F3",
+  "system": "bad",
+  "variant": "ours_allcopy",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "F3_free_ours_default",
+  "case": "F3",
+  "system": "free",
+  "variant": "ours_default",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F3_free_ours_n0",
+  "case": "F3",
+  "system": "free",
+  "variant": "ours_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F3_free_ours_allcopy",
+  "case": "F3",
+  "system": "free",
+  "variant": "ours_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R1_ok_ours_default",
+  "case": "R1",
+  "system": "ok",
+  "variant": "ours_default",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R1_bad_ours_default",
+  "case": "R1",
+  "system": "bad",
+  "variant": "ours_default",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R1_ok_ours_n0",
+  "case": "R1",
+  "system": "ok",
+  "variant": "ours_n0",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R1_bad_ours_n0",
+  "case": "R1",
+  "system": "bad",
+  "variant": "ours_n0",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R1_ok_ours_allcopy",
+  "case": "R1",
+  "system": "ok",
+  "variant": "ours_allcopy",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R1_bad_ours_allcopy",
+  "case": "R1",
+  "system": "bad",
+  "variant": "ours_allcopy",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R1_ok_casaal_plain",
+  "case": "R1",
+  "system": "ok",
+  "variant": "casaal_plain",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A2"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R1_bad_casaal_plain",
+  "case": "R1",
+  "system": "bad",
+  "variant": "casaal_plain",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A2"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R1_ok_casaal_n0",
+  "case": "R1",
+  "system": "ok",
+  "variant": "casaal_n0",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R1_bad_casaal_n0",
+  "case": "R1",
+  "system": "bad",
+  "variant": "casaal_n0",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R1_ok_casaal_opt",
+  "case": "R1",
+  "system": "ok",
+  "variant": "casaal_opt",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R1_bad_casaal_opt",
+  "case": "R1",
+  "system": "bad",
+  "variant": "casaal_opt",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R1_ok_casaal_allcopy",
+  "case": "R1",
+  "system": "ok",
+  "variant": "casaal_allcopy",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R1_bad_casaal_allcopy",
+  "case": "R1",
+  "system": "bad",
+  "variant": "casaal_allcopy",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R1_free_ours_default",
+  "case": "R1",
+  "system": "free",
+  "variant": "ours_default",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R1_free_ours_n0",
+  "case": "R1",
+  "system": "free",
+  "variant": "ours_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R1_free_ours_allcopy",
+  "case": "R1",
+  "system": "free",
+  "variant": "ours_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R1_free_casaal_plain",
+  "case": "R1",
+  "system": "free",
+  "variant": "casaal_plain",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R1_free_casaal_n0",
+  "case": "R1",
+  "system": "free",
+  "variant": "casaal_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R1_free_casaal_opt",
+  "case": "R1",
+  "system": "free",
+  "variant": "casaal_opt",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R1_free_casaal_allcopy",
+  "case": "R1",
+  "system": "free",
+  "variant": "casaal_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R1_ok_pos_ours_default",
+  "case": "R1",
+  "system": "ok",
+  "variant": "ours_default",
+  "block": "pos",
+  "expected": "(acceptance check)",
+  "sinks": [
+   "A0",
+   "A2"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R1_ok_pos_ours_n0",
+  "case": "R1",
+  "system": "ok",
+  "variant": "ours_n0",
+  "block": "pos",
+  "expected": "(acceptance check)",
+  "sinks": [
+   "A0",
+   "A2"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R1_ok_pos_ours_allcopy",
+  "case": "R1",
+  "system": "ok",
+  "variant": "ours_allcopy",
+  "block": "pos",
+  "expected": "(acceptance check)",
+  "sinks": [
+   "A0",
+   "A2"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R2_ok_ours_default",
+  "case": "R2",
+  "system": "ok",
+  "variant": "ours_default",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A6"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R2_bad_ours_default",
+  "case": "R2",
+  "system": "bad",
+  "variant": "ours_default",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A6"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R2_ok_ours_n0",
+  "case": "R2",
+  "system": "ok",
+  "variant": "ours_n0",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A6"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R2_bad_ours_n0",
+  "case": "R2",
+  "system": "bad",
+  "variant": "ours_n0",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A6"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R2_ok_ours_allcopy",
+  "case": "R2",
+  "system": "ok",
+  "variant": "ours_allcopy",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A6"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R2_bad_ours_allcopy",
+  "case": "R2",
+  "system": "bad",
+  "variant": "ours_allcopy",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A6"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R2_ok_casaal_plain",
+  "case": "R2",
+  "system": "ok",
+  "variant": "casaal_plain",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A3"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R2_bad_casaal_plain",
+  "case": "R2",
+  "system": "bad",
+  "variant": "casaal_plain",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A3"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R2_ok_casaal_n0",
+  "case": "R2",
+  "system": "ok",
+  "variant": "casaal_n0",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A6"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R2_bad_casaal_n0",
+  "case": "R2",
+  "system": "bad",
+  "variant": "casaal_n0",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A6"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R2_ok_casaal_opt",
+  "case": "R2",
+  "system": "ok",
+  "variant": "casaal_opt",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A6"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R2_bad_casaal_opt",
+  "case": "R2",
+  "system": "bad",
+  "variant": "casaal_opt",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A6"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R2_ok_casaal_allcopy",
+  "case": "R2",
+  "system": "ok",
+  "variant": "casaal_allcopy",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A6"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R2_bad_casaal_allcopy",
+  "case": "R2",
+  "system": "bad",
+  "variant": "casaal_allcopy",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A6"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R2_free_ours_default",
+  "case": "R2",
+  "system": "free",
+  "variant": "ours_default",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R2_free_ours_n0",
+  "case": "R2",
+  "system": "free",
+  "variant": "ours_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R2_free_ours_allcopy",
+  "case": "R2",
+  "system": "free",
+  "variant": "ours_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R2_free_casaal_plain",
+  "case": "R2",
+  "system": "free",
+  "variant": "casaal_plain",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R2_free_casaal_n0",
+  "case": "R2",
+  "system": "free",
+  "variant": "casaal_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R2_free_casaal_opt",
+  "case": "R2",
+  "system": "free",
+  "variant": "casaal_opt",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R2_free_casaal_allcopy",
+  "case": "R2",
+  "system": "free",
+  "variant": "casaal_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R2_ok_pos_ours_default",
+  "case": "R2",
+  "system": "ok",
+  "variant": "ours_default",
+  "block": "pos",
+  "expected": "(acceptance check)",
+  "sinks": [
+   "A0",
+   "A2",
+   "A4",
+   "A6"
+  ],
+  "diag": 6
+ },
+ {
+  "name": "R2_ok_pos_ours_n0",
+  "case": "R2",
+  "system": "ok",
+  "variant": "ours_n0",
+  "block": "pos",
+  "expected": "(acceptance check)",
+  "sinks": [
+   "A0",
+   "A2",
+   "A4",
+   "A6"
+  ],
+  "diag": 6
+ },
+ {
+  "name": "R2_ok_pos_ours_allcopy",
+  "case": "R2",
+  "system": "ok",
+  "variant": "ours_allcopy",
+  "block": "pos",
+  "expected": "(acceptance check)",
+  "sinks": [
+   "A0",
+   "A2",
+   "A4",
+   "A6"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R3_ok_ours_default",
+  "case": "R3",
+  "system": "ok",
+  "variant": "ours_default",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A8"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R3_bad_ours_default",
+  "case": "R3",
+  "system": "bad",
+  "variant": "ours_default",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A8"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R3_ok_ours_n0",
+  "case": "R3",
+  "system": "ok",
+  "variant": "ours_n0",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A8"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R3_bad_ours_n0",
+  "case": "R3",
+  "system": "bad",
+  "variant": "ours_n0",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A8"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R3_ok_ours_allcopy",
+  "case": "R3",
+  "system": "ok",
+  "variant": "ours_allcopy",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A8"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R3_bad_ours_allcopy",
+  "case": "R3",
+  "system": "bad",
+  "variant": "ours_allcopy",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A8"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R3_ok_casaal_plain",
+  "case": "R3",
+  "system": "ok",
+  "variant": "casaal_plain",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R3_bad_casaal_plain",
+  "case": "R3",
+  "system": "bad",
+  "variant": "casaal_plain",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R3_ok_casaal_n0",
+  "case": "R3",
+  "system": "ok",
+  "variant": "casaal_n0",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A8"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R3_bad_casaal_n0",
+  "case": "R3",
+  "system": "bad",
+  "variant": "casaal_n0",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A8"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R3_ok_casaal_opt",
+  "case": "R3",
+  "system": "ok",
+  "variant": "casaal_opt",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A8"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R3_bad_casaal_opt",
+  "case": "R3",
+  "system": "bad",
+  "variant": "casaal_opt",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A8"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R3_ok_casaal_allcopy",
+  "case": "R3",
+  "system": "ok",
+  "variant": "casaal_allcopy",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A8"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R3_bad_casaal_allcopy",
+  "case": "R3",
+  "system": "bad",
+  "variant": "casaal_allcopy",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A8"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R3_free_ours_default",
+  "case": "R3",
+  "system": "free",
+  "variant": "ours_default",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R3_free_ours_n0",
+  "case": "R3",
+  "system": "free",
+  "variant": "ours_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R3_free_ours_allcopy",
+  "case": "R3",
+  "system": "free",
+  "variant": "ours_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R3_free_casaal_plain",
+  "case": "R3",
+  "system": "free",
+  "variant": "casaal_plain",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R3_free_casaal_n0",
+  "case": "R3",
+  "system": "free",
+  "variant": "casaal_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R3_free_casaal_opt",
+  "case": "R3",
+  "system": "free",
+  "variant": "casaal_opt",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R3_free_casaal_allcopy",
+  "case": "R3",
+  "system": "free",
+  "variant": "casaal_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R3_ok_pos_ours_default",
+  "case": "R3",
+  "system": "ok",
+  "variant": "ours_default",
+  "block": "pos",
+  "expected": "(acceptance check)",
+  "sinks": [
+   "A0",
+   "A10",
+   "A12",
+   "A14",
+   "A2",
+   "A4",
+   "A6",
+   "A8"
+  ],
+  "diag": 66
+ },
+ {
+  "name": "R3_ok_pos_ours_n0",
+  "case": "R3",
+  "system": "ok",
+  "variant": "ours_n0",
+  "block": "pos",
+  "expected": "(acceptance check)",
+  "sinks": [
+   "A0",
+   "A10",
+   "A12",
+   "A14",
+   "A2",
+   "A4",
+   "A6",
+   "A8"
+  ],
+  "diag": 66
+ },
+ {
+  "name": "R3_ok_pos_ours_allcopy",
+  "case": "R3",
+  "system": "ok",
+  "variant": "ours_allcopy",
+  "block": "pos",
+  "expected": "(acceptance check)",
+  "sinks": [
+   "A0",
+   "A10",
+   "A12",
+   "A14",
+   "A2",
+   "A4",
+   "A6",
+   "A8"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R4_ok_ours_default",
+  "case": "R4",
+  "system": "ok",
+  "variant": "ours_default",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A10"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R4_bad_ours_default",
+  "case": "R4",
+  "system": "bad",
+  "variant": "ours_default",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A10"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R4_ok_ours_n0",
+  "case": "R4",
+  "system": "ok",
+  "variant": "ours_n0",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A10"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R4_bad_ours_n0",
+  "case": "R4",
+  "system": "bad",
+  "variant": "ours_n0",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A10"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R4_ok_ours_allcopy",
+  "case": "R4",
+  "system": "ok",
+  "variant": "ours_allcopy",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A10"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R4_bad_ours_allcopy",
+  "case": "R4",
+  "system": "bad",
+  "variant": "ours_allcopy",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A10"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R4_ok_casaal_plain",
+  "case": "R4",
+  "system": "ok",
+  "variant": "casaal_plain",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A5"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R4_bad_casaal_plain",
+  "case": "R4",
+  "system": "bad",
+  "variant": "casaal_plain",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A5"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R4_ok_casaal_n0",
+  "case": "R4",
+  "system": "ok",
+  "variant": "casaal_n0",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A10"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R4_bad_casaal_n0",
+  "case": "R4",
+  "system": "bad",
+  "variant": "casaal_n0",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A10"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R4_ok_casaal_opt",
+  "case": "R4",
+  "system": "ok",
+  "variant": "casaal_opt",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A10"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R4_bad_casaal_opt",
+  "case": "R4",
+  "system": "bad",
+  "variant": "casaal_opt",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A10"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R4_ok_casaal_allcopy",
+  "case": "R4",
+  "system": "ok",
+  "variant": "casaal_allcopy",
+  "block": "neg",
+  "expected": "not satisfied",
+  "sinks": [
+   "A10"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R4_bad_casaal_allcopy",
+  "case": "R4",
+  "system": "bad",
+  "variant": "casaal_allcopy",
+  "block": "neg",
+  "expected": "satisfied",
+  "sinks": [
+   "A10"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R4_free_ours_default",
+  "case": "R4",
+  "system": "free",
+  "variant": "ours_default",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R4_free_ours_n0",
+  "case": "R4",
+  "system": "free",
+  "variant": "ours_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R4_free_ours_allcopy",
+  "case": "R4",
+  "system": "free",
+  "variant": "ours_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R4_free_casaal_plain",
+  "case": "R4",
+  "system": "free",
+  "variant": "casaal_plain",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R4_free_casaal_n0",
+  "case": "R4",
+  "system": "free",
+  "variant": "casaal_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R4_free_casaal_opt",
+  "case": "R4",
+  "system": "free",
+  "variant": "casaal_opt",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R4_free_casaal_allcopy",
+  "case": "R4",
+  "system": "free",
+  "variant": "casaal_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R4_ok_pos_ours_default",
+  "case": "R4",
+  "system": "ok",
+  "variant": "ours_default",
+  "block": "pos",
+  "expected": "(acceptance check)",
+  "sinks": [
+   "A0",
+   "A10",
+   "A12",
+   "A14",
+   "A16",
+   "A18",
+   "A2",
+   "A20",
+   "A22",
+   "A24",
+   "A26",
+   "A28",
+   "A30",
+   "A4",
+   "A6",
+   "A8"
+  ],
+  "diag": 384
+ },
+ {
+  "name": "R4_ok_pos_ours_n0",
+  "case": "R4",
+  "system": "ok",
+  "variant": "ours_n0",
+  "block": "pos",
+  "expected": "(acceptance check)",
+  "sinks": [
+   "A0",
+   "A10",
+   "A12",
+   "A14",
+   "A16",
+   "A18",
+   "A2",
+   "A20",
+   "A22",
+   "A24",
+   "A26",
+   "A28",
+   "A30",
+   "A4",
+   "A6",
+   "A8"
+  ],
+  "diag": 384
+ },
+ {
+  "name": "R4_ok_pos_ours_allcopy",
+  "case": "R4",
+  "system": "ok",
+  "variant": "ours_allcopy",
+  "block": "pos",
+  "expected": "(acceptance check)",
+  "sinks": [
+   "A0",
+   "A10",
+   "A12",
+   "A14",
+   "A16",
+   "A18",
+   "A2",
+   "A20",
+   "A22",
+   "A24",
+   "A26",
+   "A28",
+   "A30",
+   "A4",
+   "A6",
+   "A8"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R1_parok_ours_default",
+  "case": "R1",
+  "system": "parok",
+  "variant": "ours_default",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R1_parbad_ours_default",
+  "case": "R1",
+  "system": "parbad",
+  "variant": "ours_default",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R1_parok_ours_n0",
+  "case": "R1",
+  "system": "parok",
+  "variant": "ours_n0",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R1_parbad_ours_n0",
+  "case": "R1",
+  "system": "parbad",
+  "variant": "ours_n0",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R1_parok_ours_allcopy",
+  "case": "R1",
+  "system": "parok",
+  "variant": "ours_allcopy",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R1_parbad_ours_allcopy",
+  "case": "R1",
+  "system": "parbad",
+  "variant": "ours_allcopy",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R1_parok_casaal_plain",
+  "case": "R1",
+  "system": "parok",
+  "variant": "casaal_plain",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A2"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R1_parbad_casaal_plain",
+  "case": "R1",
+  "system": "parbad",
+  "variant": "casaal_plain",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A2"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R1_parok_casaal_n0",
+  "case": "R1",
+  "system": "parok",
+  "variant": "casaal_n0",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R1_parbad_casaal_n0",
+  "case": "R1",
+  "system": "parbad",
+  "variant": "casaal_n0",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R1_parok_casaal_opt",
+  "case": "R1",
+  "system": "parok",
+  "variant": "casaal_opt",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R1_parbad_casaal_opt",
+  "case": "R1",
+  "system": "parbad",
+  "variant": "casaal_opt",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R1_parok_casaal_allcopy",
+  "case": "R1",
+  "system": "parok",
+  "variant": "casaal_allcopy",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R1_parbad_casaal_allcopy",
+  "case": "R1",
+  "system": "parbad",
+  "variant": "casaal_allcopy",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R2_parok_ours_default",
+  "case": "R2",
+  "system": "parok",
+  "variant": "ours_default",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A6"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R2_parbad_ours_default",
+  "case": "R2",
+  "system": "parbad",
+  "variant": "ours_default",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A6"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R2_parok_ours_n0",
+  "case": "R2",
+  "system": "parok",
+  "variant": "ours_n0",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A6"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R2_parbad_ours_n0",
+  "case": "R2",
+  "system": "parbad",
+  "variant": "ours_n0",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A6"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R2_parok_ours_allcopy",
+  "case": "R2",
+  "system": "parok",
+  "variant": "ours_allcopy",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A6"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R2_parbad_ours_allcopy",
+  "case": "R2",
+  "system": "parbad",
+  "variant": "ours_allcopy",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A6"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R2_parok_casaal_plain",
+  "case": "R2",
+  "system": "parok",
+  "variant": "casaal_plain",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A3"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R2_parbad_casaal_plain",
+  "case": "R2",
+  "system": "parbad",
+  "variant": "casaal_plain",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A3"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R2_parok_casaal_n0",
+  "case": "R2",
+  "system": "parok",
+  "variant": "casaal_n0",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A6"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R2_parbad_casaal_n0",
+  "case": "R2",
+  "system": "parbad",
+  "variant": "casaal_n0",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A6"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R2_parok_casaal_opt",
+  "case": "R2",
+  "system": "parok",
+  "variant": "casaal_opt",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A6"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R2_parbad_casaal_opt",
+  "case": "R2",
+  "system": "parbad",
+  "variant": "casaal_opt",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A6"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R2_parok_casaal_allcopy",
+  "case": "R2",
+  "system": "parok",
+  "variant": "casaal_allcopy",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A6"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R2_parbad_casaal_allcopy",
+  "case": "R2",
+  "system": "parbad",
+  "variant": "casaal_allcopy",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A6"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R3_parok_ours_default",
+  "case": "R3",
+  "system": "parok",
+  "variant": "ours_default",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A8"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R3_parbad_ours_default",
+  "case": "R3",
+  "system": "parbad",
+  "variant": "ours_default",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A8"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R3_parok_ours_n0",
+  "case": "R3",
+  "system": "parok",
+  "variant": "ours_n0",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A8"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R3_parbad_ours_n0",
+  "case": "R3",
+  "system": "parbad",
+  "variant": "ours_n0",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A8"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R3_parok_ours_allcopy",
+  "case": "R3",
+  "system": "parok",
+  "variant": "ours_allcopy",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A8"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R3_parbad_ours_allcopy",
+  "case": "R3",
+  "system": "parbad",
+  "variant": "ours_allcopy",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A8"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R3_parok_casaal_plain",
+  "case": "R3",
+  "system": "parok",
+  "variant": "casaal_plain",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R3_parbad_casaal_plain",
+  "case": "R3",
+  "system": "parbad",
+  "variant": "casaal_plain",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A4"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R3_parok_casaal_n0",
+  "case": "R3",
+  "system": "parok",
+  "variant": "casaal_n0",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A8"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R3_parbad_casaal_n0",
+  "case": "R3",
+  "system": "parbad",
+  "variant": "casaal_n0",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A8"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R3_parok_casaal_opt",
+  "case": "R3",
+  "system": "parok",
+  "variant": "casaal_opt",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A8"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R3_parbad_casaal_opt",
+  "case": "R3",
+  "system": "parbad",
+  "variant": "casaal_opt",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A8"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R3_parok_casaal_allcopy",
+  "case": "R3",
+  "system": "parok",
+  "variant": "casaal_allcopy",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A8"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R3_parbad_casaal_allcopy",
+  "case": "R3",
+  "system": "parbad",
+  "variant": "casaal_allcopy",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A8"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R4_parok_ours_default",
+  "case": "R4",
+  "system": "parok",
+  "variant": "ours_default",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A10"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R4_parbad_ours_default",
+  "case": "R4",
+  "system": "parbad",
+  "variant": "ours_default",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A10"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R4_parok_ours_n0",
+  "case": "R4",
+  "system": "parok",
+  "variant": "ours_n0",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A10"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R4_parbad_ours_n0",
+  "case": "R4",
+  "system": "parbad",
+  "variant": "ours_n0",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A10"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R4_parok_ours_allcopy",
+  "case": "R4",
+  "system": "parok",
+  "variant": "ours_allcopy",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A10"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R4_parbad_ours_allcopy",
+  "case": "R4",
+  "system": "parbad",
+  "variant": "ours_allcopy",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A10"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R4_parok_casaal_plain",
+  "case": "R4",
+  "system": "parok",
+  "variant": "casaal_plain",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A5"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R4_parbad_casaal_plain",
+  "case": "R4",
+  "system": "parbad",
+  "variant": "casaal_plain",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A5"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R4_parok_casaal_n0",
+  "case": "R4",
+  "system": "parok",
+  "variant": "casaal_n0",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A10"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R4_parbad_casaal_n0",
+  "case": "R4",
+  "system": "parbad",
+  "variant": "casaal_n0",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A10"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R4_parok_casaal_opt",
+  "case": "R4",
+  "system": "parok",
+  "variant": "casaal_opt",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A10"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R4_parbad_casaal_opt",
+  "case": "R4",
+  "system": "parbad",
+  "variant": "casaal_opt",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A10"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R4_parok_casaal_allcopy",
+  "case": "R4",
+  "system": "parok",
+  "variant": "casaal_allcopy",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A10"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R4_parbad_casaal_allcopy",
+  "case": "R4",
+  "system": "parbad",
+  "variant": "casaal_allcopy",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A10"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R5_parok_ours_default",
+  "case": "R5",
+  "system": "parok",
+  "variant": "ours_default",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A12"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R5_parbad_ours_default",
+  "case": "R5",
+  "system": "parbad",
+  "variant": "ours_default",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A12"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R5_parok_ours_n0",
+  "case": "R5",
+  "system": "parok",
+  "variant": "ours_n0",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A12"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R5_parbad_ours_n0",
+  "case": "R5",
+  "system": "parbad",
+  "variant": "ours_n0",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A12"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R5_parok_ours_allcopy",
+  "case": "R5",
+  "system": "parok",
+  "variant": "ours_allcopy",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A12"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R5_parbad_ours_allcopy",
+  "case": "R5",
+  "system": "parbad",
+  "variant": "ours_allcopy",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A12"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R5_parok_casaal_plain",
+  "case": "R5",
+  "system": "parok",
+  "variant": "casaal_plain",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A6"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R5_parbad_casaal_plain",
+  "case": "R5",
+  "system": "parbad",
+  "variant": "casaal_plain",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A6"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R5_parok_casaal_n0",
+  "case": "R5",
+  "system": "parok",
+  "variant": "casaal_n0",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A12"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R5_parbad_casaal_n0",
+  "case": "R5",
+  "system": "parbad",
+  "variant": "casaal_n0",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A12"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R5_parok_casaal_opt",
+  "case": "R5",
+  "system": "parok",
+  "variant": "casaal_opt",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A12"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R5_parbad_casaal_opt",
+  "case": "R5",
+  "system": "parbad",
+  "variant": "casaal_opt",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A12"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R5_parok_casaal_allcopy",
+  "case": "R5",
+  "system": "parok",
+  "variant": "casaal_allcopy",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A12"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R5_parbad_casaal_allcopy",
+  "case": "R5",
+  "system": "parbad",
+  "variant": "casaal_allcopy",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A12"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R6_parok_ours_default",
+  "case": "R6",
+  "system": "parok",
+  "variant": "ours_default",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A14"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R6_parbad_ours_default",
+  "case": "R6",
+  "system": "parbad",
+  "variant": "ours_default",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A14"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R6_parok_ours_n0",
+  "case": "R6",
+  "system": "parok",
+  "variant": "ours_n0",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A14"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R6_parbad_ours_n0",
+  "case": "R6",
+  "system": "parbad",
+  "variant": "ours_n0",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A14"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R6_parok_ours_allcopy",
+  "case": "R6",
+  "system": "parok",
+  "variant": "ours_allcopy",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A14"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R6_parbad_ours_allcopy",
+  "case": "R6",
+  "system": "parbad",
+  "variant": "ours_allcopy",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A14"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R6_parok_casaal_plain",
+  "case": "R6",
+  "system": "parok",
+  "variant": "casaal_plain",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A7"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R6_parbad_casaal_plain",
+  "case": "R6",
+  "system": "parbad",
+  "variant": "casaal_plain",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A7"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R6_parok_casaal_n0",
+  "case": "R6",
+  "system": "parok",
+  "variant": "casaal_n0",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A14"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R6_parbad_casaal_n0",
+  "case": "R6",
+  "system": "parbad",
+  "variant": "casaal_n0",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A14"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R6_parok_casaal_opt",
+  "case": "R6",
+  "system": "parok",
+  "variant": "casaal_opt",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A14"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R6_parbad_casaal_opt",
+  "case": "R6",
+  "system": "parbad",
+  "variant": "casaal_opt",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A14"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R6_parok_casaal_allcopy",
+  "case": "R6",
+  "system": "parok",
+  "variant": "casaal_allcopy",
+  "block": "par",
+  "expected": "not satisfied",
+  "sinks": [
+   "A14"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "R6_parbad_casaal_allcopy",
+  "case": "R6",
+  "system": "parbad",
+  "variant": "casaal_allcopy",
+  "block": "par",
+  "expected": "satisfied",
+  "sinks": [
+   "A14"
+  ],
+  "diag": 0
+ },
+ {
+  "name": "F2_free_ours_default",
+  "case": "F2",
+  "system": "free",
+  "variant": "ours_default",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F2_free_ours_n0",
+  "case": "F2",
+  "system": "free",
+  "variant": "ours_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F2_free_ours_allcopy",
+  "case": "F2",
+  "system": "free",
+  "variant": "ours_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F2_free_casaal_plain",
+  "case": "F2",
+  "system": "free",
+  "variant": "casaal_plain",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F2_free_casaal_n0",
+  "case": "F2",
+  "system": "free",
+  "variant": "casaal_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F2_free_casaal_opt",
+  "case": "F2",
+  "system": "free",
+  "variant": "casaal_opt",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F2_free_casaal_allcopy",
+  "case": "F2",
+  "system": "free",
+  "variant": "casaal_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F4_free_ours_default",
+  "case": "F4",
+  "system": "free",
+  "variant": "ours_default",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F4_free_ours_n0",
+  "case": "F4",
+  "system": "free",
+  "variant": "ours_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F4_free_ours_allcopy",
+  "case": "F4",
+  "system": "free",
+  "variant": "ours_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F4_free_casaal_plain",
+  "case": "F4",
+  "system": "free",
+  "variant": "casaal_plain",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F4_free_casaal_n0",
+  "case": "F4",
+  "system": "free",
+  "variant": "casaal_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F4_free_casaal_opt",
+  "case": "F4",
+  "system": "free",
+  "variant": "casaal_opt",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F4_free_casaal_allcopy",
+  "case": "F4",
+  "system": "free",
+  "variant": "casaal_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F5_free_ours_default",
+  "case": "F5",
+  "system": "free",
+  "variant": "ours_default",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F5_free_ours_n0",
+  "case": "F5",
+  "system": "free",
+  "variant": "ours_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F5_free_ours_allcopy",
+  "case": "F5",
+  "system": "free",
+  "variant": "ours_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F5_free_casaal_plain",
+  "case": "F5",
+  "system": "free",
+  "variant": "casaal_plain",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F5_free_casaal_n0",
+  "case": "F5",
+  "system": "free",
+  "variant": "casaal_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F5_free_casaal_opt",
+  "case": "F5",
+  "system": "free",
+  "variant": "casaal_opt",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F5_free_casaal_allcopy",
+  "case": "F5",
+  "system": "free",
+  "variant": "casaal_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F7_free_ours_default",
+  "case": "F7",
+  "system": "free",
+  "variant": "ours_default",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F7_free_ours_n0",
+  "case": "F7",
+  "system": "free",
+  "variant": "ours_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F7_free_ours_allcopy",
+  "case": "F7",
+  "system": "free",
+  "variant": "ours_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F7_free_casaal_plain",
+  "case": "F7",
+  "system": "free",
+  "variant": "casaal_plain",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F7_free_casaal_n0",
+  "case": "F7",
+  "system": "free",
+  "variant": "casaal_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F7_free_casaal_opt",
+  "case": "F7",
+  "system": "free",
+  "variant": "casaal_opt",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F7_free_casaal_allcopy",
+  "case": "F7",
+  "system": "free",
+  "variant": "casaal_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F8_free_ours_default",
+  "case": "F8",
+  "system": "free",
+  "variant": "ours_default",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F8_free_ours_n0",
+  "case": "F8",
+  "system": "free",
+  "variant": "ours_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F8_free_ours_allcopy",
+  "case": "F8",
+  "system": "free",
+  "variant": "ours_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F8_free_casaal_plain",
+  "case": "F8",
+  "system": "free",
+  "variant": "casaal_plain",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F8_free_casaal_n0",
+  "case": "F8",
+  "system": "free",
+  "variant": "casaal_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F8_free_casaal_opt",
+  "case": "F8",
+  "system": "free",
+  "variant": "casaal_opt",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F8_free_casaal_allcopy",
+  "case": "F8",
+  "system": "free",
+  "variant": "casaal_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F11_free_ours_default",
+  "case": "F11",
+  "system": "free",
+  "variant": "ours_default",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F11_free_ours_n0",
+  "case": "F11",
+  "system": "free",
+  "variant": "ours_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F11_free_ours_allcopy",
+  "case": "F11",
+  "system": "free",
+  "variant": "ours_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F11_free_casaal_plain",
+  "case": "F11",
+  "system": "free",
+  "variant": "casaal_plain",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F11_free_casaal_n0",
+  "case": "F11",
+  "system": "free",
+  "variant": "casaal_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F11_free_casaal_opt",
+  "case": "F11",
+  "system": "free",
+  "variant": "casaal_opt",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F11_free_casaal_allcopy",
+  "case": "F11",
+  "system": "free",
+  "variant": "casaal_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F12_free_ours_default",
+  "case": "F12",
+  "system": "free",
+  "variant": "ours_default",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F12_free_ours_n0",
+  "case": "F12",
+  "system": "free",
+  "variant": "ours_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F12_free_ours_allcopy",
+  "case": "F12",
+  "system": "free",
+  "variant": "ours_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F12_free_casaal_plain",
+  "case": "F12",
+  "system": "free",
+  "variant": "casaal_plain",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F12_free_casaal_n0",
+  "case": "F12",
+  "system": "free",
+  "variant": "casaal_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F12_free_casaal_opt",
+  "case": "F12",
+  "system": "free",
+  "variant": "casaal_opt",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "F12_free_casaal_allcopy",
+  "case": "F12",
+  "system": "free",
+  "variant": "casaal_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R5_free_ours_default",
+  "case": "R5",
+  "system": "free",
+  "variant": "ours_default",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R5_free_ours_n0",
+  "case": "R5",
+  "system": "free",
+  "variant": "ours_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R5_free_ours_allcopy",
+  "case": "R5",
+  "system": "free",
+  "variant": "ours_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R5_free_casaal_plain",
+  "case": "R5",
+  "system": "free",
+  "variant": "casaal_plain",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R5_free_casaal_n0",
+  "case": "R5",
+  "system": "free",
+  "variant": "casaal_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R5_free_casaal_opt",
+  "case": "R5",
+  "system": "free",
+  "variant": "casaal_opt",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R5_free_casaal_allcopy",
+  "case": "R5",
+  "system": "free",
+  "variant": "casaal_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R6_free_ours_default",
+  "case": "R6",
+  "system": "free",
+  "variant": "ours_default",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R6_free_ours_n0",
+  "case": "R6",
+  "system": "free",
+  "variant": "ours_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R6_free_ours_allcopy",
+  "case": "R6",
+  "system": "free",
+  "variant": "ours_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R6_free_casaal_plain",
+  "case": "R6",
+  "system": "free",
+  "variant": "casaal_plain",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R6_free_casaal_n0",
+  "case": "R6",
+  "system": "free",
+  "variant": "casaal_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R6_free_casaal_opt",
+  "case": "R6",
+  "system": "free",
+  "variant": "casaal_opt",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "R6_free_casaal_allcopy",
+  "case": "R6",
+  "system": "free",
+  "variant": "casaal_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "N1_free_ours_default",
+  "case": "N1",
+  "system": "free",
+  "variant": "ours_default",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "N1_free_ours_n0",
+  "case": "N1",
+  "system": "free",
+  "variant": "ours_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "N1_free_ours_allcopy",
+  "case": "N1",
+  "system": "free",
+  "variant": "ours_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "N1_free_casaal_plain",
+  "case": "N1",
+  "system": "free",
+  "variant": "casaal_plain",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "N1_free_casaal_n0",
+  "case": "N1",
+  "system": "free",
+  "variant": "casaal_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "N1_free_casaal_opt",
+  "case": "N1",
+  "system": "free",
+  "variant": "casaal_opt",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "N1_free_casaal_allcopy",
+  "case": "N1",
+  "system": "free",
+  "variant": "casaal_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "N2_free_ours_default",
+  "case": "N2",
+  "system": "free",
+  "variant": "ours_default",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "N2_free_ours_n0",
+  "case": "N2",
+  "system": "free",
+  "variant": "ours_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "N2_free_ours_allcopy",
+  "case": "N2",
+  "system": "free",
+  "variant": "ours_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "N2_free_casaal_plain",
+  "case": "N2",
+  "system": "free",
+  "variant": "casaal_plain",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "N2_free_casaal_n0",
+  "case": "N2",
+  "system": "free",
+  "variant": "casaal_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "N2_free_casaal_opt",
+  "case": "N2",
+  "system": "free",
+  "variant": "casaal_opt",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "N2_free_casaal_allcopy",
+  "case": "N2",
+  "system": "free",
+  "variant": "casaal_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "N3_free_ours_default",
+  "case": "N3",
+  "system": "free",
+  "variant": "ours_default",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "N3_free_ours_n0",
+  "case": "N3",
+  "system": "free",
+  "variant": "ours_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "N3_free_ours_allcopy",
+  "case": "N3",
+  "system": "free",
+  "variant": "ours_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "N3_free_casaal_plain",
+  "case": "N3",
+  "system": "free",
+  "variant": "casaal_plain",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "N3_free_casaal_n0",
+  "case": "N3",
+  "system": "free",
+  "variant": "casaal_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "N3_free_casaal_opt",
+  "case": "N3",
+  "system": "free",
+  "variant": "casaal_opt",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "N3_free_casaal_allcopy",
+  "case": "N3",
+  "system": "free",
+  "variant": "casaal_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "N4_free_ours_default",
+  "case": "N4",
+  "system": "free",
+  "variant": "ours_default",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "N4_free_ours_n0",
+  "case": "N4",
+  "system": "free",
+  "variant": "ours_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "N4_free_ours_allcopy",
+  "case": "N4",
+  "system": "free",
+  "variant": "ours_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "N4_free_casaal_plain",
+  "case": "N4",
+  "system": "free",
+  "variant": "casaal_plain",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "N4_free_casaal_n0",
+  "case": "N4",
+  "system": "free",
+  "variant": "casaal_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "N4_free_casaal_opt",
+  "case": "N4",
+  "system": "free",
+  "variant": "casaal_opt",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "N4_free_casaal_allcopy",
+  "case": "N4",
+  "system": "free",
+  "variant": "casaal_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "N5_free_ours_default",
+  "case": "N5",
+  "system": "free",
+  "variant": "ours_default",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "N5_free_ours_n0",
+  "case": "N5",
+  "system": "free",
+  "variant": "ours_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "N5_free_ours_allcopy",
+  "case": "N5",
+  "system": "free",
+  "variant": "ours_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "N5_free_casaal_plain",
+  "case": "N5",
+  "system": "free",
+  "variant": "casaal_plain",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "N5_free_casaal_n0",
+  "case": "N5",
+  "system": "free",
+  "variant": "casaal_n0",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "N5_free_casaal_opt",
+  "case": "N5",
+  "system": "free",
+  "variant": "casaal_opt",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ },
+ {
+  "name": "N5_free_casaal_allcopy",
+  "case": "N5",
+  "system": "free",
+  "variant": "casaal_allcopy",
+  "block": "free",
+  "expected": "satisfied",
+  "sinks": [],
+  "diag": 0
+ }
+]

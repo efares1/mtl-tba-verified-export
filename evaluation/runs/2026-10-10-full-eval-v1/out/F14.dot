@@ -1,0 +1,26 @@
+digraph TA {
+  rankdir=LR;
+  node [shape=circle];
+  init [shape=point];
+  init -> L0;
+  L0 [shape=doublecircle, label="L0"];
+  L2 [shape=doublecircle, label="L2\nx1 <= 2"];
+  L4 [shape=doublecircle, label="L4"];
+  L6 [shape=doublecircle, label="L6\nx0 <= 3"];
+  L8 [shape=doublecircle, label="L8\nx0 <= 3 && x1 <= 2"];
+  L10 [shape=doublecircle, label="L10\nx0 <= 3"];
+  L0 -> L0 [label="e2|e3|other\nx0, x1 := 0"];
+  L0 -> L2 [label="e1\nx0, x1 := 0"];
+  L0 -> L4 [label="e1"];
+  L2 -> L2 [label="x1 < 2: any\nx0 := 0"];
+  L2 -> L6 [label="x1 < 2: e2\nx0, x1 := 0"];
+  L4 -> L4 [label="e1|other"];
+  L6 -> L0 [label="x0 < 3: e3\nx0, x1 := 0"];
+  L6 -> L6 [label="x0 < 3: e2|other\nx1 := 0"];
+  L6 -> L8 [label="x0 <= 1: e1\nx0 < 3 && x0 >= 1: e1\nx1 := 0"];
+  L6 -> L10 [label="x0 < 3: e1"];
+  L8 -> L2 [label="x0 < 3 && x1 < 2: e3\nx0 := 0"];
+  L8 -> L6 [label="x0 < 3 && x1 < 2: e2\nx1 := 0"];
+  L8 -> L8 [label="x0 < 3 && x1 < 2 && x0 - x1 <= 1: e1|other\nx0 < 3 && x1 < 2 && x1 - x0 <= -1: e1|other"];
+  L10 -> L10 [label="x0 < 3: e1|other"];
+}

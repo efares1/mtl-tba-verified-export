@@ -1,0 +1,26 @@
+digraph TBA {
+  rankdir=LR;
+  node [shape=circle];
+  init [shape=point];
+  init -> L0;
+  L0 [shape=doublecircle, label="L0"];
+  L1 [shape=doublecircle, label="L1"];
+  L2 [shape=doublecircle, label="L2"];
+  L3 [shape=doublecircle, label="L3"];
+  L0 -> L0 [label="b1,b2,other\nx0, x1 := 0"];
+  L0 -> L0 [label="b2\nx0, x1 := 0"];
+  L0 -> L0 [label="b1\nx0, x1 := 0"];
+  L0 -> L1 [label="a2\nx0, x1 := 0"];
+  L0 -> L3 [label="a1\nx0, x1 := 0"];
+  L1 -> L0 [label="x1 <= 5\nb2\nx0, x1 := 0"];
+  L1 -> L1 [label="x1 <= 5\na2,b1,other\nx0 := 0"];
+  L1 -> L1 [label="x1 <= 5\nb1\nx0 := 0"];
+  L1 -> L2 [label="x1 <= 5\na1\nx0 := 0"];
+  L2 -> L1 [label="x0 <= 5 && x1 <= 5\nb1\nx0 := 0"];
+  L2 -> L2 [label="x1 <= 5 && x0 <= 5\na1,a2,other"];
+  L2 -> L3 [label="x1 <= 5 && x0 <= 5\nb2\nx1 := 0"];
+  L3 -> L0 [label="x0 <= 5\nb1\nx0, x1 := 0"];
+  L3 -> L2 [label="x0 <= 5\na2\nx1 := 0"];
+  L3 -> L3 [label="x0 <= 5\na1,b2,other\nx1 := 0"];
+  L3 -> L3 [label="x0 <= 5\nb2\nx1 := 0"];
+}

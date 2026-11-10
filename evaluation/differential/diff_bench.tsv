@@ -1,0 +1,129 @@
+id	formula	polarity	tool	words	accepting	disagreements	status
+F1	[](p -> <>[<=5] q)	neg	ours_def	20000	10564	0	ok
+F1	[](p -> <>[<=5] q)	neg	ours_ac	20000	10564	0	ok
+F1	[](p -> <>[<=5] q)	neg	casaal	20000	10564	0	ok
+F1	[](p -> <>[<=5] q)	pos	ours_def	20000	9436	0	ok
+F1	[](p -> <>[<=5] q)	pos	ours_ac	20000	9436	0	ok
+F1	[](p -> <>[<=5] q)	pos	casaal	20000	9436	0	ok
+F2	[](p -> [][<=3] q)	neg	ours_def	20000	12612	0	ok
+F2	[](p -> [][<=3] q)	neg	ours_ac	20000	12612	0	ok
+F2	[](p -> [][<=3] q)	neg	casaal	20000	12612	0	ok
+F2	[](p -> [][<=3] q)	pos	ours_def	20000	7388	0	ok
+F2	[](p -> [][<=3] q)	pos	ours_ac	20000	7388	0	ok
+F2	[](p -> [][<=3] q)	pos	casaal	20000	7388	0	ok
+F3	[](e -> ^[][<=2] !e)	neg	ours_def	20000	8351	0	ok
+F3	[](e -> ^[][<=2] !e)	neg	ours_ac	20000	8351	0	ok
+F3	[](e -> ^[][<=2] !e)	pos	ours_def	20000	11649	0	ok
+F3	[](e -> ^[][<=2] !e)	pos	ours_ac	20000	11649	0	ok
+F3b	[](e -> [][<=2] !e)	neg	ours_def	20000	15152	0	ok
+F3b	[](e -> [][<=2] !e)	neg	ours_ac	20000	15152	0	ok
+F3b	[](e -> [][<=2] !e)	neg	casaal	20000	15152	0	ok
+F3b	[](e -> [][<=2] !e)	pos	ours_def	20000	4848	0	ok
+F3b	[](e -> [][<=2] !e)	pos	ours_ac	20000	4848	0	ok
+F3b	[](e -> [][<=2] !e)	pos	casaal	20000	4848	0	ok
+F4	[](p -> (p U[<=4] q))	neg	ours_def	20000	11082	0	ok
+F4	[](p -> (p U[<=4] q))	neg	ours_ac	20000	11082	0	ok
+F4	[](p -> (p U[<=4] q))	neg	casaal	20000	11082	0	ok
+F4	[](p -> (p U[<=4] q))	pos	ours_def	20000	8918	0	ok
+F4	[](p -> (p U[<=4] q))	pos	ours_ac	20000	8918	0	ok
+F4	[](p -> (p U[<=4] q))	pos	casaal	20000	8918	0	ok
+F5	[](p -> <>[>=2] q)	neg	ours_def	20000	7929	0	ok
+F5	[](p -> <>[>=2] q)	neg	ours_ac	20000	7929	0	ok
+F5	[](p -> <>[>=2] q)	neg	casaal	20000	7929	0	ok
+F5	[](p -> <>[>=2] q)	pos	ours_def	20000	12071	0	ok
+F5	[](p -> <>[>=2] q)	pos	ours_ac	20000	12071	0	ok
+F5	[](p -> <>[>=2] q)	pos	casaal	20000	12071	0	ok
+F6	[](p -> <>[>2] q)	neg	ours_def	20000	7886	0	ok
+F6	[](p -> <>[>2] q)	neg	ours_ac	20000	7886	0	ok
+F6	[](p -> <>[>2] q)	neg	casaal	20000	7886	0	ok
+F6	[](p -> <>[>2] q)	pos	ours_def	20000	12114	0	ok
+F6	[](p -> <>[>2] q)	pos	ours_ac	20000	12114	0	ok
+F6	[](p -> <>[>2] q)	pos	casaal	20000	12114	0	ok
+F7	[]<>[<=5] p	neg	ours_def	20000	13610	0	ok
+F7	[]<>[<=5] p	neg	ours_ac	20000	13610	0	ok
+F7	[]<>[<=5] p	neg	casaal	20000	13610	0	ok
+F7	[]<>[<=5] p	pos	ours_def	20000	6390	0	ok
+F7	[]<>[<=5] p	pos	ours_ac	20000	6390	0	ok
+F7	[]<>[<=5] p	pos	casaal	20000	6390	0	ok
+F8	[]<>[>=2] p	neg	ours_def	20000	9384	0	ok
+F8	[]<>[>=2] p	neg	ours_ac	20000	9384	0	ok
+F8	[]<>[>=2] p	neg	casaal	20000	9384	0	ok
+F8	[]<>[>=2] p	pos	ours_def	20000	10616	0	ok
+F8	[]<>[>=2] p	pos	ours_ac	20000	10616	0	ok
+F8	[]<>[>=2] p	pos	casaal	20000	10616	0	ok
+F9	<>[<=5](p U[<=2] q)	neg	ours_def	20000	10574	0	ok
+F9	<>[<=5](p U[<=2] q)	neg	ours_ac	20000	10574	0	ok
+F9	<>[<=5](p U[<=2] q)	neg	casaal	20000	10574	0	ok
+F9	<>[<=5](p U[<=2] q)	pos	ours_def	20000	9426	0	ok
+F9	<>[<=5](p U[<=2] q)	pos	ours_ac	20000	9426	0	ok
+F9	<>[<=5](p U[<=2] q)	pos	casaal	20000	9426	0	ok
+F10	<>[<=5](([][<=3] (p | q)) U[<=2] q)	neg	ours_def	20000	10491	0	ok
+F10	<>[<=5](([][<=3] (p | q)) U[<=2] q)	neg	ours_ac	20000	10491	0	ok
+F10	<>[<=5](([][<=3] (p | q)) U[<=2] q)	neg	casaal	20000	10491	0	ok
+F10	<>[<=5](([][<=3] (p | q)) U[<=2] q)	pos	ours_def	20000	9509	0	ok
+F10	<>[<=5](([][<=3] (p | q)) U[<=2] q)	pos	ours_ac	20000	9509	0	ok
+F10	<>[<=5](([][<=3] (p | q)) U[<=2] q)	pos	casaal	20000	9509	0	ok
+F11	(<>[<=5] p) & ([][<2] !p)	neg	ours_def	20000	17969	0	ok
+F11	(<>[<=5] p) & ([][<2] !p)	neg	ours_ac	20000	17969	0	ok
+F11	(<>[<=5] p) & ([][<2] !p)	neg	casaal	20000	17969	0	ok
+F11	(<>[<=5] p) & ([][<2] !p)	pos	ours_def	20000	2031	0	ok
+F11	(<>[<=5] p) & ([][<2] !p)	pos	ours_ac	20000	2031	0	ok
+F11	(<>[<=5] p) & ([][<2] !p)	pos	casaal	20000	2031	0	ok
+F12	[](p -> (<>[<=5] q & [][<2] !q))	neg	ours_def	20000	11133	0	ok
+F12	[](p -> (<>[<=5] q & [][<2] !q))	neg	ours_ac	20000	11133	0	ok
+F12	[](p -> (<>[<=5] q & [][<2] !q))	neg	casaal	20000	11133	0	ok
+F12	[](p -> (<>[<=5] q & [][<2] !q))	pos	ours_def	20000	8867	0	ok
+F12	[](p -> (<>[<=5] q & [][<2] !q))	pos	ours_ac	20000	8867	0	ok
+F12	[](p -> (<>[<=5] q & [][<2] !q))	pos	casaal	20000	8867	0	ok
+F13	e & [](e -> (^[][<2] !e & ^<>[<=2] e))	neg	ours_def	20000	19925	0	ok
+F13	e & [](e -> (^[][<2] !e & ^<>[<=2] e))	neg	ours_ac	20000	19925	0	ok
+F13	e & [](e -> (^[][<2] !e & ^<>[<=2] e))	pos	ours_def	20000	75	0	ok
+F13	e & [](e -> (^[][<2] !e & ^<>[<=2] e))	pos	ours_ac	20000	75	0	ok
+F14	[](e1 -> (<>[<2](e2 & <>[<3] e3) | [](!e2 & !e3)))	neg	ours_def	20000	6503	0	ok
+F14	[](e1 -> (<>[<2](e2 & <>[<3] e3) | [](!e2 & !e3)))	neg	ours_ac	20000	6503	0	ok
+F14	[](e1 -> (<>[<2](e2 & <>[<3] e3) | [](!e2 & !e3)))	neg	casaal	20000	6503	0	ok
+F14	[](e1 -> (<>[<2](e2 & <>[<3] e3) | [](!e2 & !e3)))	pos	ours_def	20000	13497	0	ok
+F14	[](e1 -> (<>[<2](e2 & <>[<3] e3) | [](!e2 & !e3)))	pos	ours_ac	20000	13497	0	ok
+F14	[](e1 -> (<>[<2](e2 & <>[<3] e3) | [](!e2 & !e3)))	pos	casaal	20000	13497	0	ok
+R1	[](a1 -> <>[<=5] b1)	neg	ours_def	20000	10535	0	ok
+R1	[](a1 -> <>[<=5] b1)	neg	ours_ac	20000	10535	0	ok
+R1	[](a1 -> <>[<=5] b1)	neg	casaal	20000	10535	0	ok
+R1	[](a1 -> <>[<=5] b1)	pos	ours_def	20000	9465	0	ok
+R1	[](a1 -> <>[<=5] b1)	pos	ours_ac	20000	9465	0	ok
+R1	[](a1 -> <>[<=5] b1)	pos	casaal	20000	9465	0	ok
+R2	[](a1 -> <>[<=5] b1) & [](a2 -> <>[<=5] b2)	neg	ours_def	20000	13551	0	ok
+R2	[](a1 -> <>[<=5] b1) & [](a2 -> <>[<=5] b2)	neg	ours_ac	20000	13551	0	ok
+R2	[](a1 -> <>[<=5] b1) & [](a2 -> <>[<=5] b2)	neg	casaal	20000	13551	0	ok
+R2	[](a1 -> <>[<=5] b1) & [](a2 -> <>[<=5] b2)	pos	ours_def	20000	6449	0	ok
+R2	[](a1 -> <>[<=5] b1) & [](a2 -> <>[<=5] b2)	pos	ours_ac	20000	6449	0	ok
+R2	[](a1 -> <>[<=5] b1) & [](a2 -> <>[<=5] b2)	pos	casaal	20000	6449	0	ok
+R3	[](a1 -> <>[<=5] b1) & [](a2 -> <>[<=5] b2) & [](a3 -> <>[<=5] b3)	neg	ours_def	20000	14720	0	ok
+R3	[](a1 -> <>[<=5] b1) & [](a2 -> <>[<=5] b2) & [](a3 -> <>[<=5] b3)	neg	ours_ac	20000	14720	0	ok
+R3	[](a1 -> <>[<=5] b1) & [](a2 -> <>[<=5] b2) & [](a3 -> <>[<=5] b3)	neg	casaal	20000	14720	0	ok
+R3	[](a1 -> <>[<=5] b1) & [](a2 -> <>[<=5] b2) & [](a3 -> <>[<=5] b3)	pos	ours_def	20000	5280	0	ok
+R3	[](a1 -> <>[<=5] b1) & [](a2 -> <>[<=5] b2) & [](a3 -> <>[<=5] b3)	pos	ours_ac	20000	5280	0	ok
+R3	[](a1 -> <>[<=5] b1) & [](a2 -> <>[<=5] b2) & [](a3 -> <>[<=5] b3)	pos	casaal	20000	5280	0	ok
+N1	<>[<=5] p1	neg	ours_def	20000	7722	0	ok
+N1	<>[<=5] p1	neg	ours_ac	20000	7722	0	ok
+N1	<>[<=5] p1	neg	casaal	20000	7722	0	ok
+N1	<>[<=5] p1	pos	ours_def	20000	12278	0	ok
+N1	<>[<=5] p1	pos	ours_ac	20000	12278	0	ok
+N1	<>[<=5] p1	pos	casaal	20000	12278	0	ok
+N2	<>[<=5](p1 & <>[<=5] p2)	neg	ours_def	20000	17861	0	ok
+N2	<>[<=5](p1 & <>[<=5] p2)	neg	ours_ac	20000	17861	0	ok
+N2	<>[<=5](p1 & <>[<=5] p2)	neg	casaal	20000	17861	0	ok
+N2	<>[<=5](p1 & <>[<=5] p2)	pos	ours_def	20000	2139	0	ok
+N2	<>[<=5](p1 & <>[<=5] p2)	pos	ours_ac	20000	2139	0	ok
+N2	<>[<=5](p1 & <>[<=5] p2)	pos	casaal	20000	2139	0	ok
+N3	<>[<=5](p1 & <>[<=5](p2 & <>[<=5] p3))	neg	ours_def	20000	19839	0	ok
+N3	<>[<=5](p1 & <>[<=5](p2 & <>[<=5] p3))	neg	ours_ac	20000	19839	0	ok
+N3	<>[<=5](p1 & <>[<=5](p2 & <>[<=5] p3))	neg	casaal	20000	19839	0	ok
+N3	<>[<=5](p1 & <>[<=5](p2 & <>[<=5] p3))	pos	ours_def	20000	161	0	ok
+N3	<>[<=5](p1 & <>[<=5](p2 & <>[<=5] p3))	pos	ours_ac	20000	161	0	ok
+N3	<>[<=5](p1 & <>[<=5](p2 & <>[<=5] p3))	pos	casaal	20000	161	0	ok
+N4	<>[<=5](p1 & <>[<=5](p2 & <>[<=5](p3 & <>[<=5] p4)))	neg	ours_def	20000	19989	0	ok
+N4	<>[<=5](p1 & <>[<=5](p2 & <>[<=5](p3 & <>[<=5] p4)))	neg	ours_ac	20000	19989	0	ok
+N4	<>[<=5](p1 & <>[<=5](p2 & <>[<=5](p3 & <>[<=5] p4)))	neg	casaal	20000	19989	0	ok
+N4	<>[<=5](p1 & <>[<=5](p2 & <>[<=5](p3 & <>[<=5] p4)))	pos	ours_def	20000	11	0	ok
+N4	<>[<=5](p1 & <>[<=5](p2 & <>[<=5](p3 & <>[<=5] p4)))	pos	ours_ac	20000	11	0	ok
+N4	<>[<=5](p1 & <>[<=5](p2 & <>[<=5](p3 & <>[<=5] p4)))	pos	casaal	20000	11	0	ok

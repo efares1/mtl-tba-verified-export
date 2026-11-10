@@ -1,0 +1,9 @@
+digraph G {
+  0 [label="", style=invis, height=0]
+  0 -> 1
+  1 [label="F!p"]
+  1 -> 2 [label="!p\n{Acc[!p]}"]
+  1 -> 1 [label="p\n"]
+  2 [label="1"]
+  2 -> 2 [label="1\n{Acc[!p]}"]
+}

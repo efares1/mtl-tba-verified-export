@@ -1,0 +1,29 @@
+{
+ "id": "M02",
+ "T1_corpus_changed": 30,
+ "corpus_runs": 296,
+ "crashes": 0,
+ "bench_crashes": 0,
+ "T2_corpus": {
+  "budget": 1000,
+  "inputs_with_mismatch": 6,
+  "min_first_word": 44,
+  "example": [
+   "rnd_081/ac",
+   "rnd_081/md",
+   "rnd_081/opt",
+   "syn_forward_contradiction_cascade/ac"
+  ],
+  "unreadable_output": 0
+ },
+ "T2_bench": {
+  "budget": 1000,
+  "inputs_with_mismatch": 0,
+  "min_first_word": null,
+  "example": []
+ },
+ "T1_bench_changed": 0,
+ "bench_runs": 84,
+ "budget_tried": 1000,
+ "seconds": 23
+}

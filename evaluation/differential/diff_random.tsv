@@ -1,0 +1,601 @@
+id	formula	polarity	tool	words	accepting	disagreements	status
+X1	[][>=2] ([] ((q) & (q)))	neg	ours_def	6000	4583	0	ok
+X1	[][>=2] ([] ((q) & (q)))	neg	ours_ac	6000	4583	0	ok
+X1	[][>=2] ([] ((q) & (q)))	neg	casaal	6000	4583	0	ok
+X1	[][>=2] ([] ((q) & (q)))	pos	ours_def	6000	1417	0	ok
+X1	[][>=2] ([] ((q) & (q)))	pos	ours_ac	6000	1417	0	ok
+X1	[][>=2] ([] ((q) & (q)))	pos	casaal	6000	1417	0	ok
+X2	(p) U[<2] (<>[>=2] (p))	neg	ours_def	6000	1872	0	ok
+X2	(p) U[<2] (<>[>=2] (p))	neg	ours_ac	6000	1872	0	ok
+X2	(p) U[<2] (<>[>=2] (p))	neg	casaal	6000	1872	0	ok
+X2	(p) U[<2] (<>[>=2] (p))	pos	ours_def	6000	4128	0	ok
+X2	(p) U[<2] (<>[>=2] (p))	pos	ours_ac	6000	4128	0	ok
+X2	(p) U[<2] (<>[>=2] (p))	pos	casaal	6000	4128	0	ok
+X3	[][<3] (<>[<=1] ((p) & (!r)))	neg	ours_def	6000	4353	0	ok
+X3	[][<3] (<>[<=1] ((p) & (!r)))	neg	ours_ac	6000	4353	0	ok
+X3	[][<3] (<>[<=1] ((p) & (!r)))	neg	casaal	6000	4353	0	ok
+X3	[][<3] (<>[<=1] ((p) & (!r)))	pos	ours_def	6000	1647	0	ok
+X3	[][<3] (<>[<=1] ((p) & (!r)))	pos	ours_ac	6000	1647	0	ok
+X3	[][<3] (<>[<=1] ((p) & (!r)))	pos	casaal	6000	1647	0	ok
+X4	([][>1] ((p) U[>=2] (!r))) U[>=1] (!(p))	neg	ours_def	6000	5975	0	ok
+X4	([][>1] ((p) U[>=2] (!r))) U[>=1] (!(p))	neg	ours_ac	6000	5975	0	ok
+X4	([][>1] ((p) U[>=2] (!r))) U[>=1] (!(p))	neg	casaal	6000	5975	0	ok
+X4	([][>1] ((p) U[>=2] (!r))) U[>=1] (!(p))	pos	ours_def	6000	25	0	ok
+X4	([][>1] ((p) U[>=2] (!r))) U[>=1] (!(p))	pos	ours_ac	6000	25	0	ok
+X4	([][>1] ((p) U[>=2] (!r))) U[>=1] (!(p))	pos	casaal	6000	25	0	ok
+X5	(((q) U[<=2] (r)) U[>=2] ([] (q))) | (!r)	neg	ours_def	6000	1872	0	ok
+X5	(((q) U[<=2] (r)) U[>=2] ([] (q))) | (!r)	neg	ours_ac	6000	1872	0	ok
+X5	(((q) U[<=2] (r)) U[>=2] ([] (q))) | (!r)	neg	casaal	6000	1872	0	ok
+X5	(((q) U[<=2] (r)) U[>=2] ([] (q))) | (!r)	pos	ours_def	6000	4128	0	ok
+X5	(((q) U[<=2] (r)) U[>=2] ([] (q))) | (!r)	pos	ours_ac	6000	4128	0	ok
+X5	(((q) U[<=2] (r)) U[>=2] ([] (q))) | (!r)	pos	casaal	6000	4128	0	ok
+X6	<>[<3] ((!p) | (<>[>1] (r)))	neg	ours_def	6000	857	0	ok
+X6	<>[<3] ((!p) | (<>[>1] (r)))	neg	ours_ac	6000	857	0	ok
+X6	<>[<3] ((!p) | (<>[>1] (r)))	neg	casaal	6000	857	0	ok
+X6	<>[<3] ((!p) | (<>[>1] (r)))	pos	ours_def	6000	5143	0	ok
+X6	<>[<3] ((!p) | (<>[>1] (r)))	pos	ours_ac	6000	5143	0	ok
+X6	<>[<3] ((!p) | (<>[>1] (r)))	pos	casaal	6000	5143	0	ok
+X7	<>[>=2] ((<>[>1] (r)) -> (<> (r)))	neg	ours_def	6000	0	0	ok
+X7	<>[>=2] ((<>[>1] (r)) -> (<> (r)))	neg	ours_ac	6000	0	0	ok
+X7	<>[>=2] ((<>[>1] (r)) -> (<> (r)))	neg	casaal	6000	0	0	ok
+X7	<>[>=2] ((<>[>1] (r)) -> (<> (r)))	pos	ours_def	6000	6000	0	ok
+X7	<>[>=2] ((<>[>1] (r)) -> (<> (r)))	pos	ours_ac	6000	6000	0	ok
+X7	<>[>=2] ((<>[>1] (r)) -> (<> (r)))	pos	casaal	6000	6000	0	ok
+X8	<>[>1] (<> (!(q)))	neg	ours_def	6000	1406	0	ok
+X8	<>[>1] (<> (!(q)))	neg	ours_ac	6000	1406	0	ok
+X8	<>[>1] (<> (!(q)))	neg	casaal	6000	1406	0	ok
+X8	<>[>1] (<> (!(q)))	pos	ours_def	6000	4594	0	ok
+X8	<>[>1] (<> (!(q)))	pos	ours_ac	6000	4594	0	ok
+X8	<>[>1] (<> (!(q)))	pos	casaal	6000	4594	0	ok
+X9	!([][>1] (!(p)))	neg	ours_def	6000	1880	0	ok
+X9	!([][>1] (!(p)))	neg	ours_ac	6000	1880	0	ok
+X9	!([][>1] (!(p)))	neg	casaal	6000	1880	0	ok
+X9	!([][>1] (!(p)))	pos	ours_def	6000	4120	0	ok
+X9	!([][>1] (!(p)))	pos	ours_ac	6000	4120	0	ok
+X9	!([][>1] (!(p)))	pos	casaal	6000	4120	0	ok
+X10	(r) -> ([][<=1] (q))	neg	ours_def	6000	1949	0	ok
+X10	(r) -> ([][<=1] (q))	neg	ours_ac	6000	1949	0	ok
+X10	(r) -> ([][<=1] (q))	neg	casaal	6000	1949	0	ok
+X10	(r) -> ([][<=1] (q))	pos	ours_def	6000	4051	0	ok
+X10	(r) -> ([][<=1] (q))	pos	ours_ac	6000	4051	0	ok
+X10	(r) -> ([][<=1] (q))	pos	casaal	6000	4051	0	ok
+X11	((q) & (q)) | (([][>=1] (p)) U[<2] (!(p)))	neg	ours_def	6000	1922	0	ok
+X11	((q) & (q)) | (([][>=1] (p)) U[<2] (!(p)))	neg	ours_ac	6000	1922	0	ok
+X11	((q) & (q)) | (([][>=1] (p)) U[<2] (!(p)))	neg	casaal	6000	1922	0	ok
+X11	((q) & (q)) | (([][>=1] (p)) U[<2] (!(p)))	pos	ours_def	6000	4078	0	ok
+X11	((q) & (q)) | (([][>=1] (p)) U[<2] (!(p)))	pos	ours_ac	6000	4078	0	ok
+X11	((q) & (q)) | (([][>=1] (p)) U[<2] (!(p)))	pos	casaal	6000	4078	0	ok
+X12	<>[>=2] (<>[<=2] ((p) & (p)))	neg	ours_def	6000	1892	0	ok
+X12	<>[>=2] (<>[<=2] ((p) & (p)))	neg	ours_ac	6000	1892	0	ok
+X12	<>[>=2] (<>[<=2] ((p) & (p)))	neg	casaal	6000	1892	0	ok
+X12	<>[>=2] (<>[<=2] ((p) & (p)))	pos	ours_def	6000	4108	0	ok
+X12	<>[>=2] (<>[<=2] ((p) & (p)))	pos	ours_ac	6000	4108	0	ok
+X12	<>[>=2] (<>[<=2] ((p) & (p)))	pos	casaal	6000	4108	0	ok
+X13	(!(r)) U[<=1] (((q) & (q)) | ((q) U[<2] (!p)))	neg	ours_def	6000	1239	0	ok
+X13	(!(r)) U[<=1] (((q) & (q)) | ((q) U[<2] (!p)))	neg	ours_ac	6000	1239	0	ok
+X13	(!(r)) U[<=1] (((q) & (q)) | ((q) U[<2] (!p)))	neg	casaal	6000	1239	0	ok
+X13	(!(r)) U[<=1] (((q) & (q)) | ((q) U[<2] (!p)))	pos	ours_def	6000	4761	0	ok
+X13	(!(r)) U[<=1] (((q) & (q)) | ((q) U[<2] (!p)))	pos	ours_ac	6000	4761	0	ok
+X13	(!(r)) U[<=1] (((q) & (q)) | ((q) U[<2] (!p)))	pos	casaal	6000	4761	0	ok
+X14	(([] (r)) -> (!(p))) -> (r)	neg	ours_def	6000	4007	0	ok
+X14	(([] (r)) -> (!(p))) -> (r)	neg	ours_ac	6000	4007	0	ok
+X14	(([] (r)) -> (!(p))) -> (r)	neg	casaal	6000	4007	0	ok
+X14	(([] (r)) -> (!(p))) -> (r)	pos	ours_def	6000	1993	0	ok
+X14	(([] (r)) -> (!(p))) -> (r)	pos	ours_ac	6000	1993	0	ok
+X14	(([] (r)) -> (!(p))) -> (r)	pos	casaal	6000	1993	0	ok
+X15	!(((q) & (p)) U[>=1] ([][<=1] (r)))	neg	ours_def	6000	0	0	ok
+X15	!(((q) & (p)) U[>=1] ([][<=1] (r)))	neg	ours_ac	6000	0	0	ok
+X15	!(((q) & (p)) U[>=1] ([][<=1] (r)))	neg	casaal	6000	0	0	ok
+X15	!(((q) & (p)) U[>=1] ([][<=1] (r)))	pos	ours_def	6000	6000	0	ok
+X15	!(((q) & (p)) U[>=1] ([][<=1] (r)))	pos	ours_ac	6000	6000	0	ok
+X15	!(((q) & (p)) U[>=1] ([][<=1] (r)))	pos	casaal	6000	6000	0	ok
+X16	[][<2] (!r)	neg	ours_def	6000	3116	0	ok
+X16	[][<2] (!r)	neg	ours_ac	6000	3116	0	ok
+X16	[][<2] (!r)	neg	casaal	6000	3116	0	ok
+X16	[][<2] (!r)	pos	ours_def	6000	2884	0	ok
+X16	[][<2] (!r)	pos	ours_ac	6000	2884	0	ok
+X16	[][<2] (!r)	pos	casaal	6000	2884	0	ok
+X17	<>[>1] (((r) -> (!q)) -> (!(r)))	neg	ours_def	6000	752	0	ok
+X17	<>[>1] (((r) -> (!q)) -> (!(r)))	neg	ours_ac	6000	752	0	ok
+X17	<>[>1] (((r) -> (!q)) -> (!(r)))	neg	casaal	6000	752	0	ok
+X17	<>[>1] (((r) -> (!q)) -> (!(r)))	pos	ours_def	6000	5248	0	ok
+X17	<>[>1] (((r) -> (!q)) -> (!(r)))	pos	ours_ac	6000	5248	0	ok
+X17	<>[>1] (((r) -> (!q)) -> (!(r)))	pos	casaal	6000	5248	0	ok
+X18	((!(r)) & ([][<=1] (p))) -> ([][<3] (!p))	neg	ours_def	6000	1746	0	ok
+X18	((!(r)) & ([][<=1] (p))) -> ([][<3] (!p))	neg	ours_ac	6000	1746	0	ok
+X18	((!(r)) & ([][<=1] (p))) -> ([][<3] (!p))	neg	casaal	6000	1746	0	ok
+X18	((!(r)) & ([][<=1] (p))) -> ([][<3] (!p))	pos	ours_def	6000	4254	0	ok
+X18	((!(r)) & ([][<=1] (p))) -> ([][<3] (!p))	pos	ours_ac	6000	4254	0	ok
+X18	((!(r)) & ([][<=1] (p))) -> ([][<3] (!p))	pos	casaal	6000	4254	0	ok
+X19	<>[>2] (<>[<2] (q))	neg	ours_def	6000	1941	0	ok
+X19	<>[>2] (<>[<2] (q))	neg	ours_ac	6000	1941	0	ok
+X19	<>[>2] (<>[<2] (q))	neg	casaal	6000	1941	0	ok
+X19	<>[>2] (<>[<2] (q))	pos	ours_def	6000	4059	0	ok
+X19	<>[>2] (<>[<2] (q))	pos	ours_ac	6000	4059	0	ok
+X19	<>[>2] (<>[<2] (q))	pos	casaal	6000	4059	0	ok
+X20	(q) & ([][<=1] ((!p) & (!r)))	neg	ours_def	6000	4631	0	ok
+X20	(q) & ([][<=1] ((!p) & (!r)))	neg	ours_ac	6000	4631	0	ok
+X20	(q) & ([][<=1] ((!p) & (!r)))	neg	casaal	6000	4631	0	ok
+X20	(q) & ([][<=1] ((!p) & (!r)))	pos	ours_def	6000	1369	0	ok
+X20	(q) & ([][<=1] ((!p) & (!r)))	pos	ours_ac	6000	1369	0	ok
+X20	(q) & ([][<=1] ((!p) & (!r)))	pos	casaal	6000	1369	0	ok
+X21	!(<>[>1] ([][<=2] (r)))	neg	ours_def	6000	3615	0	ok
+X21	!(<>[>1] ([][<=2] (r)))	neg	ours_ac	6000	3615	0	ok
+X21	!(<>[>1] ([][<=2] (r)))	neg	casaal	6000	3615	0	ok
+X21	!(<>[>1] ([][<=2] (r)))	pos	ours_def	6000	2385	0	ok
+X21	!(<>[>1] ([][<=2] (r)))	pos	ours_ac	6000	2385	0	ok
+X21	!(<>[>1] ([][<=2] (r)))	pos	casaal	6000	2385	0	ok
+X22	(((!q) | (p)) U[<2] (!(!r))) & (p)	neg	ours_def	6000	5935	0	ok
+X22	(((!q) | (p)) U[<2] (!(!r))) & (p)	neg	ours_ac	6000	5935	0	ok
+X22	(((!q) | (p)) U[<2] (!(!r))) & (p)	neg	casaal	6000	5935	0	ok
+X22	(((!q) | (p)) U[<2] (!(!r))) & (p)	pos	ours_def	6000	65	0	ok
+X22	(((!q) | (p)) U[<2] (!(!r))) & (p)	pos	ours_ac	6000	65	0	ok
+X22	(((!q) | (p)) U[<2] (!(!r))) & (p)	pos	casaal	6000	65	0	ok
+X23	<>[<=3] (p)	neg	ours_def	6000	2534	0	ok
+X23	<>[<=3] (p)	neg	ours_ac	6000	2534	0	ok
+X23	<>[<=3] (p)	neg	casaal	6000	2534	0	ok
+X23	<>[<=3] (p)	pos	ours_def	6000	3466	0	ok
+X23	<>[<=3] (p)	pos	ours_ac	6000	3466	0	ok
+X23	<>[<=3] (p)	pos	casaal	6000	3466	0	ok
+X24	(((p) U[>1] (!r)) | ((r) U[<=2] (q))) | (r)	neg	ours_def	6000	1975	0	ok
+X24	(((p) U[>1] (!r)) | ((r) U[<=2] (q))) | (r)	neg	ours_ac	6000	1975	0	ok
+X24	(((p) U[>1] (!r)) | ((r) U[<=2] (q))) | (r)	neg	casaal	6000	1975	0	ok
+X24	(((p) U[>1] (!r)) | ((r) U[<=2] (q))) | (r)	pos	ours_def	6000	4025	0	ok
+X24	(((p) U[>1] (!r)) | ((r) U[<=2] (q))) | (r)	pos	ours_ac	6000	4025	0	ok
+X24	(((p) U[>1] (!r)) | ((r) U[<=2] (q))) | (r)	pos	casaal	6000	4025	0	ok
+X25	(!((r) -> (r))) U[>2] ((q) -> ([][<3] (r)))	neg	ours_def	6000	6000	0	ok
+X25	(!((r) -> (r))) U[>2] ((q) -> ([][<3] (r)))	neg	ours_ac	6000	6000	0	ok
+X25	(!((r) -> (r))) U[>2] ((q) -> ([][<3] (r)))	neg	casaal	6000	6000	0	ok
+X25	(!((r) -> (r))) U[>2] ((q) -> ([][<3] (r)))	pos	ours_def	6000	0	0	ok
+X25	(!((r) -> (r))) U[>2] ((q) -> ([][<3] (r)))	pos	ours_ac	6000	0	0	ok
+X25	(!((r) -> (r))) U[>2] ((q) -> ([][<3] (r)))	pos	casaal	6000	0	0	ok
+X26	([] (p)) -> (q)	neg	ours_def	6000	468	0	ok
+X26	([] (p)) -> (q)	neg	ours_ac	6000	468	0	ok
+X26	([] (p)) -> (q)	neg	casaal	6000	468	0	ok
+X26	([] (p)) -> (q)	pos	ours_def	6000	5532	0	ok
+X26	([] (p)) -> (q)	pos	ours_ac	6000	5532	0	ok
+X26	([] (p)) -> (q)	pos	casaal	6000	5532	0	ok
+X27	[][<=3] (((q) | (!q)) U[<2] ((r) -> (!r)))	neg	ours_def	6000	2264	0	ok
+X27	[][<=3] (((q) | (!q)) U[<2] ((r) -> (!r)))	neg	ours_ac	6000	2264	0	ok
+X27	[][<=3] (((q) | (!q)) U[<2] ((r) -> (!r)))	neg	casaal	6000	2264	0	ok
+X27	[][<=3] (((q) | (!q)) U[<2] ((r) -> (!r)))	pos	ours_def	6000	3736	0	ok
+X27	[][<=3] (((q) | (!q)) U[<2] ((r) -> (!r)))	pos	ours_ac	6000	3736	0	ok
+X27	[][<=3] (((q) | (!q)) U[<2] ((r) -> (!r)))	pos	casaal	6000	3736	0	ok
+X28	<>[>=2] (<> ((q) | (r)))	neg	ours_def	6000	973	0	ok
+X28	<>[>=2] (<> ((q) | (r)))	neg	ours_ac	6000	973	0	ok
+X28	<>[>=2] (<> ((q) | (r)))	neg	casaal	6000	973	0	ok
+X28	<>[>=2] (<> ((q) | (r)))	pos	ours_def	6000	5027	0	ok
+X28	<>[>=2] (<> ((q) | (r)))	pos	ours_ac	6000	5027	0	ok
+X28	<>[>=2] (<> ((q) | (r)))	pos	casaal	6000	5027	0	ok
+X29	([][<=1] ((r) | (p))) U[>=2] ((!r) U[<=1] ((!r) | (r)))	neg	ours_def	6000	2465	0	ok
+X29	([][<=1] ((r) | (p))) U[>=2] ((!r) U[<=1] ((!r) | (r)))	neg	ours_ac	6000	2465	0	ok
+X29	([][<=1] ((r) | (p))) U[>=2] ((!r) U[<=1] ((!r) | (r)))	neg	casaal	6000	2465	0	ok
+X29	([][<=1] ((r) | (p))) U[>=2] ((!r) U[<=1] ((!r) | (r)))	pos	ours_def	6000	3535	0	ok
+X29	([][<=1] ((r) | (p))) U[>=2] ((!r) U[<=1] ((!r) | (r)))	pos	ours_ac	6000	3535	0	ok
+X29	([][<=1] ((r) | (p))) U[>=2] ((!r) U[<=1] ((!r) | (r)))	pos	casaal	6000	3535	0	ok
+X30	([][>=2] ([][<3] (q))) | (!q)	neg	ours_def	6000	1843	0	ok
+X30	([][>=2] ([][<3] (q))) | (!q)	neg	ours_ac	6000	1843	0	ok
+X30	([][>=2] ([][<3] (q))) | (!q)	neg	casaal	6000	1843	0	ok
+X30	([][>=2] ([][<3] (q))) | (!q)	pos	ours_def	6000	4157	0	ok
+X30	([][>=2] ([][<3] (q))) | (!q)	pos	ours_ac	6000	4157	0	ok
+X30	([][>=2] ([][<3] (q))) | (!q)	pos	casaal	6000	4157	0	ok
+X31	((<>[>1] (!p)) | ((p) & (r))) U[<=2] ((<>[>2] (p)) | (!(r)))	neg	ours_def	6000	869	0	ok
+X31	((<>[>1] (!p)) | ((p) & (r))) U[<=2] ((<>[>2] (p)) | (!(r)))	neg	ours_ac	6000	869	0	ok
+X31	((<>[>1] (!p)) | ((p) & (r))) U[<=2] ((<>[>2] (p)) | (!(r)))	neg	casaal	6000	869	0	ok
+X31	((<>[>1] (!p)) | ((p) & (r))) U[<=2] ((<>[>2] (p)) | (!(r)))	pos	ours_def	6000	5131	0	ok
+X31	((<>[>1] (!p)) | ((p) & (r))) U[<=2] ((<>[>2] (p)) | (!(r)))	pos	ours_ac	6000	5131	0	ok
+X31	((<>[>1] (!p)) | ((p) & (r))) U[<=2] ((<>[>2] (p)) | (!(r)))	pos	casaal	6000	5131	0	ok
+X32	[][<=2] ((<>[<=1] (q)) & ((p) & (p)))	neg	ours_def	6000	6000	0	ok
+X32	[][<=2] ((<>[<=1] (q)) & ((p) & (p)))	neg	ours_ac	6000	6000	0	ok
+X32	[][<=2] ((<>[<=1] (q)) & ((p) & (p)))	neg	casaal	6000	6000	0	ok
+X32	[][<=2] ((<>[<=1] (q)) & ((p) & (p)))	pos	ours_def	6000	0	0	ok
+X32	[][<=2] ((<>[<=1] (q)) & ((p) & (p)))	pos	ours_ac	6000	0	0	ok
+X32	[][<=2] ((<>[<=1] (q)) & ((p) & (p)))	pos	casaal	6000	0	0	ok
+X33	<>[>1] (!((p) & (q)))	neg	ours_def	6000	0	0	ok
+X33	<>[>1] (!((p) & (q)))	neg	ours_ac	6000	0	0	ok
+X33	<>[>1] (!((p) & (q)))	neg	casaal	6000	0	0	ok
+X33	<>[>1] (!((p) & (q)))	pos	ours_def	6000	6000	0	ok
+X33	<>[>1] (!((p) & (q)))	pos	ours_ac	6000	6000	0	ok
+X33	<>[>1] (!((p) & (q)))	pos	casaal	6000	6000	0	ok
+X34	!(<>[>2] ((q) U[<2] (r)))	neg	ours_def	6000	3292	0	ok
+X34	!(<>[>2] ((q) U[<2] (r)))	neg	ours_ac	6000	3292	0	ok
+X34	!(<>[>2] ((q) U[<2] (r)))	neg	casaal	6000	3292	0	ok
+X34	!(<>[>2] ((q) U[<2] (r)))	pos	ours_def	6000	2708	0	ok
+X34	!(<>[>2] ((q) U[<2] (r)))	pos	ours_ac	6000	2708	0	ok
+X34	!(<>[>2] ((q) U[<2] (r)))	pos	casaal	6000	2708	0	ok
+X35	(<>[>1] (q)) U[>2] (((r) -> (r)) U[>=1] (r))	neg	ours_def	6000	4650	0	ok
+X35	(<>[>1] (q)) U[>2] (((r) -> (r)) U[>=1] (r))	neg	ours_ac	6000	4650	0	ok
+X35	(<>[>1] (q)) U[>2] (((r) -> (r)) U[>=1] (r))	neg	casaal	6000	4650	0	ok
+X35	(<>[>1] (q)) U[>2] (((r) -> (r)) U[>=1] (r))	pos	ours_def	6000	1350	0	ok
+X35	(<>[>1] (q)) U[>2] (((r) -> (r)) U[>=1] (r))	pos	ours_ac	6000	1350	0	ok
+X35	(<>[>1] (q)) U[>2] (((r) -> (r)) U[>=1] (r))	pos	casaal	6000	1350	0	ok
+X36	[] (<>[<2] ((!r) U[<=3] (r)))	neg	ours_def	6000	4250	0	ok
+X36	[] (<>[<2] ((!r) U[<=3] (r)))	neg	ours_ac	6000	4250	0	ok
+X36	[] (<>[<2] ((!r) U[<=3] (r)))	neg	casaal	6000	4250	0	ok
+X36	[] (<>[<2] ((!r) U[<=3] (r)))	pos	ours_def	6000	1750	0	ok
+X36	[] (<>[<2] ((!r) U[<=3] (r)))	pos	ours_ac	6000	1750	0	ok
+X36	[] (<>[<2] ((!r) U[<=3] (r)))	pos	casaal	6000	1750	0	ok
+X37	(q) U[<2] (!(r))	neg	ours_def	6000	1901	0	ok
+X37	(q) U[<2] (!(r))	neg	ours_ac	6000	1901	0	ok
+X37	(q) U[<2] (!(r))	neg	casaal	6000	1901	0	ok
+X37	(q) U[<2] (!(r))	pos	ours_def	6000	4099	0	ok
+X37	(q) U[<2] (!(r))	pos	ours_ac	6000	4099	0	ok
+X37	(q) U[<2] (!(r))	pos	casaal	6000	4099	0	ok
+X38	[] (<>[>1] ([][>=2] (q)))	neg	ours_def	6000	3967	0	ok
+X38	[] (<>[>1] ([][>=2] (q)))	neg	ours_ac	6000	3967	0	ok
+X38	[] (<>[>1] ([][>=2] (q)))	neg	casaal	6000	3967	0	ok
+X38	[] (<>[>1] ([][>=2] (q)))	pos	ours_def	6000	2033	0	ok
+X38	[] (<>[>1] ([][>=2] (q)))	pos	ours_ac	6000	2033	0	ok
+X38	[] (<>[>1] ([][>=2] (q)))	pos	casaal	6000	2033	0	ok
+X39	([] (p)) & (!r)	neg	ours_def	6000	5483	0	ok
+X39	([] (p)) & (!r)	neg	ours_ac	6000	5483	0	ok
+X39	([] (p)) & (!r)	neg	casaal	6000	5483	0	ok
+X39	([] (p)) & (!r)	pos	ours_def	6000	517	0	ok
+X39	([] (p)) & (!r)	pos	ours_ac	6000	517	0	ok
+X39	([] (p)) & (!r)	pos	casaal	6000	517	0	ok
+X40	[][>=2] (((r) | (q)) -> (r))	neg	ours_def	6000	3231	0	ok
+X40	[][>=2] (((r) | (q)) -> (r))	neg	ours_ac	6000	3231	0	ok
+X40	[][>=2] (((r) | (q)) -> (r))	neg	casaal	6000	3231	0	ok
+X40	[][>=2] (((r) | (q)) -> (r))	pos	ours_def	6000	2769	0	ok
+X40	[][>=2] (((r) | (q)) -> (r))	pos	ours_ac	6000	2769	0	ok
+X40	[][>=2] (((r) | (q)) -> (r))	pos	casaal	6000	2769	0	ok
+X41	(q) U[<=2] (!((r) -> (q)))	neg	ours_def	6000	3853	0	ok
+X41	(q) U[<=2] (!((r) -> (q)))	neg	ours_ac	6000	3853	0	ok
+X41	(q) U[<=2] (!((r) -> (q)))	neg	casaal	6000	3853	0	ok
+X41	(q) U[<=2] (!((r) -> (q)))	pos	ours_def	6000	2147	0	ok
+X41	(q) U[<=2] (!((r) -> (q)))	pos	ours_ac	6000	2147	0	ok
+X41	(q) U[<=2] (!((r) -> (q)))	pos	casaal	6000	2147	0	ok
+X42	(((r) -> (r)) -> (<>[>=1] (q))) -> (((p) | (!p)) | (<>[<2] (r)))	neg	ours_def	6000	0	0	ok
+X42	(((r) -> (r)) -> (<>[>=1] (q))) -> (((p) | (!p)) | (<>[<2] (r)))	neg	ours_ac	6000	0	0	ok
+X42	(((r) -> (r)) -> (<>[>=1] (q))) -> (((p) | (!p)) | (<>[<2] (r)))	neg	casaal	6000	0	0	ok
+X42	(((r) -> (r)) -> (<>[>=1] (q))) -> (((p) | (!p)) | (<>[<2] (r)))	pos	ours_def	6000	6000	0	ok
+X42	(((r) -> (r)) -> (<>[>=1] (q))) -> (((p) | (!p)) | (<>[<2] (r)))	pos	ours_ac	6000	6000	0	ok
+X42	(((r) -> (r)) -> (<>[>=1] (q))) -> (((p) | (!p)) | (<>[<2] (r)))	pos	casaal	6000	6000	0	ok
+X43	((r) & ((p) U[>2] (!r))) & (((r) & (p)) U[<=2] (q))	neg	ours_def	6000	6000	0	ok
+X43	((r) & ((p) U[>2] (!r))) & (((r) & (p)) U[<=2] (q))	neg	ours_ac	6000	6000	0	ok
+X43	((r) & ((p) U[>2] (!r))) & (((r) & (p)) U[<=2] (q))	neg	casaal	6000	6000	0	ok
+X43	((r) & ((p) U[>2] (!r))) & (((r) & (p)) U[<=2] (q))	pos	ours_def	6000	0	0	ok
+X43	((r) & ((p) U[>2] (!r))) & (((r) & (p)) U[<=2] (q))	pos	ours_ac	6000	0	0	ok
+X43	((r) & ((p) U[>2] (!r))) & (((r) & (p)) U[<=2] (q))	pos	casaal	6000	0	0	ok
+X44	([][<3] ([][<2] (p))) | (((p) & (!p)) & ([][<=3] (r)))	neg	ours_def	6000	4516	0	ok
+X44	([][<3] ([][<2] (p))) | (((p) & (!p)) & ([][<=3] (r)))	neg	ours_ac	6000	4516	0	ok
+X44	([][<3] ([][<2] (p))) | (((p) & (!p)) & ([][<=3] (r)))	neg	casaal	6000	4516	0	ok
+X44	([][<3] ([][<2] (p))) | (((p) & (!p)) & ([][<=3] (r)))	pos	ours_def	6000	1484	0	ok
+X44	([][<3] ([][<2] (p))) | (((p) & (!p)) & ([][<=3] (r)))	pos	ours_ac	6000	1484	0	ok
+X44	([][<3] ([][<2] (p))) | (((p) & (!p)) & ([][<=3] (r)))	pos	casaal	6000	1484	0	ok
+X45	(<> ((q) & (q))) & (((p) U[<2] (q)) | ((r) U[>2] (p)))	neg	ours_def	6000	4354	0	ok
+X45	(<> ((q) & (q))) & (((p) U[<2] (q)) | ((r) U[>2] (p)))	neg	ours_ac	6000	4354	0	ok
+X45	(<> ((q) & (q))) & (((p) U[<2] (q)) | ((r) U[>2] (p)))	neg	casaal	6000	4354	0	ok
+X45	(<> ((q) & (q))) & (((p) U[<2] (q)) | ((r) U[>2] (p)))	pos	ours_def	6000	1646	0	ok
+X45	(<> ((q) & (q))) & (((p) U[<2] (q)) | ((r) U[>2] (p)))	pos	ours_ac	6000	1646	0	ok
+X45	(<> ((q) & (q))) & (((p) U[<2] (q)) | ((r) U[>2] (p)))	pos	casaal	6000	1646	0	ok
+X46	<>[<2] ((<>[>1] (p)) -> ((p) U[<=1] (r)))	neg	ours_def	6000	2255	0	ok
+X46	<>[<2] ((<>[>1] (p)) -> ((p) U[<=1] (r)))	neg	ours_ac	6000	2255	0	ok
+X46	<>[<2] ((<>[>1] (p)) -> ((p) U[<=1] (r)))	neg	casaal	6000	2255	0	ok
+X46	<>[<2] ((<>[>1] (p)) -> ((p) U[<=1] (r)))	pos	ours_def	6000	3745	0	ok
+X46	<>[<2] ((<>[>1] (p)) -> ((p) U[<=1] (r)))	pos	ours_ac	6000	3745	0	ok
+X46	<>[<2] ((<>[>1] (p)) -> ((p) U[<=1] (r)))	pos	casaal	6000	3745	0	ok
+X47	!((!p) & (<>[<3] (q)))	neg	ours_def	6000	2151	0	ok
+X47	!((!p) & (<>[<3] (q)))	neg	ours_ac	6000	2151	0	ok
+X47	!((!p) & (<>[<3] (q)))	neg	casaal	6000	2151	0	ok
+X47	!((!p) & (<>[<3] (q)))	pos	ours_def	6000	3849	0	ok
+X47	!((!p) & (<>[<3] (q)))	pos	ours_ac	6000	3849	0	ok
+X47	!((!p) & (<>[<3] (q)))	pos	casaal	6000	3849	0	ok
+X48	[][<3] ([][<2] (r))	neg	ours_def	6000	3517	0	ok
+X48	[][<3] ([][<2] (r))	neg	ours_ac	6000	3517	0	ok
+X48	[][<3] ([][<2] (r))	neg	casaal	6000	3517	0	ok
+X48	[][<3] ([][<2] (r))	pos	ours_def	6000	2483	0	ok
+X48	[][<3] ([][<2] (r))	pos	ours_ac	6000	2483	0	ok
+X48	[][<3] ([][<2] (r))	pos	casaal	6000	2483	0	ok
+X49	<>[<=2] (([][>2] (!r)) | (<>[<2] (!p)))	neg	ours_def	6000	605	0	ok
+X49	<>[<=2] (([][>2] (!r)) | (<>[<2] (!p)))	neg	ours_ac	6000	605	0	ok
+X49	<>[<=2] (([][>2] (!r)) | (<>[<2] (!p)))	neg	casaal	6000	605	0	ok
+X49	<>[<=2] (([][>2] (!r)) | (<>[<2] (!p)))	pos	ours_def	6000	5395	0	ok
+X49	<>[<=2] (([][>2] (!r)) | (<>[<2] (!p)))	pos	ours_ac	6000	5395	0	ok
+X49	<>[<=2] (([][>2] (!r)) | (<>[<2] (!p)))	pos	casaal	6000	5395	0	ok
+X50	(((r) -> (r)) -> (!q)) -> (([][<3] (q)) -> ([] (!p)))	neg	ours_def	6000	0	0	ok
+X50	(((r) -> (r)) -> (!q)) -> (([][<3] (q)) -> ([] (!p)))	neg	ours_ac	6000	0	0	ok
+X50	(((r) -> (r)) -> (!q)) -> (([][<3] (q)) -> ([] (!p)))	neg	casaal	6000	0	0	ok
+X50	(((r) -> (r)) -> (!q)) -> (([][<3] (q)) -> ([] (!p)))	pos	ours_def	6000	6000	0	ok
+X50	(((r) -> (r)) -> (!q)) -> (([][<3] (q)) -> ([] (!p)))	pos	ours_ac	6000	6000	0	ok
+X50	(((r) -> (r)) -> (!q)) -> (([][<3] (q)) -> ([] (!p)))	pos	casaal	6000	6000	0	ok
+X51	(((!q) -> (r)) U (<>[<=2] (q))) -> (r)	neg	ours_def	6000	2191	0	ok
+X51	(((!q) -> (r)) U (<>[<=2] (q))) -> (r)	neg	ours_ac	6000	2191	0	ok
+X51	(((!q) -> (r)) U (<>[<=2] (q))) -> (r)	neg	casaal	6000	2191	0	ok
+X51	(((!q) -> (r)) U (<>[<=2] (q))) -> (r)	pos	ours_def	6000	3809	0	ok
+X51	(((!q) -> (r)) U (<>[<=2] (q))) -> (r)	pos	ours_ac	6000	3809	0	ok
+X51	(((!q) -> (r)) U (<>[<=2] (q))) -> (r)	pos	casaal	6000	3809	0	ok
+X52	(!(r)) U[>=2] (((r) U[<=3] (!p)) | ((!r) | (p)))	neg	ours_def	6000	2159	0	ok
+X52	(!(r)) U[>=2] (((r) U[<=3] (!p)) | ((!r) | (p)))	neg	ours_ac	6000	2159	0	ok
+X52	(!(r)) U[>=2] (((r) U[<=3] (!p)) | ((!r) | (p)))	neg	casaal	6000	2159	0	ok
+X52	(!(r)) U[>=2] (((r) U[<=3] (!p)) | ((!r) | (p)))	pos	ours_def	6000	3841	0	ok
+X52	(!(r)) U[>=2] (((r) U[<=3] (!p)) | ((!r) | (p)))	pos	ours_ac	6000	3841	0	ok
+X52	(!(r)) U[>=2] (((r) U[<=3] (!p)) | ((!r) | (p)))	pos	casaal	6000	3841	0	ok
+X53	(p) -> (((q) U[<=1] (p)) | ((q) -> (r)))	neg	ours_def	6000	0	0	ok
+X53	(p) -> (((q) U[<=1] (p)) | ((q) -> (r)))	neg	ours_ac	6000	0	0	ok
+X53	(p) -> (((q) U[<=1] (p)) | ((q) -> (r)))	neg	casaal	6000	0	0	ok
+X53	(p) -> (((q) U[<=1] (p)) | ((q) -> (r)))	pos	ours_def	6000	6000	0	ok
+X53	(p) -> (((q) U[<=1] (p)) | ((q) -> (r)))	pos	ours_ac	6000	6000	0	ok
+X53	(p) -> (((q) U[<=1] (p)) | ((q) -> (r)))	pos	casaal	6000	6000	0	ok
+X54	[][>2] (!r)	neg	ours_def	6000	4028	0	ok
+X54	[][>2] (!r)	neg	ours_ac	6000	4028	0	ok
+X54	[][>2] (!r)	neg	casaal	6000	4028	0	ok
+X54	[][>2] (!r)	pos	ours_def	6000	1972	0	ok
+X54	[][>2] (!r)	pos	ours_ac	6000	1972	0	ok
+X54	[][>2] (!r)	pos	casaal	6000	1972	0	ok
+X55	([] (q)) & (!((!q) U[>1] (r)))	neg	ours_def	6000	5502	0	ok
+X55	([] (q)) & (!((!q) U[>1] (r)))	neg	ours_ac	6000	5502	0	ok
+X55	([] (q)) & (!((!q) U[>1] (r)))	neg	casaal	6000	5502	0	ok
+X55	([] (q)) & (!((!q) U[>1] (r)))	pos	ours_def	6000	498	0	ok
+X55	([] (q)) & (!((!q) U[>1] (r)))	pos	ours_ac	6000	498	0	ok
+X55	([] (q)) & (!((!q) U[>1] (r)))	pos	casaal	6000	498	0	ok
+X56	[][<2] (!(<>[>2] (q)))	neg	ours_def	6000	4077	0	ok
+X56	[][<2] (!(<>[>2] (q)))	neg	ours_ac	6000	4077	0	ok
+X56	[][<2] (!(<>[>2] (q)))	neg	casaal	6000	4077	0	ok
+X56	[][<2] (!(<>[>2] (q)))	pos	ours_def	6000	1923	0	ok
+X56	[][<2] (!(<>[>2] (q)))	pos	ours_ac	6000	1923	0	ok
+X56	[][<2] (!(<>[>2] (q)))	pos	casaal	6000	1923	0	ok
+X57	(<> (p)) | (((q) & (!q)) U[<2] ((!p) U[>=1] (!p)))	neg	ours_def	6000	0	0	ok
+X57	(<> (p)) | (((q) & (!q)) U[<2] ((!p) U[>=1] (!p)))	neg	ours_ac	6000	0	0	ok
+X57	(<> (p)) | (((q) & (!q)) U[<2] ((!p) U[>=1] (!p)))	neg	casaal	6000	0	0	ok
+X57	(<> (p)) | (((q) & (!q)) U[<2] ((!p) U[>=1] (!p)))	pos	ours_def	6000	6000	0	ok
+X57	(<> (p)) | (((q) & (!q)) U[<2] ((!p) U[>=1] (!p)))	pos	ours_ac	6000	6000	0	ok
+X57	(<> (p)) | (((q) & (!q)) U[<2] ((!p) U[>=1] (!p)))	pos	casaal	6000	6000	0	ok
+X58	!(([][<=1] (q)) U[<3] ((q) | (!p)))	neg	ours_def	6000	4058	0	ok
+X58	!(([][<=1] (q)) U[<3] ((q) | (!p)))	neg	ours_ac	6000	4058	0	ok
+X58	!(([][<=1] (q)) U[<3] ((q) | (!p)))	neg	casaal	6000	4058	0	ok
+X58	!(([][<=1] (q)) U[<3] ((q) | (!p)))	pos	ours_def	6000	1942	0	ok
+X58	!(([][<=1] (q)) U[<3] ((q) | (!p)))	pos	ours_ac	6000	1942	0	ok
+X58	!(([][<=1] (q)) U[<3] ((q) | (!p)))	pos	casaal	6000	1942	0	ok
+X59	<>[<3] ([][>=1] (<>[<2] (q)))	neg	ours_def	6000	4186	0	ok
+X59	<>[<3] ([][>=1] (<>[<2] (q)))	neg	ours_ac	6000	4186	0	ok
+X59	<>[<3] ([][>=1] (<>[<2] (q)))	neg	casaal	6000	4186	0	ok
+X59	<>[<3] ([][>=1] (<>[<2] (q)))	pos	ours_def	6000	1814	0	ok
+X59	<>[<3] ([][>=1] (<>[<2] (q)))	pos	ours_ac	6000	1814	0	ok
+X59	<>[<3] ([][>=1] (<>[<2] (q)))	pos	casaal	6000	1814	0	ok
+X60	[][>=1] (!q)	neg	ours_def	6000	4160	0	ok
+X60	[][>=1] (!q)	neg	ours_ac	6000	4160	0	ok
+X60	[][>=1] (!q)	neg	casaal	6000	4160	0	ok
+X60	[][>=1] (!q)	pos	ours_def	6000	1840	0	ok
+X60	[][>=1] (!q)	pos	ours_ac	6000	1840	0	ok
+X60	[][>=1] (!q)	pos	casaal	6000	1840	0	ok
+X61	<>[<=1] (q)	neg	ours_def	6000	2829	0	ok
+X61	<>[<=1] (q)	neg	ours_ac	6000	2829	0	ok
+X61	<>[<=1] (q)	neg	casaal	6000	2829	0	ok
+X61	<>[<=1] (q)	pos	ours_def	6000	3171	0	ok
+X61	<>[<=1] (q)	pos	ours_ac	6000	3171	0	ok
+X61	<>[<=1] (q)	pos	casaal	6000	3171	0	ok
+X62	(((r) -> (!q)) U[<=1] ((p) & (!p))) U[<=3] (([][>=2] (q)) -> (q))	neg	ours_def	6000	166	0	ok
+X62	(((r) -> (!q)) U[<=1] ((p) & (!p))) U[<=3] (([][>=2] (q)) -> (q))	neg	ours_ac	6000	166	0	ok
+X62	(((r) -> (!q)) U[<=1] ((p) & (!p))) U[<=3] (([][>=2] (q)) -> (q))	neg	casaal	6000	166	0	ok
+X62	(((r) -> (!q)) U[<=1] ((p) & (!p))) U[<=3] (([][>=2] (q)) -> (q))	pos	ours_def	6000	5834	0	ok
+X62	(((r) -> (!q)) U[<=1] ((p) & (!p))) U[<=3] (([][>=2] (q)) -> (q))	pos	ours_ac	6000	5834	0	ok
+X62	(((r) -> (!q)) U[<=1] ((p) & (!p))) U[<=3] (([][>=2] (q)) -> (q))	pos	casaal	6000	5834	0	ok
+X63	<>[<3] ([][>2] (!(!r)))	neg	ours_def	6000	4584	0	ok
+X63	<>[<3] ([][>2] (!(!r)))	neg	ours_ac	6000	4584	0	ok
+X63	<>[<3] ([][>2] (!(!r)))	neg	casaal	6000	4584	0	ok
+X63	<>[<3] ([][>2] (!(!r)))	pos	ours_def	6000	1416	0	ok
+X63	<>[<3] ([][>2] (!(!r)))	pos	ours_ac	6000	1416	0	ok
+X63	<>[<3] ([][>2] (!(!r)))	pos	casaal	6000	1416	0	ok
+X64	(r) & ((<>[<=1] (r)) U[<=3] (q))	neg	ours_def	6000	5679	0	ok
+X64	(r) & ((<>[<=1] (r)) U[<=3] (q))	neg	ours_ac	6000	5679	0	ok
+X64	(r) & ((<>[<=1] (r)) U[<=3] (q))	neg	casaal	6000	5679	0	ok
+X64	(r) & ((<>[<=1] (r)) U[<=3] (q))	pos	ours_def	6000	321	0	ok
+X64	(r) & ((<>[<=1] (r)) U[<=3] (q))	pos	ours_ac	6000	321	0	ok
+X64	(r) & ((<>[<=1] (r)) U[<=3] (q))	pos	casaal	6000	321	0	ok
+X65	([][>1] (<>[>2] (p))) | (q)	neg	ours_def	6000	2177	0	ok
+X65	([][>1] (<>[>2] (p))) | (q)	neg	ours_ac	6000	2177	0	ok
+X65	([][>1] (<>[>2] (p))) | (q)	neg	casaal	6000	2177	0	ok
+X65	([][>1] (<>[>2] (p))) | (q)	pos	ours_def	6000	3823	0	ok
+X65	([][>1] (<>[>2] (p))) | (q)	pos	ours_ac	6000	3823	0	ok
+X65	([][>1] (<>[>2] (p))) | (q)	pos	casaal	6000	3823	0	ok
+X66	((<>[<=2] (q)) | ((!r) | (r))) -> (r)	neg	ours_def	6000	4052	0	ok
+X66	((<>[<=2] (q)) | ((!r) | (r))) -> (r)	neg	ours_ac	6000	4052	0	ok
+X66	((<>[<=2] (q)) | ((!r) | (r))) -> (r)	neg	casaal	6000	4052	0	ok
+X66	((<>[<=2] (q)) | ((!r) | (r))) -> (r)	pos	ours_def	6000	1948	0	ok
+X66	((<>[<=2] (q)) | ((!r) | (r))) -> (r)	pos	ours_ac	6000	1948	0	ok
+X66	((<>[<=2] (q)) | ((!r) | (r))) -> (r)	pos	casaal	6000	1948	0	ok
+X67	(([][<=2] (q)) | ((q) U (r))) U[<=3] ((r) U[>2] ((q) -> (!p)))	neg	ours_def	6000	4700	0	ok
+X67	(([][<=2] (q)) | ((q) U (r))) U[<=3] ((r) U[>2] ((q) -> (!p)))	neg	ours_ac	6000	4700	0	ok
+X67	(([][<=2] (q)) | ((q) U (r))) U[<=3] ((r) U[>2] ((q) -> (!p)))	neg	casaal	6000	4700	0	ok
+X67	(([][<=2] (q)) | ((q) U (r))) U[<=3] ((r) U[>2] ((q) -> (!p)))	pos	ours_def	6000	1300	0	ok
+X67	(([][<=2] (q)) | ((q) U (r))) U[<=3] ((r) U[>2] ((q) -> (!p)))	pos	ours_ac	6000	1300	0	ok
+X67	(([][<=2] (q)) | ((q) U (r))) U[<=3] ((r) U[>2] ((q) -> (!p)))	pos	casaal	6000	1300	0	ok
+X68	!(<>[<=2] ([][<3] (p)))	neg	ours_def	6000	2719	0	ok
+X68	!(<>[<=2] ([][<3] (p)))	neg	ours_ac	6000	2719	0	ok
+X68	!(<>[<=2] ([][<3] (p)))	neg	casaal	6000	2719	0	ok
+X68	!(<>[<=2] ([][<3] (p)))	pos	ours_def	6000	3281	0	ok
+X68	!(<>[<=2] ([][<3] (p)))	pos	ours_ac	6000	3281	0	ok
+X68	!(<>[<=2] ([][<3] (p)))	pos	casaal	6000	3281	0	ok
+X69	(((p) -> (q)) -> ((p) U[>1] (q))) -> ((!(r)) & (q))	neg	ours_def	6000	1460	0	ok
+X69	(((p) -> (q)) -> ((p) U[>1] (q))) -> ((!(r)) & (q))	neg	ours_ac	6000	1460	0	ok
+X69	(((p) -> (q)) -> ((p) U[>1] (q))) -> ((!(r)) & (q))	neg	casaal	6000	1460	0	ok
+X69	(((p) -> (q)) -> ((p) U[>1] (q))) -> ((!(r)) & (q))	pos	ours_def	6000	4540	0	ok
+X69	(((p) -> (q)) -> ((p) U[>1] (q))) -> ((!(r)) & (q))	pos	ours_ac	6000	4540	0	ok
+X69	(((p) -> (q)) -> ((p) U[>1] (q))) -> ((!(r)) & (q))	pos	casaal	6000	4540	0	ok
+X70	<>[>1] ([][<2] (<>[<=3] (q)))	neg	ours_def	6000	2107	0	ok
+X70	<>[>1] ([][<2] (<>[<=3] (q)))	neg	ours_ac	6000	2107	0	ok
+X70	<>[>1] ([][<2] (<>[<=3] (q)))	neg	casaal	6000	2107	0	ok
+X70	<>[>1] ([][<2] (<>[<=3] (q)))	pos	ours_def	6000	3893	0	ok
+X70	<>[>1] ([][<2] (<>[<=3] (q)))	pos	ours_ac	6000	3893	0	ok
+X70	<>[>1] ([][<2] (<>[<=3] (q)))	pos	casaal	6000	3893	0	ok
+X71	(((q) -> (r)) -> ((r) U[>1] (!r))) & (([][<=1] (r)) & ((!r) | (p)))	neg	ours_def	6000	6000	0	ok
+X71	(((q) -> (r)) -> ((r) U[>1] (!r))) & (([][<=1] (r)) & ((!r) | (p)))	neg	ours_ac	6000	6000	0	ok
+X71	(((q) -> (r)) -> ((r) U[>1] (!r))) & (([][<=1] (r)) & ((!r) | (p)))	neg	casaal	6000	6000	0	ok
+X71	(((q) -> (r)) -> ((r) U[>1] (!r))) & (([][<=1] (r)) & ((!r) | (p)))	pos	ours_def	6000	0	0	ok
+X71	(((q) -> (r)) -> ((r) U[>1] (!r))) & (([][<=1] (r)) & ((!r) | (p)))	pos	ours_ac	6000	0	0	ok
+X71	(((q) -> (r)) -> ((r) U[>1] (!r))) & (([][<=1] (r)) & ((!r) | (p)))	pos	casaal	6000	0	0	ok
+X72	!((!q) -> (<>[>2] (p)))	neg	ours_def	6000	4386	0	ok
+X72	!((!q) -> (<>[>2] (p)))	neg	ours_ac	6000	4386	0	ok
+X72	!((!q) -> (<>[>2] (p)))	neg	casaal	6000	4386	0	ok
+X72	!((!q) -> (<>[>2] (p)))	pos	ours_def	6000	1614	0	ok
+X72	!((!q) -> (<>[>2] (p)))	pos	ours_ac	6000	1614	0	ok
+X72	!((!q) -> (<>[>2] (p)))	pos	casaal	6000	1614	0	ok
+X73	<>[>=2] (!([][<=1] (r)))	neg	ours_def	6000	1427	0	ok
+X73	<>[>=2] (!([][<=1] (r)))	neg	ours_ac	6000	1427	0	ok
+X73	<>[>=2] (!([][<=1] (r)))	neg	casaal	6000	1427	0	ok
+X73	<>[>=2] (!([][<=1] (r)))	pos	ours_def	6000	4573	0	ok
+X73	<>[>=2] (!([][<=1] (r)))	pos	ours_ac	6000	4573	0	ok
+X73	<>[>=2] (!([][<=1] (r)))	pos	casaal	6000	4573	0	ok
+X74	(<> ((q) & (r))) -> (!(p))	neg	ours_def	6000	0	0	ok
+X74	(<> ((q) & (r))) -> (!(p))	neg	ours_ac	6000	0	0	ok
+X74	(<> ((q) & (r))) -> (!(p))	neg	casaal	6000	0	0	ok
+X74	(<> ((q) & (r))) -> (!(p))	pos	ours_def	6000	6000	0	ok
+X74	(<> ((q) & (r))) -> (!(p))	pos	ours_ac	6000	6000	0	ok
+X74	(<> ((q) & (r))) -> (!(p))	pos	casaal	6000	6000	0	ok
+X75	<>[<=1] (<>[<=3] ((!q) U[>2] (r)))	neg	ours_def	6000	3931	0	ok
+X75	<>[<=1] (<>[<=3] ((!q) U[>2] (r)))	neg	ours_ac	6000	3931	0	ok
+X75	<>[<=1] (<>[<=3] ((!q) U[>2] (r)))	neg	casaal	6000	3931	0	ok
+X75	<>[<=1] (<>[<=3] ((!q) U[>2] (r)))	pos	ours_def	6000	2069	0	ok
+X75	<>[<=1] (<>[<=3] ((!q) U[>2] (r)))	pos	ours_ac	6000	2069	0	ok
+X75	<>[<=1] (<>[<=3] ((!q) U[>2] (r)))	pos	casaal	6000	2069	0	ok
+X76	(((q) U (r)) & ([][<3] (q))) -> ((r) U[>1] (r))	neg	ours_def	6000	461	0	ok
+X76	(((q) U (r)) & ([][<3] (q))) -> ((r) U[>1] (r))	neg	ours_ac	6000	461	0	ok
+X76	(((q) U (r)) & ([][<3] (q))) -> ((r) U[>1] (r))	neg	casaal	6000	461	0	ok
+X76	(((q) U (r)) & ([][<3] (q))) -> ((r) U[>1] (r))	pos	ours_def	6000	5539	0	ok
+X76	(((q) U (r)) & ([][<3] (q))) -> ((r) U[>1] (r))	pos	ours_ac	6000	5539	0	ok
+X76	(((q) U (r)) & ([][<3] (q))) -> ((r) U[>1] (r))	pos	casaal	6000	5539	0	ok
+X77	!(<>[<=2] (p))	neg	ours_def	6000	3339	0	ok
+X77	!(<>[<=2] (p))	neg	ours_ac	6000	3339	0	ok
+X77	!(<>[<=2] (p))	neg	casaal	6000	3339	0	ok
+X77	!(<>[<=2] (p))	pos	ours_def	6000	2661	0	ok
+X77	!(<>[<=2] (p))	pos	ours_ac	6000	2661	0	ok
+X77	!(<>[<=2] (p))	pos	casaal	6000	2661	0	ok
+X78	(!q) | (([][>=2] (r)) | ((!r) U[>1] (q)))	neg	ours_def	6000	607	0	ok
+X78	(!q) | (([][>=2] (r)) | ((!r) U[>1] (q)))	neg	ours_ac	6000	607	0	ok
+X78	(!q) | (([][>=2] (r)) | ((!r) U[>1] (q)))	neg	casaal	6000	607	0	ok
+X78	(!q) | (([][>=2] (r)) | ((!r) U[>1] (q)))	pos	ours_def	6000	5393	0	ok
+X78	(!q) | (([][>=2] (r)) | ((!r) U[>1] (q)))	pos	ours_ac	6000	5393	0	ok
+X78	(!q) | (([][>=2] (r)) | ((!r) U[>1] (q)))	pos	casaal	6000	5393	0	ok
+X79	[] (!((!p) | (!p)))	neg	ours_def	6000	4964	0	ok
+X79	[] (!((!p) | (!p)))	neg	ours_ac	6000	4964	0	ok
+X79	[] (!((!p) | (!p)))	neg	casaal	6000	4964	0	ok
+X79	[] (!((!p) | (!p)))	pos	ours_def	6000	1036	0	ok
+X79	[] (!((!p) | (!p)))	pos	ours_ac	6000	1036	0	ok
+X79	[] (!((!p) | (!p)))	pos	casaal	6000	1036	0	ok
+X80	!(((r) | (p)) U[<=2] (!q))	neg	ours_def	6000	4512	0	ok
+X80	!(((r) | (p)) U[<=2] (!q))	neg	ours_ac	6000	4512	0	ok
+X80	!(((r) | (p)) U[<=2] (!q))	neg	casaal	6000	4512	0	ok
+X80	!(((r) | (p)) U[<=2] (!q))	pos	ours_def	6000	1488	0	ok
+X80	!(((r) | (p)) U[<=2] (!q))	pos	ours_ac	6000	1488	0	ok
+X80	!(((r) | (p)) U[<=2] (!q))	pos	casaal	6000	1488	0	ok
+X81	(!r) | (((r) & (p)) | ((p) U[>1] (r)))	neg	ours_def	6000	1926	0	ok
+X81	(!r) | (((r) & (p)) | ((p) U[>1] (r)))	neg	ours_ac	6000	1926	0	ok
+X81	(!r) | (((r) & (p)) | ((p) U[>1] (r)))	neg	casaal	6000	1926	0	ok
+X81	(!r) | (((r) & (p)) | ((p) U[>1] (r)))	pos	ours_def	6000	4074	0	ok
+X81	(!r) | (((r) & (p)) | ((p) U[>1] (r)))	pos	ours_ac	6000	4074	0	ok
+X81	(!r) | (((r) & (p)) | ((p) U[>1] (r)))	pos	casaal	6000	4074	0	ok
+X82	<>[<2] (p)	neg	ours_def	6000	2846	0	ok
+X82	<>[<2] (p)	neg	ours_ac	6000	2846	0	ok
+X82	<>[<2] (p)	neg	casaal	6000	2846	0	ok
+X82	<>[<2] (p)	pos	ours_def	6000	3154	0	ok
+X82	<>[<2] (p)	pos	ours_ac	6000	3154	0	ok
+X82	<>[<2] (p)	pos	casaal	6000	3154	0	ok
+X83	(<>[<3] (r)) U[<3] ((<>[>=1] (q)) U[<2] (!(p)))	neg	ours_def	6000	1220	0	ok
+X83	(<>[<3] (r)) U[<3] ((<>[>=1] (q)) U[<2] (!(p)))	neg	ours_ac	6000	1220	0	ok
+X83	(<>[<3] (r)) U[<3] ((<>[>=1] (q)) U[<2] (!(p)))	neg	casaal	6000	1220	0	ok
+X83	(<>[<3] (r)) U[<3] ((<>[>=1] (q)) U[<2] (!(p)))	pos	ours_def	6000	4780	0	ok
+X83	(<>[<3] (r)) U[<3] ((<>[>=1] (q)) U[<2] (!(p)))	pos	ours_ac	6000	4780	0	ok
+X83	(<>[<3] (r)) U[<3] ((<>[>=1] (q)) U[<2] (!(p)))	pos	casaal	6000	4780	0	ok
+X84	<>[>=2] (<>[>1] (!(p)))	neg	ours_def	6000	1682	0	ok
+X84	<>[>=2] (<>[>1] (!(p)))	neg	ours_ac	6000	1682	0	ok
+X84	<>[>=2] (<>[>1] (!(p)))	neg	casaal	6000	1682	0	ok
+X84	<>[>=2] (<>[>1] (!(p)))	pos	ours_def	6000	4318	0	ok
+X84	<>[>=2] (<>[>1] (!(p)))	pos	ours_ac	6000	4318	0	ok
+X84	<>[>=2] (<>[>1] (!(p)))	pos	casaal	6000	4318	0	ok
+X85	(p) | (([][>2] (q)) & ((r) U[<=2] (!p)))	neg	ours_def	6000	4091	0	ok
+X85	(p) | (([][>2] (q)) & ((r) U[<=2] (!p)))	neg	ours_ac	6000	4091	0	ok
+X85	(p) | (([][>2] (q)) & ((r) U[<=2] (!p)))	neg	casaal	6000	4091	0	ok
+X85	(p) | (([][>2] (q)) & ((r) U[<=2] (!p)))	pos	ours_def	6000	1909	0	ok
+X85	(p) | (([][>2] (q)) & ((r) U[<=2] (!p)))	pos	ours_ac	6000	1909	0	ok
+X85	(p) | (([][>2] (q)) & ((r) U[<=2] (!p)))	pos	casaal	6000	1909	0	ok
+X86	([][<=2] (!(p))) U[<2] (<> (<>[>=2] (q)))	neg	ours_def	6000	2693	0	ok
+X86	([][<=2] (!(p))) U[<2] (<> (<>[>=2] (q)))	neg	ours_ac	6000	2693	0	ok
+X86	([][<=2] (!(p))) U[<2] (<> (<>[>=2] (q)))	neg	casaal	6000	2693	0	ok
+X86	([][<=2] (!(p))) U[<2] (<> (<>[>=2] (q)))	pos	ours_def	6000	3307	0	ok
+X86	([][<=2] (!(p))) U[<2] (<> (<>[>=2] (q)))	pos	ours_ac	6000	3307	0	ok
+X86	([][<=2] (!(p))) U[<2] (<> (<>[>=2] (q)))	pos	casaal	6000	3307	0	ok
+X87	<>[<=2] (<>[<3] ([] (q)))	neg	ours_def	6000	4687	0	ok
+X87	<>[<=2] (<>[<3] ([] (q)))	neg	ours_ac	6000	4687	0	ok
+X87	<>[<=2] (<>[<3] ([] (q)))	neg	casaal	6000	4687	0	ok
+X87	<>[<=2] (<>[<3] ([] (q)))	pos	ours_def	6000	1313	0	ok
+X87	<>[<=2] (<>[<3] ([] (q)))	pos	ours_ac	6000	1313	0	ok
+X87	<>[<=2] (<>[<3] ([] (q)))	pos	casaal	6000	1313	0	ok
+X88	(((r) U[>=1] (p)) & (r)) U[>=1] (((r) | (r)) U[>2] (!p))	neg	ours_def	6000	5921	0	ok
+X88	(((r) U[>=1] (p)) & (r)) U[>=1] (((r) | (r)) U[>2] (!p))	neg	ours_ac	6000	5921	0	ok
+X88	(((r) U[>=1] (p)) & (r)) U[>=1] (((r) | (r)) U[>2] (!p))	neg	casaal	6000	5921	0	ok
+X88	(((r) U[>=1] (p)) & (r)) U[>=1] (((r) | (r)) U[>2] (!p))	pos	ours_def	6000	79	0	ok
+X88	(((r) U[>=1] (p)) & (r)) U[>=1] (((r) | (r)) U[>2] (!p))	pos	ours_ac	6000	79	0	ok
+X88	(((r) U[>=1] (p)) & (r)) U[>=1] (((r) | (r)) U[>2] (!p))	pos	casaal	6000	79	0	ok
+X89	<>[>=1] ((p) -> (<>[<2] (!p)))	neg	ours_def	6000	1327	0	ok
+X89	<>[>=1] ((p) -> (<>[<2] (!p)))	neg	ours_ac	6000	1327	0	ok
+X89	<>[>=1] ((p) -> (<>[<2] (!p)))	neg	casaal	6000	1327	0	ok
+X89	<>[>=1] ((p) -> (<>[<2] (!p)))	pos	ours_def	6000	4673	0	ok
+X89	<>[>=1] ((p) -> (<>[<2] (!p)))	pos	ours_ac	6000	4673	0	ok
+X89	<>[>=1] ((p) -> (<>[<2] (!p)))	pos	casaal	6000	4673	0	ok
+X90	[] (p)	neg	ours_def	6000	4916	0	ok
+X90	[] (p)	neg	ours_ac	6000	4916	0	ok
+X90	[] (p)	neg	casaal	6000	4916	0	ok
+X90	[] (p)	pos	ours_def	6000	1084	0	ok
+X90	[] (p)	pos	ours_ac	6000	1084	0	ok
+X90	[] (p)	pos	casaal	6000	1084	0	ok
+X91	([][<=1] (<>[<=1] (!q))) & ((!(q)) & (r))	neg	ours_def	6000	4121	0	ok
+X91	([][<=1] (<>[<=1] (!q))) & ((!(q)) & (r))	neg	ours_ac	6000	4121	0	ok
+X91	([][<=1] (<>[<=1] (!q))) & ((!(q)) & (r))	neg	casaal	6000	4121	0	ok
+X91	([][<=1] (<>[<=1] (!q))) & ((!(q)) & (r))	pos	ours_def	6000	1879	0	ok
+X91	([][<=1] (<>[<=1] (!q))) & ((!(q)) & (r))	pos	ours_ac	6000	1879	0	ok
+X91	([][<=1] (<>[<=1] (!q))) & ((!(q)) & (r))	pos	casaal	6000	1879	0	ok
+X92	<>[<=2] ((<> (p)) | (!(r)))	neg	ours_def	6000	977	0	ok
+X92	<>[<=2] ((<> (p)) | (!(r)))	neg	ours_ac	6000	977	0	ok
+X92	<>[<=2] ((<> (p)) | (!(r)))	neg	casaal	6000	977	0	ok
+X92	<>[<=2] ((<> (p)) | (!(r)))	pos	ours_def	6000	5023	0	ok
+X92	<>[<=2] ((<> (p)) | (!(r)))	pos	ours_ac	6000	5023	0	ok
+X92	<>[<=2] ((<> (p)) | (!(r)))	pos	casaal	6000	5023	0	ok
+X93	(<>[>=1] (!(r))) -> (!((q) -> (q)))	neg	ours_def	6000	5295	0	ok
+X93	(<>[>=1] (!(r))) -> (!((q) -> (q)))	neg	ours_ac	6000	5295	0	ok
+X93	(<>[>=1] (!(r))) -> (!((q) -> (q)))	neg	casaal	6000	5295	0	ok
+X93	(<>[>=1] (!(r))) -> (!((q) -> (q)))	pos	ours_def	6000	705	0	ok
+X93	(<>[>=1] (!(r))) -> (!((q) -> (q)))	pos	ours_ac	6000	705	0	ok
+X93	(<>[>=1] (!(r))) -> (!((q) -> (q)))	pos	casaal	6000	705	0	ok
+X94	<>[<=2] (!([][<3] (q)))	neg	ours_def	6000	2373	0	ok
+X94	<>[<=2] (!([][<3] (q)))	neg	ours_ac	6000	2373	0	ok
+X94	<>[<=2] (!([][<3] (q)))	neg	casaal	6000	2373	0	ok
+X94	<>[<=2] (!([][<3] (q)))	pos	ours_def	6000	3627	0	ok
+X94	<>[<=2] (!([][<3] (q)))	pos	ours_ac	6000	3627	0	ok
+X94	<>[<=2] (!([][<3] (q)))	pos	casaal	6000	3627	0	ok
+X95	<>[>2] ((r) -> ([] (!q)))	neg	ours_def	6000	0	0	ok
+X95	<>[>2] ((r) -> ([] (!q)))	neg	ours_ac	6000	0	0	ok
+X95	<>[>2] ((r) -> ([] (!q)))	neg	casaal	6000	0	0	ok
+X95	<>[>2] ((r) -> ([] (!q)))	pos	ours_def	6000	6000	0	ok
+X95	<>[>2] ((r) -> ([] (!q)))	pos	ours_ac	6000	6000	0	ok
+X95	<>[>2] ((r) -> ([] (!q)))	pos	casaal	6000	6000	0	ok
+X96	((q) & (<>[>2] (p))) & (r)	neg	ours_def	6000	6000	0	ok
+X96	((q) & (<>[>2] (p))) & (r)	neg	ours_ac	6000	6000	0	ok
+X96	((q) & (<>[>2] (p))) & (r)	neg	casaal	6000	6000	0	ok
+X96	((q) & (<>[>2] (p))) & (r)	pos	ours_def	6000	0	0	ok
+X96	((q) & (<>[>2] (p))) & (r)	pos	ours_ac	6000	0	0	ok
+X96	((q) & (<>[>2] (p))) & (r)	pos	casaal	6000	0	0	ok
+X97	[][>2] ((<>[<=1] (q)) -> ((q) | (q)))	neg	ours_def	6000	643	0	ok
+X97	[][>2] ((<>[<=1] (q)) -> ((q) | (q)))	neg	ours_ac	6000	643	0	ok
+X97	[][>2] ((<>[<=1] (q)) -> ((q) | (q)))	neg	casaal	6000	643	0	ok
+X97	[][>2] ((<>[<=1] (q)) -> ((q) | (q)))	pos	ours_def	6000	5357	0	ok
+X97	[][>2] ((<>[<=1] (q)) -> ((q) | (q)))	pos	ours_ac	6000	5357	0	ok
+X97	[][>2] ((<>[<=1] (q)) -> ((q) | (q)))	pos	casaal	6000	5357	0	ok
+X98	(!p) & ([][<2] (q))	neg	ours_def	6000	4299	0	ok
+X98	(!p) & ([][<2] (q))	neg	ours_ac	6000	4299	0	ok
+X98	(!p) & ([][<2] (q))	neg	casaal	6000	4299	0	ok
+X98	(!p) & ([][<2] (q))	pos	ours_def	6000	1701	0	ok
+X98	(!p) & ([][<2] (q))	pos	ours_ac	6000	1701	0	ok
+X98	(!p) & ([][<2] (q))	pos	casaal	6000	1701	0	ok
+X99	(!((r) | (q))) U (<> (!q))	neg	ours_def	6000	524	0	ok
+X99	(!((r) | (q))) U (<> (!q))	neg	ours_ac	6000	524	0	ok
+X99	(!((r) | (q))) U (<> (!q))	neg	casaal	6000	524	0	ok
+X99	(!((r) | (q))) U (<> (!q))	pos	ours_def	6000	5476	0	ok
+X99	(!((r) | (q))) U (<> (!q))	pos	ours_ac	6000	5476	0	ok
+X99	(!((r) | (q))) U (<> (!q))	pos	casaal	6000	5476	0	ok
+X100	[][>=1] (<>[>1] (r))	neg	ours_def	6000	2870	0	ok
+X100	[][>=1] (<>[>1] (r))	neg	ours_ac	6000	2870	0	ok
+X100	[][>=1] (<>[>1] (r))	neg	casaal	6000	2870	0	ok
+X100	[][>=1] (<>[>1] (r))	pos	ours_def	6000	3130	0	ok
+X100	[][>=1] (<>[>1] (r))	pos	ours_ac	6000	3130	0	ok
+X100	[][>=1] (<>[>1] (r))	pos	casaal	6000	3130	0	ok

@@ -1,0 +1,863 @@
+[2026-10-12 16:35:22] start full
+F1 run 1: ok
+F1 run 2: ok
+F1 run 3: ok
+F1 run 4: ok
+F1 run 5: ok
+F2 run 1: ok
+F2 run 2: ok
+F2 run 3: ok
+F2 run 4: ok
+F2 run 5: ok
+F3 run 1: ok
+F3 run 2: ok
+F3 run 3: ok
+F3 run 4: ok
+F3 run 5: ok
+F3b run 1: ok
+F3b run 2: ok
+F3b run 3: ok
+F3b run 4: ok
+F3b run 5: ok
+F4 run 1: ok
+F4 run 2: ok
+F4 run 3: ok
+F4 run 4: ok
+F4 run 5: ok
+F5 run 1: ok
+F5 run 2: ok
+F5 run 3: ok
+F5 run 4: ok
+F5 run 5: ok
+F6 run 1: ok
+F6 run 2: ok
+F6 run 3: ok
+F6 run 4: ok
+F6 run 5: ok
+F7 run 1: ok
+F7 run 2: ok
+F7 run 3: ok
+F7 run 4: ok
+F7 run 5: ok
+F8 run 1: ok
+F8 run 2: ok
+F8 run 3: ok
+F8 run 4: ok
+F8 run 5: ok
+F9 run 1: ok
+F9 run 2: ok
+F9 run 3: ok
+F9 run 4: ok
+F9 run 5: ok
+F10 run 1: ok
+F10 run 2: ok
+F10 run 3: ok
+F10 run 4: ok
+F10 run 5: ok
+F11 run 1: ok
+F11 run 2: ok
+F11 run 3: ok
+F11 run 4: ok
+F11 run 5: ok
+F12 run 1: ok
+F12 run 2: ok
+F12 run 3: ok
+F12 run 4: ok
+F12 run 5: ok
+F13 run 1: ok
+F13 run 2: ok
+F13 run 3: ok
+F13 run 4: ok
+F13 run 5: ok
+F14 run 1: ok
+F14 run 2: ok
+F14 run 3: ok
+F14 run 4: ok
+F14 run 5: ok
+R1 run 1: ok
+R1 run 2: ok
+R1 run 3: ok
+R1 run 4: ok
+R1 run 5: ok
+R2 run 1: ok
+R2 run 2: ok
+R2 run 3: ok
+R2 run 4: ok
+R2 run 5: ok
+R3 run 1: ok
+R3 run 2: ok
+R3 run 3: ok
+R3 run 4: ok
+R3 run 5: ok
+R4 run 1: ok
+R4 run 2: ok
+R4 run 3: ok
+R4 run 4: ok
+R4 run 5: ok
+R5 run 1: ok
+R5 run 2: ok
+R5 run 3: ok
+R5 run 4: ok
+R5 run 5: ok
+R6 run 1: ok
+R6 run 2: ok
+R6 run 3: ok
+R6 run 4: ok
+R6 run 5: ok
+R7 run 1: timeout
+R8 run 1: timeout
+N1 run 1: ok
+N1 run 2: ok
+N1 run 3: ok
+N1 run 4: ok
+N1 run 5: ok
+N2 run 1: ok
+N2 run 2: ok
+N2 run 3: ok
+N2 run 4: ok
+N2 run 5: ok
+N3 run 1: ok
+N3 run 2: ok
+N3 run 3: ok
+N3 run 4: ok
+N3 run 5: ok
+N4 run 1: ok
+N4 run 2: ok
+N4 run 3: ok
+N4 run 4: ok
+N4 run 5: ok
+N5 run 1: ok
+N5 run 2: ok
+N5 run 3: ok
+N5 run 4: ok
+N5 run 5: ok
+N6 run 1: ok
+N6 run 2: ok
+N6 run 3: ok
+N6 run 4: ok
+N6 run 5: ok
+N7 run 1: ok
+N7 run 2: ok
+N7 run 3: ok
+N7 run 4: ok
+N7 run 5: ok
+N8 run 1: ok
+N8 run 2: ok
+N8 run 3: ok
+N8 run 4: ok
+N8 run 5: ok
+ours_results.tsv written
+[2026-10-12 18:00:21] end full
+[2026-10-12 18:00:21] start noweak
+F1 run 1: ok
+F1 run 2: ok
+F1 run 3: ok
+F1 run 4: ok
+F1 run 5: ok
+F2 run 1: ok
+F2 run 2: ok
+F2 run 3: ok
+F2 run 4: ok
+F2 run 5: ok
+F3 run 1: ok
+F3 run 2: ok
+F3 run 3: ok
+F3 run 4: ok
+F3 run 5: ok
+F3b run 1: ok
+F3b run 2: ok
+F3b run 3: ok
+F3b run 4: ok
+F3b run 5: ok
+F4 run 1: ok
+F4 run 2: ok
+F4 run 3: ok
+F4 run 4: ok
+F4 run 5: ok
+F5 run 1: ok
+F5 run 2: ok
+F5 run 3: ok
+F5 run 4: ok
+F5 run 5: ok
+F6 run 1: ok
+F6 run 2: ok
+F6 run 3: ok
+F6 run 4: ok
+F6 run 5: ok
+F7 run 1: ok
+F7 run 2: ok
+F7 run 3: ok
+F7 run 4: ok
+F7 run 5: ok
+F8 run 1: ok
+F8 run 2: ok
+F8 run 3: ok
+F8 run 4: ok
+F8 run 5: ok
+F9 run 1: ok
+F9 run 2: ok
+F9 run 3: ok
+F9 run 4: ok
+F9 run 5: ok
+F10 run 1: ok
+F10 run 2: ok
+F10 run 3: ok
+F10 run 4: ok
+F10 run 5: ok
+F11 run 1: ok
+F11 run 2: ok
+F11 run 3: ok
+F11 run 4: ok
+F11 run 5: ok
+F12 run 1: ok
+F12 run 2: ok
+F12 run 3: ok
+F12 run 4: ok
+F12 run 5: ok
+F13 run 1: ok
+F13 run 2: ok
+F13 run 3: ok
+F13 run 4: ok
+F13 run 5: ok
+F14 run 1: ok
+F14 run 2: ok
+F14 run 3: ok
+F14 run 4: ok
+F14 run 5: ok
+R1 run 1: ok
+R1 run 2: ok
+R1 run 3: ok
+R1 run 4: ok
+R1 run 5: ok
+R2 run 1: ok
+R2 run 2: ok
+R2 run 3: ok
+R2 run 4: ok
+R2 run 5: ok
+R3 run 1: ok
+R3 run 2: ok
+R3 run 3: ok
+R3 run 4: ok
+R3 run 5: ok
+R4 run 1: ok
+R4 run 2: ok
+R4 run 3: ok
+R4 run 4: ok
+R4 run 5: ok
+R5 run 1: ok
+R5 run 2: ok
+R5 run 3: ok
+R5 run 4: ok
+R5 run 5: ok
+R6 run 1: timeout
+R7 run 1: timeout
+R8 run 1: timeout
+N1 run 1: ok
+N1 run 2: ok
+N1 run 3: ok
+N1 run 4: ok
+N1 run 5: ok
+N2 run 1: ok
+N2 run 2: ok
+N2 run 3: ok
+N2 run 4: ok
+N2 run 5: ok
+N3 run 1: ok
+N3 run 2: ok
+N3 run 3: ok
+N3 run 4: ok
+N3 run 5: ok
+N4 run 1: ok
+N4 run 2: ok
+N4 run 3: ok
+N4 run 4: ok
+N4 run 5: ok
+N5 run 1: ok
+N5 run 2: ok
+N5 run 3: ok
+N5 run 4: ok
+N5 run 5: ok
+N6 run 1: ok
+N6 run 2: ok
+N6 run 3: ok
+N6 run 4: ok
+N6 run 5: ok
+N7 run 1: ok
+N7 run 2: ok
+N7 run 3: ok
+N7 run 4: ok
+N7 run 5: ok
+N8 run 1: ok
+N8 run 2: ok
+N8 run 3: ok
+N8 run 4: ok
+N8 run 5: ok
+ours_results_noweak.tsv written
+[2026-10-12 19:00:06] end noweak
+[2026-10-12 19:00:06] start boundary
+S1	[](e -> ^[][<2] !e)	e@1 e@3	expected no	got no	OK
+S2	[](e -> ^[][<2] !e)	e@1 e@2.5	expected yes	got yes	OK
+S3	[](e -> ^[][<2] !e)	e@1 a@2 e@2.9	expected yes	got yes	OK
+S4	[](e -> ^[][<2] !e)	e@1 e@3 e@5 e@7	expected no	got no	OK
+S5	[](e -> ^[][<=2] !e)	e@1 e@3	expected yes	got yes	OK
+S6	[](e -> ^[][<=2] !e)	e@1 e@3.01	expected no	got no	OK
+B1	[](p -> <>[<=5] q)	p@1 q@6	expected no	got no	OK
+B2	[](p -> <>[<=5] q)	p@1 q@6.01	expected yes	got yes	OK
+B3	[](p -> <>[<5] q)	p@1 q@6	expected yes	got yes	OK
+B4	[](p -> <>[<5] q)	p@1 q@5.99	expected no	got no	OK
+B5	[](p -> <>[<=5] q)	p@1 p@3 q@5.5	expected no	got no	OK
+B6	[](p -> <>[<=5] q)	p@1 p@3 q@6.5 a@9	expected yes	got yes	OK
+B7	[](p -> <>[<=5] q)	p@1 p@3 q@6 p@7 q@11.5	expected no	got no	OK
+M1	[](p -> [][<2] !q)	p@1 q@3	expected no	got no	OK
+M2	[](p -> [][<2] !q)	p@1 q@2.9	expected yes	got yes	OK
+M3	[](p -> [][<2] !q)	p@1 p@2 q@3.5	expected yes	got yes	OK
+M4	[](p -> [][<2] !q)	p@1 p@2 q@4	expected no	got no	OK
+M5	[](p -> [][<=2] !q)	p@1 p@2 q@4	expected yes	got yes	OK
+[2026-10-12 19:00:07] end boundary
+[2026-10-12 19:00:07] start spot
+F1: yes
+F2: yes
+F3: yes
+F3b: yes
+F4: yes
+F5: yes
+F6: yes
+F7: yes
+F8: yes
+F9: yes
+F10: yes
+F11: yes
+F12: yes
+F13: yes
+F14: yes
+R1: yes
+R2: yes
+R3: yes
+R4: yes
+R5: yes
+R6: ltl2ba timeout
+R7: ltl2ba timeout
+R8: ltl2ba timeout
+N1: yes
+N2: yes
+N3: yes
+N4: yes
+N5: yes
+N6: ltl2ba timeout
+N7: ltl2ba timeout
+N8: ltl2ba timeout
+id   atoms  spot_states  spot_edges  reader_states  reader_trans  ltl2ba_states  equivalent      time_s
+F1   4      2            4           2              4             4              yes             0.47
+F2   4      2            4           2              4             5              yes             0.48
+F3   3      2            4           2              4             5              yes             0.53
+F3b  3      1            1           1              1             1              yes             0.50
+F4   4      2            4           2              4             4              yes             0.48
+F5   4      7            24          7              24            11             yes             0.48
+F6   4      7            24          7              24            11             yes             0.50
+F7   3      2            4           2              4             4              yes             0.45
+F8   1      2            4           2              4             2              yes             0.45
+F9   6      4            9           4              9             6              yes             0.46
+F10  8      5            12          5              12            17             yes             0.45
+F11  5      4            7           4              7             8              yes             0.45
+F12  6      3            8           3              8             17             yes             0.45
+F13  5      3            5           3              5             20             yes             0.48
+F14  7      6            18          6              18            28             yes             0.45
+R1   4      2            4           2              4             4              yes             0.45
+R2   8      4            16          4              16            24             yes             0.50
+R3   12     8            64          8              64            128            yes             0.45
+R4   16     16           256         16             256           640            yes             2.37
+R5   20     32           1024        32             1024          3072           yes             88.69
+R6   24     64           4096        64             4096                         ltl2ba timeout  300.20
+R7   28     128          16384       128            16384                        ltl2ba timeout  300.20
+R8   32     256          65536                                                   ltl2ba timeout  300.23
+N1   3      3            5           3              5             4              yes             0.45
+N2   6      4            9           4              9             6              yes             0.47
+N3   9      5            14          5              14            8              yes             0.46
+N4   12     6            20          6              20            10             yes             0.85
+N5   15     7            27          7              27            12             yes             45.32
+N6   18     8            35          8              35                           ltl2ba timeout  300.42
+N7   21     9            44          9              44                           ltl2ba timeout  302.72
+N8   24     10           54          10             54                           ltl2ba timeout  331.06
+[2026-10-12 19:46:21] end spot
+[2026-10-12 19:46:21] start interface
+F1: same / equivalent
+F2: same / equivalent
+F3: same / equivalent
+F3b: same / equivalent
+F4: same / equivalent
+F5: same / equivalent
+F6: same / equivalent
+F7: same / equivalent
+F8: same / equivalent
+F9: same / equivalent
+F10: same / equivalent
+F11: same / equivalent
+F12: same / equivalent
+F13: same / equivalent
+F14: same / equivalent
+R1: same / equivalent
+R2: same / equivalent
+R3: same / equivalent
+R4: same / equivalent
+R5: same / equivalent
+R6: same / equivalent
+R7: same / equivalent
+R8: same / equivalent
+N1: same / equivalent
+N2: same / equivalent
+N3: same / equivalent
+N4: same / equivalent
+N5: same / equivalent
+N6: same / equivalent
+N7: same / equivalent
+N8: same / equivalent
+id   printer  reader
+F1   same     equivalent
+F2   same     equivalent
+F3   same     equivalent
+F3b  same     equivalent
+F4   same     equivalent
+F5   same     equivalent
+F6   same     equivalent
+F7   same     equivalent
+F8   same     equivalent
+F9   same     equivalent
+F10  same     equivalent
+F11  same     equivalent
+F12  same     equivalent
+F13  same     equivalent
+F14  same     equivalent
+R1   same     equivalent
+R2   same     equivalent
+R3   same     equivalent
+R4   same     equivalent
+R5   same     equivalent
+R6   same     equivalent
+R7   same     equivalent
+R8   same     equivalent
+N1   same     equivalent
+N2   same     equivalent
+N3   same     equivalent
+N4   same     equivalent
+N5   same     equivalent
+N6   same     equivalent
+N7   same     equivalent
+N8   same     equivalent
+[2026-10-12 20:04:14] end interface
+[2026-10-12 20:04:14] start accept
+F1 done
+F2 done
+F3 done
+F3b done
+F4 done
+F5 done
+F6 done
+F7 done
+F8 done
+F9 done
+F10 done
+F11 done
+F12 done
+F13 done
+F14 done
+R1 done
+R2 done
+R3 done
+R4 done
+R5 done
+R6 U: mtl2tba formula extraction failed
+R6 done
+R7 U: mtl2tba formula extraction failed
+R7 W: mtl2tba formula extraction failed
+R7 done
+R8 U: mtl2tba formula extraction failed
+R8 W: mtl2tba formula extraction failed
+R8 done
+N1 done
+N2 done
+N3 done
+N4 done
+N5 done
+N6 done
+N7 done
+N8 U: mtl2tba formula extraction failed
+N8 W: mtl2tba formula extraction failed
+N8 done
+id   formula  mode    status           states  edges  acc_sets  time_s
+F1   U        -B      ok               3       6      1         0.11
+F1   U        -b      ok               2       4      1         0.11
+F1   U        --tgba  ok               2       4      1         0.11
+F1   W        -B      ok               2       4      1         0.11
+F1   W        -b      ok               2       4      1         0.11
+F1   W        --tgba  ok               2       4      0         0.11
+F2   U        -B      ok               2       4      1         0.11
+F2   U        -b      ok               2       4      1         0.11
+F2   U        --tgba  ok               2       4      0         0.11
+F2   W        -B      ok               2       4      1         0.11
+F2   W        -b      ok               2       4      1         0.11
+F2   W        --tgba  ok               2       4      0         0.11
+F3   U        -B      ok               2       4      1         0.11
+F3   U        -b      ok               2       4      1         0.11
+F3   U        --tgba  ok               2       4      0         0.11
+F3   W        -B      ok               2       4      1         0.11
+F3   W        -b      ok               2       4      1         0.11
+F3   W        --tgba  ok               2       4      0         0.11
+F3b  U        -B      ok               1       1      1         0.11
+F3b  U        -b      ok               1       1      1         0.11
+F3b  U        --tgba  ok               1       1      0         0.11
+F3b  W        -B      ok               1       1      1         0.11
+F3b  W        -b      ok               1       1      1         0.11
+F3b  W        --tgba  ok               1       1      0         0.11
+F4   U        -B      ok               3       6      1         0.11
+F4   U        -b      ok               2       4      1         0.11
+F4   U        --tgba  ok               2       4      1         0.11
+F4   W        -B      ok               2       4      1         0.11
+F4   W        -b      ok               2       4      1         0.11
+F4   W        --tgba  ok               2       4      0         0.11
+F5   U        -B      ok               7       24     1         0.11
+F5   U        -b      ok               6       21     1         0.11
+F5   U        --tgba  ok               5       21     2         0.11
+F5   W        -B      ok               7       24     1         0.11
+F5   W        -b      ok               6       21     1         0.11
+F5   W        --tgba  ok               5       21     2         0.11
+F6   U        -B      ok               7       24     1         0.11
+F6   U        -b      ok               6       21     1         0.11
+F6   U        --tgba  ok               5       21     2         0.11
+F6   W        -B      ok               7       24     1         0.11
+F6   W        -b      ok               6       21     1         0.11
+F6   W        --tgba  ok               5       21     2         0.11
+F7   U        -B      ok               3       6      1         0.11
+F7   U        -b      ok               2       4      1         0.11
+F7   U        --tgba  ok               2       4      1         0.11
+F7   W        -B      ok               2       4      1         0.11
+F7   W        -b      ok               2       4      1         0.11
+F7   W        --tgba  ok               2       4      0         0.11
+F8   U        -B      ok               2       4      1         0.11
+F8   U        -b      ok               1       2      1         0.11
+F8   U        --tgba  ok               1       2      1         0.11
+F8   W        -B      ok               2       4      1         0.11
+F8   W        -b      ok               1       2      1         0.11
+F8   W        --tgba  ok               1       2      1         0.11
+F9   U        -B      ok               4       9      1         0.11
+F9   U        -b      ok               4       9      1         0.11
+F9   U        --tgba  ok               4       9      1         0.11
+F9   W        -B      ok               4       9      1         0.11
+F9   W        -b      ok               4       9      1         0.11
+F9   W        --tgba  ok               4       9      0         0.11
+F10  U        -B      ok               5       12     1         0.11
+F10  U        -b      ok               5       12     1         0.11
+F10  U        --tgba  ok               5       12     1         0.11
+F10  W        -B      ok               5       12     1         0.11
+F10  W        -b      ok               5       12     1         0.11
+F10  W        --tgba  ok               5       12     0         0.11
+F11  U        -B      ok               4       7      1         0.11
+F11  U        -b      ok               4       7      1         0.11
+F11  U        --tgba  ok               4       7      1         0.11
+F11  W        -B      ok               4       7      1         0.11
+F11  W        -b      ok               4       7      1         0.11
+F11  W        --tgba  ok               4       7      0         0.11
+F12  U        -B      ok               4       11     1         0.11
+F12  U        -b      ok               3       8      1         0.11
+F12  U        --tgba  ok               3       8      1         0.11
+F12  W        -B      ok               3       8      1         0.11
+F12  W        -b      ok               3       8      1         0.11
+F12  W        --tgba  ok               3       8      0         0.11
+F13  U        -B      ok               4       9      1         0.11
+F13  U        -b      ok               3       6      1         0.11
+F13  U        --tgba  ok               3       6      1         0.11
+F13  W        -B      ok               3       5      1         0.11
+F13  W        -b      ok               3       5      1         0.11
+F13  W        --tgba  ok               3       5      0         0.11
+F14  U        -B      ok               7       23     1         0.11
+F14  U        -b      ok               6       19     1         0.11
+F14  U        --tgba  ok               5       16     2         0.11
+F14  W        -B      ok               6       18     1         0.11
+F14  W        -b      ok               6       18     1         0.11
+F14  W        --tgba  ok               6       18     0         0.11
+R1   U        -B      ok               3       6      1         0.11
+R1   U        -b      ok               2       4      1         0.11
+R1   U        --tgba  ok               2       4      1         0.11
+R1   W        -B      ok               2       4      1         0.11
+R1   W        -b      ok               2       4      1         0.11
+R1   W        --tgba  ok               2       4      0         0.11
+R2   U        -B      ok               8       32     1         0.11
+R2   U        -b      ok               6       24     1         0.11
+R2   U        --tgba  ok               4       16     2         0.11
+R2   W        -B      ok               4       16     1         0.11
+R2   W        -b      ok               4       16     1         0.11
+R2   W        --tgba  ok               4       16     0         0.11
+R3   U        -B      ok               20      160    1         0.11
+R3   U        -b      ok               16      128    1         0.11
+R3   U        --tgba  ok               8       64     3         0.11
+R3   W        -B      ok               8       64     1         0.11
+R3   W        -b      ok               8       64     1         0.11
+R3   W        --tgba  ok               8       64     0         0.11
+R4   U        -B      ok               48      768    1         0.21
+R4   U        -b      ok               40      640    1         0.11
+R4   U        --tgba  ok               16      256    4         0.11
+R4   W        -B      ok               16      256    1         0.11
+R4   W        -b      ok               16      256    1         0.11
+R4   W        --tgba  ok               16      256    0         0.11
+R5   U        -B      ok               112     3584   1         2.21
+R5   U        -b      ok               96      3072   1         0.91
+R5   U        --tgba  ok               32      1024   5         0.91
+R5   W        -B      ok               32      1024   1         0.41
+R5   W        -b      ok               32      1024   1         0.31
+R5   W        --tgba  ok               32      1024   0         0.31
+R6   U        -B      extract_timeout                           
+R6   U        -b      extract_timeout                           
+R6   U        --tgba  extract_timeout                           
+R6   W        -B      ok               64      4096   1         6.42
+R6   W        -b      ok               64      4096   1         3.52
+R6   W        --tgba  ok               64      4096   0         3.42
+R7   U        -B      extract_timeout                           
+R7   U        -b      extract_timeout                           
+R7   U        --tgba  extract_timeout                           
+R7   W        -B      extract_timeout                           
+R7   W        -b      extract_timeout                           
+R7   W        --tgba  extract_timeout                           
+R8   U        -B      extract_timeout                           
+R8   U        -b      extract_timeout                           
+R8   U        --tgba  extract_timeout                           
+R8   W        -B      extract_timeout                           
+R8   W        -b      extract_timeout                           
+R8   W        --tgba  extract_timeout                           
+N1   U        -B      ok               3       5      1         0.11
+N1   U        -b      ok               3       5      1         0.11
+N1   U        --tgba  ok               3       5      1         0.11
+N1   W        -B      ok               3       5      1         0.11
+N1   W        -b      ok               3       5      1         0.11
+N1   W        --tgba  ok               3       5      0         0.11
+N2   U        -B      ok               4       9      1         0.11
+N2   U        -b      ok               4       9      1         0.11
+N2   U        --tgba  ok               4       9      1         0.11
+N2   W        -B      ok               4       9      1         0.11
+N2   W        -b      ok               4       9      1         0.11
+N2   W        --tgba  ok               4       9      0         0.11
+N3   U        -B      ok               5       14     1         0.11
+N3   U        -b      ok               5       14     1         0.11
+N3   U        --tgba  ok               5       14     1         0.11
+N3   W        -B      ok               5       14     1         0.11
+N3   W        -b      ok               5       14     1         0.11
+N3   W        --tgba  ok               5       14     0         0.11
+N4   U        -B      ok               6       20     1         0.11
+N4   U        -b      ok               6       20     1         0.11
+N4   U        --tgba  ok               6       20     1         0.11
+N4   W        -B      ok               6       20     1         0.11
+N4   W        -b      ok               6       20     1         0.11
+N4   W        --tgba  ok               6       20     0         0.11
+N5   U        -B      ok               7       27     1         0.21
+N5   U        -b      ok               7       27     1         0.21
+N5   U        --tgba  ok               7       27     1         0.21
+N5   W        -B      ok               7       27     1         0.31
+N5   W        -b      ok               7       27     1         0.21
+N5   W        --tgba  ok               7       27     0         0.31
+N6   U        -B      ok               8       35     1         0.91
+N6   U        -b      ok               8       35     1         0.91
+N6   U        --tgba  ok               8       35     1         0.91
+N6   W        -B      ok               8       35     1         1.21
+N6   W        -b      ok               8       35     1         1.01
+N6   W        --tgba  ok               8       35     0         1.01
+N7   U        -B      ok               9       44     1         6.62
+N7   U        -b      ok               9       44     1         6.32
+N7   U        --tgba  ok               9       44     1         6.52
+N7   W        -B      ok               9       44     1         7.52
+N7   W        -b      ok               9       44     1         6.22
+N7   W        --tgba  ok               9       44     0         6.22
+N8   U        -B      extract_timeout                           
+N8   U        -b      extract_timeout                           
+N8   U        --tgba  extract_timeout                           
+N8   W        -B      extract_timeout                           
+N8   W        -b      extract_timeout                           
+N8   W        --tgba  extract_timeout                           
+[2026-10-12 20:14:18] end accept
+[2026-10-12 20:14:18] start randopt
+[2026-10-12 20:14:32] end randopt
+[2026-10-12 20:14:32] start policies
+[2026-10-12 20:39:14] end policies
+[2026-10-12 20:39:14] start tckeq
+F1: empty empty empty NONEMPTY
+F2: empty empty empty NONEMPTY
+F3b: empty empty empty NONEMPTY
+F4: empty empty empty NONEMPTY
+F5: empty empty empty NONEMPTY
+F6: empty empty empty NONEMPTY
+F7: empty empty empty NONEMPTY
+F8: empty empty empty NONEMPTY
+F9: empty empty empty NONEMPTY
+F10: empty empty empty NONEMPTY
+F11: empty empty empty NONEMPTY
+F12: empty empty empty NONEMPTY
+F14: timeout empty timeout timeout
+R1: empty empty empty NONEMPTY
+R2: timeout empty timeout timeout
+R3: timeout empty timeout timeout
+R4: timeout timeout timeout timeout
+R5: timeout timeout timeout timeout
+R6: timeout timeout timeout timeout
+R7: tool timeout
+R8: tool timeout
+N1: empty empty empty NONEMPTY
+N2: empty empty empty NONEMPTY
+N3: empty empty empty NONEMPTY
+N4: empty empty empty NONEMPTY
+N5: timeout timeout timeout NONEMPTY
+N6: timeout timeout timeout NONEMPTY
+N7: tool timeout
+N8: tool timeout
+id   P1                       P2       S        C
+F1   empty                    empty    empty    NONEMPTY
+F2   empty                    empty    empty    NONEMPTY
+F3b  empty                    empty    empty    NONEMPTY
+F4   empty                    empty    empty    NONEMPTY
+F5   empty                    empty    empty    NONEMPTY
+F6   empty                    empty    empty    NONEMPTY
+F7   empty                    empty    empty    NONEMPTY
+F8   empty                    empty    empty    NONEMPTY
+F9   empty                    empty    empty    NONEMPTY
+F10  empty                    empty    empty    NONEMPTY
+F11  empty                    empty    empty    NONEMPTY
+F12  empty                    empty    empty    NONEMPTY
+F14  timeout                  empty    timeout  timeout
+R1   empty                    empty    empty    NONEMPTY
+R2   timeout                  empty    timeout  timeout
+R3   timeout                  empty    timeout  timeout
+R4   timeout                  timeout  timeout  timeout
+R5   timeout                  timeout  timeout  timeout
+R6   timeout                  timeout  timeout  timeout
+R7   tool timeout                               
+R8   tool timeout                               
+N1   empty                    empty    empty    NONEMPTY
+N2   empty                    empty    empty    NONEMPTY
+N3   empty                    empty    empty    NONEMPTY
+N4   empty                    empty    empty    NONEMPTY
+N5   timeout                  timeout  timeout  NONEMPTY
+N6   timeout                  timeout  timeout  NONEMPTY
+N7   tool timeout (negation)                    
+N8   tool timeout (negation)                    
+[2026-10-12 23:03:47] end tckeq
+[2026-10-12 23:03:47] start tckcomp
+F14: empty empty empty NONEMPTY
+R2: empty empty empty NONEMPTY
+R3: empty empty empty NONEMPTY
+R4: timeout timeout timeout NONEMPTY
+R5: timeout timeout timeout NONEMPTY
+R6: timeout timeout timeout NONEMPTY
+R7: tool timeout
+R8: tool timeout
+id   P1            P2       S        C
+F14  empty         empty    empty    NONEMPTY
+R2   empty         empty    empty    NONEMPTY
+R3   empty         empty    empty    NONEMPTY
+R4   timeout       timeout  timeout  NONEMPTY
+R5   timeout       timeout  timeout  NONEMPTY
+R6   timeout       timeout  timeout  NONEMPTY
+R7   tool timeout                    
+R8   tool timeout                    
+[2026-10-13 00:58:24] end tckcomp
+[2026-10-13 00:58:24] start randdiff
+X1: empty empty empty (init_free 1)
+X2: empty empty empty (init_free 1)
+X3: empty empty empty (init_free 1)
+X4: empty empty empty (init_free 1)
+X5: empty empty empty (init_free 1)
+X6: empty empty empty (init_free 1)
+X7: empty empty empty (init_free 1)
+X8: empty empty empty (init_free 1)
+X9: empty empty empty (init_free 1)
+X10: empty empty empty (init_free 1)
+X11: empty empty empty (init_free 1)
+X12: empty empty empty (init_free 1)
+X13: empty empty empty (init_free 1)
+X14: empty empty empty (init_free 1)
+X15: empty empty empty (init_free 1)
+X16: empty empty empty (init_free 1)
+X17: empty empty empty (init_free 1)
+X18: empty empty empty (init_free 1)
+X19: empty empty empty (init_free 1)
+X20: empty empty empty (init_free 1)
+X21: empty empty empty (init_free 1)
+X22: empty empty empty (init_free 1)
+X23: empty empty empty (init_free 1)
+X24: empty empty empty (init_free 1)
+X25: empty empty empty (init_free 1)
+X26: empty empty empty (init_free 1)
+X27: empty empty empty (init_free 1)
+X28: empty empty empty (init_free 1)
+X29: empty empty empty (init_free 1)
+X30: empty empty empty (init_free 1)
+X31: empty timeout timeout (init_free 1)
+X32: empty empty empty (init_free 1)
+X33: empty empty empty (init_free 1)
+X34: empty empty empty (init_free 1)
+X35: empty empty empty (init_free 0)
+X36: empty empty empty (init_free 1)
+X37: empty empty empty (init_free 1)
+X38: empty empty empty (init_free 0)
+X39: empty empty empty (init_free 1)
+X40: empty empty empty (init_free 1)
+X41: empty empty empty (init_free 1)
+X42: empty empty empty (init_free 1)
+X43: empty empty empty (init_free 1)
+X44: empty empty empty (init_free 1)
+X45: empty empty empty (init_free 1)
+X46: empty empty empty (init_free 1)
+X47: empty empty empty (init_free 1)
+X48: empty empty empty (init_free 1)
+X49: empty empty empty (init_free 1)
+X50: empty empty empty (init_free 1)
+X51: empty empty empty (init_free 1)
+X52: empty empty empty (init_free 1)
+X53: empty empty empty (init_free 1)
+X54: empty empty empty (init_free 1)
+X55: empty empty empty (init_free 1)
+X56: empty empty empty (init_free 1)
+X57: empty empty empty (init_free 1)
+X58: empty empty empty (init_free 1)
+X59: empty empty empty (init_free 1)
+X60: empty empty empty (init_free 1)
+X61: empty empty empty (init_free 1)
+X62: timeout empty timeout (init_free 1)
+X63: empty empty empty (init_free 1)
+X64: timeout empty timeout (init_free 1)
+X65: empty empty empty (init_free 0)
+X66: empty empty empty (init_free 1)
+X67: empty empty empty (init_free 1)
+X68: empty empty empty (init_free 1)
+X69: empty empty empty (init_free 1)
+X70: empty empty empty (init_free 1)
+X71: empty empty empty (init_free 1)
+X72: empty empty empty (init_free 1)
+X73: empty empty empty (init_free 1)
+X74: empty empty empty (init_free 1)
+X75: empty empty empty (init_free 1)
+X76: empty empty empty (init_free 1)
+X77: empty empty empty (init_free 1)
+X78: empty empty empty (init_free 1)
+X79: empty empty empty (init_free 1)
+X80: empty empty empty (init_free 1)
+X81: empty empty empty (init_free 1)
+X82: empty empty empty (init_free 1)
+X83: timeout empty timeout (init_free 1)
+X84: empty empty empty (init_free 0)
+X85: empty empty empty (init_free 1)
+X86: empty empty empty (init_free 1)
+X87: empty empty empty (init_free 1)
+X88: empty empty empty (init_free 1)
+X89: empty empty empty (init_free 1)
+X90: empty empty empty (init_free 1)
+X91: empty empty empty (init_free 1)
+X92: empty empty empty (init_free 1)
+X93: empty empty empty (init_free 1)
+X94: empty empty empty (init_free 1)
+X95: empty empty empty (init_free 1)
+X96: empty empty empty (init_free 1)
+X97: empty empty empty (init_free 1)
+X98: empty empty empty (init_free 1)
+X99: empty empty empty (init_free 1)
+X100: empty empty empty (init_free 0)
+Counter({('empty', 'empty', 'empty'): 96, ('timeout', 'empty', 'timeout'): 3, ('empty', 'timeout', 'timeout'): 1})
+[2026-10-13 00:59:46] end randdiff
+[2026-10-13 00:59:46] start symbolic
+[2026-10-13 02:05:13] end symbolic
+[2026-10-13 02:05:13] finished

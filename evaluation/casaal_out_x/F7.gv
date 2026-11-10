@@ -1,0 +1,10 @@
+digraph G {
+  0 [label="", style=invis, height=0]
+  0 -> 1
+  1 [label="G(1U[x<=5]p)"]
+  1 -> 1 [label="p\n"]
+  1 -> 2 [label="reset(x0)\n"]
+  2 [label="G(1U[x<=5]p) & (1U[x<=5-x0]p) & \"x0<=5\""]
+  2 -> 1 [label="p & \"x0<=5\"\n"]
+  2 -> 2 [label="\"x0<=5\"\n"]
+}

@@ -1,0 +1,22 @@
+digraph TBA {
+  rankdir=LR;
+  node [shape=circle];
+  init [shape=point];
+  init -> L0;
+  L0 [shape=circle, label="L0"];
+  L1 [shape=doublecircle, label="L1"];
+  L2 [shape=doublecircle, label="L2"];
+  L3 [shape=doublecircle, label="L3"];
+  L4 [shape=doublecircle, label="L4"];
+  L0 -> L1 [label="\nx0, x1 := 0"];
+  L0 -> L2 [label="other\nx0, x1 := 0"];
+  L1 -> L3 [label="x1 >= 2\nany\nx0 := 0"];
+  L1 -> L1 [label="other\nx0 := 0"];
+  L2 -> L3 [label="x0 <= 5 && x1 >= 2\np\nx0 := 0"];
+  L2 -> L1 [label="x0 <= 5\n\nx0 := 0"];
+  L2 -> L4 [label="x0 <= 5 && x1 >= 2\nother"];
+  L2 -> L2 [label="x0 <= 5\nother"];
+  L3 -> L3 [label="any\nx0 := 0"];
+  L4 -> L3 [label="x0 <= 5\np\nx0 := 0"];
+  L4 -> L4 [label="x0 <= 5\nother"];
+}

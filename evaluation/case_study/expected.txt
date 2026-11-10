@@ -1,0 +1,8 @@
+spor_ok          E<> P.A4           not satisfied
+spor_bad         E<> P.A4           satisfied
+resp_ok          E<> P.A4           not satisfied
+resp_bad         E<> P.A4           satisfied
+spor_ok_alone    A[] not deadlock   satisfied
+spor_bad_alone   A[] not deadlock   satisfied
+resp_ok_alone    A[] not deadlock   satisfied
+resp_bad_alone   A[] not deadlock   satisfied

@@ -1,0 +1,249 @@
+optimize_accepts
+     : forall (root : mtl) (n : nat) (A : TBA root) (w : timed_word),
+       TBA_accepts A w <-> TBA_accepts (optimize n A) w
+Axioms:
+ClassicalDedekindReals.sig_forall_dec :
+  forall P : nat -> Prop,
+  (forall n : nat, {P n} + {~ P n}) ->
+  {n : nat | ~ P n} + {forall n : nat, P n}
+FunctionalExtensionality.functional_extensionality_dep :
+  forall (A : Type) (B : A -> Type) (f g : forall x : A, B x),
+  (forall x : A, f x = g x) -> f = g
+Description.constructive_definite_description :
+  forall (A : Type) (P : A -> Prop), (exists ! x : A, P x) -> {x : A | P x}
+Classical_Prop.classic : forall P : Prop, P \/ ~ P
+split_accepts
+     : forall (root : mtl) (D : DTA root) (w : timed_word),
+       (forall l : nat, dta_inv D l = None) ->
+       DTA_accepts D w <-> DTA_accepts (split D) w
+Axioms:
+ClassicalDedekindReals.sig_forall_dec :
+  forall P : nat -> Prop,
+  (forall n : nat, {P n} + {~ P n}) ->
+  {n : nat | ~ P n} + {forall n : nat, P n}
+FunctionalExtensionality.functional_extensionality_dep :
+  forall (A : Type) (B : A -> Type) (f g : forall x : A, B x),
+  (forall x : A, f x = g x) -> f = g
+Classical_Prop.classic : forall P : Prop, P \/ ~ P
+split_all_accepts
+     : forall (root : mtl) (D : DTA root) (w : timed_word),
+       (forall l : nat, dta_inv D l = None) ->
+       DTA_accepts D w <-> DTA_accepts (split_all D) w
+Axioms:
+ClassicalDedekindReals.sig_forall_dec :
+  forall P : nat -> Prop,
+  (forall n : nat, {P n} + {~ P n}) ->
+  {n : nat | ~ P n} + {forall n : nat, P n}
+FunctionalExtensionality.functional_extensionality_dep :
+  forall (A : Type) (B : A -> Type) (f g : forall x : A, B x),
+  (forall x : A, f x = g x) -> f = g
+Classical_Prop.classic : forall P : Prop, P \/ ~ P
+export_accepts
+     : forall (root : mtl) (A : TBA root) (w : timed_word),
+       TBA_accepts A w <-> DTA_accepts (export A) w
+Axioms:
+ClassicalDedekindReals.sig_forall_dec :
+  forall P : nat -> Prop,
+  (forall n : nat, {P n} + {~ P n}) ->
+  {n : nat | ~ P n} + {forall n : nat, P n}
+FunctionalExtensionality.functional_extensionality_dep :
+  forall (A : Type) (B : A -> Type) (f g : forall x : A, B x),
+  (forall x : A, f x = g x) -> f = g
+Description.constructive_definite_description :
+  forall (A : Type) (P : A -> Prop), (exists ! x : A, P x) -> {x : A | P x}
+Classical_Prop.classic : forall P : Prop, P \/ ~ P
+export_guards_conjunctive
+     : forall (root : mtl) (A : TBA root) (t : dtrans root),
+       List.In t (dta_trans (export A)) ->
+       exists c : dconj root, dt_guard t = (c :: nil)%list
+Axioms:
+ClassicalDedekindReals.sig_forall_dec :
+  forall P : nat -> Prop,
+  (forall n : nat, {P n} + {~ P n}) ->
+  {n : nat | ~ P n} + {forall n : nat, P n}
+FunctionalExtensionality.functional_extensionality_dep :
+  forall (A : Type) (B : A -> Type) (f g : forall x : A, B x),
+  (forall x : A, f x = g x) -> f = g
+Classical_Prop.classic : forall P : Prop, P \/ ~ P
+export_invariants_conjunctive
+     : forall (root : mtl) (A : TBA root) (s : nat),
+       dta_inv (export A) s = None \/
+       (exists U : uinv root, dta_inv (export A) s = Some (U :: nil)%list)
+Axioms:
+ClassicalDedekindReals.sig_forall_dec :
+  forall P : nat -> Prop,
+  (forall n : nat, {P n} + {~ P n}) ->
+  {n : nat | ~ P n} + {forall n : nat, P n}
+FunctionalExtensionality.functional_extensionality_dep :
+  forall (A : Type) (B : A -> Type) (f g : forall x : A, B x),
+  (forall x : A, f x = g x) -> f = g
+Classical_Prop.classic : forall P : Prop, P \/ ~ P
+export_all_accepts
+     : forall (root : mtl) (A : TBA root) (w : timed_word),
+       TBA_accepts A w <-> DTA_accepts (export_all A) w
+Axioms:
+ClassicalDedekindReals.sig_forall_dec :
+  forall P : nat -> Prop,
+  (forall n : nat, {P n} + {~ P n}) ->
+  {n : nat | ~ P n} + {forall n : nat, P n}
+FunctionalExtensionality.functional_extensionality_dep :
+  forall (A : Type) (B : A -> Type) (f g : forall x : A, B x),
+  (forall x : A, f x = g x) -> f = g
+Description.constructive_definite_description :
+  forall (A : Type) (P : A -> Prop), (exists ! x : A, P x) -> {x : A | P x}
+Classical_Prop.classic : forall P : Prop, P \/ ~ P
+export_all_guards_conjunctive
+     : forall (root : mtl) (A : TBA root) (t : dtrans root),
+       List.In t (dta_trans (export_all A)) ->
+       exists c : dconj root, dt_guard t = (c :: nil)%list
+Axioms:
+ClassicalDedekindReals.sig_forall_dec :
+  forall P : nat -> Prop,
+  (forall n : nat, {P n} + {~ P n}) ->
+  {n : nat | ~ P n} + {forall n : nat, P n}
+FunctionalExtensionality.functional_extensionality_dep :
+  forall (A : Type) (B : A -> Type) (f g : forall x : A, B x),
+  (forall x : A, f x = g x) -> f = g
+Classical_Prop.classic : forall P : Prop, P \/ ~ P
+export_all_invariants_conjunctive
+     : forall (root : mtl) (A : TBA root) (s : nat),
+       dta_inv (export_all A) s = None \/
+       (exists U : uinv root, dta_inv (export_all A) s = Some (U :: nil)%list)
+Axioms:
+ClassicalDedekindReals.sig_forall_dec :
+  forall P : nat -> Prop,
+  (forall n : nat, {P n} + {~ P n}) ->
+  {n : nat | ~ P n} + {forall n : nat, P n}
+FunctionalExtensionality.functional_extensionality_dep :
+  forall (A : Type) (B : A -> Type) (f g : forall x : A, B x),
+  (forall x : A, f x = g x) -> f = g
+Classical_Prop.classic : forall P : Prop, P \/ ~ P
+symbolic_ext_accepts
+     : forall (root : mtl) (D : DTA root) (rho : ext_word root),
+       DTA_ext_accepts D rho <-> SDTA_ext_accepts (symbolic D) rho
+Axioms:
+ClassicalDedekindReals.sig_forall_dec :
+  forall P : nat -> Prop,
+  (forall n : nat, {P n} + {~ P n}) ->
+  {n : nat | ~ P n} + {forall n : nat, P n}
+FunctionalExtensionality.functional_extensionality_dep :
+  forall (A : Type) (B : A -> Type) (f g : forall x : A, B x),
+  (forall x : A, f x = g x) -> f = g
+Classical_Prop.classic : forall P : Prop, P \/ ~ P
+MTL_to_TBA_correct_with
+     : forall (f : mtl) (A : PBuchi f) (w : timed_word),
+       (forall s : pword f,
+        action_consistent (root:=f) s -> PBA_accepts A s <-> psat s 0 (T f)) ->
+       well_formed f -> msat w 0 f <-> TBA_accepts (compile_with A) w
+Axioms:
+ClassicalDedekindReals.sig_forall_dec :
+  forall P : nat -> Prop,
+  (forall n : nat, {P n} + {~ P n}) ->
+  {n : nat | ~ P n} + {forall n : nat, P n}
+FunctionalExtensionality.functional_extensionality_dep :
+  forall (A : Type) (B : A -> Type) (f g : forall x : A, B x),
+  (forall x : A, f x = g x) -> f = g
+Description.constructive_definite_description :
+  forall (A : Type) (P : A -> Prop), (exists ! x : A, P x) -> {x : A | P x}
+Classical_Prop.classic : forall P : Prop, P \/ ~ P
+MTL_to_exported_correct_with
+     : forall (n : nat) (f : mtl) (A : PBuchi f) (w : timed_word),
+       (forall s : pword f,
+        action_consistent (root:=f) s -> PBA_accepts A s <-> psat s 0 (T f)) ->
+       well_formed f ->
+       msat w 0 f <-> DTA_accepts (export (optimize n (compile_with A))) w
+Axioms:
+ClassicalDedekindReals.sig_forall_dec :
+  forall P : nat -> Prop,
+  (forall n : nat, {P n} + {~ P n}) ->
+  {n : nat | ~ P n} + {forall n : nat, P n}
+FunctionalExtensionality.functional_extensionality_dep :
+  forall (A : Type) (B : A -> Type) (f g : forall x : A, B x),
+  (forall x : A, f x = g x) -> f = g
+Description.constructive_definite_description :
+  forall (A : Type) (P : A -> Prop), (exists ! x : A, P x) -> {x : A | P x}
+Classical_Prop.classic : forall P : Prop, P \/ ~ P
+MTL_to_exported_correct0_with
+     : forall (n : nat) (f : mtl) (A : PBuchi f) (w : timed_word),
+       (forall s : pword f,
+        action_consistent (root:=f) s -> PBA_accepts A s <-> psat s 0 (T f)) ->
+       well_formed f ->
+       init_free (export (optimize n (compile_with A))) = true ->
+       msat w 0 f <-> DTA_accepts0 (export (optimize n (compile_with A))) w
+Axioms:
+ClassicalDedekindReals.sig_forall_dec :
+  forall P : nat -> Prop,
+  (forall n : nat, {P n} + {~ P n}) ->
+  {n : nat | ~ P n} + {forall n : nat, P n}
+FunctionalExtensionality.functional_extensionality_dep :
+  forall (A : Type) (B : A -> Type) (f g : forall x : A, B x),
+  (forall x : A, f x = g x) -> f = g
+Description.constructive_definite_description :
+  forall (A : Type) (P : A -> Prop), (exists ! x : A, P x) -> {x : A | P x}
+Classical_Prop.classic : forall P : Prop, P \/ ~ P
+MTL_to_exported_all_correct_with
+     : forall (n : nat) (f : mtl) (A : PBuchi f) (w : timed_word),
+       (forall s : pword f,
+        action_consistent (root:=f) s -> PBA_accepts A s <-> psat s 0 (T f)) ->
+       well_formed f ->
+       msat w 0 f <->
+       DTA_accepts (export_all (optimize n (compile_with A))) w
+Axioms:
+ClassicalDedekindReals.sig_forall_dec :
+  forall P : nat -> Prop,
+  (forall n : nat, {P n} + {~ P n}) ->
+  {n : nat | ~ P n} + {forall n : nat, P n}
+FunctionalExtensionality.functional_extensionality_dep :
+  forall (A : Type) (B : A -> Type) (f g : forall x : A, B x),
+  (forall x : A, f x = g x) -> f = g
+Description.constructive_definite_description :
+  forall (A : Type) (P : A -> Prop), (exists ! x : A, P x) -> {x : A | P x}
+Classical_Prop.classic : forall P : Prop, P \/ ~ P
+LTL_TO_BUCHI_CORRECT
+     : forall (root : mtl) (f : ltl root),
+       {A : PBuchi root
+       | forall s : pword root,
+         action_consistent (root:=root) s -> PBA_accepts A s <-> psat s 0 f}
+Axioms:
+LTL_TO_BUCHI_CORRECT :
+  forall (root : mtl) (f : ltl root),
+  {A : PBuchi root
+  | forall s : pword root,
+    action_consistent (root:=root) s -> PBA_accepts A s <-> psat s 0 f}
+MTL_to_exported_correct_recur_weak_with
+     : forall (n : nat) (f : mtl) (A : PBuchi (recur f)) (w : timed_word),
+       (forall s : pword (recur f),
+        action_consistent (root:=recur f) s ->
+        PBA_accepts A s <-> psat s 0 (MTL_to_TBA_Weak.weak (T (recur f)))) ->
+       well_formed f ->
+       msat w 0 f <-> DTA_accepts (export (optimize n (compile_with A))) w
+Axioms:
+ClassicalDedekindReals.sig_forall_dec :
+  forall P : nat -> Prop,
+  (forall n : nat, {P n} + {~ P n}) ->
+  {n : nat | ~ P n} + {forall n : nat, P n}
+FunctionalExtensionality.functional_extensionality_dep :
+  forall (A : Type) (B : A -> Type) (f g : forall x : A, B x),
+  (forall x : A, f x = g x) -> f = g
+Description.constructive_definite_description :
+  forall (A : Type) (P : A -> Prop), (exists ! x : A, P x) -> {x : A | P x}
+Classical_Prop.classic : forall P : Prop, P \/ ~ P
+MTL_to_exported_correct0_recur_weak_with
+     : forall (n : nat) (f : mtl) (A : PBuchi (recur f)) (w : timed_word),
+       (forall s : pword (recur f),
+        action_consistent (root:=recur f) s ->
+        PBA_accepts A s <-> psat s 0 (MTL_to_TBA_Weak.weak (T (recur f)))) ->
+       well_formed f ->
+       init_free (export (optimize n (compile_with A))) = true ->
+       msat w 0 f <-> DTA_accepts0 (export (optimize n (compile_with A))) w
+Axioms:
+ClassicalDedekindReals.sig_forall_dec :
+  forall P : nat -> Prop,
+  (forall n : nat, {P n} + {~ P n}) ->
+  {n : nat | ~ P n} + {forall n : nat, P n}
+FunctionalExtensionality.functional_extensionality_dep :
+  forall (A : Type) (B : A -> Type) (f g : forall x : A, B x),
+  (forall x : A, f x = g x) -> f = g
+Description.constructive_definite_description :
+  forall (A : Type) (P : A -> Prop), (exists ! x : A, P x) -> {x : A | P x}
+Classical_Prop.classic : forall P : Prop, P \/ ~ P

@@ -1,0 +1,9 @@
+# M01: a clock that is reset on entry to a location whose only outgoing guard is x<=0
+events e0 e1
+clocks 1
+init 0
+states 3
+acc 2
+t 0 1 | 1+ | | 0
+t 1 2 | 0+ | 0<=0 | 0
+t 2 1 | 1+ | | 0

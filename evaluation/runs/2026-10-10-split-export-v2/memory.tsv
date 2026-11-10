@@ -1,0 +1,20 @@
+model	peak_rss_kib	measurement
+stable	6344	paired max-delay/all-copy export in one process
+redundant_guard	6240	paired max-delay/all-copy export in one process
+contradictory_guard	6328	paired max-delay/all-copy export in one process
+unsatisfiable_label	6292	paired max-delay/all-copy export in one process
+isolated_source	6252	paired max-delay/all-copy export in one process
+dead_reset	6468	paired max-delay/all-copy export in one process
+synchronous_clock_merge	6460	paired max-delay/all-copy export in one process
+duplicate_transition	6324	paired max-delay/all-copy export in one process
+equivalent_locations	6364	paired max-delay/all-copy export in one process
+disjunctive_invariant_export	6468	paired max-delay/all-copy export in one process
+backward_tightening	6188	paired max-delay/all-copy export in one process
+forward_lower_bound	6372	paired max-delay/all-copy export in one process
+forward_contradiction_cascade	6356	paired max-delay/all-copy export in one process
+backward_contradiction_cascade	6372	paired max-delay/all-copy export in one process
+clock_merge_contradiction_cascade	6320	paired max-delay/all-copy export in one process
+invariant_disjunction_2	6316	paired max-delay/all-copy export in one process
+invariant_disjunction_3	7368	paired max-delay/all-copy export in one process
+invariant_disjunction_4	7512	paired max-delay/all-copy export in one process
+invariant_disjunction_6	7748	paired max-delay/all-copy export in one process

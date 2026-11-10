@@ -1,0 +1,54 @@
+\subsubsection{Property automata}
+For sporadicity, the violation formula $\Diamond(e\wedge\hEventually_{<2}e)$ is compiled into locations $L0$ (initial), $A2$ (accepting, invariant $x_0\le2$), and accepting sink $A4$, with one clock:
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item $L0\to L0$: every event / $x_0$; \quad $L0\to A2$: $e$ / $x_0$;
+\item $A2\to A2$: $x_0<2$, $\mathit{other}$; \quad $A2\to A4$: $x_0<2$, $e$;
+\item $A4\to A4$: every event.
+\end{itemize}
+The automaton guesses one $e$ and reaches $A4$ when a second follows less than two time units later. The bounded accepting location cannot be occupied forever on a time-divergent word, so acceptance entails a visit to the violation sink.
+
+For bounded response, the violation formula is $\Diamond(p\wedge\hAlways_{\le5}\neg q)$, with locations $L0$ (initial), $A2$ (accepting), and $A4$ (accepting sink):
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item $L0\to L0$: every event; \quad $L0\to A2$: $p$ / $x_0$;
+\item $A2\to A2$: $p$ or $\mathit{other}$; \quad $A2\to A4$: $x_0>5$, every event;
+\item $A4\to A4$: every event.
+\end{itemize}
+A run that remains in $A2$ forever corresponds to a request that is never answered. On a word with divergent time and infinitely many events, an event eventually enables the transition to $A4$.
+
+\subsubsection{System models and results}
+Every system has a clock $z$, reset on every emission and tested by $z>0$ so event times strictly increase, and a clock $y$ for its timing parameter.
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item \emph{Sporadic emitter.} A single location $S$ has $S\to S$: $y\ge k\land z>0$, $e$ / $y,z$, and $S\to S$: $z>0$, $\mathit{other}$ / $z$. It satisfies the requirement for $k=2$ and violates it for $k=1$.
+\item \emph{Controller.} Locations are $\mathit{Idle}$ (initial) and $\mathit{Busy}$, with invariant $y\le d$. The transition $\mathit{Idle}\to\mathit{Busy}$ emits $p$ when $z>0$ and resets $y,z$; $\mathit{Idle}$ can emit \texttt{other} when $z>0$ and reset $z$. In $\mathit{Busy}$, \texttt{other} is emitted under $z>0\land y<d$, resetting $z$, and $q$ is emitted under $z>0\land y\ge1$, resetting $z$ and returning to $\mathit{Idle}$. It satisfies bounded response for $d=4$ and violates it for $d=6$.
+\end{itemize}
+The query is \texttt{E<> P.A4}. Table~\ref{tab:case} records UPPAAL 5.0.0 results. The system-alone deadlock check composes each system with a receiver of every channel, without the property automaton.
+\begin{table}[t]
+\centering
+\caption{Case study with UPPAAL 5.0.0. Reachability is \texttt{E<> P.A4}; no deadlock is \texttt{A[] not deadlock} on the system alone.}
+\label{tab:case}
+\footnotesize
+\begin{tabular}{@{}lccc@{}}
+\toprule
+System & Reachability & Diagnostic trace & No deadlock\\
+\midrule
+Emitter, $k=2$ & no & --- & yes\\
+Emitter, $k=1$ & yes & $(e,1)(e,2)$ & yes\\
+Controller, $d=4$ & no & --- & yes\\
+Controller, $d=6$ & yes & $(p,0.5)(q,6)$ & yes\\
+\bottomrule
+\end{tabular}
+\end{table}
+A controller variant without guard $y<d$ can emit \texttt{other} at $y=d$, after which the $z>0$ test prevents another event while the invariant prevents time advancing. UPPAAL's system-alone \texttt{A[] not deadlock} query detects this timelock; packaged models use the corrected guard.
+
+The diagnostic traces explain the two positive reachability results. With
+$k=1$, the emitter can produce $e$ at times 1 and 2, so the second event is
+strictly less than two units after the first and reaches the violation sink.
+With $k=2$, every pair of consecutive emissions is separated by at least two
+units, so the sink is unreachable. For the controller with $d=6$, the trace
+$(p,0.5)(q,6)$ leaves 5.5 time units between request and response, exceeding
+the five-unit bound. When $d=4$, the invariant and response transition force
+an answer no later than four units after the request. The ``no deadlock''
+column reports a separate system-only query; it rules out reachable deadlock
+states in these models but does not itself prove time divergence. The models
+also admit continuations with positive, unbounded elapsed time, as required
+for interpreting a finite violation prefix as an infinite timed word.

@@ -1,0 +1,12 @@
+digraph G {
+  0 [label="", style=invis, height=0]
+  0 -> 1
+  1 [label="G(!p | !q) & F(p & (!pR[x<=4]!q))"]
+  1 -> 1 [label="!p | !q\n"]
+  1 -> 2 [label="p & !q & reset(x0)\n{Acc[p & (!pR[x<=4]!q)]}"]
+  2 [label="(G(!p | !q) & (!pR[x<=4-x0]!q)) | (G(!p | !q) & !\"x0<=4\")"]
+  2 -> 3 [label="(!p & !q) | (!p & !\"x0<=4\") | (!q & !\"x0<=4\")\n{Acc[p & (!pR[x<=4]!q)]}"]
+  2 -> 2 [label="!q\n{Acc[p & (!pR[x<=4]!q)]}"]
+  3 [label="G(!p | !q)"]
+  3 -> 3 [label="!p | !q\n{Acc[p & (!pR[x<=4]!q)]}"]
+}

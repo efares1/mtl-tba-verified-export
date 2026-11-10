@@ -1,0 +1,34 @@
+{
+ "id": "M15",
+ "T1_corpus_changed": 20,
+ "corpus_runs": 296,
+ "crashes": 0,
+ "bench_crashes": 0,
+ "T2_corpus": {
+  "budget": 1000,
+  "inputs_with_mismatch": 13,
+  "min_first_word": 4,
+  "example": [
+   "rnd_006/md",
+   "rnd_018/md",
+   "rnd_021/md",
+   "rnd_035/md"
+  ],
+  "unreadable_output": 0
+ },
+ "T2_bench": {
+  "budget": 1000,
+  "inputs_with_mismatch": 19,
+  "min_first_word": 0,
+  "example": [
+   "F1/pos/d",
+   "F10/pos/d",
+   "F11/neg/d",
+   "F11/pos/d"
+  ]
+ },
+ "T1_bench_changed": 20,
+ "bench_runs": 84,
+ "budget_tried": 1000,
+ "seconds": 24
+}

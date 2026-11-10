@@ -1,0 +1,30 @@
+id	P1	P2	S	C
+F1	empty	empty	empty	NONEMPTY
+F2	empty	empty	empty	NONEMPTY
+F3b	empty	empty	empty	NONEMPTY
+F4	empty	empty	empty	NONEMPTY
+F5	empty	empty	empty	NONEMPTY
+F6	empty	empty	empty	NONEMPTY
+F7	empty	empty	empty	NONEMPTY
+F8	empty	empty	empty	NONEMPTY
+F9	empty	empty	empty	NONEMPTY
+F10	empty	empty	empty	NONEMPTY
+F11	empty	empty	empty	NONEMPTY
+F12	empty	empty	empty	NONEMPTY
+F14	timeout	empty	timeout	timeout
+R1	empty	empty	empty	NONEMPTY
+R2	timeout	empty	timeout	timeout
+R3	timeout	empty	timeout	timeout
+R4	timeout	timeout	timeout	timeout
+R5	timeout	timeout	timeout	timeout
+R6	timeout	timeout	timeout	timeout
+R7	tool timeout			
+R8	tool timeout			
+N1	empty	empty	empty	NONEMPTY
+N2	empty	empty	empty	NONEMPTY
+N3	empty	empty	empty	NONEMPTY
+N4	empty	empty	empty	NONEMPTY
+N5	timeout	timeout	timeout	NONEMPTY
+N6	timeout	timeout	timeout	NONEMPTY
+N7	tool timeout (negation)			
+N8	tool timeout (negation)			

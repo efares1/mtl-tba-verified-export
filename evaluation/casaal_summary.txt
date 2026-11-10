@@ -1,0 +1,1 @@
+tck: ours 28555 casaal 30890 fewer 10 equal 6 more 0 skipped F14,R2,R3,R4,R5,R6,N4,N5,N6,N7,N8

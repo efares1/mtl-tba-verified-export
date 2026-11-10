@@ -1,0 +1,11 @@
+{
+ "id": "M01",
+ "description": "inv_item_of: invariant of a clock reset on the transition judged true iff 0 < M (instead of 0 <= M)",
+ "file": "MTL_to_TBA_Optimizations",
+ "compiled": [],
+ "status": "rejected",
+ "failing_file": "MTL_to_TBA_Optimizations",
+ "seconds_to_fail": 4.7,
+ "first_error": "File \".\\MTL_to_TBA_Optimizations.v\", line 2449, characters 16-26:\nWarning: Notation map_length is deprecated since 8.20.\nUse length_map instead.\n[deprecated-syntactic-definition-since-8.20,deprecated-since-8.20,deprecated-syntactic-definition,deprecated,default]\nFile \".\\MTL_to_TBA_Optimizations.v\", line 2449, characters 28-38:\nWarning: Notation seq_length is deprecated since 8.20.\nUse length_seq instead.\n[deprecated-syntactic-definition-since-8.20,deprecated-since-8.20,deprecated-syntactic-definition,deprecated,default]\nFile \".\\MTL_to_TBA_Optimizations.v\", line 2449, characters 16-26:\nWarning: Notation map_length is deprecated since 8.20.\nUse length_map instead.\n[deprecated-syntactic-definition-since-8.20,deprecated-since-8.20,deprecated-syntactic-definition,deprecated,default]\nFile \".\\MTL_to_TBA_Optimizations.v\", line 2449, characters 16-26:\nWarning: Notation map_length is deprecated since 8.20.\nUse length_map instead.\n[deprecated-syntactic-definition-since-8.20,deprecated-since-8.20,deprecated-syntactic-definition,deprecated,default]\nFile \".\\MTL_to_TBA_Optimizations.v\", line 2449, characters 28-38:\nWarning: Notation seq_length is deprecated since 8.20.\nUse length_seq instead.\n[deprecated-syntactic-definition-since-8.20,deprecated-since-8.20,deprecated-syntactic-definition,deprecated,default]\nFile \".\\MTL_to_TBA_Optimizations.v\", line 2449, characters 28-38:\nWarning: Notation seq_length is deprecated since 8.20.\nUse length_seq instead.\n[deprecated-syntactic-definition-since-8",
+ "err_line": 2449
+}

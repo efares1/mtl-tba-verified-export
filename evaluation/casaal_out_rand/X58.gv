@@ -1,0 +1,8 @@
+digraph G {
+  0 [label="", style=invis, height=0]
+  0 -> 1
+  1 [label="((1U[x<=1]!q)R[x<3](p & !q)) & G(!p | !q)"]
+  1 -> 2 [label="p & !q\n"]
+  2 [label="G(!p | !q)"]
+  2 -> 2 [label="!p | !q\n"]
+}

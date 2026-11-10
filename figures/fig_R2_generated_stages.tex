@@ -1,0 +1,55 @@
+\begin{tikzpicture}[
+  state/.style={circle,double,draw,minimum size=6mm,inner sep=1pt,font=\scriptsize},
+  edge/.style={->,>=Stealth,line width=0.55pt},
+  removed/.style={->,>=Stealth,dashed,gray,line width=0.65pt},
+  lab/.style={font=\tiny,align=center,fill=white,inner sep=1pt},
+  title/.style={font=\footnotesize\bfseries,align=center},
+  small/.style={font=\tiny,align=center},
+  detail/.style={font=\scriptsize,align=center}
+]
+% Each panel is a selected subgraph of the corresponding saved full automaton.
+\begin{scope}[xshift=0cm]
+  \node[title] at (2.6,2.05) {Optimizer input};
+  \node[small] at (2.6,1.72) {after reset completion; selected fragment};
+  \node[state] (i0) at (0.75,0.85) {$L_0$};
+  \node[state] (i1) at (4.35,0.85) {$L_1$};
+  \draw[edge] (i0) edge[loop left] node[lab,left]
+    {$b_1,b_2,\mathit{other}$\\$x_0,x_1:=0$} (i0);
+  \draw[edge] (i0) to[bend left=12] node[lab,above]
+    {$a_2$\\$x_0,x_1:=0$} (i1);
+  \draw[removed] (i0) to[bend right=13] node[lab,below]
+    {removed edge} (i1);
+  \node[small] at (2.55,-0.05)
+    {$4$ reachable locations; $25$ transitions; $2$ clocks};
+\end{scope}
+\begin{scope}[xshift=5.85cm]
+  \node[title] at (2.6,2.05) {Optimized TBA};
+  \node[small] at (2.6,1.72) {after two changed rounds; same fragment};
+  \node[state] (o0) at (0.75,0.85) {$L_0$};
+  \node[state] (o1) at (4.35,0.85) {$L_1$};
+  \draw[edge] (o0) edge[loop left] node[lab,left]
+    {$b_1,b_2,\mathit{other}$\\$x_0,x_1:=0$} (o0);
+  \draw[edge] (o0) -- node[lab,above]
+    {$a_2$\\$x_0,x_1:=0$} (o1);
+  \node[small] at (2.55,-0.05)
+    {$4$ reachable locations; $16$ transitions; $2$ clocks};
+\end{scope}
+\begin{scope}[xshift=11.7cm]
+  \node[title] at (2.6,2.05) {Explicit export};
+  \node[small] at (2.6,1.72) {selected copy of optimized location $L_2$};
+  \node[state] (e4) at (2.6,0.98) {$L_4$};
+  % Separate the two loop arcs from their longer guard descriptions.
+  \draw[edge] (e4) edge[loop left,looseness=6] (e4);
+  \draw[edge] (e4) edge[loop right,looseness=6] (e4);
+  \node[detail] at (2.6,0.39)
+    {$e_1,e_2$: label $a_1|a_2|\mathit{other}$; no reset};
+  \node[detail] at (2.6,0.10)
+    {$g_1:x_0-x_1\leq0$; \quad $g_2:x_1-x_0\leq0$};
+  \node[detail] at (2.6,-0.19)
+    {$g_1,g_2$ also require $x_0\leq5\land x_1\leq5$};
+  \node[detail] at (2.6,-0.46)
+    {$\mathit{Inv}(L_4):x_0\leq5\land x_1\leq5$};
+  \node[small] at (2.6,-0.78)
+    {$4$ reachable locations; $19$ transitions; $2$ clocks};
+\end{scope}
+\end{tikzpicture}

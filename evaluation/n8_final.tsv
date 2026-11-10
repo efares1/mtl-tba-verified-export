@@ -1,0 +1,3 @@
+config	status	seconds	peak_rss_kb	fallback	locs	trans
+manual	ok	243.1	430908	0	257	16769
+auto	ok	247.8	432392	1	257	16769

@@ -1,0 +1,9 @@
+digraph G {
+  0 [label="", style=invis, height=0]
+  0 -> 1
+  1 [label="((!qU[x>1]r) | F!q) & G(!q | !r)"]
+  1 -> 2 [label="!q\n{Acc[!q]}"]
+  1 -> 1 [label="!r\n"]
+  2 [label="G(!q | !r)"]
+  2 -> 2 [label="!q | !r\n{Acc[!q]}"]
+}

@@ -1,0 +1,49 @@
+{
+ "id": "CTRL",
+ "description": "control: unmutated sources",
+ "file": "MTL_to_TBA_Optimizations",
+ "compiled": [
+  [
+   "MTL_to_TBA_Shared_Clock_Derived_Strict_Direct_Core",
+   5.0
+  ],
+  [
+   "EncodingCorrect_Shared_Clock_Derived_Strict_Direct_Proof",
+   5.6
+  ],
+  [
+   "MTL_to_TBA_Invariants",
+   3.2
+  ],
+  [
+   "MTL_to_TBA_Optimizations",
+   10.4
+  ],
+  [
+   "MTL_to_TBA_Export",
+   6.7
+  ],
+  [
+   "MTL_to_TBA_Initialization",
+   3.0
+  ],
+  [
+   "MTL_to_TBA_Simplify",
+   4.4
+  ],
+  [
+   "MTL_to_TBA_Symbolic",
+   3.1
+  ],
+  [
+   "MTL_to_TBA_Weak",
+   3.0
+  ],
+  [
+   "MTL_to_TBA_Recur",
+   4.4
+  ]
+ ],
+ "status": "accepted",
+ "seconds": 48.9
+}

@@ -1,0 +1,5 @@
+Modular chain from MTL to timed automata with Rocq-verified optimization/export
+Every pass preserves the timed-word language for any number of rounds
+Tool-to-tool comparison with CASAAL: similar size, similar checker cost
+Seeded-bug study: tests miss 4 defects that Rocq rejects
+Spot is replaceable: theorems hold for any front end meeting the interface
