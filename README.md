@@ -31,6 +31,7 @@ the proofs. `proof/Audit_Revision_20261010.v` prints the assumptions of the main
 | `evaluation/uppaal/` | 311 UPPAAL models, runner and results |
 | `evaluation/differential/` | independent MTL evaluator and the 6,160,000-word differential test |
 | `evaluation/mutation/` | 22 seeded defects in the extracted code; `rocq/` holds the Rocq-level rejection runs and logs |
+| `evaluation/independent/` | optimizer and export on 600 TBAs that no MTL translator produced (`run_independent.py`; results in `results/`; `reduce.py` and `trace_can.py` minimize and trace a mismatch) |
 | `scripts/`, `reproduce.sh` | build, reproduction and table scripts (`scripts/build_jss.sh` builds the article and supplement) |
 | `JSS_highlights.txt` | highlights |
 
