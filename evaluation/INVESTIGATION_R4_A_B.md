@@ -112,7 +112,27 @@ Findings:
    the distinct zones.
 4. Most of the blow-up is covered zones: with inclusion subsumption the gap is 2.8x (R2), 6.4x (R3), 14x (R4), against
    13x, 511x and 15,229x with the Couvreur-based algorithm. The headline ratio is a property of that algorithm.
-5. Not isolated: whether the nondeterministic edges (1.2 against 2.5 to 8.7 per location and event) cause the extra zones.
-   No language-preserving transformation of CASAAL's automaton that removes them was available; the hypothesis stays open.
+5. Isolated (section 5): removing the dominated nondeterministic edges gives exactly our counts.
 6. Mean out-degree of the zone graph is similar (1.46 against 1.56 on R2), so it is not a larger branching of the graph.
+
+## 5. Pruning CASAAL's dominated edges (isolating experiment)
+
+Files: `prune_casaal.py`, `prune_results.txt`, `prune_R2.xml`..`prune_R4.xml`.
+CASAAL's positive automaton (location acceptance, our export, `-n 0 -all-copy`) has only upper-bound guards and invariants.
+A syntactic simulation (clock liveness; q1 covers q2 if invariants/guards are weaker and every edge of q2 is matched by an
+edge of q1 whose target covers and which does not leave a live clock unreset that the matched edge resets) identifies
+dominated edges; they are removed one at a time, recomputing the relation. The argument is ours, not mechanized.
+
+| | edges | (loc,event) pairs with 2+ edges | Couvreur stored | covreach stored |
+|---|---:|---:|---:|---:|
+| R2 CASAAL / pruned / ours | 51 / 20 / 20 | 15 / 0 | 890 / 70 / 70 | 28 / 10 / 10 |
+| R3 CASAAL / pruned / ours | 216 / 56 / 56 | 49 / 0 | 47,008 / 92 / 92 | 103 / 16 / 16 |
+| R4 CASAAL / pruned / ours | 837 / 144 / 144 | 135 / 0 | (1.7M) / 114 / 114 | 304 / 22 / 22 |
+
+Language check (not a proof): pruned vs original vs the MTL judge of `differential/` on random lasso words, all
+locations accepting: R2 2,000 words (660 accepted), R3 5,000 (1,306), R4 3,000 (687; pruned vs judge only): no disagreement.
+Example redundant edge (R2, `a1` at the initial location): one edge to the location that tracks response 1 (reset x0), one to
+the location that also guesses response 2 pending (reset x0, x1); the second only adds restrictions.
+Conclusion: the extra states come from redundant nondeterministic edges; a deterministic automaton of the same size gives
+our counts under both algorithms.
 
