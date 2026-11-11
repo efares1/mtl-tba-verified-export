@@ -5,7 +5,7 @@
 #   3. print the assumptions of the main theorems;
 #   4. build the tool mtl2tba;
 #   5. translate the examples of the paper;
-#   6. run the 18 boundary and overlap implementation checks.
+#   6. run the 18 boundary and overlap implementation checks;
 # Usage:  bash reproduce.sh            (coqc, dune, menhir, ltl2tgba on PATH)
 #         COQC=/path/to/coqc bash reproduce.sh
 # The full evaluation of the paper is described in evaluation/README.md.

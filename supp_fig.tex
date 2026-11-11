@@ -1,8 +1,0 @@
-Figure~\ref{fig:R2-generated} follows an actual current tool-generated automaton from the reset-completion boundary through optimization and export. It does not repeat the upstream MTL translation. In this instance, two optimization rounds remove nine transitions; export adds three explicit transitions while producing the required conjunctive internal shape.
-
-\begin{figure*}[t]
-\centering
-\input{figures/fig_R2_generated_stages}
-\caption{Selected subgraphs from the actual generated R2 files. The dashed input edge is absent after optimization; only one of the nine removed transitions is shown. The first two panels show a retained edge and loop. The export panel follows the optimized $L_2$ loop to its $L_4$ copy, where one source loop becomes two conjunctive-guard loops. The annotations list their diagonal atoms, shared unary bounds, and invariant. Counts below summarize the complete automata: reachable locations, transitions, and active clocks. The internal output-shape guarantee is proved in Rocq; the displayed graph and counts are measurements.}
-\label{fig:R2-generated}
-\end{figure*}

@@ -125,8 +125,8 @@ with open(OUT, 'a', encoding='utf8') as o:
         i, desc, ours, cas = rec[:4]
         if i not in ONLY:
             continue
-        gv = os.path.join(EV, 'casaal_out' if WORKLOAD == 'posbad' else 'casaal_out_neg', i + '.gv')
-        FORM = '%s' if WORKLOAD == 'posbad' else '!(%s)'
+        gv = os.path.join(EV, 'casaal_out' if WORKLOAD in ('posbad', 'posbadall') else 'casaal_out_neg', i + '.gv')
+        FORM = '%s' if WORKLOAD in ('posbad', 'posbadall') else '!(%s)'
         events = sorted(set(re.findall(r'\b[a-z][a-z0-9_]*\b', ours)) - {'true', 'false'})
         W = tempfile.mkdtemp()
         try:
@@ -145,7 +145,7 @@ with open(OUT, 'a', encoding='utf8') as o:
                         print(i, 'not a response pattern')
                         continue
                     sh([sys.executable, os.path.join(EV, 'make_resp_system.py'), m.group(1), os.path.join(W, 'sys0.xml')]
-                       + (['bad'] if WORKLOAD in ('resp_bad', 'posbad') else []))
+                       + (['bad'] if WORKLOAD in ('resp_bad', 'posbad') else ['badall'] if WORKLOAD == 'posbadall' else []))
                 sh([sys.executable, os.path.join(EV, 'tck_normalize_system.py'), os.path.join(W, 'sys0.xml'),
                     os.path.join(W, 'sys.xml')])
                 mk_first = lambda: tp.from_xml('SYS', os.path.join(W, 'sys.xml'))

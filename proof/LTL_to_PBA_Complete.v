@@ -240,7 +240,7 @@ Proof.
 Qed.
 
 Section Run.
-Hypothesis Hf : psat s 0 f.
+Variable Hf : psat s 0 f.
 
 Definition repX (i : nat) : list (ltl root) :=
   proj1_sig (rep_exists (subf root f) (Xt i) (fun u H => proj1 H)).

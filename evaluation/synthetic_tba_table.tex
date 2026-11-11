@@ -3,7 +3,7 @@
 \caption{Sixteen translator-independent synthetic TBA records. Count tuples are declared locations / transitions / distinct clocks / reset occurrences / unary guard atoms; the export tuple adds diagonal guard atoms. The $I$ field gives nonempty invariant locations:bound atoms. Optimization and export times are per-call means over 200 repeated in-memory runs; RSS is the peak for a separate single-model process. Full per-pass and reachability data are supplied in the artifact.}
 \label{tab:synthetic-tba}
 \scriptsize
-\begin{tabular}{@{}lrrrrrrr@{}}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{@{}lrrrrrrr@{}}
 \toprule
 Model & Input & Optimized & Rounds & Opt. (ms) & RSS (KiB) & Export & Exp. (ms)\\
 \midrule
@@ -24,5 +24,5 @@ forward\_contradiction\_cascade & 6/7/1/0/3 & 6/4/1/0/4; $I=1:1$ & 2 & 0.437 & 6
 backward\_contradiction\_cascade & 5/5/1/0/4 & 5/1/0/0/0; $I=0:0$ & 2 & 0.201 & 6320 & 10/1/0/0/0/0; $I=1:0$ & 0.180\\
 clock\_merge\_contradiction\_cascade & 5/5/2/6/4 & 5/3/1/2/1; $I=1:1$ & 2 & 0.622 & 6484 & 10/2/1/2/1/0; $I=2:1$ & 0.598\\
 \bottomrule
-\end{tabular}
+\end{tabular}\end{adjustbox}
 \end{table*}

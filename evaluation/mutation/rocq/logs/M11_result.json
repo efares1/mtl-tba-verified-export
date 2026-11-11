@@ -1,0 +1,11 @@
+{
+ "id": "M11",
+ "description": "same_ends: transitions with the same ends are merged without comparing their reset sets",
+ "file": "MTL_to_TBA_Optimizations",
+ "compiled": [],
+ "status": "rejected",
+ "failing_file": "MTL_to_TBA_Optimizations",
+ "seconds_to_fail": 4.6,
+ "first_error": "File \".\\MTL_to_TBA_Optimizations.v\", line 2092, characters 8-16:\nError: Unable to apply lemma of type\n \"forall (A : Type) (d : forall a b : A, {a = b} + {a <> b}) (a b : A),\n  beq d a b = true <-> a = b\"\non hypothesis of type \"true = true\".",
+ "err_line": 2092
+}

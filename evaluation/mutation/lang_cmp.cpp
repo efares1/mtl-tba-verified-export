@@ -130,10 +130,46 @@ static uint64_t rs;
 static uint64_t rnd() { rs ^= rs << 13; rs ^= rs >> 7; rs ^= rs << 17; return rs; }
 static int rint(int n) { return (int)(rnd() % (uint64_t)n); }
 
+// Exhaustive mode: lang_cmp A B exh d1,d2,.. [v1,v2,..] [maxpos]  enumerates EVERY lasso word (prefix 0..3 and loop 1..3, with
+// prefix+loop <= 4 positions) over all events and the given delay values (half units), starting from EVERY initial valuation in the grid v1,v2,.. (default 0) for each clock, and counts the words on which exactly one automaton accepts.  Exact on this finite word set only.
+static vector<int> parse_list(const char* dl) { vector<int> D; string s(dl); stringstream ss(s); string tok; while (getline(ss, tok, ',')) D.push_back(atoi(tok.c_str())); return D; }
+static int exhaustive(const Aut& A, const Aut& B, const char* dl, const char* vl, int maxpos) {
+  vector<int> D = parse_list(dl); vector<int> VL = parse_list(vl);
+  int E = max(A.E, B.E); int nc = max(A.nc, B.nc);
+  if (nc > MAXC) { fprintf(stderr, "too many clocks\n"); return 2; }
+  int M = max(A.maxconst, B.maxconst);
+  int nopt = E * (int)D.size();
+  long words = 0, mism = 0, accA = 0, accB = 0; long firstm = -1;
+  static const int cfg[][2] = {{0,1},{0,2},{0,3},{1,1},{1,2},{1,3},{2,1},{2,2},{3,1}};
+  for (auto& c : cfg) {
+    int P = c[0], Lp = c[1], n = P + Lp;
+    if (n > maxpos) continue;
+    long total = 1; for (int i = 0; i < n; i++) total *= nopt;
+    for (long code = 0; code < total; code++) {
+      Word w; w.P = P; w.Lp = Lp; long x = code; int tot = 0;
+      for (int i = 0; i < n; i++) { int o = (int)(x % nopt); x /= nopt; w.ev[i] = o / (int)D.size(); w.dl[i] = D[o % (int)D.size()]; if (i >= P) tot += w.dl[i]; }
+      if (tot == 0) continue;
+      w.R0 = (M + 4) / tot + 2; w.R = w.R0 + 12;
+      long nv = 1; for (int k = 0; k < nc; k++) nv *= (long)VL.size();
+      for (long vc = 0; vc < nv; vc++) {
+        Val v0; v0.fill(0); long y = vc;
+        for (int k = 0; k < nc; k++) { v0[k] = VL[y % (long)VL.size()]; y /= (long)VL.size(); }
+        bool a = accepts(A, w, v0), b = accepts(B, w, v0);
+        words++; accA += a; accB += b;
+        if (a != b) { mism++; if (firstm < 0) firstm = words; }
+      }
+    }
+  }
+  printf("words=%ld pairs=%ld mismatch=%ld first=%ld accA=%ld accB=%ld\n", words, words, mism, firstm, accA, accB);
+  return 0;
+}
+
 int main(int argc, char** argv) {
-  if (argc < 5) { fprintf(stderr, "usage: lang_cmp A B nwords seed [first]\n"); return 2; }
+  if (argc < 4) { fprintf(stderr, "usage: lang_cmp A B nwords seed [first] | lang_cmp A B exh d1,d2,..\n"); return 2; }
   Aut A, B;
   if (!read_aut(argv[1], A) || !read_aut(argv[2], B)) return 2;
+  if (string(argv[3]) == "exh") return exhaustive(A, B, argc > 4 ? argv[4] : "0,1,2,3,5,10", argc > 5 ? argv[5] : "0", argc > 6 ? atoi(argv[6]) : 4);
+  if (argc < 5) { fprintf(stderr, "usage: lang_cmp A B nwords seed [first]\n"); return 2; }
   long nwords = atol(argv[3]); uint64_t seed = strtoull(argv[4], 0, 10);
   long first = argc > 5 ? atol(argv[5]) : 0;
   int E = max(A.E, B.E); int nc = max(A.nc, B.nc);

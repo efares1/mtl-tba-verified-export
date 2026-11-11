@@ -1,0 +1,11 @@
+{
+ "id": "M04",
+ "description": "mentions: a clock is tested only by upper-bound atoms",
+ "file": "MTL_to_TBA_Optimizations",
+ "compiled": [],
+ "status": "rejected",
+ "failing_file": "MTL_to_TBA_Optimizations",
+ "seconds_to_fail": 3.2,
+ "first_error": "File \".\\MTL_to_TBA_Optimizations.v\", line 872, characters 18-25:\nError:\nIn environment\nroot : mtl\nx, y : Clock root\nrho : ext_word root\ni : nat\nk : clock_constraint root\nE : clock_eqb (root:=root) (guard_clock k) x = true\nHeq :\n  true && match guard_comparison k with\n          | CLe | CLt => true\n          | _ => false\n          end =\n  true -> ew_val rho i x = ew_val rho i y\nH : clock_constraint_holds rho i k\nThe term \"eq_refl\" has type\n \"true && match guard_comparison k with\n          | CLe | CLt => true\n          | _ => false\n          end =\n  true && match guard_comparison k with\n          | CLe | CLt => true\n          | _ => false\n          end\"\nwhile it is expected to have type\n \"true && match guard_comparison k with\n          | CLe | CLt => true\n          | _ => false\n          end =\n  true\"\n(cannot unify \"true &&\n               match guard_comparison k with\n               | CLe | CLt => true\n               | _ => false\n               end\"\nand \"true\").",
+ "err_line": 872
+}

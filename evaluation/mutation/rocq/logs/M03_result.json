@@ -1,0 +1,11 @@
+{
+ "id": "M03",
+ "description": "contradictory_bounds: l <= x <= l is always judged contradictory (strictness ignored)",
+ "file": "MTL_to_TBA_Optimizations",
+ "compiled": [],
+ "status": "rejected",
+ "failing_file": "MTL_to_TBA_Optimizations",
+ "seconds_to_fail": 2.7,
+ "first_error": "File \".\\MTL_to_TBA_Optimizations.v\", line 535, characters 52-55:\nError: Tactic failure:  Cannot find witness.",
+ "err_line": 535
+}

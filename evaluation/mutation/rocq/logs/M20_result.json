@@ -1,0 +1,11 @@
+{
+ "id": "M20",
+ "description": "implies_c: x <= u is taken to imply x < w when u <= w",
+ "file": "MTL_to_TBA_Invariants",
+ "compiled": [],
+ "status": "rejected",
+ "failing_file": "MTL_to_TBA_Invariants",
+ "seconds_to_fail": 2.2,
+ "first_error": "File \".\\MTL_to_TBA_Invariants.v\", line 416, characters 61-64:\nError: Tactic failure:  Cannot find witness.",
+ "err_line": 416
+}

@@ -1,0 +1,10 @@
+R3 edges 216 -> 56 (removed 160); (loc,event) pairs with >=2 edges: 49 -> 0
+R3 orig couvscc stored / cycle / covreach stored: 47008 false 103
+R3 pruned couvscc stored / cycle / covreach stored: 92 false 16
+R3 words, positive, pruned!=orig, pruned!=judge: 5000 1306 0 0
+R4 edges 837 -> 144 (removed 693); (loc,event) pairs with >=2 edges: 135 -> 0
+R4 pruned couvscc stored / cycle / covreach stored: 114 false 22
+R4 words, positive, pruned!=orig, pruned!=judge: 3000 687 0 0
+R5 edges 3078 -> 352 (removed 2726); (loc,event) pairs with >=2 edges: 341 -> 0
+R5 pruned couvscc stored / cycle / covreach stored: 136 false 28
+R5 words, positive, pruned!=orig, pruned!=judge: 2000 424 0 0

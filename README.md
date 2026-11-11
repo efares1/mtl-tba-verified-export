@@ -1,67 +1,21 @@
-# Verified optimization, export and evaluation of a translation from real-time requirements to timed Büchi automata
+# Verified optimization and export of timed Büchi automata (shared foundation)
 
-Artifact of the article submitted to the Journal of Systems and Software by
-Elie Fares, Jean-Paul Bodeveix, Hussain Al-Aqrabi and Azar Salami.
-It contains the Rocq development, the extracted OCaml tool `mtl2tba`, the evaluation scripts, the
-inputs and the raw results behind the tables of the article and its supplement.
-
-The article builds on "A Mechanically Verified Translation of MTL<sub>0,∞</sub> into Timed Büchi
-Automata" (<https://github.com/efares1/rocq-mtl-to-tba-translation>), whose translation theorem it
-cites and does not re-prove, and on an earlier optimization article
-(<https://github.com/efares1/rocq-tba-optimization-uppaal-export>).
-
-## What is proved
-
-Each optimization and export pass preserves the timed-word language of every TBA over the
-formula-indexed clock interface; the optimizer does so for every number of rounds; the output of
-export has conjunctive guards and invariants. The end-to-end theorems compose these results with the
-verified translation. Spot, the reader of its output, the XML printer, UPPAAL and TChecker are outside
-the proofs. `proof/Audit_Revision_20261010.v` prints the assumptions of the main theorems, and
-`ROCQ_ASSUMPTIONS_AUDIT.md` records the result.
-
-## Contents
+This branch (`main`) holds the shared verified foundation and no paper:
 
 | Path | Content |
 |---|---|
-| `jss_paper.tex`, `jss_supp.tex` and the files they include | article and supplement sources |
 | `proof/` | Rocq development and extraction (`Extract_Optim.v` writes `tool/src/optim.ml`) |
 | `tool/` | `mtl2tba` and `tba_opt`: extracted optimizer/exporter and hand-written front end |
 | `evaluation/` | benchmark data, TChecker and CASAAL comparison, results and generated tables |
-| `evaluation/baselines/` | ablations: invariant-free and acceptance-converted arms, same-driver timing |
-| `evaluation/uppaal/` | 311 UPPAAL models, runner and results |
-| `evaluation/differential/` | independent MTL evaluator and the 6,160,000-word differential test |
-| `evaluation/mutation/` | 22 seeded defects in the extracted code; `rocq/` holds the Rocq-level rejection runs and logs |
-| `scripts/`, `reproduce.sh`, `build.ps1` | build, reproduction and table scripts |
-| `JSS_highlights.txt` | highlights |
+| `scripts/`, `reproduce.sh` | build, reproduction and table scripts |
+| `ROCQ_ASSUMPTIONS_AUDIT.md` | assumptions of the main theorems |
 
-## Building
+Papers live on their own branches, each built on this foundation:
 
-```
-cd proof && make COQC=<path>/coqc      # checks the proofs and re-extracts tool/src/optim.ml
-cd tool && dune build                  # builds mtl2tba and tba_opt
-```
+| Branch | Content |
+|---|---|
+| `jss` | article and supplement submitted to the Journal of Systems and Software |
+| `clockreuse` | verified dominated-transition pruning and clock reuse, with its paper (`clockreuse/`) |
 
-Recorded versions: Rocq 9.0.1, OCaml 5.4.0, Spot 2.16, UPPAAL 5.0.0, Ubuntu 26.04 under WSL 2.
-The experiments also use TChecker (`tck-liveness`) and the translator CASAAL, which are not
-redistributed here. The CASAAL automata that the comparison reads are stored under
-`evaluation/casaal_out*` as produced by the unmodified executable.
-
-## Limits of the artifact
-
-The mutation study changes copies of the extracted code only. The Rocq-level mutants are
-transcriptions of all 22 mutants, tested in scratch copies of the proof sources that are not
-stored here; `evaluation/mutation/rocq/run_mut.py` recreates them. Some scripts contain absolute
-paths of the authors' machine.
-
-## Licence and citation
-
-MIT licence (`LICENSE`) for the Rocq sources, the OCaml tool, the scripts, the benchmark inputs and the
-results written by the authors.
-
-Third-party software is used but not redistributed here, and keeps its own licence: Rocq, OCaml and
-Spot (called by `mtl2tba`), TChecker, UPPAAL (free for academic use only) and CASAAL. The files in
-`evaluation/casaal_out/` are outputs of CASAAL on our inputs, kept for reproducibility. Files from
-publisher LaTeX templates (class and style files, fonts) are not covered by the MIT licence.
-
-`CITATION.cff` carries the citation metadata; the DOI of the archived
-release is added to it once Zenodo has issued it.
+Fixes to the proofs, the tool or the shared data are made here and merged into the paper branches.
+`reproduce.sh` checks the artifact (builds the proofs, audits assumptions, rebuilds the tool).

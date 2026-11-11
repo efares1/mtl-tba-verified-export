@@ -1,0 +1,11 @@
+{
+ "id": "M17",
+ "description": "disjunct pruning: the direction of the implication test is reversed",
+ "file": "MTL_to_TBA_Export",
+ "compiled": [],
+ "status": "rejected",
+ "failing_file": "MTL_to_TBA_Export",
+ "seconds_to_fail": 4.1,
+ "first_error": "File \".\\MTL_to_TBA_Export.v\", line 1087, characters 14-36:\nWarning: Notation Nat.div_lt_upper_bound is deprecated since 8.17.\nUse Div0.div_lt_upper_bound instead.\n[deprecated-syntactic-definition-since-8.17,deprecated-since-8.17,deprecated-syntactic-definition,deprecated,default]\nFile \".\\MTL_to_TBA_Export.v\", line 1087, characters 14-36:\nWarning: Notation Nat.div_lt_upper_bound is deprecated since 8.17.\nUse Div0.div_lt_upper_bound instead.\n[deprecated-syntactic-definition-since-8.17,deprecated-since-8.17,deprecated-syntactic-definition,deprecated,default]\nFile \".\\MTL_to_TBA_Export.v\", line 1343, characters 14-36:\nWarning: Notation Nat.div_lt_upper_bound is deprecated since 8.17.\nUse Div0.div_lt_upper_bound instead.\n[deprecated-syntactic-definition-since-8.17,deprecated-since-8.17,deprecated-syntactic-definition,deprecated,default]\nFile \".\\MTL_to_TBA_Export.v\", line 1343, characters 14-36:\nWarning: Notation Nat.div_lt_upper_bound is deprecated since 8.17.\nUse Div0.div_lt_upper_bound instead.\n[deprecated-syntactic-definition-since-8.17,deprecated-since-8.17,deprecated-syntactic-definition,deprecated,default]\nFile \".\\MTL_to_TBA_Export.v\", line 1585, characters 36-37:\nError:\nIn environment\nroot : mtl\nv : valuation\nc : dconj\nacc : dguard\nEs : existsb self_contra c = false\na : dconj\nHa : In a acc\nHca : conj_implies c a = true\nH :\n  dguard_holds v\n    (if existsb (fun a : dconj => conj_implies a c) acc\n     then acc\n     else c :: filter (fun a : dconj => negb (conj_implies a c)) ac",
+ "err_line": 1087
+}

@@ -38,6 +38,9 @@ M = {
   'dprune: the initial location is no longer exempt from the incoming-transition test'),
 }
 
+sys.path.insert(0, HERE)
+from more_mutants import MORE
+M.update(MORE)
 M['CTRL'] = (OPT, None, None, 'control: unmutated sources')
 for mid in sys.argv[1:]:
     f, old, new, desc = M[mid]

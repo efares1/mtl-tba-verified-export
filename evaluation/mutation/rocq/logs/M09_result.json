@@ -1,0 +1,11 @@
+{
+ "id": "M09",
+ "description": "states_mergeable: accepting and non-accepting locations may be merged",
+ "file": "MTL_to_TBA_Optimizations",
+ "compiled": [],
+ "status": "rejected",
+ "failing_file": "MTL_to_TBA_Optimizations",
+ "seconds_to_fail": 4.3,
+ "first_error": "File \".\\MTL_to_TBA_Optimizations.v\", line 1880, characters 34-45:\nError: In environment\nroot : mtl\nA : TBA root\np, q : nat\nUnable to unify\n \"negb (p =? q) && (p <? tba_nstates A) && (q <? tba_nstates A) && true &&\n  true && true\"\nwith \"true && true && true\".",
+ "err_line": 1880
+}

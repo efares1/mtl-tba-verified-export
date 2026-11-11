@@ -1,10 +1,10 @@
-\begin{table*}[tp]
+\begin{table}[tp]
 \centering
-\caption{Negated requirements: CASAAL against \texttt{mtl2tba}. Size is reachable locations/transitions of the automaton given to the model checker (ours: after optimization). Times are wall-clock seconds for the whole translation (generation plus, for ours, optimization and export), CASAAL on native Windows and \texttt{mtl2tba} under WSL~2 on the same machine. ``Auto'' is the default of the tool; $^{\dagger}$ marks runs where Spot had not finished within the 5~s budget and the tool fell back to \texttt{any} on the simplified formula. The last column gives the time of the fastest explicit setting when it is at least 10\% and 0.1~s faster than auto: \texttt{low}, or \texttt{-simp -spot-level any -spot-x ba-simul=0}, written \texttt{any}; the sizes of the automata are the same for both settings except where noted in the text.}
+\caption{Negated requirements: CASAAL against \texttt{mtl2tba}. Size is reachable locations/transitions of the automaton given to the model checker (ours: after optimization). Times are wall-clock seconds for the whole translation (generation plus, for ours, optimization and export), CASAAL on native Windows and \texttt{mtl2tba} under WSL~2 on the same machine; CASAAL times are the best of three runs and ours single runs (article Table~\ref{tab:same-driver} gives medians of five runs with one driver). Sizes of CASAAL's automata are after conversion to location acceptance. Spot level: the current default (auto, with the fallback marked) and the manual setting. ``Auto'' is the default of the tool; $^{\dagger}$ marks runs where Spot had not finished within the 5~s budget and the tool fell back to \texttt{any} on the simplified formula. The last column gives the time of the fastest explicit setting when it is at least 10\% and 0.1~s faster than auto (``--'': no explicit setting qualifies, e.g. on N8 the manual run took 243~s against 247.8~s for auto in this table's run): \texttt{low}, or \texttt{-simp -spot-level any -spot-x ba-simul=0}, written \texttt{any}; the sizes of the automata are the same for both settings except where noted in the text.}
 \label{tab:casaal-gen}
 \scriptsize
 \setlength{\tabcolsep}{4pt}
-\begin{tabular}{@{}lrrrrr@{}}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{@{}lrrrrr@{}}
 \toprule
  & CASAAL size & Ours size & CASAAL time & Ours, auto & Ours, manual (setting)\\
 \midrule
@@ -20,5 +20,5 @@ N6 & 65/1541 & 65/1541 & 1.9 & 6.6$^{\dagger}$ & 1.3 (\texttt{any}) \\
 N7 & 129/5105 & 129/5105 & 11.3 & 22.1$^{\dagger}$ & 15.1 (\texttt{any}) \\
 N8 & 257/16769 & 257/16769 & 73.8 & 247.8$^{\dagger}$ & -- \\
 \bottomrule
-\end{tabular}
-\end{table*}
+\end{tabular}\end{adjustbox}
+\end{table}
