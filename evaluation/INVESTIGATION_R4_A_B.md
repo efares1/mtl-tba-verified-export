@@ -129,6 +129,9 @@ dominated edges; they are removed one at a time, recomputing the relation. The a
 | R3 CASAAL / pruned / ours | 216 / 56 / 56 | 49 / 0 | 47,008 / 92 / 92 | 103 / 16 / 16 |
 | R4 CASAAL / pruned / ours | 837 / 144 / 144 | 135 / 0 | (1.7M) / 114 / 114 | 304 / 22 / 22 |
 
+R5 CASAAL / pruned / ours: 3,078 / 352 / 352 edges, 341 / 0 pairs, pruned Couvreur 136 (ours 136), covreach 28 (ours 28);
+the original R5 does not finish. Language check on 2,000 words (424 accepted): no disagreement.
+
 Language check (not a proof): pruned vs original vs the MTL judge of `differential/` on random lasso words, all
 locations accepting: R2 2,000 words (660 accepted), R3 5,000 (1,306), R4 3,000 (687; pruned vs judge only): no disagreement.
 Example redundant edge (R2, `a1` at the initial location): one edge to the location that tracks response 1 (reset x0), one to
