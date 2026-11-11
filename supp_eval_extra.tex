@@ -294,3 +294,18 @@ Skipped pass & Tr & Loc & Clk & Changed & Tr & Loc & Clk & Changed\\
 \bottomrule
 \end{tabular}\end{adjustbox}
 \end{table}
+
+\begin{table}[t]
+\centering
+\caption{Zone graph of the products of Table~\ref{tab:stress} as TChecker computes it: states stored by the Couvreur-based algorithm, location vectors among them, largest number of zones for one vector, and states stored by reachability with inclusion subsumption (``covering'', \texttt{tck-reach -a covreach}). The graphs of R4 were not extracted (``--''; its Couvreur counts are in Table~\ref{tab:stress}).}
+\label{tab:zones}
+\small
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{@{}lrrrr@{\hspace{1.5em}}rrrr@{}}
+\toprule
+ & \multicolumn{4}{c}{ours} & \multicolumn{4}{c}{CASAAL} \\
+ & states & vectors & max zones & covering & states & vectors & max zones & covering \\
+\midrule
+\input{evaluation/zone_table}\\
+\bottomrule
+\end{tabular}\end{adjustbox}
+\end{table}

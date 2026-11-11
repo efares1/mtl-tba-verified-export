@@ -1,26 +1,6 @@
 \subsection{Comparison with CASAAL: the whole translation}
 \label{sec:casaal-eval}
-CASAAL~\cite{casaal_tool} implements the MTL$_{0,\infty}$ construction of
-Li et al.~\cite{li_spin7}. It is not an optimizer that could be run on our
-automata: it builds its own automata, so it is a reference for the whole
-translation, from the requirement to the automaton given to a timed model
-checker, and not for the optimization passes alone. We compare the two tools
-on three measures: the size of the automaton, the time to generate it, and the
-number of states a timed model checker stores on it. We ran CASAAL with
-mutually exclusive events, which matches the one-event-per-position words of
-our semantics. Its acceptance is carried by transitions and ours by locations,
-which is also the form TChecker reads; we therefore convert CASAAL's automata
-to location acceptance before comparing sizes and before giving them to
-TChecker (Section~\ref{sec:casaal-size}).
-
-Two configurations of our tool appear in the comparison. \emph{Auto} is the
-default, which runs Spot at level \texttt{low} for at most 5~s and then falls
-back to level \texttt{any} on the simplified formula with Spot's simulation
-reductions switched off (Section~\ref{sec:spot-level}). \emph{Manual} is the
-explicit setting \texttt{-simp -spot-level any -spot-x ba-simul=0} or
-\texttt{-spot-level low}, whichever was faster for that requirement. The two
-configurations produce automata of the same size on every pattern compared;
-they differ in time only.
+CASAAL~\cite{casaal_tool} implements the MTL$_{0,\infty}$ construction of Li et al.~\cite{li_spin7}. It builds its own automata, so it is a reference for the whole translation, not for the optimization passes alone. We compare the size of the automaton, the generation time and the states a timed model checker stores. CASAAL ran with mutually exclusive events, which matches our one-event-per-position words, and its transition acceptance is converted to location acceptance, the form TChecker reads (Section~\ref{sec:casaal-size}). \emph{Auto} is our default (Spot at level \texttt{low} for at most 5~s, then level \texttt{any} with Spot's simulation reductions off, Section~\ref{sec:spot-level}); \emph{manual} is the faster of the explicit settings \texttt{-simp -spot-level any -spot-x ba-simul=0} and \texttt{-spot-level low}. Both give automata of the same size on every pattern compared and differ in time only.
 
 \subsubsection{Size}
 \label{sec:casaal-size}
@@ -30,36 +10,11 @@ CASAAL prints no acceptance mark, treats a state as accepting unless its label
 contains an unbounded eventuality. It does not convert the negated F14, which has three
 acceptance sets (the positive F14 converts). Every size and every state count of CASAAL's automata below depends on this conversion, which is not proved and is checked only indirectly, by the mutual language inclusion with ours that TChecker establishes on the small patterns and by the sampled words of Section~\ref{sec:verification-adds}; another encoding of the acceptance could give different counts.
 
-\emph{Requirements as written (positive form).} On the 27 patterns that CASAAL
-encodes exactly and both tools completed, the totals are 222 locations and 976
-transitions for ours (with Spot level \texttt{small}, the former default, which
-produced the archived runs) against 225 and 983 for CASAAL after conversion to
-location acceptance. Ours is smaller on four patterns (F8, F11, F12, F14), equal
-on 21, and larger on two (F5 and F6: 7 locations and 25 transitions against 6 and
-22). With the current default the same two patterns have 27 transitions, for a
-total of 980 against 983.
+\emph{Requirements as written (positive form).} On the 27 patterns that CASAAL encodes exactly and both tools completed, ours has 222 locations and 976 transitions (Spot level \texttt{small}, the former default, which produced the archived runs) against 225 and 983 for CASAAL after conversion. Ours is smaller on four patterns (F8, F11, F12, F14), equal on 21 and larger on F5 and F6 (25 transitions against 22; 27 with the current default).
 
-\emph{Negated requirements (what the model checker receives).}
-Table~\ref{tab:same-driver} and Supplement Table~\ref{S-tab:casaal-gen} give the sizes for R2, R3, R5, R7, R8 and N5--N8 (R4 and R6 are in the supplement table): ours equals
-CASAAL's on every one (equal location and transition counts; isomorphism is
-examined below), and the optimizer's output has exactly the size of CASAAL's on the
-nested family (N5: 461 transitions, N6: 1,541, N7: 5,105). On the 20 patterns whose
-products TChecker completes (the 18 of Table~\ref{tab:tck-summary}, F14, and N4), ours is smaller on F5 and F6 (3 locations and 5
-transitions against 4 and 7) and on F8 (2 and 3 against 4 and 7), and equal on the
-others.
+\emph{Negated requirements (what the model checker receives).} Table~\ref{tab:same-driver} and Supplement Table~\ref{S-tab:casaal-gen} give the sizes for R2--R8 and N5--N8: ours equals CASAAL's on every one, and the optimizer's output has exactly the size of CASAAL's on the nested family (N5: 461 transitions, N6: 1,541, N7: 5,105). On the 20 patterns whose products TChecker completes (the 18 of Table~\ref{tab:tck-summary}, F14, and N4), ours is smaller on F5 and F6 (3 locations and 5 transitions against 4 and 7) and on F8 (2 and 3 against 4 and 7), and equal on the others.
 
-\emph{Isomorphism.} Equal counts do not make equal automata. For the 27 negated
-requirements whose CASAAL automaton the importer converts, we exported CASAAL's
-imported automaton with and without our optimizer and compared both with ours up to
-renaming of locations, clocks and transitions (same event sets, guards, resets,
-invariants and accepting locations, as written;
-\path{evaluation/iso_compare.py}). The optimizer leaves CASAAL's automaton unchanged
-up to isomorphism on all 27, so CASAAL's output is a fixed point of our passes. Ours is isomorphic to it on 11 patterns (F1, F2, F3b and R1--R8) and not on the other 16 (F4--F12 and N1--N7), on 13 of which the counts are equal; on F7 and F11 the only difference is a guard $x_0\leq5$ on one loop. TChecker
-finds the languages of the two automata mutually included on F1--F12, R1 and N1--N4
-(\path{evaluation/tck_equivalence.tsv}); on the larger products it did not finish, so
-for them equivalence rests on the sampled words above. Equal sizes therefore describe
-the counts of two constructions that coincide on the bounded-response family and differ
-in form elsewhere.
+\emph{Isomorphism.} Equal counts do not make equal automata: up to renaming, ours is isomorphic to CASAAL's imported automaton on 11 of the 27 negated requirements whose automaton the importer converts (F1, F2, F3b, R1--R8) and not on the other 16, and the optimizer leaves CASAAL's automaton unchanged on all 27, so it is a fixed point of our passes. TChecker finds the languages mutually included on F1--F12, R1 and N1--N4 (\path{evaluation/tck_equivalence.tsv}); on the larger products equivalence rests on the sampled words of Section~\ref{sec:verification-adds}.
 
 \subsubsection{Generation time}
 \label{sec:casaal-time}
@@ -76,29 +31,13 @@ gives earlier runs, with the manual setting.}
 \small
 \input{evaluation/baselines/same_driver_table}
 \end{table}
-Table~\ref{tab:same-driver} reports the wall-clock time of the whole translation of the negated requirement, with one driver for both tools (script \path{evaluation/baselines/time_same_driver.py}). Ours runs under WSL~2 and CASAAL as a Windows executable, so the comparison carries the overhead of the virtual machine for our tool; a CASAAL run on the smallest patterns costs 0.07 to 0.10~s, which bounds the process start.
+Table~\ref{tab:same-driver} reports the wall-clock time of the whole translation of the negated requirement with one driver for both tools (\path{evaluation/baselines/time_same_driver.py}). Ours runs under WSL~2 and CASAAL as a Windows executable, so the comparison carries the overhead of the virtual machine for our tool; a CASAAL run on the smallest patterns costs 0.07 to 0.10~s, which bounds the process start. On the bounded-response family and the small patterns both tools finish in under 0.3~s and neither is a bottleneck. CASAAL is faster from five nesting levels: 0.44~s against 0.85~s on N5, 2.6~s against 6.7~s on N6 and 17~s against 31~s on N7; on N8, one run of each took 74~s and 307~s (0.43~GB of memory at peak for ours). With the manual setting, in the earlier runs of Supplement Table~\ref{S-tab:casaal-gen}, ours takes 0.2, 1.3 and 15.1~s on five, six and seven levels against 0.3, 1.9 and 11.3~s: faster on five and six, slower on seven. The automatic mode is slower because Spot first runs for up to 5~s at level \texttt{low}; the two sets of times come from different runs and are only indicative.
 
-\emph{Small requirements and conjunctions.} On the bounded-response family and on the small patterns both tools finish in under 0.3~s and ours is nominally faster (for instance 0.07~s against 0.21~s on R7 and 0.05~s against 0.27~s on R8); these differences are of the order of the process start, and neither tool is a bottleneck.
-
-\emph{Deeply nested requirements.} CASAAL is faster from five levels:
-0.44~s against 0.85~s on N5, 2.6~s against 6.7~s on N6 and 17~s against 31~s on N7;
-on N8, one run of each took 74~s and 307~s (0.43~GB of memory at peak for ours). With the manual setting, in the earlier runs of Supplement Table~\ref{S-tab:casaal-gen}, ours takes 0.2, 1.3 and 15.1~s on five, six and seven levels against 0.3, 1.9 and 11.3~s for CASAAL: faster on five and six levels, slower on seven. The automatic mode is slower because Spot first runs for up to 5~s at level \texttt{low}; the two sets of times come from different runs and are only indicative.
-
-\emph{Where the time goes on deep nests.} On N7 about 10 of the 15~s of the manual setting are Spot's (from a separate run of Spot alone on the simplified formula), which translates the clocked formula: a bounded eventuality repeats the translation of its operand three times, so the formula has size $\Theta(3^k)$ in the nesting depth $k$ (99{,}643 characters for six levels). Spot's time grows by a factor of roughly 4 to 12 per level on the levels we measured while its output grows by about 3.5. On N7, Spot alone takes 60 to 90\% of CASAAL's whole translation time (11.3~s in the earlier run, 17~s in the run of Table~\ref{tab:same-driver}), and the rest of our chain about 5~s. The profile suggests that the replaceable front end (Section~\ref{sec:modular}), and not the verified optimization and export, is the slow part; we did not profile N8. Switching off Spot's simulation reductions at level \texttt{any} and reading its symbolic HOA output instead of cube-expanded LBTT together account for the present figures (without them the manual times would have been 2.2~s, 26.9~s and 1{,}402~s on N6, N7 and N8). The profile, the Spot options we tried and the trade-off behind the automatic default are in Supplement Section~\ref{S-sec:deep-nests}.
+On N7 about 10 of the 15~s of the manual setting are Spot's: a bounded eventuality repeats the translation of its operand three times, so the clocked formula has size $\Theta(3^k)$ in the nesting depth $k$. The replaceable front end (Section~\ref{sec:modular}), and not the verified stages, appears to be the slow part (one profile; Supplement Section~\ref{S-sec:deep-nests}).
 
 \subsubsection{Cost for a timed model checker}
 \label{sec:casaal-tck}
-We compare the states that TChecker stores (\texttt{tck-liveness -a couvscc}) on
-the product of the negated requirement with a reference system. The reference system
-is the automaton of the requirement itself, which accepts exactly the words that the
-negation rejects, so the product is empty and TChecker explores it completely: the
-count does not depend on the exploration order. The reference is exported with the
-all-copy policy, because TChecker's liveness algorithms reject diagonal constraints
-(it stops with ``unsupported diagonal constraints'') and the maximal-delay export of
-the positive form of R2 and the larger bounded-response patterns contains them
-(Section~\ref{sec:export-policies}). TChecker labels locations and not transitions,
-so CASAAL's automata are given to it in location-acceptance form (Section~\ref{sec:casaal-size})
-and are exported by our tool in the same way as ours.
+We compare the states that TChecker stores (\texttt{tck-liveness -a couvscc}) on the product of the negated requirement with a reference system, the automaton of the requirement itself, which accepts exactly the words that the negation rejects. The product is empty and TChecker explores it completely, so the count does not depend on the exploration order. The reference is exported with the all-copy policy, because TChecker's liveness algorithms reject diagonal constraints (``unsupported diagonal constraints'') and the maximal-delay export of the positive form of R2 and the larger bounded-response patterns contains them (Section~\ref{sec:export-policies}). TChecker labels locations and not transitions, so CASAAL's automata are given to it in location-acceptance form (Section~\ref{sec:casaal-size}) and exported by our tool like ours.
 
 \begin{table}[tp]
 \centering
@@ -122,44 +61,31 @@ be generated within the limit, so nothing is claimed for those.
 
 \subsubsection{A workload on which the automata differ}
 \label{sec:casaal-stress}
-The comparison above gives almost equal costs. The positive-form workload of Section~\ref{sec:export-policies}, where the requirement as written is composed with a system that violates it, shows a large difference, but its first version exercised one response only. We therefore used a system that makes and answers in time the requests of the responses $2,\dots,n$ and then makes the request of the first response and never answers it, so that all $n$ responses of Rn are exercised and the product is empty (Supplement Table~\ref{S-tab:baseline-posbadall}).
+The comparison above gives almost equal costs. The positive-form workload of Section~\ref{sec:export-policies} shows a large difference, but its first version exercised one response only. We therefore used a system that makes and answers in time the requests of the responses $2,\dots,n$ and then makes the request of the first response and never answers it, so that all $n$ responses of Rn are exercised and the product is empty (Supplement Table~\ref{S-tab:baseline-posbadall}).
 
 \begin{table}[tp]
 \centering
-\caption{TChecker stored states on the positive form of the bounded response Rn composed with a system that exercises all $n$ responses and violates the requirement (empty product, all-copy export, complete exploration). CASAAL's automaton is converted to location acceptance and exported by our tool like ours; the ratio is that of the stored-state counts. R5 did not finish for CASAAL within the 180~s limit of that run (shorter than the 300~s used elsewhere), which is what ``--'' marks.}
+\caption{TChecker stored states on the positive form of the bounded response Rn composed with a system that exercises all $n$ responses and violates the requirement (empty product, all-copy export, complete exploration). CASAAL's automaton is converted to location acceptance and exported by our tool like ours; the ratio is that of the stored-state counts. The last two columns apply the checked passes of Section~\ref{sec:checked} to CASAAL's automaton before the export: pruning of dominated transitions, and the same after splitting by cells of letters (Section~\ref{sec:eval-checked}). R5 did not finish for CASAAL's automaton, or after pruning alone, within the 180~s limit of that run (shorter than the 300~s used elsewhere), which is what ``--'' marks; R1 was not run with the passes.}
 \label{tab:stress}
 \small
-\begin{adjustbox}{max width=\textwidth}\begin{tabular}{@{}lrrr@{}}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{@{}lrrrrr@{}}
 \toprule
-Requirement & ours & CASAAL & CASAAL / ours \\
+Requirement & ours & CASAAL & CASAAL / ours & CASAAL pruned & CASAAL split, pruned \\
 \midrule
 \input{evaluation/baselines/posbadall_main_table}\\
 \bottomrule
 \end{tabular}\end{adjustbox}
 \end{table}
-Table~\ref{tab:stress} supports three observations.
+Table~\ref{tab:stress} supports four observations.
 \begin{enumerate}
-\item The difference persists and grows when the system exercises several independent responses. Our count rises by 22 states for each added response (48, 70, 92, 114, 136); CASAAL's rises by factors of 19, 53 and 37 on consecutive responses (48, 890, 47{,}008, 1{,}736{,}096). Five points do not establish a complexity class.
-\item The difference is not removed by the verified optimizer or by the export, and it is present in the zone graph of the converted CASAAL automaton. With the optimizer disabled our counts are the same, and passing CASAAL's automaton through our export changes its counts by at most 14\% (986 to 890 on R2, 2{,}000{,}526 to 1{,}736{,}096 on R4). The two automata have the same number of locations and clocks ($2^n$ and $n$); ours has about 1.2 edges for each location and event and CASAAL's has 2.5 on R2 and 8.7 on R5 (Supplement Table~\ref{S-tab:struct-posbad}). The extra states are in the zone graph: TChecker's graph for ours has at most 17 zones for any location vector (4, 10 and 16 vectors on R1--R3), while for CASAAL's automaton it has 25 vectors and up to 240 zones for one of them on R2, and 85 vectors and up to 7{,}444 zones on R3 (Table~\ref{tab:zones}). Resetting the clocks that are dead at each edge's target leaves the counts unchanged (Supplement Table~\ref{S-tab:zone-detail}), so dead clocks do not explain it. The stored count is that of the Couvreur-based algorithm, which keeps zones that another stored zone covers: reachability with inclusion subsumption stores 10, 16 and 22 states on ours and 28, 103 and 304 on CASAAL's for R2--R4, so the gap there is 2.8 to 14 times and not 13 to 15{,}000 times. We did not determine which edges of CASAAL's automaton the extra states come from; the evidence locates the difference in the zone graph of the generated automaton, and neither the verified passes nor the checker's algorithm alone accounts for it. The conversion of CASAAL's acceptance to locations (Section~\ref{sec:casaal-size}) is a possible contributor that we did not exclude.
-\item The difference is specific to this workload. Against a system that satisfies the requirement, CASAAL's automaton stores 1.2 to 1.8 times as many states as ours on R1--R3, and passed through our export it stores exactly as many (41, 79 and 117). 
+\item The difference grows with the number of responses exercised. Our count rises by 22 states for each added response (48, 70, 92, 114, 136); CASAAL's rises by factors of 19, 53 and 37 (48, 890, 47{,}008, 1{,}736{,}096). Five points do not establish a complexity class.
+\item The difference is not removed by the verified optimizer or by the export, and it is present in the zone graph of the converted CASAAL automaton; with the optimizer disabled our counts are the same, and passing CASAAL's automaton through our export changes its counts by at most 14\% (2{,}000{,}526 to 1{,}736{,}096 on R4). The two automata have the same number of locations and clocks ($2^n$ and $n$), but ours has about 1.2 edges for each location and event and CASAAL's has 2.5 on R2 and 8.7 on R5, and TChecker's zone graph has at most 17 zones for any location vector of ours against up to 7{,}444 for CASAAL's (Supplement Tables~\ref{S-tab:struct-posbad} and~\ref{S-tab:zones}). Resetting dead clocks leaves the counts unchanged, and the gap shrinks to 2.8 to 14 times under inclusion subsumption. The conversion of CASAAL's acceptance to locations is a possible contributor that we did not exclude.
+\item The difference is specific to this workload. Against a system that satisfies the requirement, CASAAL's automaton stores 1.2 to 1.8 times as many states as ours on R1--R3, and exactly as many through our export. 
+\item The extra states are explored through dominated transitions. After the verified splitting by cells of letters and the removal of dominated transitions (Section~\ref{sec:checked}), TChecker stores exactly our counts on CASAAL's automaton for R2--R5 (70, 92, 114, 136), and R5 finishes (Section~\ref{sec:eval-checked}).
 \end{enumerate}
-\begin{table}[tp]
-\centering
-\caption{Zone graph of the products of Table~\ref{tab:stress} as TChecker computes it: states stored by the Couvreur-based algorithm, location vectors among them, largest number of zones for one vector, and states stored by reachability with inclusion subsumption (``covering'', \texttt{tck-reach -a covreach}). The graphs of R4 were not extracted (``--''; its Couvreur counts are in Table~\ref{tab:stress}).}
-\label{tab:zones}
-\small
-\begin{adjustbox}{max width=\textwidth}\begin{tabular}{@{}lrrrr@{\hspace{1.5em}}rrrr@{}}
-\toprule
- & \multicolumn{4}{c}{ours} & \multicolumn{4}{c}{CASAAL} \\
- & states & vectors & max zones & covering & states & vectors & max zones & covering \\
-\midrule
-\input{evaluation/zone_table}\\
-\bottomrule
-\end{tabular}\end{adjustbox}
-\end{table}
-The workload is constructed and covers the bounded-response family only; it is no general speedup. It shows that two translators whose negated automata have the same size can give automata whose positive forms a model checker explores at very different cost, which is where a different front end (Section~\ref{sec:modular}) could change the result.
+
+The workload is constructed and covers the bounded-response family only; it is no general speedup. It shows that two translators whose negated automata have the same size can give positive forms that a model checker explores at very different cost.
 
 \subsubsection{Sensitivity of the counts and non-empty products}
 \label{sec:tck-sensitivity}
-With the optimizer disabled (\texttt{-n 0}) TChecker stores exactly the same number of states on each of the 20 products, although the optimizer reduces the automaton (N7: 10{,}930 to 5{,}105 transitions, the size of CASAAL's automaton; the positive form of five bounded responses: 5{,}469 to 651); running TChecker on the output of reset completion changes the count only on F12 (1{,}790 instead of 1{,}688). Removing the location invariants, which only F10--F12 carry, changes the total from 204{,}564 to 204{,}749 (CASAAL's: 204{,}819 to 205{,}004). On every CASAAL automaton that the importer converts, the optimizer changes nothing: these automata are a fixed point of our passes. All products above are empty. Composing the negated automata with a free system and, for R1--R3, with a response system gives non-empty and empty products on which ours and CASAAL's variants agree in every verdict (138 and 84 verdicts, under both export policies; Supplement Section~\ref{S-sec:tck-sensitivity-detail}, and Section~\ref{sec:verification-adds} for UPPAAL).
-
+With the optimizer disabled (\texttt{-n 0}) TChecker stores the same number of states on each of the 20 products, although the optimizer reduces the automaton (N7: 10{,}930 to 5{,}105 transitions, the size of CASAAL's automaton); on every CASAAL automaton that the importer converts, the optimizer changes nothing. Composing the negated automata with a free system and, for R1--R3, with a response system gives non-empty and empty products on which ours and CASAAL's variants agree in every verdict (138 and 84 verdicts, under both export policies; Supplement Section~\ref{S-sec:tck-sensitivity-detail}).

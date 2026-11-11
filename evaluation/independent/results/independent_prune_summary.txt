@@ -1,0 +1,4 @@
+graph prune: 300 inputs ok, certificate rejected 0, language mismatches 0, transitions after the optimizer 3054 -> after pruning 3030, inputs with fewer transitions 23
+graph prune-split: 300 inputs ok, certificate rejected 0, language mismatches 0, transitions after the optimizer 3054 -> after pruning 5316, inputs with fewer transitions 0
+monitor prune: 300 inputs ok, certificate rejected 0, language mismatches 0, transitions after the optimizer 1930 -> after pruning 1930, inputs with fewer transitions 0
+monitor prune-split: 300 inputs ok, certificate rejected 0, language mismatches 0, transitions after the optimizer 1930 -> after pruning 3078, inputs with fewer transitions 0
