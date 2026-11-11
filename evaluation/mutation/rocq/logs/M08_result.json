@@ -1,0 +1,11 @@
+{
+ "id": "M08",
+ "description": "mergeable_b: the condition that no transition enters the initial location is dropped",
+ "file": "MTL_to_TBA_Optimizations",
+ "compiled": [],
+ "status": "rejected",
+ "failing_file": "MTL_to_TBA_Optimizations",
+ "seconds_to_fail": 3.3,
+ "first_error": "File \".\\MTL_to_TBA_Optimizations.v\", line 957, characters 2-38:\nError: Found no subterm matching \"forallb ?b ?l = true\" in the current goal.",
+ "err_line": 957
+}

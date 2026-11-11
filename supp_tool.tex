@@ -30,7 +30,7 @@ the paper applies to the faster code that is extracted.
 Two further changes concern the call to Spot and are not covered by the proofs;
 they sit outside the trust boundary already drawn around Spot. Spot's
 simulation-based reduction is switched off at level \texttt{any}
-(\texttt{-x ba-simul=0}), which halves Spot's time on the nested requirements
+(\texttt{-x ba-simul=0}), which cuts Spot's time on the nested requirements by a factor of up to 2.8
 without changing the automaton it returns on our benchmark, and the tool reads
 Spot's HOA output, whose guards are Boolean formulas, instead of LBTT. The
 two readers give the same automata: the messages of the tool, which report the
@@ -45,8 +45,7 @@ principle), and the generated automata are byte-identical to those of the
 previous implementation (UPPAAL XML, DOT and the messages of the tool) on 92
 runs: the benchmark patterns other than N6--N8, R7 and R8 (and, for the positive
 form, other than the largest ones), in both polarities, with one optimization
-round and with the default number of rounds. article Table~\ref{tab:speedups} gives the effect.
-(The table of speedups is article Table~\ref{tab:speedups} of the article.)
+round and with the default number of rounds. The effect is given in article Table~\ref{tab:speedups}.
 
 \subsection{Input contract for an external TBA}
 \label{sec:generic-input-detail}

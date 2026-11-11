@@ -1,13 +1,29 @@
-\begin{tabular}{@{}lll@{}}
+\begin{tabular}{@{}llr@{}}
 \toprule
-Mutant & First failing lemma & Rocq-level change\\
+Mutant & First failing lemma & Time (s) \\
 \midrule
-M01 & \texttt{inv\_guard\_w\_eq} & $0\le M$ test changed to $0<M$\\
-M10 & \texttt{sim\_spec} & reset-set equality dropped from simulation\\
-M12 & \texttt{compl\_cases} & complement of $<$ made $>$\\
-M16 & \texttt{const\_true\_spec} & $0\le b$ test changed to $0<b$\\
-M13 & \texttt{min\_all\_le} & Rmin replaced by Rmax\\
-M14 & \texttt{notlonger\_complete} & difference bound reversed\\
-M19 & \texttt{dprune\_accepts} & initial edges no longer kept\\
+M01 & \texttt{inv\_guard\_w\_eq} & 4.7 \\
+M10 & \texttt{sim\_spec} & 3.8 \\
+M12 & \texttt{compl\_cases} & 4.8 \\
+M16 & \texttt{const\_true\_spec} & 3.0 \\
+M17 & \texttt{insert\_g\_holds} & 4.1 \\
+\midrule
+M02 & \texttt{max\_all\_ge} & 9.1 \\
+M03 & \texttt{contradictory\_bounds\_sound} & 2.7 \\
+M04 & \texttt{rename\_item\_holds} & 3.2 \\
+M05 & \texttt{optimize\_step\_accepts} & 5.4 \\
+M06 & \texttt{trivial\_c\_sound} & 3.8 \\
+M07 & \texttt{mergeable\_b\_sound} & 2.8 \\
+M08 & \texttt{mergeable\_b\_sound} & 3.3 \\
+M09 & \texttt{states\_mergeable\_fast\_eq} & 4.3 \\
+M11 & \texttt{same\_ends\_spec} & 4.6 \\
+M13 & \texttt{min\_all\_le} & 1.8 \\
+M14 & \texttt{notlonger\_complete} & 2.5 \\
+M15 & \texttt{split\_trans\_in} & 3.1 \\
+M18 & \texttt{dmerge\_states\_ext} & 4.7 \\
+M19 & \texttt{dprune\_accepts} & 7.7 \\
+M20 & \texttt{implies\_c\_sound} & 2.2 \\
+M21 & \texttt{remove\_dead\_resets\_clock\_fast\_eq} & 3.5 \\
+M22 & \texttt{ub\_guard\_sound} & 1.9 \\
 \bottomrule
 \end{tabular}

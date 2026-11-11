@@ -1,7 +1,7 @@
 \subsection{General split construction and preservation}
 \label{subsec:split-detail}
-For a general disjunction $I_1\lor\cdots\lor I_r$, the construction makes
-one copy per irredundant conjunction $U_k$ of non-strict upper bounds. At
+Let $U_1,\dots,U_r$ be the irredundant conjunctions of non-strict upper bounds
+of a disjunctive invariant; the construction makes one copy per $U_k$. At
 entry valuation $v$, the largest delay admitted by $U_k$ is
 \[
  d_k(v)=\min_{(x,b)\in U_k}(b-v(x)),
@@ -16,7 +16,9 @@ copy permits a strictly longer stay. To encode the comparison without
 introducing a new clock, the implementation chooses an upper bound
 $y\le b_y$ in $U_\ell$ and requires it to be reached no later than every
 bound $x\le b_x$ in $U_k$. This gives $v(x)-v(y)\le b_x-b_y$. The
-disjunction over possible minimizing bounds is represented in DNF. An
+disjunction over possible minimizing bounds is represented in DNF. When some
+$U_\ell$ is empty, $d_\ell=+\infty$ and the comparison $d_\ell\le d_k$ holds only for an
+empty $U_k$; the encoding then reduces to the constants true and false rather than to a choice of bound. An
 incoming edge reset set $Z$ is handled by substituting zero for clocks in
 $Z$ before conjoining $G_k$ with the edge guard: a difference constraint
 with two reset clocks becomes a constant test, one reset clock gives a unary
@@ -115,6 +117,27 @@ accepting marks give infinitely many accepting visits in the lifted run.
 The two inclusions establish language equality.
 \end{proof}
 
+\begin{theorem}[Maximal-delay split preservation]
+Let $D$ be an input DTA with no pre-existing location invariants. The
+maximal-delay variant (Rocq: \texttt{split\_accepts}) and $D$ accept the same timed words.
+\end{theorem}
+\begin{proof}
+Soundness is the projection argument of the previous proof: every copied transition keeps its
+label and resets, and its guard is the original guard conjoined with an entry predicate, so
+the projection of a run of the split automaton is a run of $D$. For completeness, fix an
+accepting run of $D$ and a stay at a noninitial location $q$, entered with valuation $v$
+(after the resets of the incoming edge) and left after a delay $\Delta$ by a transition whose guard
+clause $c$ holds at the end of the stay. By \texttt{disj\_inv\_cover} there is $k^*$ with
+$\operatorname{ub}(c)\Rightarrow U_{k^*}$, so $U_{k^*}$ holds at the end of the stay and
+$b-v(x)\ge\Delta$ for every $(x,b)\in U_{k^*}$, that is, $d_{k^*}(v)\ge\Delta$. Let $k$ maximize $d_k(v)$
+(\texttt{best\_spec}; ties are all admissible, and $+\infty$ is allowed). Then $d_k(v)\ge d_{k^*}(v)\ge\Delta$,
+so every bound of $U_k$ still holds at the end of the stay and, being non-strict upper bounds on increasing
+clocks, throughout it; and $G_k(v)$ holds by the choice of $k$, so the incoming edge, whose guard is conjoined with the
+reset-adjusted predicate $G_k$, can enter copy $k$. The outgoing transition is available from every
+copy. Making this choice at each occurrence lifts the run; accepting marks are inherited, and
+the initial occurrence uses the invariant-free initial copy. The two inclusions give language equality.
+\end{proof}
+
 The maximal-delay policy establishes a stronger local copy-choice property:
 at a given entry valuation, every admitted copy has an admissible residence
 duration at least as long as that of any other copy. The helper lemma
@@ -135,8 +158,11 @@ for comparison.
 
 \begin{table*}[t]
 \centering
-\caption{Measured split policies on direct synthetic TBAs. Times are means
-over 200 in-memory export calls.}
+\caption{Measured split policies on direct synthetic TBAs. ``Two-clock'' is the
+\texttt{disjunctive\_invariant\_export} record of Table~\ref{tab:synthetic-tba}
+and ``six-branch'' the disjunctive-invariant family at $k=6$ of
+Table~\ref{tab:parameterized-synthetic}. Locations are graph-reachable
+locations. Times are means over 200 in-memory export calls.}
 \label{tab:split-comparison}
 \scriptsize
 \begin{tabular}{@{}llrrrrr@{}}

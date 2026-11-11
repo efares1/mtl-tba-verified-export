@@ -1,0 +1,11 @@
+{
+ "id": "M21",
+ "description": "remove_dead_resets_clock_fast: the safety check is removed",
+ "file": "MTL_to_TBA_Optimizations",
+ "compiled": [],
+ "status": "rejected",
+ "failing_file": "MTL_to_TBA_Optimizations",
+ "seconds_to_fail": 3.5,
+ "first_error": "File \".\\MTL_to_TBA_Optimizations.v\", line 1382, characters 19-30:\nError: In environment\nroot : mtl\nx : Clock root\nA : TBA root\nUnable to unify \"remove_dead_resets_clock x A\" with\n \"remove_dead_resets_clock_fast x A\".",
+ "err_line": 1382
+}

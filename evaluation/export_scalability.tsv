@@ -1,0 +1,22 @@
+n	mode	policy	seconds	status	L	E	C
+R2	-n 0	md	.280624908	ok	4	28	2
+R2	-n 0	ac	.248320707	ok	4	25	2
+R2	default	md	.145983104	ok	4	19	2
+R2	default	ac	.247046907	ok	4	16	2
+R3	-n 0	md	.254707207	ok	8	163	3
+R3	-n 0	ac	.871563825	ok	8	125	3
+R3	default	md	.139656804	ok	8	67	3
+R3	default	ac	.347362910	ok	8	44	3
+R4	-n 0	md	.360297211	ok	16	950	4
+R4	-n 0	ac	44.033137997	ok	16	625	4
+R4	default	md	.342893202	ok	16	217	4
+R4	default	ac	.744299604	ok	16	112	4
+R5	-n 0	md	2.648700113	ok	32	5469	5
+R5	-n 0	ac	300.083245013	timeout	NA
+R5	default	md	1.050260673	ok	32	651	5
+R5	default	ac	5.651100101	ok	32	272	5
+R6	-n 0	md	50.899457571	ok	64	31008	6
+R6	-n 0	ac	300.185619035	timeout	NA
+R6	default	md	7.879726137	ok	64	1837	6
+R6	default	ac	55.516199951	ok	64	640	6
+done

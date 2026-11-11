@@ -1,0 +1,11 @@
+{
+ "id": "M15",
+ "description": "split_trans: the entry condition is not adjusted for the resets of the incoming edge",
+ "file": "MTL_to_TBA_Export",
+ "compiled": [],
+ "status": "rejected",
+ "failing_file": "MTL_to_TBA_Export",
+ "seconds_to_fail": 3.1,
+ "first_error": "File \".\\MTL_to_TBA_Export.v\", line 1070, characters 43-54:\nError:\nIn environment\nroot : mtl\nD : DTA\nt : dtrans\nj : nat\nHj : (0 <= j < 0 + kp D)%nat\nk : nat\nHk : (0 <= k < 0 + length (disj_inv D (dt_tgt t)))%nat\nUnable to unify\n \"dnf_and (dt_guard t)\n    (subst_guard (dt_resets t) (entry_cond (disj_inv D (dt_tgt t)) k))\"\nwith\n \"dnf_and (dt_guard t)\n    (subst_guard [] (entry_cond (disj_inv D (dt_tgt t)) k))\".",
+ "err_line": 1070
+}

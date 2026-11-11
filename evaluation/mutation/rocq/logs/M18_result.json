@@ -1,0 +1,11 @@
+{
+ "id": "M18",
+ "description": "dstates_mergeable: exported locations with different invariants may be merged",
+ "file": "MTL_to_TBA_Export",
+ "compiled": [],
+ "status": "rejected",
+ "failing_file": "MTL_to_TBA_Export",
+ "seconds_to_fail": 4.7,
+ "first_error": "File \".\\MTL_to_TBA_Export.v\", line 1087, characters 14-36:\nWarning: Notation Nat.div_lt_upper_bound is deprecated since 8.17.\nUse Div0.div_lt_upper_bound instead.\n[deprecated-syntactic-definition-since-8.17,deprecated-since-8.17,deprecated-syntactic-definition,deprecated,default]\nFile \".\\MTL_to_TBA_Export.v\", line 1087, characters 14-36:\nWarning: Notation Nat.div_lt_upper_bound is deprecated since 8.17.\nUse Div0.div_lt_upper_bound instead.\n[deprecated-syntactic-definition-since-8.17,deprecated-since-8.17,deprecated-syntactic-definition,deprecated,default]\nFile \".\\MTL_to_TBA_Export.v\", line 1343, characters 14-36:\nWarning: Notation Nat.div_lt_upper_bound is deprecated since 8.17.\nUse Div0.div_lt_upper_bound instead.\n[deprecated-syntactic-definition-since-8.17,deprecated-since-8.17,deprecated-syntactic-definition,deprecated,default]\nFile \".\\MTL_to_TBA_Export.v\", line 1343, characters 14-36:\nWarning: Notation Nat.div_lt_upper_bound is deprecated since 8.17.\nUse Div0.div_lt_upper_bound instead.\n[deprecated-syntactic-definition-since-8.17,deprecated-since-8.17,deprecated-syntactic-definition,deprecated,default]\nFile \".\\MTL_to_TBA_Export.v\", line 1873, characters 6-18:\nError: No primitive equality found.",
+ "err_line": 1087
+}

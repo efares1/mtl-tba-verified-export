@@ -7,8 +7,8 @@
 \input{figures/fig_R_transition_counts}
 \caption{Post-reset-completion input, optimized TBA, and maximal-delay
 explicit export for R1--R6. The logarithmic vertical axis makes the R6
-concentration visible. These are the fresh five-run-median structural
-counts; Comp. is the optimizer boundary, regardless of whether an upstream
+concentration visible. These are positive forms measured with Spot level \texttt{small} and the implementation before the speedups (R7 and R8 did not complete); the counts are five-run medians, and
+Comp. (the post-reset-completion input) is the optimizer boundary, regardless of whether an upstream
 Spot count happens to match it.}
 \label{fig:R-transition-counts}
 \end{figure*}
@@ -25,7 +25,7 @@ the output with 448 transitions. The larger explicit edge count results from
 splitting disjunctive guards and adding entry conditions for invariant copies.
 It measures the cost of the target representation, not a reversal of the
 optimizer's reduction. In the fresh run, median optimizer and export times
-are 17.807 s and 10.666 s, respectively. The generated-group table separately reports the
+are 17.807 s and 10.666 s, respectively. Figure~\ref{fig:R-transition-counts} shows the concentration on R6. The generated-group table separately reports the
 stage after reset completion so that upstream processing is not folded into
 these optimizer measurements.
 

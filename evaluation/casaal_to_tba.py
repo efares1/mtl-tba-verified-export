@@ -5,7 +5,7 @@ entered the location carries the acceptance mark; accepting locations are those 
 Edge labels are put in DNF over event literals, guard atoms "xK<=c" and reset(xK).
 Usage: python3 casaal_to_tba.py in.gv out.tba [event,event,...]
 Exit code 3: several acceptance sets (not converted)."""
-import re, sys, itertools
+import os, re, sys, itertools
 
 def tokens(s):
     return re.findall(r'"[^"]*"|reset\(\w+\)|!|&|\||\(|\)|[A-Za-z_]\w*|\d+', s)
@@ -84,6 +84,13 @@ def main():
     out_edges = {}
     for (a, b, cube, acc) in cubes:
         out_edges.setdefault(a, []).append((b, cube, acc))
+    # CASAAL_ACCEPT_UNMARKED=1: when no acceptance mark is printed, a state is accepting unless its
+    # label has an unbounded eventuality (the rule of tck_product.py); default: no accepting location
+    UNMARKED = os.environ.get('CASAAL_ACCEPT_UNMARKED') == '1'
+    pending = set()
+    if UNMARKED and not accsets:
+        text = dict(re.findall(r'^\s*(\w+)\s*\[label="((?:[^"\\]|\\.)*)"\]', txt, re.M))
+        pending = {n for n, t in text.items() if re.search(r'(F|U)(?![A-Za-z\[])|(F|U)\[x\d*>', t)}
     ids = {}; todo = [(init, 0)]; ids[(init, 0)] = 0; trans = []
     while todo:
         s, f = todo.pop(0)
@@ -99,7 +106,7 @@ def main():
         o.write('events %s\n' % ' '.join(events))
         o.write('clocks %d\n' % (max(clk) + 1 if clk else 0))
         o.write('init 0\nstates %d\n' % len(ids))
-        o.write('acc %s\n' % ' '.join(str(i) for (s, f), i in ids.items() if f == 1))
+        o.write('acc %s\n' % ' '.join(str(i) for (s, f), i in ids.items() if (f == 1 if (accsets or not UNMARKED) else s not in pending)))
         for (a, b, lab, gd, rs) in trans:
             o.write('t %d %d | %s | %s | %s\n' % (a, b, lab, gd, rs))
 main()

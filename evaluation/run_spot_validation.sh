@@ -28,7 +28,8 @@ LIMIT=${LIMIT:-300}
 EQLIMIT=${EQLIMIT:-600}
 W=$(mktemp -d)
 trap 'rm -rf -- "$W"' EXIT
-OUT="$HERE/spot_validation.tsv"
+FORMULAS=${FORMULAS:-"$HERE/formulas.tsv"}
+OUT=${OUT:-"$HERE/spot_validation.tsv"}
 [ -n "$ONLY" ] && OUT="$OUT.only"
 # FROM=<id>: resume at this configuration and append to the existing file;
 # UNTIL=<id>: stop after this configuration
@@ -37,7 +38,7 @@ if [ -z "$FROM" ]; then
 fi
 started=${FROM:+no}
 chmod +x "$HERE/spot_tee.sh"
-grep -v '^#' "$HERE/formulas.tsv" | while IFS=$'\t' read -r id desc ours cas; do
+grep -v '^#' "$FORMULAS" | while IFS=$'\t' read -r id desc ours cas; do
   [ -n "$ONLY" ] && ! [[ " $ONLY " == *" $id "* ]] && continue
   [ -z "$id" ] && continue
   if [ "$started" = no ]; then

@@ -1,0 +1,11 @@
+{
+ "id": "M02",
+ "description": "max_all: the invariant bound of a location is the min instead of the max over its outgoing guards",
+ "file": "MTL_to_TBA_Invariants",
+ "compiled": [],
+ "status": "rejected",
+ "failing_file": "MTL_to_TBA_Invariants",
+ "seconds_to_fail": 9.1,
+ "first_error": "File \".\\MTL_to_TBA_Invariants.v\", line 161, characters 4-142:\nError: Not convertible.",
+ "err_line": 161
+}

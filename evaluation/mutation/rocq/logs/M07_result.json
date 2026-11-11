@@ -1,0 +1,11 @@
+{
+ "id": "M07",
+ "description": "mergeable_b: clocks merged without comparing their reset sets",
+ "file": "MTL_to_TBA_Optimizations",
+ "compiled": [],
+ "status": "rejected",
+ "failing_file": "MTL_to_TBA_Optimizations",
+ "seconds_to_fail": 2.8,
+ "first_error": "File \".\\MTL_to_TBA_Optimizations.v\", line 956, characters 2-38:\nError: Found no subterm matching \"forallb ?b ?l = true\" in the current goal.",
+ "err_line": 956
+}

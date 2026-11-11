@@ -1,0 +1,11 @@
+id	arm	locs	edges	clocks	acc_locs	loc_event_pairs_with_>=2_edges	max_out	distinct_(src,tgt,guard,resets)	distinct_(src,event)
+R1	ours_pos	2	7	1	2	1	4	4	6
+R1	casaal_pos	2	10	1	0	3	6	4	6
+R2	ours_pos	4	24	2	4	4	7	12	20
+R2	casaal_pos	4	51	2	0	15	20	15	20
+R3	ours_pos	8	68	3	8	12	10	32	56
+R3	casaal_pos	8	216	3	0	49	56	54	56
+R4	ours_pos	16	176	4	16	32	13	80	144
+R4	casaal_pos	16	837	4	0	135	144	189	144
+R5	ours_pos	32	432	5	32	80	16	192	352
+R5	casaal_pos	32	3078	5	0	341	352	648	352

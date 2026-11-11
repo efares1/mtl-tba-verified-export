@@ -103,6 +103,11 @@ worth it.
 
 ## Other options
 
+* `-alloc` reuses clocks by liveness after the optimization (Coq: `alloc_pass`,
+  `alloc_pass_accepts`).  The liveness analysis and the colouring (`src/alloc.ml`)
+  are not verified; the extracted checker `alloc_ok` validates their result and
+  the automaton is left unchanged when it fails, so the language is preserved
+  in either case.  Off by default.
 * `-all-copy` uses the separately verified all-copy split of disjunctive
   invariants instead of the default maximal-delay split.  The all-copy export
   adds no clock-difference (diagonal) guards, which TChecker's liveness

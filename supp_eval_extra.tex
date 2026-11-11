@@ -7,21 +7,21 @@ its BDD library and 16\% to the rest of Spot. None of the options of
 \texttt{spot-x(7)} that we tried (implication-based formula simplification,
 formula splitting, SCC filtering, explicit iteration over valuations, Boolean
 relabeling, branching postponement) changed the time beyond the run-to-run
-spread, and compositional suspension doubled it. On this input the cost appears to lie in the formula
+spread, and compositional suspension doubled it. On this input the cost may lie in the formula
 that the verified translation hands to Spot: a bounded eventuality repeats
-the translation of its operand three times, so the formula has size $3^k$ in the
+the translation of its operand three times, so the formula has size $\Theta(3^k)$ in the
 nesting depth $k$ (the proposition $p_7$ occurs $2{,}187=3^7$ times in the
-formula of N7). Spot's time grows by a factor of about 16 per level while its
+formula of N7). Spot's time grows by a factor of roughly 4 to 12 per level on the levels measured while its
 output (129 states and 4{,}623 edges at seven levels) grows by about 3.5. On N7,
 Spot alone (10--13~s) takes about as long as CASAAL's whole translation
-(11.3~s), and the rest of our chain takes about 5~s. On N7 the difference therefore lies in
-the replaceable front end (Section~\ref{sec:modular}) and not in the verified
-optimization and export; we did not profile N8.
+(11.3~s), and the rest of our chain takes about 5~s. On N7 the difference therefore appears to lie in
+the replaceable front end (article Section~\ref{sec:modular}) and not in the verified
+optimization and export; this rests on one profile, and we did not profile N8.
 
 \emph{Why the default is a trade-off.} Against the better explicit setting,
 automatic mode loses 0.6~s on N5 (where \texttt{low} is simply the slower
-setting), 5.3~s on N6 and 7.0~s on N7 (the 5~s of the abandoned \texttt{low}
-attempt plus run-to-run variation of the second run), and it avoids the
+setting), 5.3~s on N6 and 15.6~s on N7 (the 5~s of the abandoned \texttt{low}
+attempt plus run-to-run variation that we did not separate), and it avoids the
 minutes that \texttt{low} alone needs on N7 (393~s in a separate run) and the
 more than 900~s it needs on N8. On the conjunctions it is never
 worse than the former default \texttt{small}, which needs 41~s on seven
@@ -38,23 +38,54 @@ needs 0.3~s, which automatic mode avoids by trying \texttt{low} first, and
 needs 0.2~s, which automatic mode reaches after its budget.
 
 
-\subsection{TChecker stored states on the 20 completed products}
+\subsection{Generation time: earlier runs}
+\label{sec:gen-earlier}
+Table~\ref{tab:casaal-gen} gives the earlier timing runs (single runs of ours, best of three of CASAAL), with the manual setting where it helps. R, N and F are the benchmark groups defined in article Section~\ref{sec:evaluation}; N8 under the manual setting took 243~s against 73.8~s for CASAAL.
+\input{evaluation/casaal_gen_table}
+
+\subsection{TChecker stored states per product}
 Article Section~\ref{sec:casaal-tck} describes the setup and the totals; this is the full table.
 \input{evaluation/casaal_tck_table}
 
 \subsection{Positive-form workload}
 \begin{table}[tp]
 \centering
-\caption{TChecker stored states on the positive forms of the bounded responses with the violating system, all-copy export. ``Inv.\ removed'' deletes the location invariants of our automaton; ``script'' is the unverified invariant script; ``conv.'' is CASAAL's automaton converted to location acceptance and passed through our export (not completed on R5).}
+\caption{TChecker stored states on the positive forms of the bounded responses R1--R5 composed with a system that violates the requirement on every run (the product is empty), all-copy export of the reference. ``Ours, no invariants'' deletes the location invariants of our automaton; ``CASAAL, location acceptance'' is CASAAL's automaton converted to location acceptance and passed through our export (``--'': not completed). The positive form is the requirement as written, not its negation.}
 \label{tab:baseline-posbad}
 \small
 \input{evaluation/baselines/baseline_posbad_table}
+\end{table}
+\begin{table}[tp]
+\centering
+\caption{TChecker stored states on the positive forms of R1--R5 composed with a system that exercises all $n$ responses and violates the requirement on every run: the requests of the responses $2,\dots,n$ are made once each and answered in time, then the request of the first response is made and never answered (the product is empty). All-copy export. Columns: ours (default), ours with the optimizer disabled, ours with the invariants removed, CASAAL's automaton with location acceptance without and with our export, and the ratio of the last column to ours (``--'': not completed within 180~s, or not generated).}
+\label{tab:baseline-posbadall}
+\small
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+ & ours & ours, $\texttt{-n 0}$ & ours, no inv. & CASAAL & CASAAL, our export & ratio \\
+\midrule
+\input{evaluation/baselines/baseline_posbadall_table}\\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[tp]
+\centering
+\caption{Structure of the positive automata as TChecker reads them (all-copy export, events expanded): locations, clocks, explicit edges, and edges for each pair of a location and an event. Both automata are complete: they have an edge for every location and event (20, 56, 144 and 352 pairs on R2--R5), so the edge counts differ because CASAAL's automaton has several overlapping guarded edges for a pair where ours has one.}
+\label{tab:struct-posbad}
+\small
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+ & locations & clocks & edges, ours & edges, CASAAL & per pair, ours & per pair, CASAAL \\
+\midrule
+\input{evaluation/struct_table}\\
+\bottomrule
+\end{tabular}
 \end{table}
 \subsection{UPPAAL, model checking and agreement of the verdicts}
 \label{sec:uppaal-check}
 \begin{table}[tp]
 \centering
-\caption{UPPAAL~5.0.0, breadth-first search with default extrapolation, on the negated requirement composed with a system, for the products on which the times differ. Stored states are identical in all seven variants; times are medians of three runs including process start; the last column gives the number of explicit property edges of ours and of CASAAL's automaton.}
+\caption{UPPAAL~5.0.0, breadth-first search with default extrapolation, on the negated requirement composed with a system, for selected products (par-ok: parallel request/response components that always answer; free: the free system). Of the seven variants, the table shows ours with the default export, ours with the all-copy export, CASAAL converted to location acceptance, and CASAAL converted and passed through our export; the other three are the same automata with the optimizer disabled. Stored states are identical in all seven variants on these products (and on all full explorations except F5 and F8, where ours stores 3 and 2 states against 4 and 4 for CASAAL); times are medians of three runs including process start; the last column gives the number of explicit property transitions of ours and of CASAAL's automaton.}
 \label{tab:uppaal}
 \small
 \input{evaluation/uppaal/uppaal_table}
@@ -68,58 +99,57 @@ For timed liveness, which UPPAAL does not decide, we reran the separate TChecker
 \label{sec:differential}
 \begin{table}[tp]
 \centering
-\caption{Agreement of the automata with an independent evaluator of the MTL semantics on random ultimately periodic timed words (both polarities of each formula). A disagreement is a word on which the automaton and the evaluator differ.}
+\caption{Agreement of the automata with an independent evaluator of the MTL semantics on random ultimately periodic timed words (both polarities of each formula). A word check is one (formula, word, polarity) triple for one automaton; the words are ultimately periodic with delays that are multiples of one half and at most nine positions. CASAAL is checked on the 20 patterns it encodes (it has no next operator for F3 and F13). A disagreement is a word on which the automaton and the evaluator differ.}
 \label{tab:differential}
 \small
 \input{evaluation/differential/differential_table}
 \end{table}
-To check the automata of both translators against the semantics, not only against each other, we wrote an independent evaluator of the pointwise MTL semantics, transcribed from the Rocq definition of satisfaction, and acceptance evaluators for the UPPAAL XML of our tool (including diagonal guards and invariants) and for CASAAL's DOT output. We drew ultimately periodic timed words with strictly increasing timestamps in multiples of one half, at most nine positions, with delays chosen so that the interval bounds of the formula are hit exactly and one half-unit on either side. On 22 benchmark patterns (20{,}000 words each) and 100 random formulas (6{,}000 words each), in both polarities, the automata of our tool (default and all-copy exports) and of CASAAL accept exactly the words that the evaluator accepts (Table~\ref{tab:differential}, 5{,}960{,}000 word checks, no disagreement). CASAAL has no pointwise next operator, so F3 and F13 are checked for our tool only. The evaluator itself is tested: it rejects 11 of 13 and 7 of 7 deliberately wrong formulas for our tool and for CASAAL. The test finds no bug in either tool; it is agreement on a finite sample of a restricted word class (first event not at time zero, delays multiples of one half), not a proof for either.
+To check the automata of both translators against the semantics, not only against each other, we wrote an independent evaluator of the pointwise MTL semantics, transcribed from the Rocq definition of satisfaction, and acceptance evaluators for the UPPAAL XML of our tool (including diagonal guards and invariants) and for CASAAL's DOT output. We drew ultimately periodic timed words with strictly increasing timestamps in multiples of one half, at most nine positions, with delays chosen so that the interval bounds of the formula are hit exactly and one half-unit on either side. On 22 benchmark patterns (20{,}000 words each) and 100 random formulas (6{,}000 words each), in both polarities, the automata of our tool (default and all-copy exports) and of CASAAL accept exactly the words that the evaluator accepts (Table~\ref{tab:differential}, 6{,}160{,}000 word checks, no disagreement). CASAAL has no pointwise next operator, so F3 and F13 are checked for our tool only. The evaluator itself is tested: it rejects 11 of 13 deliberately wrong formulas for our tool and 7 of 7 for CASAAL. The test finds no bug in either tool; it is agreement on a finite sample of a restricted word class (first event not at time zero, delays multiples of one half), not a proof for either.
 
 \subsection{Seeded defects: what testing misses and the proofs reject}
 \label{sec:mutation}
 \begin{table}[tp]
 \centering
-\caption{Seeded defects in the extracted optimizer and exporter. T1: number of the 380 runs whose output differs from the unmutated tool. T2: index of the first random word on which the language test finds a difference, if any. ``Equivalent'' means no language change was found; M17 is argued, not proved.}
+\caption{Seeded defects in the extracted optimizer and exporter. T1: number of the 380 runs (296 on the corpus of 148 generated automata under two export policies, 84 on the benchmark patterns) whose output differs from the unmutated tool. T2: index (from zero) of the first random word on which the language test finds a difference; a dash means none was found. Fuzz: inputs on which the language test finds a mismatch, over inputs on which the mutant's output differs from the unmutated tool's, an input is one of 3,000 random automata under one export policy (6,000 inputs in all; 5,000 words per output). Outcome: ``caught'' by T2; ``missed by T1, T2'' but found by the fuzz; ``missed by all tests'' (M12, for which a hand-built automaton shows the language change); ``no change found'' (M05 is a different composition of verified passes, so its language is preserved by the pass theorems; M08, M21 and M22 are argued equivalent). Rocq: all 22 transcriptions are rejected (Table~\ref{tab:rocq-rejection}).}
 \label{tab:mutants}
-\small
+\scriptsize
+\setlength{\tabcolsep}{3pt}
 \input{evaluation/mutation/mutation_table}
 \end{table}
 \begin{table}[tp]
 \centering
-\caption{The same mistakes applied to the Rocq definitions: lemma on which the development first fails to compile. The four survivors of Table~\ref{tab:mutants} are M01, M10, M12 and M16; M13, M14 and M19 are further mutants.}
+\caption{The same mistakes applied to the Rocq definitions: lemma on which the development first fails to compile, with the time in seconds from the start of the build of the mutated file to the first error (Rocq 9.0.1). The first five rows are the defects that T1 and T2 missed (M12 also escapes the fuzz); the others follow in numerical order. M05, M08, M21 and M22 do not change the language, and are rejected because the proofs name the mutated step or need the removed condition.}
 \label{tab:rocq-rejection}
 \small
 \input{evaluation/mutation/rocq/rocq_rejection_table}
 \end{table}
-The agreement above shows that the tools are correct on the sample, not what the proofs add. To measure that, we seeded 22 plausible defects, one at a time, in a scratch copy of the extracted optimizer and exporter (Table~\ref{tab:mutants}; for instance a strict instead of non-strict test at the bound zero, a reset set not compared when two locations are merged, the complement of $x<c$ taken as $x>c$). Each mutant was tested in two ways: by comparing its output with that of the unmutated tool on the benchmark and the corpus of 148 generated automata, and by testing, for 100{,}000 random words per input, whether the output automaton accepts the words of its input.
+The agreement above shows that the tools are correct on the sample, not what the proofs add. To measure that, we seeded 22 plausible defects, one at a time, in a scratch copy of the extracted optimizer and exporter (Table~\ref{tab:mutants}; for instance a strict instead of non-strict test at the bound zero, a reset set not compared when two locations are merged, the complement of $x<c$ taken as $x>c$). Each mutant was tested in five ways: T1 compares its output with that of the unmutated tool on the benchmark and the corpus of 148 generated automata; T2 tests, for up to 100{,}000 random words per input, whether the output automaton accepts the words of its input; T3 (the fuzz) repeats this on 3{,}000 random automata drawn with the same generator and another seed (a corpus about 20 times larger than the 148, with small constants including zero), testing 5{,}000 words on each output that differs from the unmutated tool's; T4 compares each such output with its input on every lasso word of at most four positions (prefix 0--3, loop 1--3) over all events, with delays in $\{0,0.5,1,2,5\}$ time units and every initial clock valuation with values in $\{0,1,2,3,5\}$, which is exact on that finite word set only; and T5 is a structure-directed fuzz on 1{,}500 further random automata in which each guarded transition receives, with probability one half, a twin with the same source, target, label and resets whose guard is the complement of one atom (for a strict bound, in half of the cases the strict opposite bound, which holds on neither side of $x=c$). Only outputs that differ are tested, because an output byte-identical to the unmutated tool's has the language of the unmutated tool, which the proofs equate with the input's.
 
-Seventeen of the 22 mutants change the language of some automaton; the other five do not (M05 changes the output but not the language; M08, M21 and M22 change neither; M17 reverses an implication that we argued is harmless, without proving it). The word-level test finds 13 of the 17. Four, M01, M10, M12 and M16, are not found by any test: the output comparison is blind to them because the benchmark never reaches the defect, and the word test, which fails to notice even a single dropped transition in 36\% of our controls, does not hit the few words that separate the languages. For each of the four we built an automaton on which the mutant's language differs (for M01, 852 accepted sample words become none), so these are real language changes that a test of this kind misses. The test oracle is itself unverified code, and a stronger test may find some of them.
+Eighteen of the 22 mutants change the language of some automaton; four do not (M05 changes the output but not the language; M08, M21 and M22 change neither). Thirteen changes are found by T2. Five, M01, M10, M12, M16 and M17, are found by neither T1 nor T2: the benchmark and the small corpus never reach the defect (four of the five change no output at all), and the word test, which fails to notice even a single dropped transition in 36\% of our controls, does not hit the few words that separate the languages. T3 finds M01, M10, M16 and M17, on 44, 2, 31 and 5 inputs (an automaton under one export policy; 6{,}000 inputs in all), and T4 the same four, on 18, 1, 27 and 1 of the inputs whose output changes; the one mismatch for M17 is a single word, so M17 does change the language, although T2 alone did not detect it. M12 changes no output on any of the 3{,}000 automata, so T3 and T4 cannot see it; T5 finds it, with a changed output on 1{,}020 of 1{,}500 automata and a language mismatch on 164 (M01, M16, M17 on 26, 16 and 2; M10 on none). For M01 and M12 we built an automaton on which the mutant's language differs (for M01, 852 accepted sample words become none; for M12, 3{,}234 against 3{,}564), so M12 is a real language change that every test of this kind missed. The test oracles are themselves unverified code, T4 is exact only on its word set, and no exact language-equivalence check was tried. M12 was found only by a generator written with that pass in mind, which is the point: a test finds a defect when someone thinks of it.
 
-We then applied the same mistakes to the Rocq definitions in a scratch copy of the development (control: the unmutated copy compiles in about 43 s with the four standard axioms). All four survivors are rejected by Rocq within 3 to 5 seconds at a named lemma (Table~\ref{tab:rocq-rejection}), as are the three further mutants we tried (M13, M14, M19); we did not run the other 15. The rejection is at the lemma that ties the implementation to its specification (for M01, against the specification function of the invariants), so the check is only as strong as that specification: a mutation that changed implementation and specification together would pass. These results make a bounded claim: for these defects in this code, a test of 100{,}000 words did not find four that the development rejects. They do not show that CASAAL contains such defects, and CASAAL may well be correct.
+We then applied the same mistakes to the Rocq definitions in a scratch copy of the development (control: the unmutated copy compiles in about 43 s with the four standard axioms). All 22 are rejected by Rocq within 1.8 to 9.1 seconds at a named lemma (Table~\ref{tab:rocq-rejection}). The rejection is at the lemma that ties the implementation to its specification (for M01, against the specification function of the invariants), so the check is only as strong as that specification: a mutation that changed implementation and specification together would pass. It is also conservative: it rejects the four mutants that do not change the language, so a rejection means that the definition no longer matches the specification, not that its language differs. The Rocq mutants are transcriptions of the extracted-code mutants, made by the authors. These results make a bounded claim: for these defects in this code, T1 and T2 missed five of 18 language-changing defects, a corpus about 20 times larger and an exhaustive short-word check missed one, a generator aimed at the merge pass found it, and the development rejects all of them. They do not show that CASAAL contains such defects, and CASAAL may well be correct.
 
+
+\subsection{Export time with and without the optimizer}
+\label{sec:export-scalability}
+\begin{table}[tp]
+\centering
+\caption{Explicit edges and export time (seconds) of the positive form of R$n$, the conjunction of $n$ bounded responses with the same bound, with the optimizer disabled ($-n\,0$) and with the default number of rounds, for both export policies. One run each of the current build under WSL~2 with a limit of 300~s; a dash is a run that did not finish within the limit. Results: \texttt{evaluation/export\_scalability.tsv}.}
+\label{tab:export-scalability}
+\small
+\input{evaluation/export_scalability_table}
+\end{table}
+The maximal-delay export contains diagonal guards from R2 on and TChecker's liveness algorithms reject them, so the all-copy export is the one a TChecker user needs. Without the optimizer it takes 44.0~s on R4 and does not finish on R5 and R6; with it, 0.7, 5.7 and 55.5~s. The table does not show a gain in what the checker explores: the stored states are the same with and without the optimizer (Table~\ref{tab:baseline-posbad}).
 
 \subsection{Generated group: setup details and aggregates}
-This section evaluates the whole translation from an MTL requirement to the
-automaton given to a timed model checker, and the optimization passes inside
-it. It asks four questions. First, how does the translation compare, tool to
-tool, with an independent translator, CASAAL, in the size of the automaton, in
-generation time and in the cost the automaton imposes on a timed model checker
-(Section~\ref{sec:casaal-eval})? Second, which structures do the verified
-optimization passes remove or simplify, and how much of the difference to
-CASAAL do they explain? Third, what size and timing cost does conversion to
-conjunctive guards and invariants add? Fourth, do the packaged system checks
-behave as intended? Internal output shape is a Rocq theorem; external checker
-verdicts, sizes and times are experimental evidence. The matched TChecker
-cases below show unchanged exploration on systems whose exported models are
-byte-identical before and after optimization; they do not establish a general
-cost improvement.
+This subsection gives the setup details and the aggregates behind article Section~\ref{sec:evaluation}. Internal output shape is a Rocq theorem; external checker verdicts, sizes and times are experimental evidence. The matched TChecker cases below show unchanged exploration on systems whose exported models are byte-identical before and after optimization; they do not establish a general cost improvement.
 
 We retain the 31-attempt F/R/N benchmark as an upstream-generated
 group. The optimizer input is the automaton after reset completion, shown as
-Comp. in Supplement Table~\ref{tab:optimizer-benchmarks}. Of the 31 attempted
+Comp. in Table~\ref{tab:optimizer-benchmarks}. Of the 31 attempted
 configurations, 29 completed this upstream stage and supplied an optimizer
 input; R7 and R8 timed out before the measured boundary (with the later
-implementation of Section~\ref{sec:speedups}, their positive forms complete in
+implementation of article Section~\ref{sec:speedups}, their positive forms complete in
 14 s and 90 s). Formula rewriting, Spot
 configuration, cube expansion, relaxation, and reset completion happen
 upstream; their effects are not credited to the optimizer. The runs use the
@@ -138,7 +168,7 @@ sizes and times of this section were measured with the Spot level \texttt{small}
 the implementation before the speedups of Section~\ref{sec:speedups}; the run log, machine record, summary
 table, and generated automata are preserved under
 \path{evaluation/runs/2026-10-14-full-eval-v3/}.
-The per-instance table is in Supplement Table~\ref{tab:optimizer-benchmarks}.
+The per-instance table is in Table~\ref{tab:optimizer-benchmarks}.
 
 Across the 29 completed inputs, the sum of reachable transition counts falls
 from 20,204 at the post-reset-completion boundary to 1,500 after optimization
@@ -207,7 +237,7 @@ Both policies retain the same reachable location counts, active clock counts and
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{@{}p{0.22\textwidth}cccp{0.39\textwidth}@{}}
 \toprule
-Case & Input $E/C$ & Full $E/C$ & Rounds & Measured target-pass effect when omitted\\
+Case (record in Table~\ref{tab:synthetic-tba}) & Input $E/C$ & Full $E/C$ & Rounds (full) & Measured target-pass effect when omitted\\
 \midrule
 Backward bound tightening & 2/1 & 2/1 & 1 & Incoming guard tightens from $x\leq5$ to $x\leq2$; omitting backward synthesis leaves $x\leq5$.\\
 Forward lower-bound propagation & 3/1 & 3/1 & 1 & Entry fact $x\geq2$ is added to the outgoing $q$ edge; edge count is unchanged.\\
@@ -218,3 +248,23 @@ Synchronous-clock contradiction & 5/2 & 3/1 & 2 & Merging the synchronously rese
 \bottomrule
 \end{tabular}
 \end{table*}
+
+\subsection{Leave-one-out ablation of the optimization passes}
+\label{sec:pass-ablation}
+Table~\ref{tab:pass-ablation} reports the optimized automaton when one pass of the optimization round is skipped, in a scratch copy of the extracted code (the proved sources and the shipped tool are unchanged; \path{evaluation/make_ablate_tool.sh} builds the copy and \path{evaluation/run_pass_ablation.sh} runs it; ``guard normalization'' skips both normalization steps of the round). The inputs are the requirements as written. The benchmark columns cover the 25 configurations F1--F14, R1--R5 and N1--N5, for which Spot finishes within seconds; the random columns cover the 100 random formulas. ``Changed'' is the number of configurations whose optimized locations, transitions or clocks differ from those of the full optimizer. The sizes after export are in \path{evaluation/pass_ablation_summary.tsv}.
+\begin{table}[tp]
+\centering
+\caption{Optimized sizes with one pass skipped: transitions (Tr), locations (Loc), clocks (Clk), and the number of configurations that change.}
+\label{tab:pass-ablation}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lrrrrrrrr@{}}
+\toprule
+ & \multicolumn{4}{c}{Benchmark (25)} & \multicolumn{4}{c}{Random (100)}\\
+\cmidrule(lr){2-5}\cmidrule(lr){6-9}
+Skipped pass & Tr & Loc & Clk & Changed & Tr & Loc & Clk & Changed\\
+\midrule
+\input{evaluation/pass_ablation_table}\\
+\bottomrule
+\end{tabular}
+\end{table}

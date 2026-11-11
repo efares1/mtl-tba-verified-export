@@ -7,6 +7,7 @@ This Rocq development (the proof assistant formerly called Coq) contains the ver
 | `MTL_to_TBA_Invariants.v` | Invariant semantics, synthesis, backward propagation, and their language-preservation results such as `add_invariants_accepts` and `propagate_n_accepts` |
 | `MTL_to_TBA_Optimizations.v` | Forward propagation, simplification, dead resets, synchronous clock merging, guard/transition/location reduction, and generic `optimize_accepts` |
 | `MTL_to_TBA_Export.v` | Transition merging, disjunctive-invariant/guard elimination, symbolic output, and `export_accepts` |
+| `MTL_to_TBA_ClockAlloc.v` | Clock reuse by liveness: renaming of clocks, the boolean checker `alloc_ok` of a certificate (allocation and liveness sets), `alloc_pass_accepts` (language preserved for every certificate, the pass returns its input when the check fails), and the end-to-end theorems `MTL_to_exported_alloc_correct_with`. Opt-in in the tool (`-alloc`); not used by `optimize` |
 | `MTL_to_TBA_Initialization.v` | Zero-initialization check used by the formula-generated workflow; not a generic initialization theorem for arbitrary external TBAs |
 | `MTL_to_TBA_Shared_Clock_Derived_Strict_Direct_Core.v` and `EncodingCorrect_Shared_Clock_Derived_Strict_Direct_Proof.v` | Upstream MTL construction and its semantic contract, retained as tool-chain dependencies |
 | `Extract_Optim.v` | Extraction of verified functions to the OCaml tool |

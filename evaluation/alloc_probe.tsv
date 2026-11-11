@@ -1,0 +1,16 @@
+id	workload	clocks	clocks_alloc	verdict	verdict_alloc	stored	stored_alloc	seconds	seconds_alloc
+R2	ref	2	1	empty	empty	7513	7513	0.223143	0.183065
+R2	resp_ok	2	1	empty	empty	79	79	0.0010125	0.0006167
+R2	resp_bad	2	1	nonempty	nonempty	7	7	8.84e-05	7.4e-05
+R3	ref	3	1	empty	empty	168484	168484	12.3821	10.2609
+R3	resp_ok	3	1	empty	empty	117	117	0.0011102	0.0010603
+R3	resp_bad	3	1	nonempty	nonempty	7	7	0.0001242	6.22e-05
+R4	ref	4	1	timeout	timeout	NA	NA	NA	NA
+R4	resp_ok	4	1	empty	empty	155	155	0.0021531	0.0014319
+R4	resp_bad	4	1	nonempty	nonempty	7	7	8.95e-05	6.82e-05
+R5	ref	5	1	timeout	timeout	NA	NA	NA	NA
+R5	resp_ok	5	1	empty	empty	193	193	0.0028573	0.0021392
+R5	resp_bad	5	1	nonempty	nonempty	7	7	9.35e-05	7.31e-05
+F11	ref	2	1	empty	empty	67	67	0.0005713	0.0005043
+F12	ref	2	1	empty	empty	1688	1688	0.0268603	0.0298539
+F13	ref	2	1	empty	empty	87	87	0.0010089	0.0009197

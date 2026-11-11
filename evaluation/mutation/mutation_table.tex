@@ -1,30 +1,28 @@
-% T1 = number of the 296+84 runs whose output differs from the unmutated tool; T2 = first random word (index) on which the language test disagrees.
-% * output differs, no language difference found (not proved).
-\begin{tabular}{@{}llrrl@{}}
+\begin{tabular}{@{}lp{0.34\textwidth}rrrp{0.13\textwidth}l@{}}
 \toprule
-Mutant & Seeded defect (pass) & T1 & T2 first word & Outcome \\
+Mutant & Seeded defect (pass) & T1 & T2 first word & Fuzz & Outcome of the tests & Rocq \\
 \midrule
-M01 & closed bound 0 on a just-reset clock & 0 & \textemdash{} & \textbf{survives} \\
-M02 & invariant from min, not max, of branch bounds & 30 & 44 & caught \\
-M03 & x$\ge$2, x$\le$2 always empty (strictness ignored) & 120 & 0 & caught \\
-M04 & lower-bound tests ignored for clock liveness & 104 & 0 & caught \\
-M05 & normalization before dead-reset removal omitted & 78 & \textemdash{} & equivalent \\
-M06 & guard $x>0$ treated as trivially true & 38 & 0 & caught \\
-M07 & clocks merged without equal reset sets & 14 & 0 & caught \\
-M08 & entry into initial location not excluded & 0 & \textemdash{} & equivalent \\
-M09 & accepting and non-accepting locations merged & 6 & 0 & caught \\
-M10 & resets ignored in simulation test & 0 & \textemdash{} & \textbf{survives} \\
-M11 & parallel transitions merged without comparing resets & 62 & 1 & caught \\
-M12 & complement of $x<c$ taken as $x>c$ & 0 & \textemdash{} & \textbf{survives} \\
-M13 & entry lower bound from max, not min & 88 & 0 & caught \\
-M14 & split copies entered the wrong way round & 15 & 0 & caught \\
-M15 & entry condition not updated for resets & 40 & 0 & caught \\
-M16 & reset clock with $x\le0$ judged false & 0 & \textemdash{} & \textbf{survives} \\
-M17 & implication direction in disjunct pruning & 1 & \textemdash{} & equivalent$^{*}$ \\
-M18 & invariants ignored when merging exported locations & 8 & 84 & caught \\
-M19 & initial location pruned as unreachable & 376 & 0 & caught \\
-M20 & $x\le u$ taken to imply $x<w$ for $u\le w$ & 24 & 40 & caught \\
-M21 & safety check of dead-reset pass removed & 0 & \textemdash{} & equivalent \\
-M22 & weaker bound for conjunctive guard & 0 & \textemdash{} & equivalent \\
+M01 & closed bound 0 on a just-reset clock & 0 & \textemdash{} & 44/234 & missed by T1, T2 & rejected \\
+M02 & invariant from min, not max, of branch bounds & 30 & 44 & 154/428 & caught & rejected \\
+M03 & x$\ge$2, x$\le$2 always empty (strictness ignored) & 120 & 0 & 1940/3456 & caught & rejected \\
+M04 & lower-bound tests ignored for clock liveness & 104 & 0 & 918/1650 & caught & rejected \\
+M05 & normalization before dead-reset removal omitted & 78 & \textemdash{} & 0/1116 & no change found & rejected \\
+M06 & guard $x>0$ treated as trivially true & 38 & 0 & 770/1284 & caught & rejected \\
+M07 & clocks merged without equal reset sets & 14 & 0 & 10/32 & caught & rejected \\
+M08 & entry into initial location not excluded & 0 & \textemdash{} & 0/4 & no change found & rejected \\
+M09 & accepting and non-accepting locations merged & 6 & 0 & 56/116 & caught & rejected \\
+M10 & resets ignored in simulation test & 0 & \textemdash{} & 2/4 & missed by T1, T2 & rejected \\
+M11 & parallel transitions merged without comparing resets & 62 & 1 & 184/850 & caught & rejected \\
+M12 & complement of $x<c$ taken as $x>c$ & 0 & \textemdash{} & 0/0 & \textbf{missed by all tests} & rejected \\
+M13 & entry lower bound from max, not min & 88 & 0 & 1616/2098 & caught & rejected \\
+M14 & split copies entered the wrong way round & 15 & 0 & 93/195 & caught & rejected \\
+M15 & entry condition not updated for resets & 40 & 0 & 263/462 & caught & rejected \\
+M16 & reset clock with $x\le0$ judged false & 0 & \textemdash{} & 31/82 & missed by T1, T2 & rejected \\
+M17 & implication direction in disjunct pruning & 1 & \textemdash{} & 5/29 & missed by T1, T2 & rejected \\
+M18 & invariants ignored when merging exported locations & 8 & 84 & 36/328 & caught & rejected \\
+M19 & initial location pruned as unreachable & 376 & 0 & 6000/6000 & caught & rejected \\
+M20 & $x\le u$ taken to imply $x<w$ for $u\le w$ & 24 & 40 & 43/220 & caught & rejected \\
+M21 & safety check of dead-reset pass removed & 0 & \textemdash{} & 0/0 & no change found & rejected \\
+M22 & weaker bound for conjunctive guard & 0 & \textemdash{} & 0/84 & no change found & rejected \\
 \bottomrule
 \end{tabular}

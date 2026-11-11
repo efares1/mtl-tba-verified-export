@@ -18,7 +18,7 @@ The harness reports counts after every pass in every round and checks that
 its profiled pass sequence is structurally equal to the extracted
 \texttt{optimize\_step} on each round. It also times the unprofiled iterative
 optimizer and export as means over 200 repeated in-memory calls per model.
-Standalone process RSS ranges from 6,184 to 6,484 KiB. These short timings
+Table~\ref{tab:synthetic-tba} lists the counts and times; standalone process RSS ranges from 6,300 to 6,488 KiB. These short timings
 and small, purpose-built records are microbenchmark evidence only; the raw
 pass table and per-model RSS file are supplied for reproduction. Per-pass
 times are recorded but are too small to support fine-grained speed rankings.
@@ -31,7 +31,7 @@ synthesis from creating the contradiction; forward propagation makes the
 $x\leq1$ branch contradictory, and the following pruning stages remove its
 unentered chain. Omitting forward propagation retains all seven input edges,
 while the full optimizer leaves four. A separate backward cascade isolates
-that pass. article Table~\ref{tab:synthetic-interactions} shows input/output counts
+that pass. Table~\ref{tab:synthetic-interactions} shows input/output counts
 and leave-one-operation-out effects.
 
 The normalization/reset example removes a tautological $x\geq0$ guard before
@@ -56,8 +56,8 @@ claim follows separately from the proved pass composition.
 \input{evaluation/synthetic_tba_round_trace_table}
 
 The synthetic disjunctive-invariant case is unchanged by optimization, then
-grows from three locations and three transitions to nine locations and six
-explicit transitions after export. The output has conjunctive invariants and
+grows from three locations and three transitions to nine declared locations
+(three of them reachable) and six explicit transitions after export. The output has conjunctive invariants and
 six diagonal guard atoms that select maximal-delay copies. This is a
 measured size cost of export; the output-shape guarantee itself follows from
 \texttt{export\_guards\_conjunctive} and
@@ -91,10 +91,10 @@ fine-grained pass runtime rankings; process RSS includes runtime overhead.
 
 We also constructed five size-parameterized families directly in the formal
 TBA representation, without a third-party parser. Table~\ref{tab:parameterized-synthetic}
-reports every tested size. In the duplicate-edge family, inputs grow from
+reports the sizes shown there; the parameter $k$ is the number of parallel edges (duplicate edges), the chain length (unreachable cascade), the number of bounds (redundant bounds), the number of clocks (synchronous resets) and the number of branches (disjunctive invariant). In the duplicate-edge family, inputs grow from
 two to 33 edges while optimization reduces each nontrivial instance to two.
-The unreachable-cascade sweep includes sizes 1--50, 51, and 64; rows at the
-50-round driver cap are marked and report capped, not necessarily stable,
+The unreachable-cascade sweep covers sizes 1--50, 51, and 64 (the table shows selected sizes); rows at the
+50-round driver cap are marked with a dagger and report capped, not necessarily stable,
 outputs. A separate probe confirms that size 51 still changes on round 51
 (two edges remain after round 50), while size 64 still changes on rounds 51
 and 52. The size-50 chain has one edge after round 50 and is unchanged by

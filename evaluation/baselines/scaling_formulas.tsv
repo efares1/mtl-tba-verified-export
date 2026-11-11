@@ -1,0 +1,10 @@
+# id	description	MTL formula
+S2	2 responses, same trigger and bound	[](a -> <>[<=5] b1) & [](a -> <>[<=5] b2)
+S3	3 responses, same trigger and bound	[](a -> <>[<=5] b1) & [](a -> <>[<=5] b2) & [](a -> <>[<=5] b3)
+S4	4 responses, same trigger and bound	[](a -> <>[<=5] b1) & [](a -> <>[<=5] b2) & [](a -> <>[<=5] b3) & [](a -> <>[<=5] b4)
+S5	5 responses, same trigger and bound	[](a -> <>[<=5] b1) & [](a -> <>[<=5] b2) & [](a -> <>[<=5] b3) & [](a -> <>[<=5] b4) & [](a -> <>[<=5] b5)
+W2	2 recurrences	[](<>[<=5] p) & [](<>[<=5] q)
+W3	3 recurrences	[](<>[<=5] p) & [](<>[<=5] q) & [](<>[<=5] r)
+W4	4 recurrences	[](<>[<=5] p) & [](<>[<=5] q) & [](<>[<=5] r) & [](<>[<=5] s)
+E3	3 eventualities	<>[<=5] p & <>[<=5] q & <>[<=5] r
+E4	4 eventualities	<>[<=5] p & <>[<=5] q & <>[<=5] r & <>[<=5] s

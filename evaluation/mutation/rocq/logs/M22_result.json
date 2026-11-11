@@ -1,0 +1,11 @@
+{
+ "id": "M22",
+ "description": "ub_guard: the upper bound of a conjunctive guard is the max instead of the min",
+ "file": "MTL_to_TBA_Invariants",
+ "compiled": [],
+ "status": "rejected",
+ "failing_file": "MTL_to_TBA_Invariants",
+ "seconds_to_fail": 1.9,
+ "first_error": "File \".\\MTL_to_TBA_Invariants.v\", line 129, characters 41-44:\nError: Tactic failure:  Cannot find witness.",
+ "err_line": 129
+}

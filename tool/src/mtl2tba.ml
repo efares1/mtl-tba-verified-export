@@ -29,6 +29,7 @@ let spot_format = ref "hoa"
 let spot_fallback_used = ref false
 let with_init = ref false
 let rounds = ref 50
+let alloc_on = ref false
 let verbose = ref false
 let dump_tba = ref false
 let recur_on = ref true
@@ -69,6 +70,7 @@ let speclist = [
   ("-nopdf", Arg.Clear pdf, " do not run Graphviz to produce <base>.pdf from <base>.dot");
   ("-explicit-neg", Arg.Set explicit_neg, " print the negated event atom !e as the negation of the quoted atom, !\"e\" (default); Spot then knows that e and !e exclude each other. The backend contract of the proof is required only on the action-consistent words (action_consistent), in which !e is the complement of e");
   ("-indep-neg", Arg.Clear explicit_neg, " print the negated event atom !e as the independent quoted atom \"!e\" (the contract then holds on all propositional words, which is stronger than needed)");
+  ("-alloc", Arg.Set alloc_on, " after the optimization, reuse clocks by liveness (verified checker Optim.alloc_pass, Coq alloc_pass_accepts; the colouring in alloc.ml is untrusted and its result is checked)");
   ("-all-copy", Arg.Set all_copy_export, " use the separately verified nondeterministic all-copy invariant split for export (experimental comparison mode)");
   ("-dot", Arg.Set_string dot_cmd, "<cmd> Graphviz command (default: dot)");
   ("-tba", Arg.Set dump_tba, " also write <base>_tba.dot and <base>_opt.dot");
@@ -451,6 +453,13 @@ let () =
   if not stable && !rounds > 0 then
     prerr_endline
       "warning: optimization round cap reached; structural stability beyond the cap was not checked";
+  let opt =
+    if not !alloc_on then opt
+    else begin
+      let (al, lv) = Alloc.certify root opt in
+      log "clock allocation: certificate accepted by the checker: %b" (alloc_ok root al lv opt);
+      alloc_pass root (fun _ -> (al, lv)) opt
+    end in
   let (s1, t1, c1) = size_tba opt in
   log "after %d optimization rounds: %d locations, %d transitions" k s1 t1;
   (* 7 *)
