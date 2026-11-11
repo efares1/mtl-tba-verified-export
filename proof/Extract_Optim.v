@@ -7,6 +7,8 @@ Require Import MTL_to_TBA_Shared_Clock_Derived_Strict_Direct_Core.
 Require Import MTL_to_TBA_Invariants MTL_to_TBA_Optimizations MTL_to_TBA_Export.
 Require Import MTL_to_TBA_Initialization MTL_to_TBA_Simplify MTL_to_TBA_Symbolic.
 Require Import MTL_to_TBA_Negation MTL_to_TBA_Weak MTL_to_TBA_Recur.
+Require Import MTL_to_TBA_ClockAlloc.
+Require Import MTL_to_TBA_DomPrune.
 
 (* ---------------------------------------------------------------- *)
 (* Booleans, pairs, and subset types                                 *)
@@ -109,5 +111,5 @@ Definition optimize_export {root : mtl} (n : nat) (A : TBA root) : DTA root :=
 Definition optimize_export_all {root : mtl} (n : nat) (A : TBA root) : DTA root :=
   export_all (optimize n A).
 
-Extraction "optim.ml" optimized optimize export export_all optimize_export optimize_export_all T ltl_atoms compile_with compile_with_fast
+Extraction "optim.ml" optimized optimize alloc_pass prune_pass split_cells dom_step prune_ok label_at cells upper_cmp export export_all optimize_export optimize_export_all T ltl_atoms compile_with compile_with_fast
   timed_subformulas MUle MUlt MUge MUgt MRle MRlt MRge MRgt init_free ltl_simp symbolic neg weak recur.

@@ -29,6 +29,11 @@ let spot_format = ref "hoa"
 let spot_fallback_used = ref false
 let with_init = ref false
 let rounds = ref 50
+let alloc_on = ref false
+let prune_on = ref false
+let prune_split = ref false
+let alloc_fuzz = ref 0
+let alloc_unchecked = ref false
 let verbose = ref false
 let dump_tba = ref false
 let recur_on = ref true
@@ -69,6 +74,11 @@ let speclist = [
   ("-nopdf", Arg.Clear pdf, " do not run Graphviz to produce <base>.pdf from <base>.dot");
   ("-explicit-neg", Arg.Set explicit_neg, " print the negated event atom !e as the negation of the quoted atom, !\"e\" (default); Spot then knows that e and !e exclude each other. The backend contract of the proof is required only on the action-consistent words (action_consistent), in which !e is the complement of e");
   ("-indep-neg", Arg.Clear explicit_neg, " print the negated event atom !e as the independent quoted atom \"!e\" (the contract then holds on all propositional words, which is stronger than needed)");
+  ("-prune-split", Arg.Unit (fun () -> prune_on := true; prune_split := true), " like -prune, but first split every transition into one transition per cell of letters (verified, split_cells_accepts); makes the domination test exact but can multiply transitions");
+  ("-prune", Arg.Set prune_on, " after the optimization, drop dominated transitions (verified checker Optim.prune_pass, Coq prune_pass_accepts; the simulation in prune.ml is untrusted and its result is checked)");
+  ("-alloc", Arg.Set alloc_on, " after the optimization, reuse clocks by liveness (verified checker Optim.alloc_pass, Coq alloc_pass_accepts; the colouring in alloc.ml is untrusted and its result is checked)");
+  ("-alloc-fuzz", Arg.Set_int alloc_fuzz, "<seed> (testing of the checker) with -alloc, replace the allocation by a random one with this seed; the checker still decides");
+  ("-alloc-unchecked", Arg.Set alloc_unchecked, " (testing of the checker) with -alloc, apply the allocation even when the checker rejects it; UNSOUND, never use for results");
   ("-all-copy", Arg.Set all_copy_export, " use the separately verified nondeterministic all-copy invariant split for export (experimental comparison mode)");
   ("-dot", Arg.Set_string dot_cmd, "<cmd> Graphviz command (default: dot)");
   ("-tba", Arg.Set dump_tba, " also write <base>_tba.dot and <base>_opt.dot");
@@ -451,6 +461,29 @@ let () =
   if not stable && !rounds > 0 then
     prerr_endline
       "warning: optimization round cap reached; structural stability beyond the cap was not checked";
+  let opt =
+    if not !prune_on then opt
+    else begin
+      let (_, pre, _) = size_tba opt in
+      let opt = if !prune_split then split_cells root opt else opt in
+      let (_, post_split, _) = size_tba opt in
+      let (s, l, l2, kp) = Prune.certify root opt in
+      log "dominated-transition pruning: certificate accepted by the checker: %b" (prune_ok root s l l2 kp opt);
+      let opt = prune_pass root (fun _ -> (((s, l), l2), kp)) opt in
+      let (_, fin, _) = size_tba opt in
+      Printf.eprintf "PRUNESTATS	%d	%d	%d	%d
+" pre post_split (post_split - fin) fin;
+      opt
+    end in
+  let opt =
+    if not !alloc_on then opt
+    else begin
+      let (al, lv) = Alloc.certify_gen !alloc_fuzz root opt in
+      let ok = alloc_ok root al lv opt in
+      log "clock allocation: certificate accepted by the checker: %b" ok;
+      if !alloc_unchecked then allocate_clocks root al opt
+      else alloc_pass root (fun _ -> (al, lv)) opt
+    end in
   let (s1, t1, c1) = size_tba opt in
   log "after %d optimization rounds: %d locations, %d transitions" k s1 t1;
   (* 7 *)

@@ -19,11 +19,15 @@ let out = ref "out"
 let rounds = ref 50
 let all_copy = ref false
 let stats = ref false
+let prune = ref false
+let prune_split = ref false
 let file = ref ""
 let speclist = [
   ("-o", Arg.Set_string out, "<base> output files <base>.xml and <base>.dot");
   ("-n", Arg.Set_int rounds, "<n> maximal number of optimization rounds (0: none)");
   ("-all-copy", Arg.Set all_copy, " all-copy invariant split");
+  ("-prune-split", Arg.Unit (fun () -> prune := true; prune_split := true), " like -prune, after splitting every transition by cells of letters (verified, split_cells_accepts)");
+  ("-prune", Arg.Set prune, " drop dominated transitions (verified checker Optim.prune_ok)");
   ("-stats", Arg.Set stats, " one tab-separated line of measures");
 ]
 
@@ -98,6 +102,23 @@ let () =
     if k >= !rounds then (k, a)
     else let a' = optimize root 1 a in if a' = a then (k, a) else fix (k + 1) a' in
   let (k, opt) = fix 0 tba in
+  let opt =
+    if not !prune then opt
+    else begin
+      let tm = Unix.gettimeofday () in
+      let opt = if !prune_split then split_cells root opt else opt in
+      let (s, l, l2, kp) = Prune.certify root opt in
+      Printf.eprintf "prune: certificate computed in %.2fs
+%!" (Unix.gettimeofday () -. tm);
+      let tm = Unix.gettimeofday () in
+      let okc = prune_ok root s l l2 kp opt in
+      Printf.eprintf "prune: certificate accepted by the checker: %b (%.2fs)
+%!" okc (Unix.gettimeofday () -. tm);
+      let r = prune_pass root (fun _ -> (((s, l), l2), kp)) opt in
+      Printf.eprintf "prune: pass done (%.2fs)
+%!" (Unix.gettimeofday () -. tm);
+      r
+    end in
   let (s1, t1, c1) = size_tba opt in
   let t_opt = Unix.gettimeofday () -. t0 in
   let d = if !all_copy then export_all root opt else export root opt in

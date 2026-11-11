@@ -1,3 +1,8 @@
+(** val implb : bool -> bool -> bool **)
+
+let implb b1 b2 =
+  if b1 then b2 else true
+
 (** val xorb : bool -> bool -> bool **)
 
 let xorb b1 b2 =
@@ -2544,6 +2549,231 @@ let rec recur = function
 | MRhatLt (d, p, q0) -> rw1 (MRhatLt (d, (recur p), (recur q0)))
 | MRhatGt (d, p, q0) -> rw1 (MRhatGt (d, (recur p), (recur q0)))
 | x -> x
+
+(** val alloc_item :
+    mtl -> (clock -> clock) -> clock_constraint option -> clock_constraint
+    option **)
+
+let alloc_item _ alloc = function
+| Some k ->
+  Some { guard_clock = (alloc k.guard_clock); guard_comparison =
+    k.guard_comparison; guard_bound = k.guard_bound }
+| None -> None
+
+(** val alloc_resets : mtl -> (clock -> clock) -> clock list -> clock list **)
+
+let alloc_resets root alloc rs =
+  nodup (clock_eq_dec root) (List.map alloc rs)
+
+(** val alloc_transition :
+    mtl -> (clock -> clock) -> tba_transition -> tba_transition **)
+
+let alloc_transition root alloc t0 =
+  { bt_source = t0.bt_source; bt_label = t0.bt_label; bt_guard =
+    (List.map (alloc_item root alloc) t0.bt_guard); bt_resets =
+    (alloc_resets root alloc t0.bt_resets); bt_target = t0.bt_target }
+
+(** val allocate_clocks : mtl -> (clock -> clock) -> tBA -> tBA **)
+
+let allocate_clocks root alloc a =
+  with_transitions root a
+    (List.map (alloc_transition root alloc) a.tba_transitions)
+
+(** val guard_clocks : mtl -> guard -> clock list **)
+
+let guard_clocks _ g =
+  List.concat_map (fun o ->
+    match o with
+    | Some k -> k.guard_clock :: []
+    | None -> []) g
+
+(** val same_class_eq : mtl -> (clock -> clock) -> clock -> clock -> bool **)
+
+let same_class_eq root alloc r y =
+  if clock_eq_dec root (alloc r) (alloc y) then clock_eqb root r y else true
+
+(** val alloc_ok :
+    mtl -> (clock -> clock) -> (int -> clock list) -> tBA -> bool **)
+
+let alloc_ok root alloc live1 a =
+  (&&)
+    (List.for_all (fun t0 ->
+      (&&)
+        ((&&)
+          (List.for_all (fun x -> clock_in root x (live1 t0.bt_source))
+            (guard_clocks root t0.bt_guard))
+          (List.for_all (fun x ->
+            (||) (clock_in root x t0.bt_resets)
+              (clock_in root x (live1 t0.bt_source)))
+            (live1 t0.bt_target)))
+        (List.for_all (fun r ->
+          List.for_all (fun y -> same_class_eq root alloc r y)
+            (live1 t0.bt_target))
+          t0.bt_resets))
+      a.tba_transitions)
+    (List.for_all (fun x ->
+      List.for_all (fun y -> same_class_eq root alloc x y) (live1 a.tba_init))
+      (live1 a.tba_init))
+
+(** val try_allocate :
+    mtl -> (clock -> clock) -> (int -> clock list) -> tBA -> tBA **)
+
+let try_allocate root alloc live1 a =
+  if alloc_ok root alloc live1 a then allocate_clocks root alloc a else a
+
+(** val alloc_pass : mtl -> certifier -> tBA -> tBA **)
+
+let alloc_pass root cert a =
+  try_allocate root (fst (cert a)) (snd (cert a)) a
+
+(** val prune_trans : mtl -> (tba_transition -> bool) -> tBA -> tBA **)
+
+let prune_trans root keep a =
+  with_transitions root a (List.filter keep a.tba_transitions)
+
+(** val upper_cmp : clock_comparison -> bool **)
+
+let upper_cmp = function
+| CLe -> true
+| CLt -> true
+| _ -> false
+
+(** val guard_item_ok :
+    mtl -> (int -> clock list) -> (int -> clock list) -> int ->
+    clock_constraint option -> bool **)
+
+let guard_item_ok root live1 lle q1 = function
+| Some k ->
+  (||) (clock_in root k.guard_clock (live1 q1))
+    ((&&) (upper_cmp k.guard_comparison)
+      (clock_in root k.guard_clock (lle q1)))
+| None -> true
+
+(** val flow_ok :
+    mtl -> (int -> clock list) -> (int -> clock list) -> int ->
+    tba_transition -> tba_transition -> bool **)
+
+let flow_ok root live1 lle q1 t1 t2 =
+  (&&)
+    (List.for_all (fun x ->
+      (||)
+        ((&&) (clock_in root x t1.bt_resets) (clock_in root x t2.bt_resets))
+        ((&&)
+          ((&&) (not (clock_in root x t1.bt_resets))
+            (not (clock_in root x t2.bt_resets)))
+          (clock_in root x (live1 q1))))
+      (live1 t1.bt_target))
+    (List.for_all (fun x ->
+      (||) (clock_in root x t1.bt_resets)
+        ((&&) (not (clock_in root x t2.bt_resets))
+          ((||) (clock_in root x (lle q1)) (clock_in root x (live1 q1)))))
+      (lle t1.bt_target))
+
+(** val lit_at : int option -> alit -> bool **)
+
+let lit_at c l =
+  match c with
+  | Some a -> if (=) a (fst l) then snd l else not (snd l)
+  | None -> not (snd l)
+
+(** val label_at : int option -> alit list -> bool **)
+
+let label_at c ls =
+  List.for_all (lit_at c) ls
+
+(** val mentioned : mtl -> tBA -> int list **)
+
+let mentioned _ a =
+  nodup (=)
+    (List.concat_map (fun t0 -> List.map fst t0.bt_label) a.tba_transitions)
+
+(** val cells : mtl -> tBA -> int option list **)
+
+let cells root a =
+  None :: (List.map (fun a0 -> Some a0) (mentioned root a))
+
+(** val land0 : bool -> (unit -> bool) -> bool **)
+
+let land0 a b =
+  if a then b () else false
+
+(** val dom_step :
+    mtl -> (int -> int -> bool) -> (int -> clock list) -> (int -> clock list)
+    -> (tba_transition -> bool) -> tBA -> int -> int option -> tba_transition
+    -> tba_transition -> bool **)
+
+let dom_step root sim0 live1 lle keep a q1 c t2 t1 =
+  land0 ((=) t1.bt_source q1) (fun _ ->
+    land0 (keep t1) (fun _ ->
+      land0 (label_at c t1.bt_label) (fun _ ->
+        land0 (guard_implied root t2.bt_guard t1.bt_guard) (fun _ ->
+          land0 (List.for_all (guard_item_ok root live1 lle q1) t1.bt_guard)
+            (fun _ ->
+            land0 (flow_ok root live1 lle q1 t1 t2) (fun _ ->
+              land0 (sim0 t1.bt_target t2.bt_target) (fun _ ->
+                (<) t1.bt_target a.tba_nstates)))))))
+
+(** val mem_nat : int -> int list -> bool **)
+
+let mem_nat q0 l =
+  List.exists ((=) q0) l
+
+(** val prune_ok :
+    mtl -> (int -> int -> bool) -> (int -> clock list) -> (int -> clock list)
+    -> (tba_transition -> bool) -> tBA -> bool **)
+
+let prune_ok root sim0 live1 lle keep a =
+  land0 (sim0 a.tba_init a.tba_init) (fun _ ->
+    List.for_all (fun q1 ->
+      List.for_all (fun q2 ->
+        if sim0 q1 q2
+        then (&&)
+               (implb (mem_nat q2 a.tba_accepting)
+                 (mem_nat q1 a.tba_accepting))
+               (List.for_all (fun c ->
+                 List.for_all (fun t2 ->
+                   if (&&) ((=) t2.bt_source q2) (label_at c t2.bt_label)
+                   then List.exists (fun t1 ->
+                          dom_step root sim0 live1 lle keep a q1 c t2 t1)
+                          a.tba_transitions
+                   else true) a.tba_transitions)
+                 (cells root a))
+        else true) ((fun s n -> List.init n (fun i -> s + i)) 0 a.tba_nstates))
+      ((fun s n -> List.init n (fun i -> s + i)) 0 a.tba_nstates))
+
+(** val try_prune :
+    mtl -> (int -> int -> bool) -> (int -> clock list) -> (int -> clock list)
+    -> (tba_transition -> bool) -> tBA -> tBA **)
+
+let try_prune root sim0 live1 lle keep a =
+  if prune_ok root sim0 live1 lle keep a then prune_trans root keep a else a
+
+(** val prune_pass : mtl -> prune_certifier -> tBA -> tBA **)
+
+let prune_pass root cert a =
+  try_prune root (fst (fst (fst (cert a)))) (snd (fst (fst (cert a))))
+    (snd (fst (cert a))) (snd (cert a)) a
+
+(** val cell_label : mtl -> tBA -> int option -> alit list **)
+
+let cell_label root a = function
+| Some a0 -> (a0, true) :: []
+| None -> List.map (fun m -> (m, false)) (mentioned root a)
+
+(** val relabel : mtl -> tba_transition -> alit list -> tba_transition **)
+
+let relabel _ t0 l =
+  { bt_source = t0.bt_source; bt_label = l; bt_guard = t0.bt_guard;
+    bt_resets = t0.bt_resets; bt_target = t0.bt_target }
+
+(** val split_cells : mtl -> tBA -> tBA **)
+
+let split_cells root a =
+  with_transitions root a
+    (List.concat_map (fun t0 ->
+      List.map (fun c -> relabel root t0 (cell_label root a c))
+        (List.filter (fun c -> label_at c t0.bt_label) (cells root a)))
+      a.tba_transitions)
 
 (** val optimize_export : mtl -> int -> tBA -> dTA **)
 

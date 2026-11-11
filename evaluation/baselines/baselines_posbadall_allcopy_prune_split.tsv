@@ -1,0 +1,5 @@
+id	workload	arm	verdict	stored	seconds	peak_kb
+R2	posbadall	casaal_pruned	empty	70	0.0004536	8140
+R3	posbadall	casaal_pruned	empty	92	0.0006755	8392
+R4	posbadall	casaal_pruned	empty	114	0.0011583	8712
+R5	posbadall	casaal_pruned	empty	136	0.0014869	9636

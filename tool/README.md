@@ -103,6 +103,25 @@ worth it.
 
 ## Other options
 
+* `-alloc` reuses clocks by liveness after the optimization (Coq: `alloc_pass`,
+  `alloc_pass_accepts`).  The liveness analysis and the colouring (`src/alloc.ml`)
+  are not verified; the extracted checker `alloc_ok` validates their result and
+  the automaton is left unchanged when it fails, so the language is preserved
+  in either case.  Off by default.
+* `-prune` removes dominated transitions after the optimization (Coq:
+  `prune_pass`, `prune_pass_accepts`).  The simulation relation (`src/prune.ml`)
+  is not verified; the extracted checker `prune_ok` validates it and the
+  automaton is left unchanged when it fails.  Off by default.  On our own
+  automata it never enlarged the exported automaton and shrank it on about a
+  third of 137 formulas.
+* `-prune-split` is `-prune` after splitting every transition into one
+  transition per cell of letters (Coq: `split_cells`, `split_cells_accepts`).
+  It makes the domination test exact.  It pays off on automata with
+  overlapping nondeterministic edges produced by other tools (CASAAL's positive
+  automata: TChecker stores 70, 92, 114 and 136 states for R2 to R5 against 781,
+  34,483, 1,202,691 and a timeout with `-prune`), but it enlarges the export of
+  our own automata, where `-prune` is the better choice.  `tba_opt` takes both
+  flags too.
 * `-all-copy` uses the separately verified all-copy split of disjunctive
   invariants instead of the default maximal-delay split.  The all-copy export
   adds no clock-difference (diagonal) guards, which TChecker's liveness

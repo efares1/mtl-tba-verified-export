@@ -1,0 +1,10 @@
+id	clocks_plain	clocks_alloc	verdict	stored_plain	stored_alloc	reps	median_s_plain	median_s_alloc	min_s_plain	min_s_alloc	ratio_median	peak_kb_plain	peak_kb_alloc	times_plain	times_alloc
+S2	2	1	empty	8668	NA	1	0.14931	NA	NA	NA	NA	18800	NA		
+S3	3	1	empty	217508	NA	1	9.41187	NA	NA	NA	NA	159868	NA		
+S4	4	1	timeout	NA	NA	1	NA	NA	NA	NA	NA	1090348	NA		
+S5	5	1	timeout	NA	NA	1	NA	NA	NA	NA	NA	958864	NA		
+W2	2	1	empty	8762	NA	1	0.137063	NA	NA	NA	NA	18472	NA		
+W3	3	1	empty	253824	NA	1	9.49644	NA	NA	NA	NA	173912	NA		
+W4	4	1	timeout	NA	NA	1	NA	NA	NA	NA	NA	1167636	NA		
+E3	3	1	empty	556	NA	1	0.0116896	NA	NA	NA	NA	10588	NA		
+E4	4	1	empty	1457	NA	1	0.0516172	NA	NA	NA	NA	18368	NA		
