@@ -11,17 +11,16 @@ is an argument (each mutated function is one whose language preservation is prov
 | outcome | mutants | n |
 |---|---|---|
 | language-changing, caught by the language test T2 (and by the golden regression T1) | M02 M03 M04 M06 M07 M09 M11 M13 M14 M15 M18 M19 M20 | 13 |
-| language-changing, survive T1 and T2 (budget up to 100,000 words per input), exposed only by a hand-built counterexample | M01 M10 M12 M16 | 4 |
-| no language change (output form only, or removed check already implied) | M05 M08 M17 M21 M22 | 5 |
+| language-changing, survive T1 and T2 (budget up to 100,000 words per input); found by T3/T4 (M01, M10, M16, M17) or T5 (M12) and a hand-built counterexample | M01 M10 M12 M16 M17 | 5 |
+| no language change (output form only, or removed check already implied) | M05 M08 M21 M22 | 4 |
 
-So 17 of 22 mutants change the accepted language; T2 finds 13 of 17 (76%) and four (24%) survive everything we ran.
+So 18 of 22 mutants change the accepted language; T2 finds 13 of 18 (72%) and five survive T1 and T2. (This file was updated on 2026-11-11: M17 was first classed equivalent; the structure-directed fuzz of `results/fuzz_large.tsv` and `results/fuzz_directed.tsv` finds a language mismatch for it, on 5 and 2 inputs.)
 No mutant crashed the tool.  T1 (output differs from the unmutated tool) flags 15 mutants: the same 13 plus M05 and
-M17, whose language is unchanged.  T1 is not available to a developer without a trusted reference build; it is a
+M17, where the output differs on one input.  T1 is not available to a developer without a trusted reference build; it is a
 golden-output regression against the correct tool.
 
 Two further notes.  (1) M16 survives only under the default max-delay split; the all-copy export is unaffected.
-(2) M17 is classed equivalent without proof: output differs on 1 of 296 inputs (a redundant disjunct is kept), no
-language mismatch was found.
+(2) M17 changes the output on 1 of 296 corpus inputs and, in the larger fuzz, the language on a few inputs (see above).
 
 ## Tests
 
@@ -53,7 +52,7 @@ language mismatch was found.
 | M14 | disjunctive split (max-delay) | 1703 | 12/296 | 3/84 | 0+0 | 1000 words: 5 inputs, first 0 | no mismatch (1000 words) | caught by T2 |
 | M15 | disjunctive split (max-delay) | 2091 | 20/296 | 20/84 | 0+0 | 1000 words: 13 inputs, first 4 | 1000 words: 19 inputs, first 0 | caught by T2 |
 | M16 | disjunctive split (max-delay) | 1734 | 0/296 | 0/84 | 0+0 | no mismatch (100000 words) | no mismatch (100000 words) | survives, changes language |
-| M17 | export normalization | 1896 | 1/296 | 0/84 | 0+0 | no mismatch (100000 words) | no mismatch (100000 words) | equivalent (language, not proved) |
+| M17 | export normalization | 1896 | 1/296 | 0/84 | 0+0 | no mismatch (100000 words) | no mismatch (100000 words) | survives T1/T2, changes language (T3/T4/T5) |
 | M18 | export location merging | 2038 | 8/296 | 0/84 | 0+0 | 1000 words: 2 inputs, first 84 | no mismatch (1000 words) | caught by T2 |
 | M19 | export pruning | 1930 | 292/296 | 84/84 | 0+0 | 1000 words: 268 inputs, first 0 | 1000 words: 84 inputs, first 0 | caught by T2 |
 | M20 | implication between guards | 653 | 16/296 | 8/84 | 0+0 | 1000 words: 3 inputs, first 40 | no mismatch (1000 words) | caught by T2 |
@@ -80,7 +79,7 @@ Line numbers refer to `tool/src/optim.ml`.  T1 columns count changed runs out of
 - **M14** (caught by T2)
 - **M15** (caught by T2)
 - **M16** (survives, changes language): counterexamples/M16b.tba, max-delay policy: 1278 vs 1216 accepted words, 62 mismatches (first word 323); the all-copy export is unaffected
-- **M17** (equivalent (language, not proved)): output differs on 1 of 296 inputs (a redundant, weaker-looking disjunct is kept) but no language mismatch on 100000 words and on two hand-built disjunctive guards
+- **M17** (survives T1/T2, changes language per T3-T5; first classed equivalent): output differs on 1 of 296 inputs (a redundant, weaker-looking disjunct is kept) but no language mismatch on 100000 words and on two hand-built disjunctive guards
 - **M18** (caught by T2)
 - **M19** (caught by T2)
 - **M20** (caught by T2)

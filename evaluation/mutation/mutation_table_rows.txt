@@ -14,7 +14,7 @@ M13 & entry lower bound from max, not min & 88 & 0 & caught \\
 M14 & split copies entered the wrong way round & 15 & 0 & caught \\
 M15 & entry condition not updated for resets & 40 & 0 & caught \\
 M16 & reset clock with $x\le0$ judged false & 0 & \textemdash{} & \textbf{survives} \\
-M17 & implication direction in disjunct pruning & 1 & \textemdash{} & equivalent$^{*}$ \\
+M17 & implication direction in disjunct pruning & 1 & \textemdash{} & \textbf{survives} \\
 M18 & invariants ignored when merging exported locations & 8 & 84 & caught \\
 M19 & initial location pruned as unreachable & 376 & 0 & caught \\
 M20 & $x\le u$ taken to imply $x<w$ for $u\le w$ & 24 & 40 & caught \\

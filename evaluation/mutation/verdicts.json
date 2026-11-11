@@ -64,8 +64,8 @@
   "evidence": "counterexamples/M16b.tba, max-delay policy: 1278 vs 1216 accepted words, 62 mismatches (first word 323); the all-copy export is unaffected"
  },
  "M17": {
-  "class": "equivalent (language, not proved)",
-  "evidence": "output differs on 1 of 296 inputs (a redundant, weaker-looking disjunct is kept) but no language mismatch on 100000 words and on two hand-built disjunctive guards"
+  "class": "survives, changes language",
+  "evidence": "results/fuzz_large.tsv: language mismatch on 5 inputs; results/fuzz_directed.tsv: 2 inputs"
  },
  "M18": {
   "class": "caught by T2",
