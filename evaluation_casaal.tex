@@ -177,9 +177,23 @@ The comparison above gives almost equal costs. The positive-form workload of Sec
 Table~\ref{tab:stress} supports three observations.
 \begin{enumerate}
 \item The difference persists and grows when the system exercises several independent responses. Our count rises by 22 states for each added response (48, 70, 92, 114, 136); CASAAL's rises by a factor of about 50 (48, 890, 47{,}008, 1{,}736{,}096). Five points do not establish a complexity class for either tool, and we do not claim one.
-\item The difference belongs to the generated automaton, not to the verified optimizer or to the export. With the optimizer disabled our counts are the same, and passing CASAAL's automaton through our export changes its counts by at most 14\% (986 to 890 on R2, 2{,}000{,}526 to 1{,}736{,}096 on R4). The two automata have the same number of locations and clocks ($2^n$ and $n$); ours has about 1.2 edges for each location and event and CASAAL's has 2.5 on R2 and 8.7 on R5 (Supplement Table~\ref{S-tab:struct-posbad}). We read this as zone fragmentation caused by overlapping guarded edges, but we did not measure the zones, so it is a hypothesis.
+\item The difference belongs to the generated automaton, not to the verified optimizer or to the export. With the optimizer disabled our counts are the same, and passing CASAAL's automaton through our export changes its counts by at most 14\% (986 to 890 on R2, 2{,}000{,}526 to 1{,}736{,}096 on R4). The two automata have the same number of locations and clocks ($2^n$ and $n$); ours has about 1.2 edges for each location and event and CASAAL's has 2.5 on R2 and 8.7 on R5 (Supplement Table~\ref{S-tab:struct-posbad}). The difference is in the zone graph: TChecker's graph for ours has at most 17 zones for any location vector (4, 10 and 16 vectors on R1--R3), while for CASAAL's automaton it has 25 vectors and up to 240 zones for one of them on R2, and 85 vectors and up to 7{,}444 zones on R3 (Table~ef{tab:zones}). Two natural explanations do not account for it: resetting, on every edge, the clocks that are dead at its target leaves the counts unchanged (890 and 47{,}008), and discarding every constraint between two clocks from the zones removes only 1\% and 14\% of the distinct zones. Moreover, the stored count is that of the Couvreur-based algorithm, which keeps zones that another stored zone covers: reachability with inclusion subsumption stores 10, 16 and 22 states on ours and 28, 103 and 304 on CASAAL's for R2--R4, so the gap there is 2.8 to 14 times and not 13 to 15{,}000 times. We therefore know where the states are (distinct zones of the same location vectors, mostly covered by others) but not why CASAAL's automaton produces them; the nondeterministic edges (about 1.2 per location and event against 2.5 to 8.7, Supplement Table~ef{S-tab:struct-posbad}) are the candidate and we did not isolate their effect.
 \item The difference is specific to this workload. Against a system that satisfies the requirement, CASAAL's automaton stores 1.2 to 1.8 times as many states as ours on R1--R3, and passed through our export it stores exactly as many (41, 79 and 117). On the negated requirements composed with their own automata the totals are 204{,}564 and 204{,}819 (Table~\ref{tab:tck-summary}).
 \end{enumerate}
+\begin{table}[tp]
+\centering
+\caption{Zone graph of the products of Table~\ref{tab:stress} as TChecker computes it: states stored by the Couvreur-based algorithm, location vectors among them, largest number of zones for one vector, and states stored by reachability with inclusion subsumption (\texttt{tck-reach -a covreach}). The graphs of R4 were not extracted (``--'').}
+\label{tab:zones}
+\small
+\begin{tabular}{@{}lrrrr@{\hspace{1.5em}}rrrr@{}}
+\toprule
+ & \multicolumn{4}{c}{ours} & \multicolumn{4}{c}{CASAAL} \\
+ & states & vectors & zones/vector & covering & states & vectors & zones/vector & covering \\
+\midrule
+\input{evaluation/zone_table}\\
+\bottomrule
+\end{tabular}
+\end{table}
 The workload is one that we constructed, it covers the bounded-response family only, and the result is no general speedup for model checking. What it shows is that two translators whose negated automata have the same size can give automata whose positive forms the model checker explores at very different cost, which size and a single product do not reveal. It is also not an effect of the verified passes: it shows what the structure of the translation's output costs a checker, which is where a different front end (Section~\ref{sec:modular}) could change the result.
 
 \subsubsection{Sensitivity of the counts}
@@ -221,6 +235,6 @@ with UPPAAL.
 The automata have the same size on every bounded-response and nested pattern that both
 tools complete, and ours are smaller on three small negated patterns (and on four of the 27 positive-form
 patterns, larger on two). TChecker stores 204{,}564 states on ours against 204{,}819 on CASAAL's
-over 18 products, a difference confined to F5--F8, and the optimizer changes none of the counts. On the positive form of the bounded responses composed with a system that violates them and exercises every response, TChecker stores 114 states on ours and 1{,}736{,}096 on CASAAL's for R4, and the gap grows with the number of responses; this is a property of the generated automata on a constructed workload, not of the optimizer, and not a general speedup (Section~ef{sec:casaal-stress}). In generation time
+over 18 products, a difference confined to F5--F8, and the optimizer changes none of the counts. On the positive form of the bounded responses composed with a system that violates them and exercises every response, TChecker stores 114 states on ours and 1{,}736{,}096 on CASAAL's for R4, and the gap grows with the number of responses; this is a property of the generated automata on a constructed workload, mostly in zones that other zones cover, not of the optimizer, and not a general speedup (Section~ef{sec:casaal-stress}). In generation time
 ours is faster on the small patterns and the bounded-response conjunctions and slower on nested requirements,
 where Spot is the bottleneck of our chain.

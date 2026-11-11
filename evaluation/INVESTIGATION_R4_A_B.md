@@ -91,3 +91,28 @@ Result: no location of any of the benchmark automata that completed is merged (F
 `bisim_probe.tsv`); it only drops a duplicate edge on F2 (7 to 6) and F12 (17 to 16). Stored states are unchanged. The
 verified optimizer is already at the syntactic bisimulation fixed point on these inputs. A semantic (zone-based) merge was
 not attempted; these data give no sign that one is needed for the benchmarks.
+
+## 4. Zone-graph structure of the R4 stress workload
+
+Files: `zone_probe.py` (graph certificate of `tck-liveness -C graph`, `tck-reach`), `zone_probe.tsv`, `zone_cov.tsv`,
+`make_zone_table.py`, `zone_table.tex`. All counts are TChecker's own (stored states reproduce 70, 890, 92, 47,008).
+
+| | R1 | R2 | R3 |
+|---|---:|---:|---:|
+| ours: states / location vectors / max zones per vector | 48 / 4 / 17 | 70 / 10 / 17 | 92 / 16 / 17 |
+| CASAAL: states / location vectors / max zones per vector | 48 / 4 / 17 | 890 / 25 / 240 | 47,008 / 85 / 7,444 |
+| reachability with inclusion subsumption (covreach), ours / CASAAL | 4 / 4 | 10 / 28 | 16 / 103 (R4: 22 / 304) |
+
+Findings:
+1. The extra states are zones of the same location vectors (max zones per vector stays 17 for ours; grows for CASAAL),
+   plus 2.5 to 5 times more reachable location vectors.
+2. Not dead clocks: adding a reset of every clock that is dead at the target to every edge leaves the counts unchanged
+   (R2 890, R3 47,008; for ours too).
+3. Not clock differences: dropping every constraint between two clocks from the zones removes 1% (R2) and 14% (R3) of
+   the distinct zones.
+4. Most of the blow-up is covered zones: with inclusion subsumption the gap is 2.8x (R2), 6.4x (R3), 14x (R4), against
+   13x, 511x and 15,229x with the Couvreur-based algorithm. The headline ratio is a property of that algorithm.
+5. Not isolated: whether the nondeterministic edges (1.2 against 2.5 to 8.7 per location and event) cause the extra zones.
+   No language-preserving transformation of CASAAL's automaton that removes them was available; the hypothesis stays open.
+6. Mean out-degree of the zone graph is similar (1.46 against 1.56 on R2), so it is not a larger branching of the graph.
+
