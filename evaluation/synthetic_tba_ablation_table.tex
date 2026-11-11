@@ -4,7 +4,7 @@
 \label{tab:synthetic-ablation}
 \scriptsize
 \setlength{\tabcolsep}{3pt}
-\begin{tabular}{@{}p{0.32\textwidth}rrrrrr@{}}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{@{}p{0.32\textwidth}rrrrrr@{}}
 \toprule
 Variant & $\sum L_{\rm reach}$ & $\sum E$ & $\sum C$ & med. rounds & med. time (ms) & cases with $E$ above full\\
 \midrule
@@ -20,5 +20,5 @@ Omit synchronous-clock merging & 32 & 35 & 11 & 1 & 0.091 & 1 \\
 Omit transition merging & 30 & 35 & 9 & 1 & 0.084 & 2 \\
 Omit equivalent-location merging & 31 & 35 & 9 & 1 & 0.068 & 1 \\
 \bottomrule
-\end{tabular}
+\end{tabular}\end{adjustbox}
 \end{table*}

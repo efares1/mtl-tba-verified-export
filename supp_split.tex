@@ -35,7 +35,7 @@ conjunctive guard clause $c$, the coverage contract is
 \]
 Here $t$ has source $q$ and guard $g_t$; implication means that every
 valuation satisfying all extracted upper bounds also satisfies every bound
-in $U$. The Rocq lemma \texttt{disj\_inv\_cover} proves this coverage for
+in $U$. The Rocq lemma \path{disj_inv_cover} proves this coverage for
 the deduplicated list $\mathcal U(q)$; it is an internal construction
 invariant, not a precondition imposed on callers. At the endpoint of any taken
 transition, the selected guard clause therefore entails a generated
@@ -48,12 +48,12 @@ All copies inherit the original location's accepting mark. No silent edge is
 added, and the proof relates runs by projecting each copy back to its
 original location. Thus repeated visits to an accepting location correspond
 to repeated visits to accepting copies, preserving B\"uchi acceptance. In
-Rocq, \texttt{split\_accepts} proves timed-word preservation when the input
-invariant function is everywhere absent; \texttt{of\_tba} establishes that
+Rocq, \path{split_accepts} proves timed-word preservation when the input
+invariant function is everywhere absent; \path{of_tba} establishes that
 precondition for the TBA export pipeline. The split invariant is absent or
-one conjunction per location by \texttt{split\_inv\_conjunctive}; the full
-export shape is established by \texttt{export\_guards\_conjunctive} and
-\texttt{export\_invariants\_conjunctive}. These are the internal
+one conjunction per location by \path{split_inv_conjunctive}; the full
+export shape is established by \path{export_guards_conjunctive} and
+\path{export_invariants_conjunctive}. These are the internal
 representation theorems; the XML printer is not verified.
 
 The optimized automaton has normalized conjunctive guards. Export first merges transitions that agree on source, target, event label, and resets, placing their guards into a disjunction. The location invariant is then represented by disjunctions of conjunctions of upper bounds. UPPAAL-oriented output requires each such invariant to be conjunctive because its location syntax admits a conjunction of clock conditions, so a disjunction must be encoded by a structural transformation~\cite{[BGD04]}. Retaining a disjunction directly would not meet the target representation.
@@ -82,13 +82,13 @@ called the \emph{all-copy split}: it retains the same conjunctive invariant
 copies, invariant-free initial copy, and accepting marks, but sends every
 incoming transition to every regular target copy with its original guard and
 reset set. It has no reset-adjusted entry predicate. The copy coverage
-property \texttt{disj\_inv\_cover} is established inside the Rocq
+property \path{disj_inv_cover} is established inside the Rocq
 construction, not assumed from an external parser.
 
 \begin{theorem}[All-copy split preservation]
 Let $D$ be an input DTA with no pre-existing location invariants. The
 all-copy construction computes its upper-bound disjunctions and proves
-\texttt{disj\_inv\_cover} internally. Then the all-copy variant and $D$
+\path{disj_inv_cover} internally. Then the all-copy variant and $D$
 accept the same timed words.
 \end{theorem}
 \begin{proof}
@@ -103,7 +103,7 @@ accepting visits are preserved.
 For completeness, fix an accepting run of $D$. At each noninitial location
 occurrence, consider the outgoing transition used by that run and a DNF
 clause $c$ of its guard that holds at the event ending the stay. By
-\texttt{disj\_inv\_cover}, some copy invariant $U_k$ is implied by the
+\path{disj_inv_cover}, some copy invariant $U_k$ is implied by the
 upper-bound part of $c$. Hence $U_k$ holds at that ending event. Each atom
 of $U_k$ is a non-strict upper bound, so it also holds at every earlier
 valuation in the stay: clocks only increase during delay, and resets occur
@@ -119,7 +119,7 @@ The two inclusions establish language equality.
 
 \begin{theorem}[Maximal-delay split preservation]
 Let $D$ be an input DTA with no pre-existing location invariants. The
-maximal-delay variant (Rocq: \texttt{split\_accepts}) and $D$ accept the same timed words.
+maximal-delay variant (Rocq: \path{split_accepts}) and $D$ accept the same timed words.
 \end{theorem}
 \begin{proof}
 Soundness is the projection argument of the previous proof: every copied transition keeps its
@@ -127,10 +127,10 @@ label and resets, and its guard is the original guard conjoined with an entry pr
 the projection of a run of the split automaton is a run of $D$. For completeness, fix an
 accepting run of $D$ and a stay at a noninitial location $q$, entered with valuation $v$
 (after the resets of the incoming edge) and left after a delay $\Delta$ by a transition whose guard
-clause $c$ holds at the end of the stay. By \texttt{disj\_inv\_cover} there is $k^*$ with
+clause $c$ holds at the end of the stay. By \path{disj_inv_cover} there is $k^*$ with
 $\operatorname{ub}(c)\Rightarrow U_{k^*}$, so $U_{k^*}$ holds at the end of the stay and
 $b-v(x)\ge\Delta$ for every $(x,b)\in U_{k^*}$, that is, $d_{k^*}(v)\ge\Delta$. Let $k$ maximize $d_k(v)$
-(\texttt{best\_spec}; ties are all admissible, and $+\infty$ is allowed). Then $d_k(v)\ge d_{k^*}(v)\ge\Delta$,
+(\path{best_spec}; ties are all admissible, and $+\infty$ is allowed). Then $d_k(v)\ge d_{k^*}(v)\ge\Delta$,
 so every bound of $U_k$ still holds at the end of the stay and, being non-strict upper bounds on increasing
 clocks, throughout it; and $G_k(v)$ holds by the choice of $k$, so the incoming edge, whose guard is conjoined with the
 reset-adjusted predicate $G_k$, can enter copy $k$. The outgoing transition is available from every
@@ -141,7 +141,7 @@ the initial occurrence uses the invariant-free initial copy. The two inclusions 
 The maximal-delay policy establishes a stronger local copy-choice property:
 at a given entry valuation, every admitted copy has an admissible residence
 duration at least as long as that of any other copy. The helper lemma
-\texttt{best\_spec} proves maximization, including $+\infty$ for an empty
+\path{best_spec} proves maximization, including $+\infty$ for an empty
 conjunction; ties remain admissible. This is neither global deadlock
 freedom nor a theorem about time divergence. Compared with all-copy
 replication, maximal-delay entry selection can introduce clock-difference
@@ -159,13 +159,13 @@ for comparison.
 \begin{table*}[t]
 \centering
 \caption{Measured split policies on direct synthetic TBAs. ``Two-clock'' is the
-\texttt{disjunctive\_invariant\_export} record of Table~\ref{tab:synthetic-tba}
+\path{disjunctive_invariant_export} record of Table~\ref{tab:synthetic-tba}
 and ``six-branch'' the disjunctive-invariant family at $k=6$ of
 Table~\ref{tab:parameterized-synthetic}. Locations are graph-reachable
 locations. Times are means over 200 in-memory export calls.}
 \label{tab:split-comparison}
 \scriptsize
-\begin{tabular}{@{}llrrrrr@{}}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{@{}llrrrrr@{}}
 \toprule
 Input & Policy & Reach. loc. & Edges & Guard atoms & Diagonal atoms & Time (ms)\\
 \midrule
@@ -174,5 +174,5 @@ Two-clock & All-copy & 3 & 10 & 8 & 0 & 0.712\\
 Six-branch & Maximal delay & 5 & 68 & 320 & 204 & 15.990\\
 Six-branch & All-copy & 5 & 68 & 64 & 0 & 28.731\\
 \bottomrule
-\end{tabular}
+\end{tabular}\end{adjustbox}
 \end{table*}

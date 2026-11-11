@@ -5,7 +5,7 @@ explicit and symbolic outputs preserve the timed-word language of the TBA
 provided to the Rocq interface.}
 \label{tab:export-contract}
 \small
-\begin{tabular}{@{}p{0.22\textwidth}p{0.70\textwidth}@{}}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{@{}p{0.22\textwidth}p{0.70\textwidth}@{}}
 \toprule
 Aspect & Guaranteed result\\
 \midrule
@@ -15,7 +15,7 @@ Location invariants & Conjunctions of non-strict clock upper bounds.\\
 Symbolic output & Groups transitions with the same source, target, and reset set under Boolean labels; the symbolic automaton also preserves acceptance.\\
 Input adapter & A third-party parser or conversion into the Rocq TBA representation requires a separate correspondence proof to join the verified boundary.\\
 \bottomrule
-\end{tabular}
+\end{tabular}\end{adjustbox}
 \end{table*}
 
 \begin{table*}[t]
@@ -24,7 +24,7 @@ Input adapter & A third-party parser or conversion into the Rocq TBA representat
 \label{tab:related-work}
 \small
 \setlength{\tabcolsep}{3pt}
-\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.17\textwidth}>{\raggedright\arraybackslash}p{0.26\textwidth}>{\raggedright\arraybackslash}p{0.34\textwidth}>{\raggedright\arraybackslash}p{0.19\textwidth}@{}}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.17\textwidth}>{\raggedright\arraybackslash}p{0.26\textwidth}>{\raggedright\arraybackslash}p{0.34\textwidth}>{\raggedright\arraybackslash}p{0.19\textwidth}@{}}
 \toprule
 Prior work & Method and setting & Stated guarantee and mechanization & Difference from this paper\\
 \midrule
@@ -38,5 +38,5 @@ Wimmer--Lammich / MUNTA~\cite{munta_tacas18,munta_formats19} & Timed-automata re
 Wimmer--Herbreteau--van de Pol~\cite{wimmer_herbreteau_vandepol_formats2020} & Timed B\"uchi emptiness certificates & Sound, complete certificate checking in Isabelle/HOL & Verifies checking, not automaton transformation\\
 This paper & Iterated optimizer, two split policies, conjunctive explicit/symbolic export & Rocq language preservation for each finite round/export and target-shape theorems & Every TBA of the formula-indexed clock interface; excludes adapters and XML\\
 \bottomrule
-\end{tabular}
+\end{tabular}\end{adjustbox}
 \end{table*}

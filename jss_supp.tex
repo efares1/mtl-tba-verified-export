@@ -9,6 +9,7 @@
 \usepackage{multirow}
 \usepackage{array}
 \usepackage{enumitem}
+\usepackage{adjustbox}
 \usepackage{xcolor}
 \usepackage{url}
 \usepackage{xspace}
@@ -21,6 +22,9 @@
 \usetikzlibrary{arrows.meta,shapes,automata,positioning,calc,fit,tikzmark,decorations.pathreplacing,decorations.markings}
 \input{figures/figure_style}
 \DeclareUrlCommand\path{\urlstyle{tt}}
+\let\pathfragile\path
+\DeclareRobustCommand\path{\pathfragile}
+\emergencystretch=3em
 \providecommand{\href}[2]{#2}
 
 \providecommand{\Nat}{\mathbb{N}}
@@ -45,7 +49,7 @@
 \begin{document}
 \begin{frontmatter}
 \title{Supplementary Material: Verified Optimization, Export and Evaluation of a Translation from Real-Time Requirements to Timed B\"uchi Automata}
-\author{Elie Fares, Jean-Paul Bodeveix, Hussain Al-Aqrabi, Azar Salami}
+\author{Elie Fares, Jean-Paul Bodeveix, Azar Salami, Hussain Al-Aqrabi}
 \begin{abstract}
 This supplement contains the proof details and the material that the article summarizes: the definitions and proofs of the verified passes, the general split construction with its two policies, the tool details (speedups, input contract, build and artifact layout), the translator-independent synthetic evaluation, the generated-group results, and the additional evaluation material: the TChecker and generation-time tables, the UPPAAL models, the differential test, the seeded-defect study with its Rocq rejections, and the random-formula and export-policy results. References to the article are marked ``article''; all other references and numbers are to this supplement.
 \end{abstract}
@@ -78,6 +82,8 @@ This supplement contains the proof details and the material that the article sum
 \section{Random formulas and export policies on every configuration}\label{sec:random}
 \input{supp_random}
 
+\input{supp_moved}
+
 \bibliographystyle{elsarticle-num}
-\bibliography{paper2_references}
+\bibliography{jss_references}
 \end{document}

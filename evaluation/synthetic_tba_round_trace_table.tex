@@ -4,7 +4,7 @@
 \label{tab:synchronous-trace}
 \scriptsize
 \setlength{\tabcolsep}{3pt}
-\begin{tabular}{@{}p{0.27\textwidth}rrrrrrr@{}}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{@{}p{0.27\textwidth}rrrrrrr@{}}
 \toprule
 Stage & $L/R$ & $E$ & $C$ & Resets & Guard atoms & Inv. $L/A$ & Diag.\\
 \midrule
@@ -16,5 +16,5 @@ R2: dead-reset elimination & 2/2 & 5 & 1 & 1 & 4 & 1/1 & 0 \\
 Optimized fixed point & 2/2 & 5 & 1 & 1 & 4 & 1/1 & 0 \\
 Explicit export & 4/2 & 5 & 1 & 1 & 4 & 2/1 & 0 \\
 \bottomrule
-\end{tabular}
+\end{tabular}\end{adjustbox}
 \end{table*}

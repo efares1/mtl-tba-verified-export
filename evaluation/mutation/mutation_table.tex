@@ -1,4 +1,4 @@
-\begin{tabular}{@{}lp{0.34\textwidth}rrrp{0.13\textwidth}l@{}}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{@{}lp{0.34\textwidth}rrrp{0.13\textwidth}l@{}}
 \toprule
 Mutant & Seeded defect (pass) & T1 & T2 first word & Fuzz & Outcome of the tests & Rocq \\
 \midrule
@@ -25,4 +25,4 @@ M20 & $x\le u$ taken to imply $x<w$ for $u\le w$ & 24 & 40 & 43/220 & caught & r
 M21 & safety check of dead-reset pass removed & 0 & \textemdash{} & 0/0 & no change found & rejected \\
 M22 & weaker bound for conjunctive guard & 0 & \textemdash{} & 0/84 & no change found & rejected \\
 \bottomrule
-\end{tabular}
+\end{tabular}\end{adjustbox}

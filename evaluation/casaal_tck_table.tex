@@ -3,7 +3,7 @@
 \caption{States stored by TChecker (\texttt{tck-liveness}, \texttt{couvscc}) on the product of the negated requirement with a reference system, for the 18 patterns on which every variant completed (F1--F12 with F3b in place of F3, R1--R3, N1--N3). The product is empty, so it is explored completely and the count does not depend on the exploration order. The reference system is the automaton of the requirement itself, exported with the diagonal-free all-copy policy because TChecker rejects diagonal guards. Columns: our optimized automaton, CASAAL's automaton converted to location acceptance and exported by our tool, our automaton with the optimizer disabled (\texttt{-n 0}), and with all location invariants removed. F14 (three acceptance sets) is not converted and N4 was not completed by the comparison driver, so neither is included.}
 \label{tab:casaal-tck}
 \scriptsize
-\begin{tabular}{@{}lrrrr@{}}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{@{}lrrrr@{}}
 \toprule
 Pattern & Ours & CASAAL, converted & Ours, \texttt{-n 0} & Ours, no invariants \\
 \midrule
@@ -28,5 +28,5 @@ R3 & 168{,}484 & 168{,}484 & 168{,}484 & 168{,}484 \\
 \midrule
 Total & 204{,}564 & 204{,}819 & 204{,}564 & 204{,}749 \\
 \bottomrule
-\end{tabular}
+\end{tabular}\end{adjustbox}
 \end{table}

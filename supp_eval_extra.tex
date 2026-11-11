@@ -60,68 +60,37 @@ Article Section~\ref{sec:casaal-tck} describes the setup and the totals; this is
 \caption{TChecker stored states on the positive forms of R1--R5 composed with a system that exercises all $n$ responses and violates the requirement on every run: the requests of the responses $2,\dots,n$ are made once each and answered in time, then the request of the first response is made and never answered (the product is empty). All-copy export. Columns: ours (default), ours with the optimizer disabled, ours with the invariants removed, CASAAL's automaton with location acceptance without and with our export, and the ratio of the last column to ours (``--'': not completed within 180~s, or not generated).}
 \label{tab:baseline-posbadall}
 \small
-\begin{tabular}{@{}lrrrrrr@{}}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{@{}lrrrrrr@{}}
 \toprule
  & ours & ours, $\texttt{-n 0}$ & ours, no inv. & CASAAL & CASAAL, our export & ratio \\
 \midrule
 \input{evaluation/baselines/baseline_posbadall_table}\\
 \bottomrule
-\end{tabular}
+\end{tabular}\end{adjustbox}
 \end{table}
 \begin{table}[tp]
 \centering
 \caption{Structure of the positive automata as TChecker reads them (all-copy export, events expanded): locations, clocks, explicit edges, and edges for each pair of a location and an event. Both automata are complete: they have an edge for every location and event (20, 56, 144 and 352 pairs on R2--R5), so the edge counts differ because CASAAL's automaton has several overlapping guarded edges for a pair where ours has one.}
 \label{tab:struct-posbad}
 \small
-\begin{tabular}{@{}lrrrrrr@{}}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{@{}lrrrrrr@{}}
 \toprule
  & locations & clocks & edges, ours & edges, CASAAL & per pair, ours & per pair, CASAAL \\
 \midrule
 \input{evaluation/struct_table}\\
 \bottomrule
-\end{tabular}
+\end{tabular}\end{adjustbox}
 \end{table}
-\subsection{Pruning CASAAL's dominated edges and the zone graph of the stress workload}
-\label{sec:prune}
-Article Section~\ref{sec:casaal-stress} reports that removing the redundant nondeterministic edges of CASAAL's positive automaton gives our stored-state counts. This section gives the data. The automaton is CASAAL's, converted to location acceptance and exported by our tool with \texttt{-n 0} and the all-copy policy; its guards and invariants are conjunctions of upper bounds, so a syntactic simulation (script \texttt{prune\_casaal.py}) can decide when an edge $e_2$ is dominated by another edge $e_1$ of the same location and event: the guard of $e_1$ is weaker, the target of $e_1$ covers the target of $e_2$ in the greatest relation that satisfies the same condition, and no clock that is live at the target of $e_1$ is reset by $e_2$ and not by $e_1$. Dominated edges are removed one at a time and the relation is recomputed after each removal. The argument is ours and is not mechanized; it is complemented by a test against the independent MTL judge of Section~\ref{sec:differential} on random lasso words, with all locations accepting.
-
-\begin{table}[tp]
-\centering
-\caption{Pruning the dominated edges of CASAAL's positive automaton (workload of Table~\ref{tab:stress}). ``Pairs'' are the (location, event) pairs with at least two edges. Stored states are TChecker's, with the Couvreur-based algorithm (\texttt{tck-liveness -a couvscc}) and with inclusion subsumption (\texttt{tck-reach -a covreach}); the last two columns are the numbers of random lasso words tested (accepted by the judge in parentheses) and the disagreements of the pruned automaton with the original and with the judge. ``--'': not completed, or the original was not run.}
-\label{tab:prune}
-\small
-\begin{tabular}{@{}lrrrrrrrrrr@{}}
-\toprule
- & \multicolumn{3}{c}{edges} & \multicolumn{2}{c}{pairs} & \multicolumn{3}{c}{Couvreur} & \multicolumn{2}{c}{covreach} \\
- & orig. & pruned & ours & orig. & pruned & orig. & pruned & ours & orig. & pruned/ours \\
-\midrule
-R2 & 51 & 20 & 20 & 15 & 0 & 890 & 70 & 70 & 28 & 10 \\
-R3 & 216 & 56 & 56 & 49 & 0 & 47{,}008 & 92 & 92 & 103 & 16 \\
-R4 & 837 & 144 & 144 & 135 & 0 & 1{,}736{,}096 & 114 & 114 & 304 & 22 \\
-R5 & 3{,}078 & 352 & 352 & 341 & 0 & -- & 136 & 136 & -- & 28 \\
-\bottomrule
-\end{tabular}
-
-\smallskip
-\begin{tabular}{@{}lrrr@{}}
-\toprule
- & words (accepted) & pruned $\neq$ original & pruned $\neq$ judge \\
-\midrule
-R2 & 2{,}000 (660) & 0 & 0 \\
-R3 & 5{,}000 (1{,}306) & 0 & 0 \\
-R4 & 3{,}000 (687) & -- & 0 \\
-R5 & 2{,}000 (424) & -- & 0 \\
-\bottomrule
-\end{tabular}
-\end{table}
-For R4 and R5 the original automaton was not compared word by word, only the pruned one with the judge. An example of a removed edge: on R2, at the initial location, the event \texttt{a1} has an edge to the location that tracks the first response (reset of $x_0$) and another to the location that also assumes the second obligation pending (reset of $x_0$ and $x_1$, invariant $x_0\le5\wedge x_1\le5$); the second edge only adds restrictions.
+\subsection{Zone graph of the stress workload}
+\label{sec:zone-graph}
+Article Section~\ref{sec:casaal-stress} reports the zone graph of the products of Table~\ref{tab:stress}. This section gives the data. The automata are ours and CASAAL's, the latter converted to location acceptance and exported by our tool with \texttt{-n 0} and the all-copy policy.
 
 \begin{table}[tp]
 \centering
 \caption{Zone graph of the products of Table~\ref{tab:stress} and two ablations (R2, R3; ours/CASAAL). ``Dead clocks reset'' resets, on every edge, the clocks that are dead at its target. ``Differences dropped'' counts the distinct zones of a location vector after removing every constraint between two clocks. The Couvreur-based count is 70/890 and 92/47{,}008. Plain reachability without subsumption (\texttt{tck-reach -a reach}) did not terminate on these products.}
 \label{tab:zone-detail}
 \small
-\begin{tabular}{@{}lrrrr@{}}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{@{}lrrrr@{}}
 \toprule
  & R2 ours & R2 CASAAL & R3 ours & R3 CASAAL \\
 \midrule
@@ -132,11 +101,11 @@ stored with dead clocks reset & 70 & 890 & 92 & 47{,}008 \\
 distinct zones, differences dropped & 70 & 883 & 92 & 40{,}542 \\
 covreach & 10 & 28 & 16 & 103 \\
 \bottomrule
-\end{tabular}
+\end{tabular}\end{adjustbox}
 \end{table}
 
 \subsection{A probe of location merging}
-The conclusion lists a pass that merges equivalent locations as future work. As a lower bound on what it could gain on the benchmarks we computed, on the exported negated automaton, the coarsest syntactic bisimulation (equal accepting mark and invariant, and equal outgoing (event, guard, resets, class of target)); it is sound for the timed language but not complete for timed bisimulation (script \texttt{bisim\_probe.py}). It merges no location of any of the 23 automata probed (F1--F13 with F3b, R1--R4, N1--N5; TChecker counts exist for 20 of them); it only removes a duplicate edge on F2 (7 to 6 edges) and F12 (17 to 16), and the TChecker counts do not change. The verified optimizer is therefore at the syntactic bisimulation fixed point on these inputs. This says nothing about a semantic (zone-based) merge, which we did not try.
+The conclusion lists a pass that merges equivalent locations as future work. As a lower bound on what it could gain on the benchmarks we computed, on the exported negated automaton, the coarsest syntactic bisimulation (equal accepting mark and invariant, and equal outgoing (event, guard, resets, class of target)); it is sound for the timed language but not complete for timed bisimulation (script \path{bisim_probe.py}). It merges no location of any of the 23 automata probed (F1--F13 with F3b, R1--R4, N1--N5; TChecker counts exist for 20 of them); it only removes a duplicate edge on F2 (7 to 6 edges) and F12 (17 to 16), and the TChecker counts do not change. The verified optimizer is therefore at the syntactic bisimulation fixed point on these inputs. This says nothing about a semantic (zone-based) merge, which we did not try.
 
 \subsection{UPPAAL, model checking and agreement of the verdicts}
 \label{sec:uppaal-check}
@@ -191,12 +160,12 @@ We then applied the same mistakes to the Rocq definitions in a scratch copy of t
 \label{sec:export-scalability}
 \begin{table}[tp]
 \centering
-\caption{Explicit edges and export time (seconds) of the positive form of R$n$, the conjunction of $n$ bounded responses with the same bound, with the optimizer disabled ($-n\,0$) and with the default number of rounds, for both export policies. One run each of the current build under WSL~2 with a limit of 300~s; a dash is a run that did not finish within the limit. Results: \texttt{evaluation/export\_scalability.tsv}.}
+\caption{Explicit edges and export time (seconds) of the positive form of R$n$, the conjunction of $n$ bounded responses with the same bound, with the optimizer disabled ($-n\,0$) and with the default number of rounds, for both export policies. One run each of the current build under WSL~2 with a limit of 300~s; a dash is a run that did not finish within the limit. Results: \path{evaluation/export_scalability.tsv}.}
 \label{tab:export-scalability}
 \small
 \input{evaluation/export_scalability_table}
 \end{table}
-The maximal-delay export contains diagonal guards from R2 on and TChecker's liveness algorithms reject them, so the all-copy export is the one a TChecker user needs. Without the optimizer it takes 44.0~s on R4 and does not finish on R5 and R6; with it, 0.7, 5.7 and 55.5~s. The table does not show a gain in what the checker explores: the stored states are the same with and without the optimizer (Table~\ref{tab:baseline-posbad}).
+The maximal-delay export contains diagonal guards from R2 on and TChecker's liveness algorithms reject them, so the all-copy export is the one a TChecker user needs. Without the optimizer it takes 44.0~s on R4 and does not finish on R5 and R6; with it, 0.7, 5.7 and 55.5~s (wall-clock times of the whole run of the tool, single runs). The table does not show a gain in what the checker explores: the stored states are the same with and without the optimizer (Table~\ref{tab:baseline-posbad}).
 
 \subsection{Generated group: setup details and aggregates}
 This subsection gives the setup details and the aggregates behind article Section~\ref{sec:evaluation}. Internal output shape is a Rocq theorem; external checker verdicts, sizes and times are experimental evidence. The matched TChecker cases below show unchanged exploration on systems whose exported models are byte-identical before and after optimization; they do not establish a general cost improvement.
@@ -270,7 +239,7 @@ a stable speed ranking.}
 \label{tab:generated-export-policy}
 \scriptsize
 \setlength{\tabcolsep}{4pt}
-\begin{tabular}{@{}lrrrrrrr@{}}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{@{}lrrrrrrr@{}}
 \toprule
 ID & Optimized $E$ & Max-delay $E$ & All-copy $E$ & Max-delay diagonal atoms & All-copy diagonal atoms & Max-delay time (s) & All-copy time (s)\\
 \midrule
@@ -280,7 +249,7 @@ R4 & 112 & 217 & 112 & 192 & 0 & 0.195 & 0.190\\
 R5 & 272 & 651 & 272 & 880 & 0 & 1.319 & 1.052\\
 R6 & 640 & 1,837 & 640 & 3,360 & 0 & 9.689 & 9.614\\
 \bottomrule
-\end{tabular}
+\end{tabular}\end{adjustbox}
 \end{table*}
 
 Both policies retain the same reachable location counts, active clock counts and invariant-bearing locations on these runs. Peak RSS of the full tool process, including Spot and optimization, was 17.2/17.3 MB for R2 and 108.5/107.0 MB for R6 (maximal-delay/all-copy); these do not isolate export memory. The observed exporter times have no consistent ordering: all-copy takes longer for R2/R3 and shorter for R4/R5, with similar times for R6.
@@ -292,7 +261,7 @@ Both policies retain the same reachable location counts, active clock counts and
 \label{tab:synthetic-interactions}
 \scriptsize
 \setlength{\tabcolsep}{3pt}
-\begin{tabular}{@{}p{0.22\textwidth}cccp{0.39\textwidth}@{}}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{@{}p{0.22\textwidth}cccp{0.39\textwidth}@{}}
 \toprule
 Case (record in Table~\ref{tab:synthetic-tba}) & Input $E/C$ & Full $E/C$ & Rounds (full) & Measured target-pass effect when omitted\\
 \midrule
@@ -303,7 +272,7 @@ Backward contradiction cascade & 5/1 & 1/0 & 2 & Omitting backward synthesis lea
 Normalization and dead reset & 2/1 & 2/0 & 1 & Normalizing tautological $x\geq0$ enables reset removal; omitting either pass leaves 1 active clock.\\
 Synchronous-clock contradiction & 5/2 & 3/1 & 2 & Merging the synchronously reset clocks exposes $x\geq5\land x\leq3$; omitting clock merge or contradiction removal leaves 5 edges/2 clocks.\\
 \bottomrule
-\end{tabular}
+\end{tabular}\end{adjustbox}
 \end{table*}
 
 \subsection{Leave-one-out ablation of the optimization passes}
@@ -315,7 +284,7 @@ Table~\ref{tab:pass-ablation} reports the optimized automaton when one pass of t
 \label{tab:pass-ablation}
 \small
 \setlength{\tabcolsep}{4pt}
-\begin{tabular}{@{}lrrrrrrrr@{}}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{@{}lrrrrrrrr@{}}
 \toprule
  & \multicolumn{4}{c}{Benchmark (25)} & \multicolumn{4}{c}{Random (100)}\\
 \cmidrule(lr){2-5}\cmidrule(lr){6-9}
@@ -323,5 +292,5 @@ Skipped pass & Tr & Loc & Clk & Changed & Tr & Loc & Clk & Changed\\
 \midrule
 \input{evaluation/pass_ablation_table}\\
 \bottomrule
-\end{tabular}
+\end{tabular}\end{adjustbox}
 \end{table}

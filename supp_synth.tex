@@ -16,7 +16,7 @@ targeted backward/forward propagation and pass-interaction cases.
 
 The harness reports counts after every pass in every round and checks that
 its profiled pass sequence is structurally equal to the extracted
-\texttt{optimize\_step} on each round. It also times the unprofiled iterative
+\path{optimize_step} on each round. It also times the unprofiled iterative
 optimizer and export as means over 200 repeated in-memory calls per model.
 Table~\ref{tab:synthetic-tba} lists the counts and times; standalone process RSS ranges from 6,300 to 6,488 KiB. These short timings
 and small, purpose-built records are microbenchmark evidence only; the raw
@@ -60,8 +60,8 @@ grows from three locations and three transitions to nine declared locations
 (three of them reachable) and six explicit transitions after export. The output has conjunctive invariants and
 six diagonal guard atoms that select maximal-delay copies. This is a
 measured size cost of export; the output-shape guarantee itself follows from
-\texttt{export\_guards\_conjunctive} and
-\texttt{export\_invariants\_conjunctive}.
+\path{export_guards_conjunctive} and
+\path{export_invariants_conjunctive}.
 
 \subsection{Pass ablation and parameterized synthetic families}
 To measure pass interactions, we repeated the same composite pipeline while
@@ -106,7 +106,7 @@ occurrences at $k=2$ to 68 edges and 204 diagonal occurrences at $k=6$.
 These counts expose representation costs in a deliberately constructed
 stress family; they are not industrial-model measurements or a complexity
 bound. For every finite number of rounds, including a capped result,
-\texttt{optimize\_accepts} preserves language. Reaching the iteration cap
+\path{optimize_accepts} preserves language. Reaching the iteration cap
 does not justify calling that result a fixed point. Per-size intermediate
 records and the exact cap probe are preserved in the dated run artifacts.
 \input{evaluation/synthetic_tba_parameterized_table}

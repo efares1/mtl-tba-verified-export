@@ -1,0 +1,57 @@
+\section{Moved from the article: Spot settings, count sensitivity and non-empty products}
+\label{sec:spot-level-detail}
+This section holds text that the article summarizes: the measurements behind the choice of the Spot level (article Section~\ref{sec:spot-level}), and the checks of how far the verified stages contribute to the TChecker counts and of the verdicts on non-empty products (article Section~\ref{sec:tck-sensitivity}).
+
+\subsection{Choosing the Spot level}
+The propositional automaton is produced by \texttt{ltl2tgba -B --<level> [-x <options>] --hoa} and read back by the tool (the reader is outside the proofs). The theorems hold for every automaton that accepts the propositional models of the clocked formula, so neither level nor options affect correctness; they affect running time a great deal and the size of the result little on our benchmark: levels \texttt{small} and \texttt{low} give the same optimized size on every configuration but F5 and F6 (25 against 27 transitions).
+
+
+
+Two settings matter. Level \texttt{low} is instantaneous on conjunctions of bounded responses, where \texttt{any} is slow (seven responses, negated: 0.1~s against 11.9~s), and slow on deeply nested bounded eventualities (six levels, negated: 13.9~s against 1.3~s for \texttt{any} on the simplified formula). Spot's simulation-based reduction takes more than half of its time at level \texttt{any} and removed nothing on our inputs; switching it off with \texttt{-x ba-simul=0} cut the time on nested requirements by a factor of 2.8 (seven levels: 28~s to 10~s for Spot alone, same 129 states and 4,623 edges). With that option, \texttt{any} and \texttt{low} give automata of the same size on each of the 57 pattern--polarity pairs where both finish within the limit.
+
+
+
+No level is best everywhere and we found no rule on the shape of the formula (a nested chain of depth five conjoined with five responses takes 0.3~s with \texttt{low} and 7.7~s with \texttt{any}; without the responses, \texttt{low} exceeds 30~s at two conjuncts and \texttt{any} needs 0.2~s). The default is therefore an \emph{automatic mode} (\texttt{-spot-level auto}): it runs Spot at level \texttt{low} and, if Spot has not finished after a budget of $b$ seconds (\texttt{-spot-budget}, default 5), stops it and runs level \texttt{any} with \texttt{ba-simul=0} on the formula simplified by the proved simplification \path{ltl_simp_correct}. Both steps are instances of the verified translation and only Spot remains trusted. The fallback costs at most $b$ seconds; the choice depends on a wall-clock measurement, so the level, and with it the run time, can differ between runs and machines.
+
+
+
+The mode can be overridden with \texttt{-spot-level}, \texttt{-simp} and \texttt{-spot-x}: for requirements whose conjuncts are all deeply nested chains (depth four or more), \texttt{-simp -spot-level any -spot-x ba-simul=0} skips the budget spent on \texttt{low} (N6: 1.3~s against 6.6~s in automatic mode), and benchmarking should fix the level so that the automaton does not depend on machine speed. On our inputs no other \texttt{spot-x} option than the simulation reductions improved the time, and for plain responses no override is worth its cost. article Section~\ref{sec:casaal-time} reports automatic and manual times side by side.
+
+
+
+
+\subsection{Sensitivity of the TChecker counts}\label{sec:tck-sensitivity-detail}
+
+Three checks bound what the verified stages contribute to these counts.
+\emph{Optimizer.} With the optimizer disabled (\texttt{-n 0}), TChecker stores exactly the same
+number of states on each of the 20 products, although the optimizer reduces the automaton: from 688 to 461
+transitions on N5, from 2{,}737 to 1{,}541 on N6, from 10{,}930 to 5{,}105 on N7 (the size of CASAAL's automata
+in each case) and, on the positive form of five conjoined bounded responses, the exported automaton from
+5{,}469 to 651 transitions. Running TChecker on the automaton before any pass (the output of reset
+completion) gives the same count as on ours on six of seven products tried (F1, F7, R2, R3, N2, N3) and
+1{,}790 instead of 1{,}688 on F12.
+\emph{Invariants.} Only F10--F12 carry location invariants in our negated automata. Removing
+them changes the total from 204{,}564 to 204{,}749, all of it on F10--F12 (and for CASAAL's automata from
+204{,}819 to 205{,}004).
+\emph{Optimizer on CASAAL's automata.} On every CASAAL automaton that the importer converts (F1--F12,
+R1--R8, N1--N5), the optimizer changes nothing: these automata are a fixed point of our passes, which is
+consistent with their equal size. A hand-made automaton with redundant guards shrinks under the same
+driver, so the importer does not prevent the passes from acting.
+
+\subsection{Non-empty products}
+
+All products above are empty, so they show the size of the state space but not
+that the translators agree on a verdict when the system violates the
+requirement. We therefore composed the negated automata with two kinds of
+system. A \emph{free} system allows every event at every time (strictly
+increasing, divergent timestamps): for each of the 20 products, ours (default,
+\texttt{-n 0}, invariants removed) and CASAAL's automaton in three variants (with and without an invariant script, and converted and exported) give a
+non-empty product, 138 verdicts in all, with no disagreement (F14 cannot be converted).
+A \emph{response} system for R1--R3 either answers every request within two
+time units or never answers the first one; the products are empty in the first
+case and non-empty in the second, for every variant and for both export
+policies, with no disagreement (42 verdicts for each case). TChecker stops at
+the first violation, so state counts of non-empty products depend on the search
+order and are not compared. article Section~\ref{sec:verification-adds} reports the same check
+with UPPAAL.
+

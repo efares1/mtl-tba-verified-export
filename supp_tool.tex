@@ -21,7 +21,7 @@ the paper applies to the faster code that is extracted.
   \item \emph{Initial-value check}: the search for the locations from which a clock
     is read before it is reset keeps a set without duplicates and scans only the
     transitions entering the locations found in the previous step. No equality
-    lemma is needed: the proof of \texttt{init\_free} uses only the checker that
+    lemma is needed: the proof of \path{init_free} uses only the checker that
     validates whatever set the search returns.
   \item \emph{Reset completion}: the list of clocks of the formula, a walk over all of its
     timed subformulas, was recomputed for every transition; it is now computed once
@@ -96,20 +96,20 @@ with a TBA in the Rocq representation; the Spot-based formula front end is one
 client of the verified optimizer and exporter.}
 \label{tab:component-boundary}
 \footnotesize
-\begin{tabular}{@{}p{0.22\textwidth}p{0.35\textwidth}p{0.35\textwidth}@{}}
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{@{}p{0.22\textwidth}p{0.35\textwidth}p{0.35\textwidth}@{}}
 \toprule
 Stage & Implementation & Guarantee or boundary\\
 \midrule
 TBA input and adapter & Rocq TBA value or a parser/converter supplied by the caller & Pass results start at this representation; an external adapter is outside the theorem unless separately verified.\\
 Spot-based front end & Spot call and hand-written HOA/LBTT reader in \texttt{mtl2tba} & Used by the integrated formula workflow; outside the TBA preservation theorems.\\
-Optimization rounds & Extracted from \texttt{MTL\_to\_TBA\_Optimizations.v} & \texttt{optimize\_accepts}, for every TBA and every round count.\\
+Optimization rounds & Extracted from \path{MTL_to_TBA_Optimizations.v} & \path{optimize_accepts}, for every TBA and every round count.\\
 Iteration driver & Hand-written OCaml structural comparison; stops at equality or 50 rounds & The proof does not assume convergence or a particular stopping point.\\
-UPPAAL export & Extracted from \texttt{MTL\_to\_TBA\_Export.v} & \texttt{export\_accepts} and conjunctive guard/invariant results.\\
-Symbolic grouping & Extracted from \texttt{MTL\_to\_TBA\_Symbolic.v} & \texttt{symbolic\_ext\_accepts}.\\
+UPPAAL export & Extracted from \path{MTL_to_TBA_Export.v} & \path{export_accepts} and conjunctive guard/invariant results.\\
+Symbolic grouping & Extracted from \path{MTL_to_TBA_Symbolic.v} & \path{symbolic_ext_accepts}.\\
 XML, DOT, and PDF output & Hand-written printers and Graphviz & Outside the Rocq language-preservation results.\\
 Numeric realization & OCaml floating point with integer bounds in $[0,2^{30}]$ & Exactness follows from inspection of the extracted operations, not a mechanized theorem.\\
 \bottomrule
-\end{tabular}
+\end{tabular}\end{adjustbox}
 \end{table*}
 
 In the extracted code, structural equality decides formula and clock
