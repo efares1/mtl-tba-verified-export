@@ -65,3 +65,11 @@ publisher LaTeX templates (class and style files, fonts) are not covered by the 
 
 `CITATION.cff` carries the citation metadata; the DOI of the archived
 release is added to it once Zenodo has issued it.
+
+## Branches of this repository
+
+| Branch | Content |
+|---|---|
+| `main` | shared verified foundation (proofs, tool, evaluation data, scripts), no paper |
+| `jss` | this branch: `main` plus the article and supplement submitted to JSS |
+| `clockreuse` | `main` plus the pruning and clock-reuse passes and their separate paper |
