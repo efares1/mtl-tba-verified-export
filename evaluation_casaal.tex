@@ -82,11 +82,7 @@ Table~\ref{tab:same-driver} reports the wall-clock time of the whole translation
 
 \emph{Deeply nested requirements.} CASAAL is faster from five levels:
 0.44~s against 0.85~s on N5, 2.6~s against 6.7~s on N6 and 17~s against 31~s on N7;
-on N8, one run of each took 74~s and 307~s, with 0.43~GB of memory at peak for
-ours. With the manual setting ours takes 0.2~s on five levels, 1.3~s on six and 15.1~s
-on seven in the earlier runs of Supplement Table~\ref{S-tab:casaal-gen} (CASAAL: 0.3~s,
-1.9~s, 11.3~s), so with the manual setting ours is faster on five and six levels and slower on seven. The
-difference to the automatic times is that Spot first runs for up to 5~s at level \texttt{low}; the two sets of times come from different runs, so the differences are only indicative.
+on N8, one run of each took 74~s and 307~s (0.43~GB of memory at peak for ours). With the manual setting, in the earlier runs of Supplement Table~\ref{S-tab:casaal-gen}, ours takes 0.2, 1.3 and 15.1~s on five, six and seven levels against 0.3, 1.9 and 11.3~s for CASAAL: faster on five and six levels, slower on seven. The automatic mode is slower because Spot first runs for up to 5~s at level \texttt{low}; the two sets of times come from different runs and are only indicative.
 
 \emph{Where the time goes on deep nests.} On N7 about 10 of the 15~s of the manual setting are Spot's (from a separate run of Spot alone on the simplified formula), which translates the clocked formula: a bounded eventuality repeats the translation of its operand three times, so the formula has size $\Theta(3^k)$ in the nesting depth $k$ (99{,}643 characters for six levels). Spot's time grows by a factor of roughly 4 to 12 per level on the levels we measured while its output grows by about 3.5. On N7, Spot alone takes 60 to 90\% of CASAAL's whole translation time (11.3~s in the earlier run, 17~s in the run of Table~\ref{tab:same-driver}), and the rest of our chain about 5~s. The profile suggests that the replaceable front end (Section~\ref{sec:modular}), and not the verified optimization and export, is the slow part; we did not profile N8. Switching off Spot's simulation reductions at level \texttt{any} and reading its symbolic HOA output instead of cube-expanded LBTT together account for the present figures (without them the manual times would have been 2.2~s, 26.9~s and 1{,}402~s on N6, N7 and N8). The profile, the Spot options we tried and the trade-off behind the automatic default are in Supplement Section~\ref{S-sec:deep-nests}.
 

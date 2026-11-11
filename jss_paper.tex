@@ -138,7 +138,7 @@ For an annotated automaton, an invariant must hold throughout the delay spent at
 
 \subsection{What export must preserve}
 \label{sec:export-contract}
-The export must retain the same transition alphabet, B\"uchi marking, clock meaning, and timed-word language. It may change the number of locations, transitions, and clocks, and may introduce difference constraints in transition guards to choose among invariant copies. Such choices must not create or delete an accepted timed word. The target representation has conjunctive guards and conjunctive location invariants; a later symbolic representation groups transitions with identical source, target, and reset sets under Boolean labels.
+The export must retain the same transition alphabet, B\"uchi marking, clock meaning, and timed-word language. It may change the number of locations, transitions, and clocks, and may introduce difference constraints in transition guards to choose among invariant copies. Such choices must not create or delete an accepted timed word. The target has conjunctive guards and location invariants; a later symbolic representation groups transitions with the same source, target and resets under Boolean labels.
 
 The preservation theorems hold for every TBA of the formula-indexed clock interface, whether or not the MTL translator generated it; Spot's correctness and the soundness of the front end are outside them.
 
@@ -217,7 +217,7 @@ For every TBA $\mathcal A$ of the formula-indexed clock interface and every $n\i
 Every constituent operation preserves acceptance, as listed in Table~\ref{tab:post-passes}. Their composition preserves acceptance, and induction on $n$ proves the statement for every number of rounds. The mechanized result is \path{optimize_accepts}.
 \end{proof}
 
-The theorem concerns the TBA component of the result; the extracted function also returns synthesized upper-bound invariants and entry bounds as annotations, which the export does not receive. The tool compares successive automata structurally and stops when they are equal or after 50 rounds. The theorem holds independently of whether iteration reaches a fixed point or uses all 50 rounds. Among the 29 completed benchmark inputs, the largest observed number of changed rounds is six (R6), so the cap was never reached; this is a measured property of these inputs, not a termination assumption in the proof. The practical 50-round cap is a driver policy, not a premise of \path{optimize_accepts}.
+The theorem concerns the TBA component of the result; the extracted function also returns synthesized upper-bound invariants and entry bounds as annotations, which the export does not receive. The driver stops when successive automata are structurally equal or after 50 rounds; this policy is not a premise of \path{optimize_accepts}. On the 29 completed benchmark inputs at most six rounds change the automaton (R6), so the cap was never reached.
 
 \section{Mechanically Verified Elimination of Disjunctive Invariants}
 \label{sec:split}
@@ -320,7 +320,7 @@ The general form \path{MTL_to_exported_correct_with} replaces the verified backe
 
 The theorem that the shipped tool instantiates is \path{MTL_to_exported_correct0_recur_weak_with}. Its statement is: for every $n$, every well-formed $f$, every propositional automaton $A$ for the rewritten formula $\mathsf{recur}(f)$ that accepts the action-consistent words satisfying the weakened clocked encoding of $\mathsf{recur}(f)$, and every timed word $w$, if \path{init_free} succeeds on $\export(\optimize(n,\mathsf{compile\_with}(A)))$ then $\mathsf{msat}(w,0,f)$ holds iff that automaton accepts $w$ under the zero-initialized reading. Spot supplies $A$; whether its output satisfies the hypothesis on $A$ is not proved, and is tested only by the translation validation and the differential checks of Section~\ref{sec:verification-adds}. After a run, a user may conclude that the exported automaton accepts the requested language provided Spot's automaton meets the backend contract, \path{init_free} succeeded, and the trusted components listed in Section~\ref{sec:toolchain} behaved correctly.
 
-No convergence premise is imposed on $n$ (Section~\ref{sec:post}). The conclusion concerns the internal exported record and the existential initial-clock semantics of Section~\ref{sec:model}. A second theorem, \path{MTL_to_exported_correct0_with}, gives the zero-initialized reading whenever the check \path{init_free} succeeds on the exported automaton. Neither theorem covers the HOA/LBTT importer, the XML printer or parser, or UPPAAL itself (Section~\ref{sec:toolchain}).
+The conclusion concerns the internal exported record and the existential initial-clock semantics of Section~\ref{sec:model}. A second theorem, \path{MTL_to_exported_correct0_with}, gives the zero-initialized reading whenever the check \path{init_free} succeeds on the exported automaton. Neither theorem covers the HOA/LBTT importer, the XML printer or parser, or UPPAAL itself (Section~\ref{sec:toolchain}).
 
 \subsection{A modular chain: what can be replaced}
 \label{sec:modular}
@@ -369,7 +369,7 @@ Rerunning the UPPAAL 5.0.0 queries reproduces the recorded verdicts.
 
 The project-wide axiom \path{LTL_TO_BUCHI_CORRECT} states the assumed correctness of the upstream LTL-to-B\"uchi backend and is used only by convenience theorems. The theorems \path{optimize_accepts}, \path{split_accepts}, \path{export_accepts} and \path{MTL_to_exported_correct_with} do not use it: \texttt{Print Assumptions} lists only standard classical Rocq library principles (including \path{ClassicalDedekindReals.sig_forall_dec}), and the artifact records the results.
 
-In the integrated workflow the translation of~\cite{faresmtl} produces the TBA at the optimizer boundary; this paper concerns only the subsequent optimizer and exporter. The driver then applies export to the optimized automaton.
+In the integrated workflow the translation of~\cite{faresmtl} produces the TBA that the optimizer receives; the driver then applies export to the optimized automaton.
 
 \subsection{Choosing the Spot level: automatic mode and manual override}
 \label{sec:spot-level}
@@ -409,7 +409,7 @@ The generated XML has a \texttt{Property} template for the automaton and an \tex
 \label{sec:threats}
 \emph{Internal validity.} The theorems concern the Rocq model of automata; the extracted OCaml functions are the verified ones, but the surrounding tool is not. The trusted base is: Spot and the reader of its output; the realization of reals by floating point and the extraction mechanism; the parser, the iteration driver, the pretty printers and the UPPAAL XML writer; the importer used for CASAAL's automata; Graphviz; the OCaml and Rocq toolchains; UPPAAL and TChecker; the check \path{init_free}; and the project axiom \path{LTL_TO_BUCHI_CORRECT}, which only convenience theorems use. We reduce this risk with a second printer, a reader check (\texttt{-check}) and independent exploration of the case-study models, but these are tests, not proofs.
 
-\emph{Construct validity.} CASAAL implements the semantics of Li et al.\ with integer bounds and mutually exclusive events, and it reports transition-based acceptance. We compare only configurations whose CASAAL encoding is exact in that setting and convert its acceptance to locations; the importer and the accepting-state convention are our choices, and a different encoding could give different counts. Stored states are a property of the pair (automaton, checker), and generation times compare a Windows executable with our tool under WSL~2, so they are not precise ratios; differences below about 0.3~s are of the order of the process start. CASAAL is the only comparator: MightyL was not run (Section~\ref{sec:related}).
+\emph{Construct validity.} CASAAL implements the semantics of Li et al.\ with integer bounds and mutually exclusive events, and it reports transition-based acceptance. We compare only configurations whose CASAAL encoding is exact in that setting and convert its acceptance to locations; the importer and the accepting-state convention are our choices, and a different encoding could give different counts. Stored states are a property of the pair (automaton, checker), and generation times compare a Windows executable with our tool under WSL~2, so they are not precise ratios; differences below about 0.3~s are of the order of the process start.
 
 \emph{External validity.} The requirement patterns are a small corpus drawn from the literature and from parameterized families, and the system models are small. Results do not predict behavior on industrial specifications, and we make no speedup claim from optimization.
 
@@ -423,7 +423,7 @@ On the negated requirements that a model checker receives, our automata have the
 
 What the verified chain adds is assurance over all inputs, which a random-word test can miss: of 22 defects of our choosing in the extracted code, 18 change the language, a random-word test misses five of them, and the corresponding mistakes in the Rocq definitions are all rejected within seconds at named lemmas. Since the transcriptions are ours and the test is a weak baseline, this shows the sensitivity of the proofs to edits, not defect detection. It is evidence about our own pipeline and says nothing against CASAAL.
 
-The chain is built to be changed at its front: a direct MTL-to-TBA construction in the style of CASAAL could replace the whole front end under the same theorems; whether it would close the gap on nested requirements is untested. Future work includes such a verified construction, which would also close the trust gap on Spot, and evaluation on industrial TBA corpora.
+A direct MTL-to-TBA construction in the style of CASAAL could replace the front end under the same theorems; whether it would close the gap on nested requirements is untested. Future work includes such a verified construction, which would also remove the trust in Spot, and evaluation on industrial corpora.
 
 \section*{Data and artifact availability}
 \label{sec:availability}

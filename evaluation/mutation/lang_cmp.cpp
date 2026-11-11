@@ -37,6 +37,9 @@
 #include <sstream>
 using namespace std;
 const int MAXC = 8;
+// number of loop iterations checked after the R0 warm-up iterations (default 12; LANGCMP_EXTRA overrides it).  A finite horizon can
+// make two automata differ at its end when a run survives it only by a bounded stay; a larger value removes such artifacts.
+static const int EXTRA = getenv("LANGCMP_EXTRA") ? atoi(getenv("LANGCMP_EXTRA")) : 12;
 typedef array<int, MAXC> Val;
 struct Atom { int kind, c1, c2, b; };
 struct Tr { int src, dst; unsigned mask; vector<Atom> g; vector<int> rs; };
@@ -149,7 +152,7 @@ static int exhaustive(const Aut& A, const Aut& B, const char* dl, const char* vl
       Word w; w.P = P; w.Lp = Lp; long x = code; int tot = 0;
       for (int i = 0; i < n; i++) { int o = (int)(x % nopt); x /= nopt; w.ev[i] = o / (int)D.size(); w.dl[i] = D[o % (int)D.size()]; if (i >= P) tot += w.dl[i]; }
       if (tot == 0) continue;
-      w.R0 = (M + 4) / tot + 2; w.R = w.R0 + 12;
+      w.R0 = (M + 4) / tot + 2; w.R = w.R0 + EXTRA;
       long nv = 1; for (int k = 0; k < nc; k++) nv *= (long)VL.size();
       for (long vc = 0; vc < nv; vc++) {
         Val v0; v0.fill(0); long y = vc;
@@ -191,7 +194,7 @@ int main(int argc, char** argv) {
     if (tot == 0) { int k = w.P + rint(w.Lp); w.dl[k] = 1 + rint(4); tot = w.dl[k]; }
     // enough iterations for every clock that is not reset in the loop to exceed all constants,
     // then 12 more iterations in each of which an accepting location must be visited
-    w.R0 = (M + 4) / tot + 2; w.R = w.R0 + 12;
+    w.R0 = (M + 4) / tot + 2; w.R = w.R0 + EXTRA;
     bool wm = false;
     for (int k = 0; k < NV; k++) {
       Val v0; v0.fill(0);

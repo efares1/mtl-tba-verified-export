@@ -1,0 +1,2 @@
+graph: 300 inputs, 600 runs ok of 600, language mismatches 0, init_free warnings 279, transitions 5070 -> 3586, locations 2421 -> 2421, inputs with fewer transitions 285
+monitor: 300 inputs, 600 runs ok of 600, language mismatches 0, init_free warnings 144, transitions 2492 -> 1930, locations 1130 -> 1130, inputs with fewer transitions 249

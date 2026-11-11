@@ -1,0 +1,1201 @@
+name	pol	rc	ns0	nt0	ns1	nt1	warn	mm_opt	mm_xml
+graph_0000	md	0	7	13	7	8	1	0	0
+graph_0000	ac	0	7	13			1		0
+graph_0001	md	0	7	15	7	12	1	0	0
+graph_0001	ac	0	7	15			1		0
+graph_0002	md	0	6	13	6	9	1	0	0
+graph_0002	ac	0	6	13			1		0
+graph_0003	md	0	7	15	7	9	0	0	0
+graph_0003	ac	0	7	15			0		0
+graph_0004	md	0	9	21	9	10	1	0	0
+graph_0004	ac	0	9	21			1		0
+graph_0005	md	0	8	15	8	15	1	0	0
+graph_0005	ac	0	8	15			1		0
+graph_0006	md	0	6	14	6	11	1	0	0
+graph_0006	ac	0	6	14			1		0
+graph_0007	md	0	8	18	8	8	0	0	0
+graph_0007	ac	0	8	18			0		0
+graph_0008	md	0	6	12	6	11	1	0	0
+graph_0008	ac	0	6	12			1		0
+graph_0009	md	0	8	17	8	13	1	0	0
+graph_0009	ac	0	8	17			1		0
+graph_0010	md	0	6	13	6	8	1	0	0
+graph_0010	ac	0	6	13			1		0
+graph_0011	md	0	6	12	6	7	1	0	0
+graph_0011	ac	0	6	12			1		0
+graph_0012	md	0	12	22	12	12	1	0	0
+graph_0012	ac	0	12	22			1		0
+graph_0013	md	0	9	20	9	11	1	0	0
+graph_0013	ac	0	9	20			1		0
+graph_0014	md	0	10	18	10	4	0	0	0
+graph_0014	ac	0	10	18			0		0
+graph_0015	md	0	6	12	6	11	1	0	0
+graph_0015	ac	0	6	12			1		0
+graph_0016	md	0	11	28	11	24	1	0	0
+graph_0016	ac	0	11	28			1		0
+graph_0017	md	0	6	13	6	10	1	0	0
+graph_0017	ac	0	6	13			1		0
+graph_0018	md	0	9	18	9	10	1	0	0
+graph_0018	ac	0	9	18			1		0
+graph_0019	md	0	6	12	6	9	1	0	0
+graph_0019	ac	0	6	12			1		0
+graph_0020	md	0	6	11	6	9	1	0	0
+graph_0020	ac	0	6	11			1		0
+graph_0021	md	0	9	21	9	19	1	0	0
+graph_0021	ac	0	9	21			1		0
+graph_0022	md	0	9	17	9	10	1	0	0
+graph_0022	ac	0	9	17			1		0
+graph_0023	md	0	6	11	6	8	1	0	0
+graph_0023	ac	0	6	11			1		0
+graph_0024	md	0	9	22	9	19	1	0	0
+graph_0024	ac	0	9	22			1		0
+graph_0025	md	0	8	18	8	11	1	0	0
+graph_0025	ac	0	8	18			1		0
+graph_0026	md	0	6	16	6	11	1	0	0
+graph_0026	ac	0	6	16			1		0
+graph_0027	md	0	7	10	7	10	1	0	0
+graph_0027	ac	0	7	10			1		0
+graph_0028	md	0	6	12	6	6	1	0	0
+graph_0028	ac	0	6	12			1		0
+graph_0029	md	0	7	11	7	7	1	0	0
+graph_0029	ac	0	7	11			1		0
+graph_0030	md	0	9	21	9	13	1	0	0
+graph_0030	ac	0	9	21			1		0
+graph_0031	md	0	11	19	11	14	1	0	0
+graph_0031	ac	0	11	19			1		0
+graph_0032	md	0	7	16	7	15	1	0	0
+graph_0032	ac	0	7	16			1		0
+graph_0033	md	0	11	17	11	1	1	0	0
+graph_0033	ac	0	11	17			1		0
+graph_0034	md	0	10	23	10	20	1	0	0
+graph_0034	ac	0	10	23			1		0
+graph_0035	md	0	6	12	6	12	1	0	0
+graph_0035	ac	0	6	12			1		0
+graph_0036	md	0	6	16	6	9	1	0	0
+graph_0036	ac	0	6	16			1		0
+graph_0037	md	0	7	16	7	15	1	0	0
+graph_0037	ac	0	7	16			1		0
+graph_0038	md	0	8	17	8	9	1	0	0
+graph_0038	ac	0	8	17			1		0
+graph_0039	md	0	6	13	6	13	1	0	0
+graph_0039	ac	0	6	13			1		0
+graph_0040	md	0	9	15	9	8	1	0	0
+graph_0040	ac	0	9	15			1		0
+graph_0041	md	0	9	21	9	14	1	0	0
+graph_0041	ac	0	9	21			1		0
+graph_0042	md	0	6	13	6	10	1	0	0
+graph_0042	ac	0	6	13			1		0
+graph_0043	md	0	9	20	9	17	1	0	0
+graph_0043	ac	0	9	20			1		0
+graph_0044	md	0	7	16	7	13	1	0	0
+graph_0044	ac	0	7	16			1		0
+graph_0045	md	0	6	15	6	10	1	0	0
+graph_0045	ac	0	6	15			1		0
+graph_0046	md	0	8	16	8	15	1	0	0
+graph_0046	ac	0	8	16			1		0
+graph_0047	md	0	6	13	6	10	1	0	0
+graph_0047	ac	0	6	13			1		0
+graph_0048	md	0	10	21	10	15	1	0	0
+graph_0048	ac	0	10	21			1		0
+graph_0049	md	0	7	13	7	5	1	0	0
+graph_0049	ac	0	7	13			1		0
+graph_0050	md	0	7	10	7	9	1	0	0
+graph_0050	ac	0	7	10			1		0
+graph_0051	md	0	6	14	6	6	0	0	0
+graph_0051	ac	0	6	14			0		0
+graph_0052	md	0	6	11	6	4	0	0	0
+graph_0052	ac	0	6	11			0		0
+graph_0053	md	0	8	18	8	13	1	0	0
+graph_0053	ac	0	8	18			1		0
+graph_0054	md	0	6	16	6	15	1	0	0
+graph_0054	ac	0	6	16			1		0
+graph_0055	md	0	8	18	8	11	1	0	0
+graph_0055	ac	0	8	18			1		0
+graph_0056	md	0	9	18	9	17	1	0	0
+graph_0056	ac	0	9	18			1		0
+graph_0057	md	0	6	12	6	10	1	0	0
+graph_0057	ac	0	6	12			1		0
+graph_0058	md	0	7	19	7	18	1	0	0
+graph_0058	ac	0	7	19			1		0
+graph_0059	md	0	6	15	6	13	1	0	0
+graph_0059	ac	0	6	15			1		0
+graph_0060	md	0	11	22	11	20	1	0	0
+graph_0060	ac	0	11	22			1		0
+graph_0061	md	0	7	14	7	13	1	0	0
+graph_0061	ac	0	7	14			1		0
+graph_0062	md	0	9	24	9	19	1	0	0
+graph_0062	ac	0	9	24			1		0
+graph_0063	md	0	10	21	10	19	1	0	0
+graph_0063	ac	0	10	21			1		0
+graph_0064	md	0	6	14	6	11	1	0	0
+graph_0064	ac	0	6	14			1		0
+graph_0065	md	0	6	10	6	6	1	0	0
+graph_0065	ac	0	6	10			1		0
+graph_0066	md	0	9	15	9	6	1	0	0
+graph_0066	ac	0	9	15			1		0
+graph_0067	md	0	6	14	6	14	0	0	0
+graph_0067	ac	0	6	14			0		0
+graph_0068	md	0	10	22	10	20	1	0	0
+graph_0068	ac	0	10	22			1		0
+graph_0069	md	0	6	16	6	12	1	0	0
+graph_0069	ac	0	6	16			1		0
+graph_0070	md	0	8	14	8	9	0	0	0
+graph_0070	ac	0	8	14			0		0
+graph_0071	md	0	6	15	6	10	1	0	0
+graph_0071	ac	0	6	15			1		0
+graph_0072	md	0	12	25	12	24	1	0	0
+graph_0072	ac	0	12	25			1		0
+graph_0073	md	0	6	15	6	15	1	0	0
+graph_0073	ac	0	6	15			1		0
+graph_0074	md	0	8	17	8	13	1	0	0
+graph_0074	ac	0	8	17			1		0
+graph_0075	md	0	6	10	6	2	1	0	0
+graph_0075	ac	0	6	10			1		0
+graph_0076	md	0	9	20	9	12	1	0	0
+graph_0076	ac	0	9	20			1		0
+graph_0077	md	0	6	12	6	10	1	0	0
+graph_0077	ac	0	6	12			1		0
+graph_0078	md	0	7	15	7	12	1	0	0
+graph_0078	ac	0	7	15			1		0
+graph_0079	md	0	12	21	12	3	1	0	0
+graph_0079	ac	0	12	21			1		0
+graph_0080	md	0	7	13	7	8	1	0	0
+graph_0080	ac	0	7	13			1		0
+graph_0081	md	0	8	16	8	11	1	0	0
+graph_0081	ac	0	8	16			1		0
+graph_0082	md	0	8	16	8	13	1	0	0
+graph_0082	ac	0	8	16			1		0
+graph_0083	md	0	10	21	10	13	1	0	0
+graph_0083	ac	0	10	21			1		0
+graph_0084	md	0	12	24	12	12	1	0	0
+graph_0084	ac	0	12	24			1		0
+graph_0085	md	0	11	21	11	10	1	0	0
+graph_0085	ac	0	11	21			1		0
+graph_0086	md	0	12	25	12	21	1	0	0
+graph_0086	ac	0	12	25			1		0
+graph_0087	md	0	8	15	8	1	0	0	0
+graph_0087	ac	0	8	15			0		0
+graph_0088	md	0	6	10	6	1	0	0	0
+graph_0088	ac	0	6	10			0		0
+graph_0089	md	0	6	13	6	9	1	0	0
+graph_0089	ac	0	6	13			1		0
+graph_0090	md	0	7	15	7	10	1	0	0
+graph_0090	ac	0	7	15			1		0
+graph_0091	md	0	9	18	9	15	1	0	0
+graph_0091	ac	0	9	18			1		0
+graph_0092	md	0	7	11	7	4	1	0	0
+graph_0092	ac	0	7	11			1		0
+graph_0093	md	0	11	22	11	19	1	0	0
+graph_0093	ac	0	11	22			1		0
+graph_0094	md	0	10	20	10	17	1	0	0
+graph_0094	ac	0	10	20			1		0
+graph_0095	md	0	7	19	7	13	1	0	0
+graph_0095	ac	0	7	19			1		0
+graph_0096	md	0	8	17	8	9	1	0	0
+graph_0096	ac	0	8	17			1		0
+graph_0097	md	0	8	15	8	10	1	0	0
+graph_0097	ac	0	8	15			1		0
+graph_0098	md	0	7	13	7	9	1	0	0
+graph_0098	ac	0	7	13			1		0
+graph_0099	md	0	10	24	10	14	1	0	0
+graph_0099	ac	0	10	24			1		0
+graph_0100	md	0	7	11	7	9	1	0	0
+graph_0100	ac	0	7	11			1		0
+graph_0101	md	0	9	18	9	16	1	0	0
+graph_0101	ac	0	9	18			1		0
+graph_0102	md	0	11	29	11	28	1	0	0
+graph_0102	ac	0	11	29			1		0
+graph_0103	md	0	6	9	6	3	1	0	0
+graph_0103	ac	0	6	9			1		0
+graph_0104	md	0	9	19	9	12	1	0	0
+graph_0104	ac	0	9	19			1		0
+graph_0105	md	0	6	10	6	7	1	0	0
+graph_0105	ac	0	6	10			1		0
+graph_0106	md	0	11	24	11	15	1	0	0
+graph_0106	ac	0	11	24			1		0
+graph_0107	md	0	7	14	7	6	1	0	0
+graph_0107	ac	0	7	14			1		0
+graph_0108	md	0	7	14	7	10	1	0	0
+graph_0108	ac	0	7	14			1		0
+graph_0109	md	0	7	12	7	6	1	0	0
+graph_0109	ac	0	7	12			1		0
+graph_0110	md	0	8	20	8	13	1	0	0
+graph_0110	ac	0	8	20			1		0
+graph_0111	md	0	6	11	6	6	1	0	0
+graph_0111	ac	0	6	11			1		0
+graph_0112	md	0	6	12	6	10	1	0	0
+graph_0112	ac	0	6	12			1		0
+graph_0113	md	0	10	23	10	20	1	0	0
+graph_0113	ac	0	10	23			1		0
+graph_0114	md	0	6	13	6	11	1	0	0
+graph_0114	ac	0	6	13			1		0
+graph_0115	md	0	8	16	8	8	1	0	0
+graph_0115	ac	0	8	16			1		0
+graph_0116	md	0	12	21	12	19	1	0	0
+graph_0116	ac	0	12	21			1		0
+graph_0117	md	0	6	13	6	9	1	0	0
+graph_0117	ac	0	6	13			1		0
+graph_0118	md	0	6	11	6	11	1	0	0
+graph_0118	ac	0	6	11			1		0
+graph_0119	md	0	8	18	8	12	1	0	0
+graph_0119	ac	0	8	18			1		0
+graph_0120	md	0	10	22	10	9	1	0	0
+graph_0120	ac	0	10	22			1		0
+graph_0121	md	0	12	22	12	16	1	0	0
+graph_0121	ac	0	12	22			1		0
+graph_0122	md	0	8	18	8	16	1	0	0
+graph_0122	ac	0	8	18			1		0
+graph_0123	md	0	8	16	8	13	1	0	0
+graph_0123	ac	0	8	16			1		0
+graph_0124	md	0	10	15	10	4	1	0	0
+graph_0124	ac	0	10	15			1		0
+graph_0125	md	0	7	15	7	10	1	0	0
+graph_0125	ac	0	7	15			1		0
+graph_0126	md	0	8	16	8	11	1	0	0
+graph_0126	ac	0	8	16			1		0
+graph_0127	md	0	8	13	8	9	1	0	0
+graph_0127	ac	0	8	13			1		0
+graph_0128	md	0	7	14	7	13	1	0	0
+graph_0128	ac	0	7	14			1		0
+graph_0129	md	0	7	13	7	10	1	0	0
+graph_0129	ac	0	7	13			1		0
+graph_0130	md	0	11	29	11	24	1	0	0
+graph_0130	ac	0	11	29			1		0
+graph_0131	md	0	10	18	10	11	1	0	0
+graph_0131	ac	0	10	18			1		0
+graph_0132	md	0	12	25	12	21	1	0	0
+graph_0132	ac	0	12	25			1		0
+graph_0133	md	0	6	12	6	5	1	0	0
+graph_0133	ac	0	6	12			1		0
+graph_0134	md	0	7	17	7	12	1	0	0
+graph_0134	ac	0	7	17			1		0
+graph_0135	md	0	7	16	7	15	1	0	0
+graph_0135	ac	0	7	16			1		0
+graph_0136	md	0	6	11	6	9	1	0	0
+graph_0136	ac	0	6	11			1		0
+graph_0137	md	0	12	25	12	21	1	0	0
+graph_0137	ac	0	12	25			1		0
+graph_0138	md	0	6	15	6	10	1	0	0
+graph_0138	ac	0	6	15			1		0
+graph_0139	md	0	10	23	10	10	1	0	0
+graph_0139	ac	0	10	23			1		0
+graph_0140	md	0	8	16	8	12	0	0	0
+graph_0140	ac	0	8	16			0		0
+graph_0141	md	0	7	19	7	11	1	0	0
+graph_0141	ac	0	7	19			1		0
+graph_0142	md	0	10	22	10	9	1	0	0
+graph_0142	ac	0	10	22			1		0
+graph_0143	md	0	8	18	8	13	1	0	0
+graph_0143	ac	0	8	18			1		0
+graph_0144	md	0	7	15	7	13	1	0	0
+graph_0144	ac	0	7	15			1		0
+graph_0145	md	0	7	15	7	6	1	0	0
+graph_0145	ac	0	7	15			1		0
+graph_0146	md	0	11	25	11	16	1	0	0
+graph_0146	ac	0	11	25			1		0
+graph_0147	md	0	7	14	7	12	1	0	0
+graph_0147	ac	0	7	14			1		0
+graph_0148	md	0	12	21	12	10	1	0	0
+graph_0148	ac	0	12	21			1		0
+graph_0149	md	0	8	18	8	17	1	0	0
+graph_0149	ac	0	8	18			1		0
+graph_0150	md	0	11	28	11	25	1	0	0
+graph_0150	ac	0	11	28			1		0
+graph_0151	md	0	10	24	10	19	1	0	0
+graph_0151	ac	0	10	24			1		0
+graph_0152	md	0	6	15	6	9	1	0	0
+graph_0152	ac	0	6	15			1		0
+graph_0153	md	0	7	15	7	12	1	0	0
+graph_0153	ac	0	7	15			1		0
+graph_0154	md	0	9	17	9	14	1	0	0
+graph_0154	ac	0	9	17			1		0
+graph_0155	md	0	6	13	6	11	1	0	0
+graph_0155	ac	0	6	13			1		0
+graph_0156	md	0	8	19	8	12	1	0	0
+graph_0156	ac	0	8	19			1		0
+graph_0157	md	0	8	18	8	9	1	0	0
+graph_0157	ac	0	8	18			1		0
+graph_0158	md	0	6	9	6	7	1	0	0
+graph_0158	ac	0	6	9			1		0
+graph_0159	md	0	11	18	11	14	1	0	0
+graph_0159	ac	0	11	18			1		0
+graph_0160	md	0	6	16	6	12	1	0	0
+graph_0160	ac	0	6	16			1		0
+graph_0161	md	0	7	13	7	11	1	0	0
+graph_0161	ac	0	7	13			1		0
+graph_0162	md	0	7	15	7	9	1	0	0
+graph_0162	ac	0	7	15			1		0
+graph_0163	md	0	6	15	6	12	1	0	0
+graph_0163	ac	0	6	15			1		0
+graph_0164	md	0	12	29	12	26	1	0	0
+graph_0164	ac	0	12	29			1		0
+graph_0165	md	0	6	9	6	6	1	0	0
+graph_0165	ac	0	6	9			1		0
+graph_0166	md	0	7	14	7	12	1	0	0
+graph_0166	ac	0	7	14			1		0
+graph_0167	md	0	11	20	11	13	1	0	0
+graph_0167	ac	0	11	20			1		0
+graph_0168	md	0	8	22	8	21	1	0	0
+graph_0168	ac	0	8	22			1		0
+graph_0169	md	0	12	27	12	21	1	0	0
+graph_0169	ac	0	12	27			1		0
+graph_0170	md	0	6	13	6	1	1	0	0
+graph_0170	ac	0	6	13			1		0
+graph_0171	md	0	6	12	6	7	1	0	0
+graph_0171	ac	0	6	12			1		0
+graph_0172	md	0	10	17	10	11	1	0	0
+graph_0172	ac	0	10	17			1		0
+graph_0173	md	0	10	24	10	19	1	0	0
+graph_0173	ac	0	10	24			1		0
+graph_0174	md	0	10	21	10	20	1	0	0
+graph_0174	ac	0	10	21			1		0
+graph_0175	md	0	6	16	6	14	1	0	0
+graph_0175	ac	0	6	16			1		0
+graph_0176	md	0	7	13	7	10	1	0	0
+graph_0176	ac	0	7	13			1		0
+graph_0177	md	0	6	14	6	14	1	0	0
+graph_0177	ac	0	6	14			1		0
+graph_0178	md	0	7	15	7	11	1	0	0
+graph_0178	ac	0	7	15			1		0
+graph_0179	md	0	10	17	10	7	1	0	0
+graph_0179	ac	0	10	17			1		0
+graph_0180	md	0	9	20	9	13	1	0	0
+graph_0180	ac	0	9	20			1		0
+graph_0181	md	0	6	13	6	11	1	0	0
+graph_0181	ac	0	6	13			1		0
+graph_0182	md	0	10	19	10	15	0	0	0
+graph_0182	ac	0	10	19			0		0
+graph_0183	md	0	6	11	6	2	1	0	0
+graph_0183	ac	0	6	11			1		0
+graph_0184	md	0	6	13	6	9	1	0	0
+graph_0184	ac	0	6	13			1		0
+graph_0185	md	0	9	18	9	14	1	0	0
+graph_0185	ac	0	9	18			1		0
+graph_0186	md	0	8	18	8	17	1	0	0
+graph_0186	ac	0	8	18			1		0
+graph_0187	md	0	7	17	7	17	1	0	0
+graph_0187	ac	0	7	17			1		0
+graph_0188	md	0	8	13	8	10	1	0	0
+graph_0188	ac	0	8	13			1		0
+graph_0189	md	0	12	18	12	10	1	0	0
+graph_0189	ac	0	12	18			1		0
+graph_0190	md	0	7	17	7	14	1	0	0
+graph_0190	ac	0	7	17			1		0
+graph_0191	md	0	12	29	12	25	1	0	0
+graph_0191	ac	0	12	29			1		0
+graph_0192	md	0	12	23	12	2	0	0	0
+graph_0192	ac	0	12	23			0		0
+graph_0193	md	0	6	11	6	8	1	0	0
+graph_0193	ac	0	6	11			1		0
+graph_0194	md	0	6	12	6	9	1	0	0
+graph_0194	ac	0	6	12			1		0
+graph_0195	md	0	6	14	6	7	1	0	0
+graph_0195	ac	0	6	14			1		0
+graph_0196	md	0	8	17	8	8	0	0	0
+graph_0196	ac	0	8	17			0		0
+graph_0197	md	0	11	26	11	18	1	0	0
+graph_0197	ac	0	11	26			1		0
+graph_0198	md	0	7	12	7	11	1	0	0
+graph_0198	ac	0	7	12			1		0
+graph_0199	md	0	11	22	11	15	1	0	0
+graph_0199	ac	0	11	22			1		0
+graph_0200	md	0	8	13	8	11	1	0	0
+graph_0200	ac	0	8	13			1		0
+graph_0201	md	0	11	19	11	9	1	0	0
+graph_0201	ac	0	11	19			1		0
+graph_0202	md	0	9	15	9	8	1	0	0
+graph_0202	ac	0	9	15			1		0
+graph_0203	md	0	6	12	6	7	1	0	0
+graph_0203	ac	0	6	12			1		0
+graph_0204	md	0	9	16	9	11	1	0	0
+graph_0204	ac	0	9	16			1		0
+graph_0205	md	0	11	23	11	14	1	0	0
+graph_0205	ac	0	11	23			1		0
+graph_0206	md	0	8	22	8	17	1	0	0
+graph_0206	ac	0	8	22			1		0
+graph_0207	md	0	6	11	6	10	1	0	0
+graph_0207	ac	0	6	11			1		0
+graph_0208	md	0	7	16	7	13	1	0	0
+graph_0208	ac	0	7	16			1		0
+graph_0209	md	0	7	11	7	8	1	0	0
+graph_0209	ac	0	7	11			1		0
+graph_0210	md	0	6	15	6	9	1	0	0
+graph_0210	ac	0	6	15			1		0
+graph_0211	md	0	6	11	6	7	1	0	0
+graph_0211	ac	0	6	11			1		0
+graph_0212	md	0	9	23	9	17	1	0	0
+graph_0212	ac	0	9	23			1		0
+graph_0213	md	0	10	24	10	21	1	0	0
+graph_0213	ac	0	10	24			1		0
+graph_0214	md	0	7	19	7	16	1	0	0
+graph_0214	ac	0	7	19			1		0
+graph_0215	md	0	6	13	6	8	1	0	0
+graph_0215	ac	0	6	13			1		0
+graph_0216	md	0	8	17	8	15	1	0	0
+graph_0216	ac	0	8	17			1		0
+graph_0217	md	0	8	17	8	12	1	0	0
+graph_0217	ac	0	8	17			1		0
+graph_0218	md	0	9	15	9	13	1	0	0
+graph_0218	ac	0	9	15			1		0
+graph_0219	md	0	9	20	9	20	1	0	0
+graph_0219	ac	0	9	20			1		0
+graph_0220	md	0	7	16	7	6	1	0	0
+graph_0220	ac	0	7	16			1		0
+graph_0221	md	0	8	18	8	14	1	0	0
+graph_0221	ac	0	8	18			1		0
+graph_0222	md	0	8	17	8	14	1	0	0
+graph_0222	ac	0	8	17			1		0
+graph_0223	md	0	12	23	12	13	1	0	0
+graph_0223	ac	0	12	23			1		0
+graph_0224	md	0	7	15	7	12	1	0	0
+graph_0224	ac	0	7	15			1		0
+graph_0225	md	0	11	19	11	8	0	0	0
+graph_0225	ac	0	11	19			0		0
+graph_0226	md	0	6	17	6	16	1	0	0
+graph_0226	ac	0	6	17			1		0
+graph_0227	md	0	6	13	6	13	1	0	0
+graph_0227	ac	0	6	13			1		0
+graph_0228	md	0	6	13	6	7	0	0	0
+graph_0228	ac	0	6	13			0		0
+graph_0229	md	0	9	15	9	3	1	0	0
+graph_0229	ac	0	9	15			1		0
+graph_0230	md	0	7	17	7	14	1	0	0
+graph_0230	ac	0	7	17			1		0
+graph_0231	md	0	8	16	8	10	1	0	0
+graph_0231	ac	0	8	16			1		0
+graph_0232	md	0	10	20	10	14	1	0	0
+graph_0232	ac	0	10	20			1		0
+graph_0233	md	0	11	16	11	3	1	0	0
+graph_0233	ac	0	11	16			1		0
+graph_0234	md	0	9	17	9	5	0	0	0
+graph_0234	ac	0	9	17			0		0
+graph_0235	md	0	11	20	11	10	1	0	0
+graph_0235	ac	0	11	20			1		0
+graph_0236	md	0	10	25	10	22	1	0	0
+graph_0236	ac	0	10	25			1		0
+graph_0237	md	0	7	18	7	14	1	0	0
+graph_0237	ac	0	7	18			1		0
+graph_0238	md	0	6	13	6	12	1	0	0
+graph_0238	ac	0	6	13			1		0
+graph_0239	md	0	9	20	9	17	1	0	0
+graph_0239	ac	0	9	20			1		0
+graph_0240	md	0	7	15	7	10	1	0	0
+graph_0240	ac	0	7	15			1		0
+graph_0241	md	0	7	12	7	6	1	0	0
+graph_0241	ac	0	7	12			1		0
+graph_0242	md	0	9	18	9	9	1	0	0
+graph_0242	ac	0	9	18			1		0
+graph_0243	md	0	7	15	7	13	1	0	0
+graph_0243	ac	0	7	15			1		0
+graph_0244	md	0	7	15	7	12	1	0	0
+graph_0244	ac	0	7	15			1		0
+graph_0245	md	0	7	16	7	12	0	0	0
+graph_0245	ac	0	7	16			0		0
+graph_0246	md	0	6	14	6	10	1	0	0
+graph_0246	ac	0	6	14			1		0
+graph_0247	md	0	6	13	6	11	1	0	0
+graph_0247	ac	0	6	13			1		0
+graph_0248	md	0	6	13	6	10	1	0	0
+graph_0248	ac	0	6	13			1		0
+graph_0249	md	0	8	13	8	10	1	0	0
+graph_0249	ac	0	8	13			1		0
+graph_0250	md	0	9	20	9	15	1	0	0
+graph_0250	ac	0	9	20			1		0
+graph_0251	md	0	8	16	8	13	1	0	0
+graph_0251	ac	0	8	16			1		0
+graph_0252	md	0	6	11	6	9	1	0	0
+graph_0252	ac	0	6	11			1		0
+graph_0253	md	0	7	13	7	8	1	0	0
+graph_0253	ac	0	7	13			1		0
+graph_0254	md	0	12	24	12	20	1	0	0
+graph_0254	ac	0	12	24			1		0
+graph_0255	md	0	11	22	11	14	1	0	0
+graph_0255	ac	0	11	22			1		0
+graph_0256	md	0	10	18	10	9	1	0	0
+graph_0256	ac	0	10	18			1		0
+graph_0257	md	0	9	22	9	22	1	0	0
+graph_0257	ac	0	9	22			1		0
+graph_0258	md	0	6	10	6	3	0	0	0
+graph_0258	ac	0	6	10			0		0
+graph_0259	md	0	11	24	11	21	1	0	0
+graph_0259	ac	0	11	24			1		0
+graph_0260	md	0	7	11	7	4	1	0	0
+graph_0260	ac	0	7	11			1		0
+graph_0261	md	0	8	18	8	16	1	0	0
+graph_0261	ac	0	8	18			1		0
+graph_0262	md	0	8	15	8	13	1	0	0
+graph_0262	ac	0	8	15			1		0
+graph_0263	md	0	8	19	8	16	1	0	0
+graph_0263	ac	0	8	19			1		0
+graph_0264	md	0	10	22	10	13	1	0	0
+graph_0264	ac	0	10	22			1		0
+graph_0265	md	0	11	28	11	14	1	0	0
+graph_0265	ac	0	11	28			1		0
+graph_0266	md	0	7	16	7	11	1	0	0
+graph_0266	ac	0	7	16			1		0
+graph_0267	md	0	7	19	7	15	1	0	0
+graph_0267	ac	0	7	19			1		0
+graph_0268	md	0	7	13	7	13	1	0	0
+graph_0268	ac	0	7	13			1		0
+graph_0269	md	0	7	13	7	11	1	0	0
+graph_0269	ac	0	7	13			1		0
+graph_0270	md	0	9	21	9	19	1	0	0
+graph_0270	ac	0	9	21			1		0
+graph_0271	md	0	8	15	8	9	0	0	0
+graph_0271	ac	0	8	15			0		0
+graph_0272	md	0	7	17	7	14	1	0	0
+graph_0272	ac	0	7	17			1		0
+graph_0273	md	0	7	17	7	15	1	0	0
+graph_0273	ac	0	7	17			1		0
+graph_0274	md	0	8	22	8	16	1	0	0
+graph_0274	ac	0	8	22			1		0
+graph_0275	md	0	11	26	11	24	1	0	0
+graph_0275	ac	0	11	26			1		0
+graph_0276	md	0	9	20	9	11	1	0	0
+graph_0276	ac	0	9	20			1		0
+graph_0277	md	0	8	19	8	9	1	0	0
+graph_0277	ac	0	8	19			1		0
+graph_0278	md	0	11	23	11	17	1	0	0
+graph_0278	ac	0	11	23			1		0
+graph_0279	md	0	12	23	12	10	1	0	0
+graph_0279	ac	0	12	23			1		0
+graph_0280	md	0	6	11	6	10	1	0	0
+graph_0280	ac	0	6	11			1		0
+graph_0281	md	0	8	19	8	11	1	0	0
+graph_0281	ac	0	8	19			1		0
+graph_0282	md	0	12	28	12	26	1	0	0
+graph_0282	ac	0	12	28			1		0
+graph_0283	md	0	8	19	8	19	1	0	0
+graph_0283	ac	0	8	19			1		0
+graph_0284	md	0	6	10	6	2	1	0	0
+graph_0284	ac	0	6	10			1		0
+graph_0285	md	0	6	14	6	10	1	0	0
+graph_0285	ac	0	6	14			1		0
+graph_0286	md	0	9	19	9	13	1	0	0
+graph_0286	ac	0	9	19			1		0
+graph_0287	md	0	6	12	6	8	1	0	0
+graph_0287	ac	0	6	12			1		0
+graph_0288	md	0	7	13	7	13	1	0	0
+graph_0288	ac	0	7	13			1		0
+graph_0289	md	0	11	23	11	17	0	0	0
+graph_0289	ac	0	11	23			0		0
+graph_0290	md	0	9	10	9	6	1	0	0
+graph_0290	ac	0	9	10			1		0
+graph_0291	md	0	7	14	7	6	1	0	0
+graph_0291	ac	0	7	14			1		0
+graph_0292	md	0	6	14	6	1	0	0	0
+graph_0292	ac	0	6	14			0		0
+graph_0293	md	0	11	32	11	30	1	0	0
+graph_0293	ac	0	11	32			1		0
+graph_0294	md	0	6	12	6	8	1	0	0
+graph_0294	ac	0	6	12			1		0
+graph_0295	md	0	11	23	11	9	1	0	0
+graph_0295	ac	0	11	23			1		0
+graph_0296	md	0	6	14	6	12	1	0	0
+graph_0296	ac	0	6	14			1		0
+graph_0297	md	0	8	16	8	10	1	0	0
+graph_0297	ac	0	8	16			1		0
+graph_0298	md	0	6	12	6	11	1	0	0
+graph_0298	ac	0	6	12			1		0
+graph_0299	md	0	8	19	8	16	1	0	0
+graph_0299	ac	0	8	19			1		0
+monitor_0000	md	0	4	7	4	6	0	0	0
+monitor_0000	ac	0	4	7			0		0
+monitor_0001	md	0	3	7	3	4	1	0	0
+monitor_0001	ac	0	3	7			1		0
+monitor_0002	md	0	3	5	3	5	0	0	0
+monitor_0002	ac	0	3	5			0		0
+monitor_0003	md	0	4	11	4	9	1	0	0
+monitor_0003	ac	0	4	11			1		0
+monitor_0004	md	0	4	8	4	5	0	0	0
+monitor_0004	ac	0	4	8			0		0
+monitor_0005	md	0	4	8	4	5	0	0	0
+monitor_0005	ac	0	4	8			0		0
+monitor_0006	md	0	3	5	3	4	1	0	0
+monitor_0006	ac	0	3	5			1		0
+monitor_0007	md	0	2	6	2	4	1	0	0
+monitor_0007	ac	0	2	6			1		0
+monitor_0008	md	0	6	15	6	12	1	0	0
+monitor_0008	ac	0	6	15			1		0
+monitor_0009	md	0	7	18	7	15	1	0	0
+monitor_0009	ac	0	7	18			1		0
+monitor_0010	md	0	3	5	3	5	0	0	0
+monitor_0010	ac	0	3	5			0		0
+monitor_0011	md	0	3	5	3	4	1	0	0
+monitor_0011	ac	0	3	5			1		0
+monitor_0012	md	0	7	18	7	15	1	0	0
+monitor_0012	ac	0	7	18			1		0
+monitor_0013	md	0	6	13	6	12	1	0	0
+monitor_0013	ac	0	6	13			1		0
+monitor_0014	md	0	3	7	3	5	0	0	0
+monitor_0014	ac	0	3	7			0		0
+monitor_0015	md	0	4	6	4	5	0	0	0
+monitor_0015	ac	0	4	6			0		0
+monitor_0016	md	0	4	8	4	5	0	0	0
+monitor_0016	ac	0	4	8			0		0
+monitor_0017	md	0	4	6	4	5	0	0	0
+monitor_0017	ac	0	4	6			0		0
+monitor_0018	md	0	3	7	3	4	1	0	0
+monitor_0018	ac	0	3	7			1		0
+monitor_0019	md	0	5	12	5	9	1	0	0
+monitor_0019	ac	0	5	12			1		0
+monitor_0020	md	0	2	6	2	4	1	0	0
+monitor_0020	ac	0	2	6			1		0
+monitor_0021	md	0	3	7	3	4	1	0	0
+monitor_0021	ac	0	3	7			1		0
+monitor_0022	md	0	3	5	3	5	0	0	0
+monitor_0022	ac	0	3	5			0		0
+monitor_0023	md	0	3	8	3	6	0	0	0
+monitor_0023	ac	0	3	8			0		0
+monitor_0024	md	0	4	8	4	5	0	0	0
+monitor_0024	ac	0	4	8			0		0
+monitor_0025	md	0	4	9	4	6	0	0	0
+monitor_0025	ac	0	4	9			0		0
+monitor_0026	md	0	4	6	4	5	0	0	0
+monitor_0026	ac	0	4	6			0		0
+monitor_0027	md	0	3	7	3	5	0	0	0
+monitor_0027	ac	0	3	7			0		0
+monitor_0028	md	0	3	5	3	4	1	0	0
+monitor_0028	ac	0	3	5			1		0
+monitor_0029	md	0	4	9	4	6	0	0	0
+monitor_0029	ac	0	4	9			0		0
+monitor_0030	md	0	3	8	3	6	0	0	0
+monitor_0030	ac	0	3	8			0		0
+monitor_0031	md	0	4	9	4	6	0	0	0
+monitor_0031	ac	0	4	9			0		0
+monitor_0032	md	0	3	7	3	4	1	0	0
+monitor_0032	ac	0	3	7			1		0
+monitor_0033	md	0	4	9	4	6	0	0	0
+monitor_0033	ac	0	4	9			0		0
+monitor_0034	md	0	4	8	4	5	0	0	0
+monitor_0034	ac	0	4	8			0		0
+monitor_0035	md	0	4	7	4	6	0	0	0
+monitor_0035	ac	0	4	7			0		0
+monitor_0036	md	0	5	12	5	9	1	0	0
+monitor_0036	ac	0	5	12			1		0
+monitor_0037	md	0	2	6	2	4	1	0	0
+monitor_0037	ac	0	2	6			1		0
+monitor_0038	md	0	4	8	4	5	0	0	0
+monitor_0038	ac	0	4	8			0		0
+monitor_0039	md	0	4	8	4	5	0	0	0
+monitor_0039	ac	0	4	8			0		0
+monitor_0040	md	0	3	7	3	4	1	0	0
+monitor_0040	ac	0	3	7			1		0
+monitor_0041	md	0	4	8	4	5	0	0	0
+monitor_0041	ac	0	4	8			0		0
+monitor_0042	md	0	3	8	3	6	0	0	0
+monitor_0042	ac	0	3	8			0		0
+monitor_0043	md	0	3	5	3	5	0	0	0
+monitor_0043	ac	0	3	5			0		0
+monitor_0044	md	0	3	5	3	5	0	0	0
+monitor_0044	ac	0	3	5			0		0
+monitor_0045	md	0	4	9	4	9	1	0	0
+monitor_0045	ac	0	4	9			1		0
+monitor_0046	md	0	4	9	4	9	1	0	0
+monitor_0046	ac	0	4	9			1		0
+monitor_0047	md	0	3	7	3	5	0	0	0
+monitor_0047	ac	0	3	7			0		0
+monitor_0048	md	0	5	10	5	9	1	0	0
+monitor_0048	ac	0	5	10			1		0
+monitor_0049	md	0	4	8	4	5	0	0	0
+monitor_0049	ac	0	4	8			0		0
+monitor_0050	md	0	5	10	5	9	1	0	0
+monitor_0050	ac	0	5	10			1		0
+monitor_0051	md	0	2	6	2	4	1	0	0
+monitor_0051	ac	0	2	6			1		0
+monitor_0052	md	0	6	17	6	15	1	0	0
+monitor_0052	ac	0	6	17			1		0
+monitor_0053	md	0	2	4	2	4	1	0	0
+monitor_0053	ac	0	2	4			1		0
+monitor_0054	md	0	3	5	3	4	1	0	0
+monitor_0054	ac	0	3	5			1		0
+monitor_0055	md	0	4	9	4	6	0	0	0
+monitor_0055	ac	0	4	9			0		0
+monitor_0056	md	0	3	7	3	4	1	0	0
+monitor_0056	ac	0	3	7			1		0
+monitor_0057	md	0	7	18	7	15	1	0	0
+monitor_0057	ac	0	7	18			1		0
+monitor_0058	md	0	5	12	5	9	1	0	0
+monitor_0058	ac	0	5	12			1		0
+monitor_0059	md	0	3	7	3	5	0	0	0
+monitor_0059	ac	0	3	7			0		0
+monitor_0060	md	0	3	5	3	4	1	0	0
+monitor_0060	ac	0	3	5			1		0
+monitor_0061	md	0	4	8	4	5	0	0	0
+monitor_0061	ac	0	4	8			0		0
+monitor_0062	md	0	3	5	3	4	1	0	0
+monitor_0062	ac	0	3	5			1		0
+monitor_0063	md	0	5	12	5	9	1	0	0
+monitor_0063	ac	0	5	12			1		0
+monitor_0064	md	0	6	17	6	15	1	0	0
+monitor_0064	ac	0	6	17			1		0
+monitor_0065	md	0	4	8	4	5	0	0	0
+monitor_0065	ac	0	4	8			0		0
+monitor_0066	md	0	4	6	4	5	0	0	0
+monitor_0066	ac	0	4	6			0		0
+monitor_0067	md	0	4	7	4	6	0	0	0
+monitor_0067	ac	0	4	7			0		0
+monitor_0068	md	0	7	18	7	15	1	0	0
+monitor_0068	ac	0	7	18			1		0
+monitor_0069	md	0	4	7	4	6	0	0	0
+monitor_0069	ac	0	4	7			0		0
+monitor_0070	md	0	4	11	4	9	1	0	0
+monitor_0070	ac	0	4	11			1		0
+monitor_0071	md	0	4	8	4	5	0	0	0
+monitor_0071	ac	0	4	8			0		0
+monitor_0072	md	0	4	8	4	5	0	0	0
+monitor_0072	ac	0	4	8			0		0
+monitor_0073	md	0	7	16	7	15	1	0	0
+monitor_0073	ac	0	7	16			1		0
+monitor_0074	md	0	4	9	4	6	0	0	0
+monitor_0074	ac	0	4	9			0		0
+monitor_0075	md	0	4	6	4	5	0	0	0
+monitor_0075	ac	0	4	6			0		0
+monitor_0076	md	0	4	9	4	6	0	0	0
+monitor_0076	ac	0	4	9			0		0
+monitor_0077	md	0	4	9	4	6	0	0	0
+monitor_0077	ac	0	4	9			0		0
+monitor_0078	md	0	2	4	2	4	1	0	0
+monitor_0078	ac	0	2	4			1		0
+monitor_0079	md	0	2	4	2	4	1	0	0
+monitor_0079	ac	0	2	4			1		0
+monitor_0080	md	0	4	7	4	6	0	0	0
+monitor_0080	ac	0	4	7			0		0
+monitor_0081	md	0	5	12	5	9	1	0	0
+monitor_0081	ac	0	5	12			1		0
+monitor_0082	md	0	2	4	2	4	1	0	0
+monitor_0082	ac	0	2	4			1		0
+monitor_0083	md	0	3	5	3	4	1	0	0
+monitor_0083	ac	0	3	5			1		0
+monitor_0084	md	0	2	4	2	4	1	0	0
+monitor_0084	ac	0	2	4			1		0
+monitor_0085	md	0	4	6	4	5	0	0	0
+monitor_0085	ac	0	4	6			0		0
+monitor_0086	md	0	6	17	6	15	1	0	0
+monitor_0086	ac	0	6	17			1		0
+monitor_0087	md	0	2	4	2	4	1	0	0
+monitor_0087	ac	0	2	4			1		0
+monitor_0088	md	0	3	5	3	5	0	0	0
+monitor_0088	ac	0	3	5			0		0
+monitor_0089	md	0	3	7	3	4	1	0	0
+monitor_0089	ac	0	3	7			1		0
+monitor_0090	md	0	4	9	4	6	0	0	0
+monitor_0090	ac	0	4	9			0		0
+monitor_0091	md	0	4	7	4	6	0	0	0
+monitor_0091	ac	0	4	7			0		0
+monitor_0092	md	0	4	7	4	6	0	0	0
+monitor_0092	ac	0	4	7			0		0
+monitor_0093	md	0	3	7	3	4	1	0	0
+monitor_0093	ac	0	3	7			1		0
+monitor_0094	md	0	3	7	3	5	0	0	0
+monitor_0094	ac	0	3	7			0		0
+monitor_0095	md	0	3	8	3	6	0	0	0
+monitor_0095	ac	0	3	8			0		0
+monitor_0096	md	0	3	7	3	5	0	0	0
+monitor_0096	ac	0	3	7			0		0
+monitor_0097	md	0	4	11	4	9	1	0	0
+monitor_0097	ac	0	4	11			1		0
+monitor_0098	md	0	3	7	3	4	1	0	0
+monitor_0098	ac	0	3	7			1		0
+monitor_0099	md	0	5	12	5	12	1	0	0
+monitor_0099	ac	0	5	12			1		0
+monitor_0100	md	0	4	8	4	5	0	0	0
+monitor_0100	ac	0	4	8			0		0
+monitor_0101	md	0	3	8	3	6	0	0	0
+monitor_0101	ac	0	3	8			0		0
+monitor_0102	md	0	4	9	4	6	0	0	0
+monitor_0102	ac	0	4	9			0		0
+monitor_0103	md	0	3	5	3	4	1	0	0
+monitor_0103	ac	0	3	5			1		0
+monitor_0104	md	0	2	6	2	4	1	0	0
+monitor_0104	ac	0	2	6			1		0
+monitor_0105	md	0	6	17	6	15	1	0	0
+monitor_0105	ac	0	6	17			1		0
+monitor_0106	md	0	4	9	4	6	0	0	0
+monitor_0106	ac	0	4	9			0		0
+monitor_0107	md	0	3	7	3	4	1	0	0
+monitor_0107	ac	0	3	7			1		0
+monitor_0108	md	0	2	4	2	4	1	0	0
+monitor_0108	ac	0	2	4			1		0
+monitor_0109	md	0	4	8	4	5	0	0	0
+monitor_0109	ac	0	4	8			0		0
+monitor_0110	md	0	5	10	5	9	1	0	0
+monitor_0110	ac	0	5	10			1		0
+monitor_0111	md	0	3	5	3	4	1	0	0
+monitor_0111	ac	0	3	5			1		0
+monitor_0112	md	0	3	7	3	5	0	0	0
+monitor_0112	ac	0	3	7			0		0
+monitor_0113	md	0	4	9	4	6	0	0	0
+monitor_0113	ac	0	4	9			0		0
+monitor_0114	md	0	3	6	3	6	0	0	0
+monitor_0114	ac	0	3	6			0		0
+monitor_0115	md	0	3	8	3	6	0	0	0
+monitor_0115	ac	0	3	8			0		0
+monitor_0116	md	0	4	9	4	9	1	0	0
+monitor_0116	ac	0	4	9			1		0
+monitor_0117	md	0	7	18	7	15	1	0	0
+monitor_0117	ac	0	7	18			1		0
+monitor_0118	md	0	3	7	3	4	1	0	0
+monitor_0118	ac	0	3	7			1		0
+monitor_0119	md	0	3	5	3	4	1	0	0
+monitor_0119	ac	0	3	5			1		0
+monitor_0120	md	0	4	6	4	5	0	0	0
+monitor_0120	ac	0	4	6			0		0
+monitor_0121	md	0	4	9	4	6	0	0	0
+monitor_0121	ac	0	4	9			0		0
+monitor_0122	md	0	3	6	3	6	0	0	0
+monitor_0122	ac	0	3	6			0		0
+monitor_0123	md	0	4	9	4	6	0	0	0
+monitor_0123	ac	0	4	9			0		0
+monitor_0124	md	0	7	18	7	15	1	0	0
+monitor_0124	ac	0	7	18			1		0
+monitor_0125	md	0	3	7	3	4	1	0	0
+monitor_0125	ac	0	3	7			1		0
+monitor_0126	md	0	3	6	3	6	0	0	0
+monitor_0126	ac	0	3	6			0		0
+monitor_0127	md	0	6	15	6	12	1	0	0
+monitor_0127	ac	0	6	15			1		0
+monitor_0128	md	0	4	9	4	6	0	0	0
+monitor_0128	ac	0	4	9			0		0
+monitor_0129	md	0	2	6	2	4	1	0	0
+monitor_0129	ac	0	2	6			1		0
+monitor_0130	md	0	4	8	4	5	0	0	0
+monitor_0130	ac	0	4	8			0		0
+monitor_0131	md	0	3	7	3	5	0	0	0
+monitor_0131	ac	0	3	7			0		0
+monitor_0132	md	0	3	7	3	4	1	0	0
+monitor_0132	ac	0	3	7			1		0
+monitor_0133	md	0	6	17	6	15	1	0	0
+monitor_0133	ac	0	6	17			1		0
+monitor_0134	md	0	4	8	4	5	0	0	0
+monitor_0134	ac	0	4	8			0		0
+monitor_0135	md	0	6	15	6	12	1	0	0
+monitor_0135	ac	0	6	15			1		0
+monitor_0136	md	0	3	8	3	6	0	0	0
+monitor_0136	ac	0	3	8			0		0
+monitor_0137	md	0	5	10	5	9	1	0	0
+monitor_0137	ac	0	5	10			1		0
+monitor_0138	md	0	3	5	3	4	1	0	0
+monitor_0138	ac	0	3	5			1		0
+monitor_0139	md	0	6	15	6	15	1	0	0
+monitor_0139	ac	0	6	15			1		0
+monitor_0140	md	0	3	7	3	4	1	0	0
+monitor_0140	ac	0	3	7			1		0
+monitor_0141	md	0	4	6	4	5	0	0	0
+monitor_0141	ac	0	4	6			0		0
+monitor_0142	md	0	3	7	3	4	1	0	0
+monitor_0142	ac	0	3	7			1		0
+monitor_0143	md	0	2	4	2	4	1	0	0
+monitor_0143	ac	0	2	4			1		0
+monitor_0144	md	0	3	6	3	6	0	0	0
+monitor_0144	ac	0	3	6			0		0
+monitor_0145	md	0	3	8	3	6	0	0	0
+monitor_0145	ac	0	3	8			0		0
+monitor_0146	md	0	3	7	3	5	0	0	0
+monitor_0146	ac	0	3	7			0		0
+monitor_0147	md	0	3	7	3	5	0	0	0
+monitor_0147	ac	0	3	7			0		0
+monitor_0148	md	0	5	12	5	9	1	0	0
+monitor_0148	ac	0	5	12			1		0
+monitor_0149	md	0	3	7	3	5	0	0	0
+monitor_0149	ac	0	3	7			0		0
+monitor_0150	md	0	3	8	3	6	0	0	0
+monitor_0150	ac	0	3	8			0		0
+monitor_0151	md	0	4	8	4	5	0	0	0
+monitor_0151	ac	0	4	8			0		0
+monitor_0152	md	0	3	8	3	6	0	0	0
+monitor_0152	ac	0	3	8			0		0
+monitor_0153	md	0	4	9	4	6	0	0	0
+monitor_0153	ac	0	4	9			0		0
+monitor_0154	md	0	2	4	2	4	1	0	0
+monitor_0154	ac	0	2	4			1		0
+monitor_0155	md	0	6	15	6	12	1	0	0
+monitor_0155	ac	0	6	15			1		0
+monitor_0156	md	0	4	9	4	6	0	0	0
+monitor_0156	ac	0	4	9			0		0
+monitor_0157	md	0	3	6	3	6	0	0	0
+monitor_0157	ac	0	3	6			0		0
+monitor_0158	md	0	4	6	4	5	0	0	0
+monitor_0158	ac	0	4	6			0		0
+monitor_0159	md	0	3	5	3	4	1	0	0
+monitor_0159	ac	0	3	5			1		0
+monitor_0160	md	0	2	4	2	4	1	0	0
+monitor_0160	ac	0	2	4			1		0
+monitor_0161	md	0	7	18	7	15	1	0	0
+monitor_0161	ac	0	7	18			1		0
+monitor_0162	md	0	3	8	3	6	0	0	0
+monitor_0162	ac	0	3	8			0		0
+monitor_0163	md	0	3	5	3	5	0	0	0
+monitor_0163	ac	0	3	5			0		0
+monitor_0164	md	0	3	5	3	4	1	0	0
+monitor_0164	ac	0	3	5			1		0
+monitor_0165	md	0	4	9	4	6	0	0	0
+monitor_0165	ac	0	4	9			0		0
+monitor_0166	md	0	3	7	3	5	0	0	0
+monitor_0166	ac	0	3	7			0		0
+monitor_0167	md	0	2	4	2	4	1	0	0
+monitor_0167	ac	0	2	4			1		0
+monitor_0168	md	0	4	9	4	6	0	0	0
+monitor_0168	ac	0	4	9			0		0
+monitor_0169	md	0	2	4	2	4	1	0	0
+monitor_0169	ac	0	2	4			1		0
+monitor_0170	md	0	4	8	4	5	0	0	0
+monitor_0170	ac	0	4	8			0		0
+monitor_0171	md	0	4	11	4	9	1	0	0
+monitor_0171	ac	0	4	11			1		0
+monitor_0172	md	0	3	6	3	6	0	0	0
+monitor_0172	ac	0	3	6			0		0
+monitor_0173	md	0	3	8	3	6	0	0	0
+monitor_0173	ac	0	3	8			0		0
+monitor_0174	md	0	5	12	5	9	1	0	0
+monitor_0174	ac	0	5	12			1		0
+monitor_0175	md	0	4	8	4	5	0	0	0
+monitor_0175	ac	0	4	8			0		0
+monitor_0176	md	0	4	9	4	6	0	0	0
+monitor_0176	ac	0	4	9			0		0
+monitor_0177	md	0	3	8	3	6	0	0	0
+monitor_0177	ac	0	3	8			0		0
+monitor_0178	md	0	3	7	3	4	1	0	0
+monitor_0178	ac	0	3	7			1		0
+monitor_0179	md	0	4	7	4	6	0	0	0
+monitor_0179	ac	0	4	7			0		0
+monitor_0180	md	0	5	12	5	9	1	0	0
+monitor_0180	ac	0	5	12			1		0
+monitor_0181	md	0	5	12	5	12	1	0	0
+monitor_0181	ac	0	5	12			1		0
+monitor_0182	md	0	3	5	3	5	0	0	0
+monitor_0182	ac	0	3	5			0		0
+monitor_0183	md	0	5	10	5	9	1	0	0
+monitor_0183	ac	0	5	10			1		0
+monitor_0184	md	0	4	8	4	5	0	0	0
+monitor_0184	ac	0	4	8			0		0
+monitor_0185	md	0	3	7	3	5	0	0	0
+monitor_0185	ac	0	3	7			0		0
+monitor_0186	md	0	4	6	4	5	0	0	0
+monitor_0186	ac	0	4	6			0		0
+monitor_0187	md	0	3	7	3	4	1	0	0
+monitor_0187	ac	0	3	7			1		0
+monitor_0188	md	0	3	5	3	4	1	0	0
+monitor_0188	ac	0	3	5			1		0
+monitor_0189	md	0	4	7	4	6	0	0	0
+monitor_0189	ac	0	4	7			0		0
+monitor_0190	md	0	4	8	4	5	0	0	0
+monitor_0190	ac	0	4	8			0		0
+monitor_0191	md	0	3	8	3	6	0	0	0
+monitor_0191	ac	0	3	8			0		0
+monitor_0192	md	0	3	6	3	6	0	0	0
+monitor_0192	ac	0	3	6			0		0
+monitor_0193	md	0	3	7	3	5	0	0	0
+monitor_0193	ac	0	3	7			0		0
+monitor_0194	md	0	5	12	5	9	1	0	0
+monitor_0194	ac	0	5	12			1		0
+monitor_0195	md	0	3	7	3	5	0	0	0
+monitor_0195	ac	0	3	7			0		0
+monitor_0196	md	0	3	6	3	6	0	0	0
+monitor_0196	ac	0	3	6			0		0
+monitor_0197	md	0	3	7	3	4	1	0	0
+monitor_0197	ac	0	3	7			1		0
+monitor_0198	md	0	6	13	6	12	1	0	0
+monitor_0198	ac	0	6	13			1		0
+monitor_0199	md	0	3	7	3	4	1	0	0
+monitor_0199	ac	0	3	7			1		0
+monitor_0200	md	0	3	6	3	6	0	0	0
+monitor_0200	ac	0	3	6			0		0
+monitor_0201	md	0	3	5	3	4	1	0	0
+monitor_0201	ac	0	3	5			1		0
+monitor_0202	md	0	2	6	2	4	1	0	0
+monitor_0202	ac	0	2	6			1		0
+monitor_0203	md	0	3	7	3	5	0	0	0
+monitor_0203	ac	0	3	7			0		0
+monitor_0204	md	0	4	9	4	6	0	0	0
+monitor_0204	ac	0	4	9			0		0
+monitor_0205	md	0	5	12	5	9	1	0	0
+monitor_0205	ac	0	5	12			1		0
+monitor_0206	md	0	2	4	2	4	1	0	0
+monitor_0206	ac	0	2	4			1		0
+monitor_0207	md	0	4	6	4	5	0	0	0
+monitor_0207	ac	0	4	6			0		0
+monitor_0208	md	0	6	15	6	12	1	0	0
+monitor_0208	ac	0	6	15			1		0
+monitor_0209	md	0	3	5	3	4	1	0	0
+monitor_0209	ac	0	3	5			1		0
+monitor_0210	md	0	7	16	7	15	1	0	0
+monitor_0210	ac	0	7	16			1		0
+monitor_0211	md	0	3	7	3	4	1	0	0
+monitor_0211	ac	0	3	7			1		0
+monitor_0212	md	0	4	6	4	5	0	0	0
+monitor_0212	ac	0	4	6			0		0
+monitor_0213	md	0	4	6	4	5	0	0	0
+monitor_0213	ac	0	4	6			0		0
+monitor_0214	md	0	3	7	3	5	0	0	0
+monitor_0214	ac	0	3	7			0		0
+monitor_0215	md	0	5	12	5	9	1	0	0
+monitor_0215	ac	0	5	12			1		0
+monitor_0216	md	0	4	8	4	5	0	0	0
+monitor_0216	ac	0	4	8			0		0
+monitor_0217	md	0	2	4	2	4	1	0	0
+monitor_0217	ac	0	2	4			1		0
+monitor_0218	md	0	4	9	4	6	0	0	0
+monitor_0218	ac	0	4	9			0		0
+monitor_0219	md	0	3	5	3	4	1	0	0
+monitor_0219	ac	0	3	5			1		0
+monitor_0220	md	0	4	9	4	6	0	0	0
+monitor_0220	ac	0	4	9			0		0
+monitor_0221	md	0	3	5	3	4	1	0	0
+monitor_0221	ac	0	3	5			1		0
+monitor_0222	md	0	4	8	4	5	0	0	0
+monitor_0222	ac	0	4	8			0		0
+monitor_0223	md	0	6	15	6	15	1	0	0
+monitor_0223	ac	0	6	15			1		0
+monitor_0224	md	0	3	6	3	6	0	0	0
+monitor_0224	ac	0	3	6			0		0
+monitor_0225	md	0	6	15	6	15	1	0	0
+monitor_0225	ac	0	6	15			1		0
+monitor_0226	md	0	3	7	3	5	0	0	0
+monitor_0226	ac	0	3	7			0		0
+monitor_0227	md	0	4	9	4	6	0	0	0
+monitor_0227	ac	0	4	9			0		0
+monitor_0228	md	0	7	18	7	15	1	0	0
+monitor_0228	ac	0	7	18			1		0
+monitor_0229	md	0	4	8	4	5	0	0	0
+monitor_0229	ac	0	4	8			0		0
+monitor_0230	md	0	2	6	2	4	1	0	0
+monitor_0230	ac	0	2	6			1		0
+monitor_0231	md	0	4	9	4	6	0	0	0
+monitor_0231	ac	0	4	9			0		0
+monitor_0232	md	0	4	9	4	6	0	0	0
+monitor_0232	ac	0	4	9			0		0
+monitor_0233	md	0	4	8	4	5	0	0	0
+monitor_0233	ac	0	4	8			0		0
+monitor_0234	md	0	4	9	4	6	0	0	0
+monitor_0234	ac	0	4	9			0		0
+monitor_0235	md	0	4	8	4	5	0	0	0
+monitor_0235	ac	0	4	8			0		0
+monitor_0236	md	0	4	8	4	5	0	0	0
+monitor_0236	ac	0	4	8			0		0
+monitor_0237	md	0	2	6	2	4	1	0	0
+monitor_0237	ac	0	2	6			1		0
+monitor_0238	md	0	5	12	5	9	1	0	0
+monitor_0238	ac	0	5	12			1		0
+monitor_0239	md	0	4	9	4	6	0	0	0
+monitor_0239	ac	0	4	9			0		0
+monitor_0240	md	0	6	15	6	12	1	0	0
+monitor_0240	ac	0	6	15			1		0
+monitor_0241	md	0	3	6	3	6	0	0	0
+monitor_0241	ac	0	3	6			0		0
+monitor_0242	md	0	3	6	3	6	0	0	0
+monitor_0242	ac	0	3	6			0		0
+monitor_0243	md	0	3	7	3	5	0	0	0
+monitor_0243	ac	0	3	7			0		0
+monitor_0244	md	0	6	15	6	12	1	0	0
+monitor_0244	ac	0	6	15			1		0
+monitor_0245	md	0	3	6	3	6	0	0	0
+monitor_0245	ac	0	3	6			0		0
+monitor_0246	md	0	3	5	3	4	1	0	0
+monitor_0246	ac	0	3	5			1		0
+monitor_0247	md	0	7	18	7	15	1	0	0
+monitor_0247	ac	0	7	18			1		0
+monitor_0248	md	0	2	6	2	4	1	0	0
+monitor_0248	ac	0	2	6			1		0
+monitor_0249	md	0	3	6	3	6	0	0	0
+monitor_0249	ac	0	3	6			0		0
+monitor_0250	md	0	2	4	2	4	1	0	0
+monitor_0250	ac	0	2	4			1		0
+monitor_0251	md	0	3	7	3	5	0	0	0
+monitor_0251	ac	0	3	7			0		0
+monitor_0252	md	0	3	5	3	4	1	0	0
+monitor_0252	ac	0	3	5			1		0
+monitor_0253	md	0	3	7	3	4	1	0	0
+monitor_0253	ac	0	3	7			1		0
+monitor_0254	md	0	3	5	3	4	1	0	0
+monitor_0254	ac	0	3	5			1		0
+monitor_0255	md	0	4	8	4	5	0	0	0
+monitor_0255	ac	0	4	8			0		0
+monitor_0256	md	0	3	8	3	6	0	0	0
+monitor_0256	ac	0	3	8			0		0
+monitor_0257	md	0	5	12	5	9	1	0	0
+monitor_0257	ac	0	5	12			1		0
+monitor_0258	md	0	3	7	3	4	1	0	0
+monitor_0258	ac	0	3	7			1		0
+monitor_0259	md	0	3	7	3	5	0	0	0
+monitor_0259	ac	0	3	7			0		0
+monitor_0260	md	0	3	8	3	6	0	0	0
+monitor_0260	ac	0	3	8			0		0
+monitor_0261	md	0	6	13	6	12	1	0	0
+monitor_0261	ac	0	6	13			1		0
+monitor_0262	md	0	3	5	3	5	0	0	0
+monitor_0262	ac	0	3	5			0		0
+monitor_0263	md	0	7	16	7	15	1	0	0
+monitor_0263	ac	0	7	16			1		0
+monitor_0264	md	0	4	9	4	6	0	0	0
+monitor_0264	ac	0	4	9			0		0
+monitor_0265	md	0	4	7	4	6	0	0	0
+monitor_0265	ac	0	4	7			0		0
+monitor_0266	md	0	4	8	4	5	0	0	0
+monitor_0266	ac	0	4	8			0		0
+monitor_0267	md	0	3	7	3	4	1	0	0
+monitor_0267	ac	0	3	7			1		0
+monitor_0268	md	0	3	6	3	6	0	0	0
+monitor_0268	ac	0	3	6			0		0
+monitor_0269	md	0	4	8	4	5	0	0	0
+monitor_0269	ac	0	4	8			0		0
+monitor_0270	md	0	3	5	3	4	1	0	0
+monitor_0270	ac	0	3	5			1		0
+monitor_0271	md	0	3	5	3	5	0	0	0
+monitor_0271	ac	0	3	5			0		0
+monitor_0272	md	0	3	5	3	4	1	0	0
+monitor_0272	ac	0	3	5			1		0
+monitor_0273	md	0	6	15	6	12	1	0	0
+monitor_0273	ac	0	6	15			1		0
+monitor_0274	md	0	3	7	3	4	1	0	0
+monitor_0274	ac	0	3	7			1		0
+monitor_0275	md	0	5	14	5	12	1	0	0
+monitor_0275	ac	0	5	14			1		0
+monitor_0276	md	0	4	8	4	5	0	0	0
+monitor_0276	ac	0	4	8			0		0
+monitor_0277	md	0	4	9	4	6	0	0	0
+monitor_0277	ac	0	4	9			0		0
+monitor_0278	md	0	4	9	4	6	0	0	0
+monitor_0278	ac	0	4	9			0		0
+monitor_0279	md	0	4	9	4	6	0	0	0
+monitor_0279	ac	0	4	9			0		0
+monitor_0280	md	0	5	12	5	9	1	0	0
+monitor_0280	ac	0	5	12			1		0
+monitor_0281	md	0	2	6	2	4	1	0	0
+monitor_0281	ac	0	2	6			1		0
+monitor_0282	md	0	6	13	6	12	1	0	0
+monitor_0282	ac	0	6	13			1		0
+monitor_0283	md	0	2	6	2	4	1	0	0
+monitor_0283	ac	0	2	6			1		0
+monitor_0284	md	0	5	10	5	9	1	0	0
+monitor_0284	ac	0	5	10			1		0
+monitor_0285	md	0	6	13	6	12	1	0	0
+monitor_0285	ac	0	6	13			1		0
+monitor_0286	md	0	4	8	4	5	0	0	0
+monitor_0286	ac	0	4	8			0		0
+monitor_0287	md	0	4	11	4	9	1	0	0
+monitor_0287	ac	0	4	11			1		0
+monitor_0288	md	0	3	7	3	4	1	0	0
+monitor_0288	ac	0	3	7			1		0
+monitor_0289	md	0	3	7	3	5	0	0	0
+monitor_0289	ac	0	3	7			0		0
+monitor_0290	md	0	4	9	4	6	0	0	0
+monitor_0290	ac	0	4	9			0		0
+monitor_0291	md	0	3	7	3	4	1	0	0
+monitor_0291	ac	0	3	7			1		0
+monitor_0292	md	0	3	5	3	5	0	0	0
+monitor_0292	ac	0	3	5			0		0
+monitor_0293	md	0	2	6	2	4	1	0	0
+monitor_0293	ac	0	2	6			1		0
+monitor_0294	md	0	3	5	3	5	0	0	0
+monitor_0294	ac	0	3	5			0		0
+monitor_0295	md	0	6	15	6	15	1	0	0
+monitor_0295	ac	0	6	15			1		0
+monitor_0296	md	0	3	5	3	4	1	0	0
+monitor_0296	ac	0	3	5			1		0
+monitor_0297	md	0	2	6	2	4	1	0	0
+monitor_0297	ac	0	2	6			1		0
+monitor_0298	md	0	4	9	4	6	0	0	0
+monitor_0298	ac	0	4	9			0		0
+monitor_0299	md	0	4	8	4	5	0	0	0
+monitor_0299	ac	0	4	8			0		0
