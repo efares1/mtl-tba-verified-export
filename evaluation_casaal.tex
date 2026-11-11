@@ -27,8 +27,8 @@ they differ in time only.
 The conversion of CASAAL's transition acceptance to location acceptance is done
 by a small importer outside the proofs, which reads CASAAL's DOT output and, when
 CASAAL prints no acceptance mark, treats a state as accepting unless its label
-contains an unbounded eventuality. It does not convert F14, which has three
-acceptance sets. Every size and every state count of CASAAL's automata below depends on this conversion, which is not proved and is checked only indirectly, by the mutual language inclusion with ours that TChecker establishes on the small patterns and by the sampled words of Section~\ref{sec:verification-adds}; another encoding of the acceptance could give different counts. The per-pattern sizes are in the archived files under \path{evaluation/}.
+contains an unbounded eventuality. It does not convert the negated F14, which has three
+acceptance sets (the positive F14 converts). Every size and every state count of CASAAL's automata below depends on this conversion, which is not proved and is checked only indirectly, by the mutual language inclusion with ours that TChecker establishes on the small patterns and by the sampled words of Section~\ref{sec:verification-adds}; another encoding of the acceptance could give different counts. The per-pattern sizes are in the archived files under \path{evaluation/}.
 
 \emph{Requirements as written (positive form).} On the 27 patterns that CASAAL
 encodes exactly and both tools completed, the totals are 222 locations and 976
