@@ -214,7 +214,7 @@ CASAAL through our export 204,819, ours 204,564); `make_resp_system.py` and
 max-delay export rejected by TChecker, all-copy 48 states, CASAAL 433 ... 485,833).
 
 
-## Clock reuse, the R4 stress workload and its explanation (added 2026-11-11)
+## The R4 stress workload and its explanation (added 2026-11-11)
 
 All commands run in WSL from `evaluation/`; notes and tables are in `INVESTIGATION_R4_A_B.md`.
 
@@ -226,5 +226,4 @@ All commands run in WSL from `evaluation/`; notes and tables are in `INVESTIGATI
 | `zone_probe.py OUT LIMIT R1 ...` | TChecker zone graph (`-C graph`): vectors, zones per vector, `tck-reach` counts; `_dr` arms reset dead clocks | `zone_probe.tsv`, `zone_cov.tsv` (`SKIP_LIVENESS=1`) |
 | `make_zone_table.py` | article table of the zone graphs | `zone_table.tex` |
 | `prune_casaal.py R2 [WORDS]` | removes dominated edges of CASAAL's positive automaton, counts, compares with the MTL judge | `prune_results.txt`, `prune_R*.xml` |
-| `clock_liveness.py`, `alloc_probe.py` (`VERIFIED=1`: use `mtl2tba -alloc`) | survey and TChecker check of clock reuse | `clock_liveness.tsv`, `alloc_probe.tsv`, `alloc_verified.tsv` |
 | `bisim_probe.py` | syntactic bisimulation quotient (location merging probe) | `bisim_probe.tsv` |

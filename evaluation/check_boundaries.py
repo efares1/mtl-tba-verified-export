@@ -63,7 +63,7 @@ def parse_dot(path):
     sinks = {l for l in acc if not inv.get(l)
              and any(e[0] == l and e[1] == l and any(c[1] == ['any'] and not c[0] for c in e[2])
                      for e in edges)}
-    return init, edges, inv, clocks, sinks
+    return init, edges, inv, clocks, sinks, acc
 
 
 def event_matches(events, a, alphabet):
@@ -76,8 +76,22 @@ def event_matches(events, a, alphabet):
     return 'other' in events and a not in alphabet
 
 
+def absorbing(loc, v, edges, inv, acc):
+    """Accepting location without invariant with a self-loop on every event whose guard holds now and
+    keeps holding as time passes (lower bounds and clock differences): the run can then stay for ever."""
+    if loc not in acc or inv.get(loc):
+        return False
+    later = {x: val + 1e6 for x, val in v.items()}
+    for src, tgt, cases, resets in edges:
+        if src == loc and tgt == loc and not resets:
+            for g, ev in cases:
+                if ev == ['any'] and all(c(v) and c(later) for c in g):
+                    return True
+    return False
+
+
 def violation(path, word, alphabet):
-    init, edges, inv, clocks, sinks = parse_dot(path)
+    init, edges, inv, clocks, sinks, acc = parse_dot(path)
     t0 = word[0][1]
     confs = [(init, {x: t0 for x in clocks})]
     prev = t0
@@ -98,7 +112,7 @@ def violation(path, word, alphabet):
                         new.append((tgt, v2))
         confs = new
         prev = t
-        if any(loc in sinks for loc, _ in confs):
+        if any(loc in sinks or absorbing(loc, v, edges, inv, acc) for loc, v in confs):
             return True
     return False
 

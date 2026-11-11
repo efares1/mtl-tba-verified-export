@@ -1,4 +1,4 @@
-# Investigation of the R4 result, clock reuse (A) and location merging (B)
+# Investigation of the R4 result and of location merging
 
 All runs: WSL 2, TChecker `tck-liveness -a couvscc`, mtl2tba default with `-all-copy`, limit as stated. Counts of stored
 states are exact; times are single runs on a shared machine (other jobs were running), so time differences below 20% are
@@ -49,39 +49,7 @@ satisfies it, `baselines_resp_ok_allcopy.tsv`) the ratio is 1.15 to 1.8, and CAS
 Not shown: generality beyond the bounded-response family; any benefit of the optimizer (none: the counts are equal with it
 off); a causal explanation by guard overlap.
 
-## 2. Clock reuse by liveness (A)
-
-Files: `clock_liveness.py`, `clock_liveness_lib.py`, `clock_liveness.tsv` (survey); `alloc_probe.py`, `alloc_probe.tsv`
-(prototype). The prototype renames clocks outside Rocq and is unverified.
-
-Survey of clocks that a liveness-based allocation could save beyond the verified optimizer (upper bound by greedy colouring
-of the interference graph, exported all-copy automaton):
-
-| set | polarity | automata | clocks | after allocation | automata reduced |
-|---|---|---:|---:|---:|---:|
-| benchmark | positive | 27 | 59 | 58 | 1 (F10) |
-| benchmark | negated (N6 timed out) | 26 | 55 | 37 | 8 (F11, F12, F13, R2-R6) |
-| random | positive | 100 | 131 | 117 | 14 |
-| random | negated | 100 | 125 | 109 | 16 |
-
-On the negated bounded responses R2-R6, n clocks reduce to 1: each branch of the negation uses its own clock.
-
-Prototype on TChecker (negated automaton against: the requirement's own automaton `ref`, and the response systems):
-
-| id | workload | clocks | stored before / after | seconds before / after | verdicts |
-|---|---|---|---|---|---|
-| R2 | ref | 2 to 1 | 7,513 / 7,513 | 0.22 / 0.18 | equal |
-| R3 | ref | 3 to 1 | 168,484 / 168,484 | 12.4 / 10.3 | equal |
-| R2-R5 | resp_ok | n to 1 | 79, 117, 155, 193 / same | all under 3 ms (differences are noise) | equal |
-| R2-R5 | resp_bad | n to 1 | 7 / 7 | equal order | equal |
-| F11, F12, F13 | ref | 2 to 1 | 67, 1,688, 87 / same | within noise | equal |
-| R4, R5 | ref | 4, 5 to 1 | timeout both | - | - |
-
-Result: fewer clocks, identical stored states and verdicts on every completed run, time about 17% lower on the one large
-product (R3, single run). The clock reduction is real on the negated bounded-response family and on 16% of random
-negations; the model-checking gain is small and not demonstrated beyond R3.
-
-## 3. Location merging by bisimulation (B, syntactic form)
+## 2. Location merging by bisimulation (B, syntactic form)
 
 Files: `bisim_probe.py`, `bisim_probe.tsv`. The probe computes the coarsest syntactic bisimulation of the exported negated
 automaton (equal accepting mark, invariant, and outgoing (event, guard, resets, class of target)). It is sound for the
@@ -92,7 +60,7 @@ Result: no location of any of the benchmark automata that completed is merged (F
 verified optimizer is already at the syntactic bisimulation fixed point on these inputs. A semantic (zone-based) merge was
 not attempted; these data give no sign that one is needed for the benchmarks.
 
-## 4. Zone-graph structure of the R4 stress workload
+## 3. Zone-graph structure of the R4 stress workload
 
 Files: `zone_probe.py` (graph certificate of `tck-liveness -C graph`, `tck-reach`), `zone_probe.tsv`, `zone_cov.tsv`,
 `make_zone_table.py`, `zone_table.tex`. All counts are TChecker's own (stored states reproduce 70, 890, 92, 47,008).
@@ -112,10 +80,10 @@ Findings:
    the distinct zones.
 4. Most of the blow-up is covered zones: with inclusion subsumption the gap is 2.8x (R2), 6.4x (R3), 14x (R4), against
    13x, 511x and 15,229x with the Couvreur-based algorithm. The headline ratio is a property of that algorithm.
-5. Isolated (section 5): removing the dominated nondeterministic edges gives exactly our counts.
+5. Isolated (section 4): removing the dominated nondeterministic edges gives exactly our counts.
 6. Mean out-degree of the zone graph is similar (1.46 against 1.56 on R2), so it is not a larger branching of the graph.
 
-## 5. Pruning CASAAL's dominated edges (isolating experiment)
+## 4. Pruning CASAAL's dominated edges (isolating experiment)
 
 Files: `prune_casaal.py`, `prune_results.txt`, `prune_R2.xml`..`prune_R4.xml`.
 CASAAL's positive automaton (location acceptance, our export, `-n 0 -all-copy`) has only upper-bound guards and invariants.
