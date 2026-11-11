@@ -419,7 +419,7 @@ End Backward.
 Section Preservation.
 
 Variable A : TBA root.
-Hypothesis Hv : alloc_valid A.
+Variable Hv : alloc_valid A.
 
 Lemma backward_ext :
   forall (rho' : ext_word root),

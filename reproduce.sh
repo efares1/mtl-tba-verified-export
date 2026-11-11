@@ -5,7 +5,8 @@
 #   3. print the assumptions of the main theorems;
 #   4. build the tool mtl2tba;
 #   5. translate the examples of the paper;
-#   6. run the 18 boundary and overlap implementation checks.
+#   6. run the 18 boundary and overlap implementation checks;
+#   7. check the clock-reuse pass (flag -alloc): checker accepts, fewer clocks.
 # Usage:  bash reproduce.sh            (coqc, dune, menhir, ltl2tgba on PATH)
 #         COQC=/path/to/coqc bash reproduce.sh
 # The full evaluation of the paper is described in evaluation/README.md.
@@ -29,6 +30,10 @@ Require Import MTL_to_TBA_Recur.
 Print Assumptions MTL_to_exported_correct_recur_weak_with.
 Print Assumptions MTL_to_exported_correct0_recur_weak_with.
 EOF
+cat >> "$AUD" <<'EOF'
+Require Import MTL_to_TBA_ClockAlloc.
+Print Assumptions MTL_to_exported_alloc_correct_with.
+EOF
 (cd "$ROOT/proof" && $COQC -w -deprecated-missing-stdlib Audit_main.v)
 rm -f "$ROOT"/proof/Audit_main.*
 
@@ -47,3 +52,10 @@ echo "outputs (.xml for UPPAAL, .dot): $OUT"
 
 step "6. Implementation checks (18 boundary and overlap tests)"
 EXE="$EXE" bash "$ROOT/evaluation/run_boundary_tests.sh"
+
+step "7. Clock reuse by liveness (-alloc; Coq: alloc_pass_accepts)"
+F='!([](a1 -> <>[<=5] b1) & [](a2 -> <>[<=5] b2) & [](a3 -> <>[<=5] b3))'
+for A in "" "-alloc"; do
+  "$EXE" -nopdf -v $A -o "alloc$A" "$F" 2> alloc.log | sed "s/^/  [$A] /"
+  grep "clock allocation" alloc.log | sed 's/^/  /' || true
+done

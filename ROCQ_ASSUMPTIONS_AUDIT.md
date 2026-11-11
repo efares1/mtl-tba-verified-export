@@ -28,10 +28,19 @@ libraries; it does not appear in `Print Assumptions` of any principal theorem be
 | `split_accepts`, `split_all_accepts`, `export_guards_conjunctive`, `export_invariants_conjunctive`, `export_all_guards_conjunctive`, `export_all_invariants_conjunctive`, `symbolic_ext_accepts` | this article | `classic`, `functional_extensionality_dep`, `sig_forall_dec` |
 | `MTL_to_exported_correct_with`, `MTL_to_exported_correct0_with`, `MTL_to_exported_all_correct_with` | this article | 4 standard |
 | `MTL_to_exported_correct_recur_weak_with`, `MTL_to_exported_correct0_recur_weak_with` (default front end: recur + weak until) | this article | 4 standard |
+| `allocate_clocks_accepts`, `try_allocate_accepts`, `alloc_pass_accepts`, `optimize_alloc_accepts` (clock reuse by liveness, `MTL_to_TBA_ClockAlloc.v`, opt-in `-alloc`; added 2026-11-11) | this article | 4 standard |
+| `alloc_ok_sound` (the boolean checker implies the four local conditions) | this article | `classic`, `functional_extensionality_dep`, `sig_forall_dec` |
+| `MTL_to_exported_alloc_correct_with` (Spot contract as premise) | this article | 4 standard |
+| `MTL_to_exported_alloc_correct`, `MTL_to_exported_all_alloc_correct` | this article | 4 standard + `LTL_TO_BUCHI_CORRECT` |
 
 Before unification, the earlier translation article's copy additionally depended on
 `IndefiniteDescription.constructive_indefinite_description` (through `functional_choice`) for
 `MTL_to_TBA_correct_with` and six alarm-response theorems; that dependency is gone.
+
+The clock-reuse theorems hold for every certificate producer: the allocation and the liveness sets are arguments
+(`certifier`), the pass returns the automaton unchanged when `alloc_ok` fails, and the colouring in
+`tool/src/alloc.ml` is outside the trusted base for the language guarantee (its output is checked by the extracted
+`alloc_ok`). Clean build of all `proof/*.v` files, `Print Assumptions` and the audit script were rerun on 2026-11-11.
 
 ## Verified versus unverified components
 
