@@ -117,9 +117,9 @@ This subsection documents the ``Independently generated TBAs'' experiment of the
 
 \emph{Generation.} \texttt{graph}: 300 random timed B\"uchi graphs with 6 to 12 locations, 2 to 4 clocks, 3 or 4 events and constants up to 8. \texttt{monitor}: 300 specification-style monitors (response chains with timeouts, periodic events, watchdogs, rate limiters, windows), each with optional clocks reset in lockstep, dead resets, unreachable branches and duplicated or subsumed edges. An input is kept when between 1\% and 95\% of the test words are accepted, so that neither the empty nor the universal language is tested.
 
-\emph{Procedure.} The unmutated extracted optimizer and exporter (\texttt{tba\_opt}) run on each input with the maximal-delay and with the all-copy policy. The optimized TBA and the exported XML are compared with the input by the bounded word test of the main text: 20{,}000 ultimately periodic words, six initial clock valuations per word (the first all zero) shared by both automata, and 60 loop iterations after the warm-up (the default of 12 produced one spurious difference caused by the horizon, see the main text). Acceptance is approximated on the unrolled word, so the test can miss a difference.
+\emph{Procedure.} The unmutated extracted optimizer and exporter (\texttt{tba\_opt}) run on each input with the maximal-delay and with the all-copy policy. The optimized TBA and the exported XML are compared with the input by the bounded word test of the main text: 20{,}000 ultimately periodic words, six initial clock valuations per word (the first all zero) shared by both automata, and 60 loop iterations after the warm-up (the default of 12 produced one spurious difference caused by the horizon, see the main text). Acceptance is approximated on the unrolled word, so the test can miss a difference. Table~\ref{tab:independent} gives the results per family.
 
-\begin{table}[t]
+\begin{table}[H]
 \centering
 \caption{Optimizer and export on 600 independently generated TBAs. Transitions are summed over the inputs; the optimized counts are those of the maximal-delay run (the optimizer is the same for both policies). Runs are all completed runs (two per input); Mism. counts inputs on which the optimized TBA or an exported XML differs from the input on some tested word.}
 \label{tab:independent}
