@@ -111,3 +111,27 @@ does not justify calling that result a fixed point. Per-size intermediate
 records and the exact cap probe are preserved in the dated run artifacts.
 \input{evaluation/synthetic_tba_parameterized_table}
 
+
+\subsection{Optimizer and export on independently generated TBAs}\label{sec:independent-detail}
+This subsection documents the ``Independently generated TBAs'' experiment of the main text (the scripts and per-input results are in \path{evaluation/independent/}). Neither generator uses the MTL translator.
+
+\emph{Generation.} \texttt{graph}: 300 random timed B\"uchi graphs with 6 to 12 locations, 2 to 4 clocks, 3 or 4 events and constants up to 8. \texttt{monitor}: 300 specification-style monitors (response chains with timeouts, periodic events, watchdogs, rate limiters, windows), each with optional clocks reset in lockstep, dead resets, unreachable branches and duplicated or subsumed edges. An input is kept when between 1\% and 95\% of the test words are accepted, so that neither the empty nor the universal language is tested.
+
+\emph{Procedure.} The unmutated extracted optimizer and exporter (\texttt{tba\_opt}) run on each input with the maximal-delay and with the all-copy policy. The optimized TBA and the exported XML are compared with the input by the bounded word test of the main text: 20{,}000 ultimately periodic words, six initial clock valuations per word (the first all zero) shared by both automata, and 60 loop iterations after the warm-up (the default of 12 produced one spurious difference caused by the horizon, see the main text). Acceptance is approximated on the unrolled word, so the test can miss a difference.
+
+\begin{table}[t]
+\centering
+\caption{Optimizer and export on 600 independently generated TBAs. Transitions are summed over the inputs; the optimized counts are those of the maximal-delay run (the optimizer is the same for both policies). Runs are all completed runs (two per input); Mism. counts inputs on which the optimized TBA or an exported XML differs from the input on some tested word.}
+\label{tab:independent}
+\footnotesize\setlength{\tabcolsep}{3pt}\begin{tabular}{lrrrrrrr}
+\toprule
+Family & Inputs & Runs & Trans. in & Trans. out & Reduced & Mism. & \texttt{init\_free} fails \\
+\midrule
+graph & 300 & 600 & 5{,}070 & 3{,}586 & 285 & 0 & 279 \\
+monitor & 300 & 600 & 2{,}492 & 1{,}930 & 249 & 0 & 144 \\
+total & 600 & 1{,}200 & 7{,}562 & 5{,}516 & 534 & 0 & 423 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The number of locations is unchanged by the optimizer on these inputs (2{,}421 and 1{,}130). The \path{init_free} column counts inputs for which the check fails; the bounded word test then compares the languages from the sampled initial valuations, which include the all-zero one, but the zero-initialized guarantee of the theorems does not cover these inputs. The inputs are our own, and the test is bounded; it is evidence for the extracted code on these inputs, not a proof.
