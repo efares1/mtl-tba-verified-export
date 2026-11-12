@@ -9,7 +9,7 @@
 (* operators (neg_MUle, ...).                                             *)
 (* ====================================================================== *)
 
-Require Import List Reals Lra Classical.
+Require Import List Reals Lra.
 Require Import MTL_to_TBA_Shared_Clock_Derived_Strict_Direct_Core.
 
 Fixpoint neg (f : mtl) : mtl :=
@@ -34,45 +34,61 @@ Fixpoint neg (f : mtl) : mtl :=
   end.
 
 (* Duality of Until and Release, for any range of witnesses [L] and any
-   range [Rg] of intermediate positions. *)
+   range [Rg] of intermediate positions.  The propositions involved are
+   assumed decidable (they are, for MTL: [msat_dec]); no excluded middle is
+   used. *)
 Lemma release_neg_until :
   forall (L Q : nat -> Prop) (Rg : nat -> nat -> Prop) (P : nat -> Prop),
+    (forall j, {Q j} + {~ Q j}) ->
+    (forall k, {P k} + {~ P k}) ->
+    (forall j, {exists k, Rg j k /\ ~ P k} + {~ exists k, Rg j k /\ ~ P k}) ->
     (forall j, L j -> ~ Q j \/ exists k, Rg j k /\ ~ P k) <->
     ~ (exists j, L j /\ Q j /\ forall k, Rg j k -> P k).
 Proof.
-  intros L Q Rg P; split.
+  intros L Q Rg P DQ DP DE; split.
   - intros H [j [Lj [Qj Hk]]].
     destruct (H j Lj) as [nQ | [k [Rk nP]]]; auto.
   - intros H j Lj.
-    destruct (classic (Q j)) as [Qj | nQ]; [|left; exact nQ].
-    right. apply NNPP. intro Hn. apply H. exists j. repeat split; auto.
-    intros k Rk. apply NNPP. intro nPk. apply Hn. exists k. auto.
+    destruct (DQ j) as [Qj | nQ]; [|left; exact nQ].
+    right. destruct (DE j) as [E | NE]; [exact E|].
+    exfalso. apply H. exists j. repeat split; auto.
+    intros k Rk. destruct (DP k) as [Pk | nPk]; [exact Pk|].
+    exfalso. apply NE. exists k. auto.
 Qed.
 
 Lemma until_neg_release :
   forall (L Q : nat -> Prop) (Rg : nat -> nat -> Prop) (P : nat -> Prop),
+    (forall j, {Q j} + {~ Q j}) ->
+    (forall j, {exists k, Rg j k /\ P k} + {~ exists k, Rg j k /\ P k}) ->
+    {exists j, L j /\ ~ Q j /\ forall k, Rg j k -> ~ P k} +
+    {~ exists j, L j /\ ~ Q j /\ forall k, Rg j k -> ~ P k} ->
     (exists j, L j /\ ~ Q j /\ forall k, Rg j k -> ~ P k) <->
     ~ (forall j, L j -> Q j \/ exists k, Rg j k /\ P k).
 Proof.
-  intros L Q Rg P; split.
+  intros L Q Rg P DQ DE DX; split.
   - intros [j [Lj [nQ Hk]]] H.
     destruct (H j Lj) as [Qj | [k [Rk Pk]]]; [contradiction|].
     exact (Hk k Rk Pk).
-  - intros H. apply NNPP. intro Hn. apply H. intros j Lj.
-    destruct (classic (Q j)) as [Qj | nQ]; [left; exact Qj|].
-    right. apply NNPP. intro Hk. apply Hn. exists j. repeat split; auto.
-    intros k Rk Pk. apply Hk. exists k. auto.
+  - intros H. destruct DX as [X | NX]; [exact X|].
+    exfalso. apply H. intros j Lj.
+    destruct (DQ j) as [Qj | nQ]; [left; exact Qj|].
+    destruct (DE j) as [E | NE]; [right; exact E|].
+    exfalso. apply NX. exists j. repeat split; auto.
+    intros k Rk Pk. apply NE. exists k. auto.
 Qed.
 
 (* The same, with a witness range given by two conditions, as in the
    hatted operators (position and time). *)
 Lemma release_neg_until2 :
   forall (L1 L2 Q : nat -> Prop) (Rg : nat -> nat -> Prop) (P : nat -> Prop),
+    (forall j, {Q j} + {~ Q j}) ->
+    (forall k, {P k} + {~ P k}) ->
+    (forall j, {exists k, Rg j k /\ ~ P k} + {~ exists k, Rg j k /\ ~ P k}) ->
     (forall j, L1 j -> L2 j -> ~ Q j \/ exists k, Rg j k /\ ~ P k) <->
     ~ (exists j, L1 j /\ L2 j /\ Q j /\ forall k, Rg j k -> P k).
 Proof.
-  intros L1 L2 Q Rg P.
-  pose proof (release_neg_until (fun j => L1 j /\ L2 j) Q Rg P) as H.
+  intros L1 L2 Q Rg P DQ DP DE.
+  pose proof (release_neg_until (fun j => L1 j /\ L2 j) Q Rg P DQ DP DE) as H.
   split.
   - intros Hr [j [L1j [L2j [Qj Hk]]]].
     apply (proj1 H); [intros j' [A B]; exact (Hr j' A B)|].
@@ -84,11 +100,19 @@ Qed.
 
 Lemma until_neg_release2 :
   forall (L1 L2 Q : nat -> Prop) (Rg : nat -> nat -> Prop) (P : nat -> Prop),
+    (forall j, {Q j} + {~ Q j}) ->
+    (forall j, {exists k, Rg j k /\ P k} + {~ exists k, Rg j k /\ P k}) ->
+    {exists j, L1 j /\ L2 j /\ ~ Q j /\ forall k, Rg j k -> ~ P k} +
+    {~ exists j, L1 j /\ L2 j /\ ~ Q j /\ forall k, Rg j k -> ~ P k} ->
     (exists j, L1 j /\ L2 j /\ ~ Q j /\ forall k, Rg j k -> ~ P k) <->
     ~ (forall j, L1 j -> L2 j -> Q j \/ exists k, Rg j k /\ P k).
 Proof.
-  intros L1 L2 Q Rg P.
-  pose proof (until_neg_release (fun j => L1 j /\ L2 j) Q Rg P) as H.
+  intros L1 L2 Q Rg P DQ DE DX.
+  assert (DX' : {exists j, (L1 j /\ L2 j) /\ ~ Q j /\ forall k, Rg j k -> ~ P k} +
+                {~ exists j, (L1 j /\ L2 j) /\ ~ Q j /\ forall k, Rg j k -> ~ P k}).
+  { destruct DX as [X | N]; [left; destruct X as [j [A [B C]]]; exists j; tauto|].
+    right. intros [j [[A B] C]]. apply N. exists j. tauto. }
+  pose proof (until_neg_release (fun j => L1 j /\ L2 j) Q Rg P DQ DE DX') as H.
   split.
   - intros [j [L1j [L2j [nQ Hk]]]] Hr.
     apply (proj1 H); [exists j; repeat split; auto|].
@@ -107,48 +131,49 @@ Proof.
   - tauto.
   - tauto.
   - split; [intros H Hn; exact (Hn H)|].
-    intros H. apply NNPP. exact H.
-  - rewrite IHf1, IHf2. split; [tauto|]. apply not_and_or.
-  - rewrite IHf1, IHf2. split; [tauto|]. apply not_or_and.
+    intros H. destruct (Nat.eq_dec (tw_action w i) a); [assumption | contradiction].
+  - rewrite IHf1, IHf2. split; [tauto|].
+    destruct (msat_dec w f1 i); [|tauto]. destruct (msat_dec w f2 i); tauto.
+  - rewrite IHf1, IHf2. tauto.
   - apply IHf.
   - setoid_rewrite IHf1. setoid_rewrite IHf2.
-    exact (release_neg_until (fun j => (i <= j)%nat) (fun j => msat w j f2)
-             (fun j k => (i <= k < j)%nat) (fun k => msat w k f1)).
+    refine (release_neg_until (fun j => (i <= j)%nat) (fun j => msat w j f2)
+             (fun j k => (i <= k < j)%nat) (fun k => msat w k f1) _ _ _); dec_auto.
   - setoid_rewrite IHf1. setoid_rewrite IHf2.
-    exact (until_neg_release (fun j => (i <= j)%nat) (fun j => msat w j f2)
-             (fun j k => (i <= k < j)%nat) (fun k => msat w k f1)).
+    refine (until_neg_release (fun j => (i <= j)%nat) (fun j => msat w j f2)
+             (fun j k => (i <= k < j)%nat) (fun k => msat w k f1) _ _ _); dec_auto.
   - setoid_rewrite IHf1. setoid_rewrite IHf2.
-    exact (release_neg_until2 (fun j => (i < j)%nat)
+    refine (release_neg_until2 (fun j => (i < j)%nat)
              (fun j => tw_time w j - tw_time w i <= r) (fun j => msat w j f2)
-             (fun j k => (i < k < j)%nat) (fun k => msat w k f1)).
+             (fun j k => (i < k < j)%nat) (fun k => msat w k f1) _ _ _); dec_auto.
   - setoid_rewrite IHf1. setoid_rewrite IHf2.
-    exact (release_neg_until2 (fun j => (i < j)%nat)
+    refine (release_neg_until2 (fun j => (i < j)%nat)
              (fun j => r <= tw_time w j - tw_time w i) (fun j => msat w j f2)
-             (fun j k => (i < k < j)%nat) (fun k => msat w k f1)).
+             (fun j k => (i < k < j)%nat) (fun k => msat w k f1) _ _ _); dec_auto.
   - setoid_rewrite IHf1. setoid_rewrite IHf2.
-    exact (until_neg_release2 (fun j => (i < j)%nat)
+    refine (until_neg_release2 (fun j => (i < j)%nat)
              (fun j => tw_time w j - tw_time w i <= r) (fun j => msat w j f2)
-             (fun j k => (i < k < j)%nat) (fun k => msat w k f1)).
+             (fun j k => (i < k < j)%nat) (fun k => msat w k f1) _ _ _); dec_auto.
   - setoid_rewrite IHf1. setoid_rewrite IHf2.
-    exact (until_neg_release2 (fun j => (i < j)%nat)
+    refine (until_neg_release2 (fun j => (i < j)%nat)
              (fun j => r <= tw_time w j - tw_time w i) (fun j => msat w j f2)
-             (fun j k => (i < k < j)%nat) (fun k => msat w k f1)).
+             (fun j k => (i < k < j)%nat) (fun k => msat w k f1) _ _ _); dec_auto.
   - setoid_rewrite IHf1. setoid_rewrite IHf2.
-    exact (release_neg_until2 (fun j => (i < j)%nat)
+    refine (release_neg_until2 (fun j => (i < j)%nat)
              (fun j => tw_time w j - tw_time w i < r) (fun j => msat w j f2)
-             (fun j k => (i < k < j)%nat) (fun k => msat w k f1)).
+             (fun j k => (i < k < j)%nat) (fun k => msat w k f1) _ _ _); dec_auto.
   - setoid_rewrite IHf1. setoid_rewrite IHf2.
-    exact (release_neg_until2 (fun j => (i < j)%nat)
+    refine (release_neg_until2 (fun j => (i < j)%nat)
              (fun j => r < tw_time w j - tw_time w i) (fun j => msat w j f2)
-             (fun j k => (i < k < j)%nat) (fun k => msat w k f1)).
+             (fun j k => (i < k < j)%nat) (fun k => msat w k f1) _ _ _); dec_auto.
   - setoid_rewrite IHf1. setoid_rewrite IHf2.
-    exact (until_neg_release2 (fun j => (i < j)%nat)
+    refine (until_neg_release2 (fun j => (i < j)%nat)
              (fun j => tw_time w j - tw_time w i < r) (fun j => msat w j f2)
-             (fun j k => (i < k < j)%nat) (fun k => msat w k f1)).
+             (fun j k => (i < k < j)%nat) (fun k => msat w k f1) _ _ _); dec_auto.
   - setoid_rewrite IHf1. setoid_rewrite IHf2.
-    exact (until_neg_release2 (fun j => (i < j)%nat)
+    refine (until_neg_release2 (fun j => (i < j)%nat)
              (fun j => r < tw_time w j - tw_time w i) (fun j => msat w j f2)
-             (fun j k => (i < k < j)%nat) (fun k => msat w k f1)).
+             (fun j k => (i < k < j)%nat) (fun k => msat w k f1) _ _ _); dec_auto.
 Qed.
 
 Theorem neg_well_formed :

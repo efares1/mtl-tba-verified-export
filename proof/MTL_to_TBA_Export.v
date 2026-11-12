@@ -37,7 +37,6 @@
 *)
 
 Require Import Arith Lia List Bool Reals Lra.
-Require Import Classical ClassicalDescription.
 Require Import FunctionalExtensionality.
 Require Import MTL_to_TBA_Shared_Clock_Derived_Strict_Direct_Core.
 Require Import EncodingCorrect_Shared_Clock_Derived_Strict_Direct_Proof.
@@ -119,6 +118,37 @@ Definition dtrans_enabled (rho : ext_word root) (i : nat) (t : dtrans) : Prop :=
   label_holds (dt_label t) (letter_of rho i) /\
   dguard_holds (at_event rho i) (dt_guard t) /\
   resets_match rho i (dt_resets t).
+
+(* The enabledness of a transition is decidable (no axiom turning a
+   proposition into a boolean is needed to choose a transition). *)
+Definition dc_holds_dec (v : valuation) (c : dconstraint) :
+  {dc_holds v c} + {~ dc_holds v c}.
+Proof.
+  destruct c as [k|x y b]; simpl; [|apply Rle_dec].
+  unfold single_holds.
+  destruct (guard_comparison k);
+    first [apply Rle_dec | apply Rlt_dec | apply Req_EM_T].
+Defined.
+
+Definition dguard_holds_dec (v : valuation) (g : dguard) :
+  {dguard_holds v g} + {~ dguard_holds v g}.
+Proof.
+  unfold dguard_holds.
+  assert (D : forall c, {conj_holds v c} + {~ conj_holds v c})
+    by (intro c; apply Forall_dec; apply dc_holds_dec).
+  destruct (Exists_dec _ g D) as [H|H].
+  - left. apply Exists_exists in H. exact H.
+  - right. intro H'. apply H. apply Exists_exists. exact H'.
+Defined.
+
+Definition dtrans_enabled_dec (rho : ext_word root) (i : nat) (t : dtrans) :
+  {dtrans_enabled rho i t} + {~ dtrans_enabled rho i t}.
+Proof.
+  unfold dtrans_enabled.
+  destruct (label_holds_dec (dt_label t) (letter_of rho i)); [|right; tauto].
+  destruct (dguard_holds_dec (at_event rho i) (dt_guard t)); [|right; tauto].
+  destruct (resets_match_dec rho i (dt_resets t)); [left | right]; tauto.
+Defined.
 
 Definition dinv_holds (I : option (list uinv)) (v : valuation) : Prop :=
   match I with
@@ -1924,7 +1954,12 @@ Proof.
     set (P := fun i s (t : dtrans) =>
                 dt_src t = s /\ red p q (dt_tgt t) = run' (S i) /\
                 dtrans_enabled rho i t).
-    set (step := fun i s => match first_such (P i s) (dta_trans D) with
+    assert (P_dec : forall i s t, {P i s t} + {~ P i s t}).
+    { intros i s t. unfold P.
+      destruct (Nat.eq_dec (dt_src t) s); [|right; tauto].
+      destruct (Nat.eq_dec (red p q (dt_tgt t)) (run' (S i))); [|right; tauto].
+      destruct (dtrans_enabled_dec rho i t); [left | right]; tauto. }
+    set (step := fun i s => match first_such (P_dec i s) (dta_trans D) with
                             | Some t => Some (dt_tgt t) | None => None end).
     set (run := build_run step (dta_init D)).
     assert (Hex : forall i, red p q (run i) = run' i ->
@@ -1943,7 +1978,8 @@ Proof.
     assert (Hrun : forall i, red p q (run i) = run' i).
     { induction i as [|i IH].
       - simpl. rewrite Hinit'. reflexivity.
-      - destruct (first_such_spec (Hex i IH)) as [t [Hf [_ [_ [Hd _]]]]].
+      - destruct (@first_such_spec _ _ (P_dec i (run i)) _ (Hex i IH))
+          as [t [Hf [_ [_ [Hd _]]]]].
         change (run (S i)) with
           (match step i (run i) with Some s => s | None => dta_init D end).
         unfold step. rewrite Hf. exact Hd. }
@@ -1956,7 +1992,8 @@ Proof.
       * split.
         -- apply (Hinv_red i (run i)). rewrite (Hrun i).
            exact (proj1 (proj2 (Hsteps' i))).
-        -- destruct (first_such_spec (Hex i (Hrun i))) as [t [Hf [Ht [Hs [_ Hen]]]]].
+        -- destruct (@first_such_spec _ _ (P_dec i (run i)) _ (Hex i (Hrun i)))
+             as [t [Hf [Ht [Hs [_ Hen]]]]].
            exists t. split; [exact Ht|]. split; [exact Hs|].
            split; [|exact Hen].
            change (run (S i)) with

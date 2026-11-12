@@ -39,7 +39,6 @@
 *)
 
 Require Import Arith Lia List Bool Reals Lra.
-Require Import Classical ClassicalDescription.
 Require Import MTL_to_TBA_Shared_Clock_Derived_Strict_Direct_Core.
 Require Import EncodingCorrect_Shared_Clock_Derived_Strict_Direct_Proof.
 Require Import MTL_to_TBA_Invariants.
@@ -1292,8 +1291,25 @@ Proof.
                 bt_source t = run i /\ bt_target t = run (S i) /\
                 tba_transition_enabled rho i (prune A x t) /\
                 In x (bt_resets t)).
+    (* [P i] is decidable: the enabledness of a transition is *)
+    assert (P_dec : forall i, {P i} + {~ P i}).
+    { intro i. unfold P.
+      assert (D : forall t, {bt_source t = run i /\ bt_target t = run (S i) /\
+                             tba_transition_enabled rho i (prune A x t) /\
+                             In x (bt_resets t)} +
+                            {~ (bt_source t = run i /\ bt_target t = run (S i) /\
+                                tba_transition_enabled rho i (prune A x t) /\
+                                In x (bt_resets t))}).
+      { intro t.
+        destruct (Nat.eq_dec (bt_source t) (run i)); [|right; tauto].
+        destruct (Nat.eq_dec (bt_target t) (run (S i))); [|right; tauto].
+        destruct (tba_transition_enabled_dec rho i (prune A x t)); [|right; tauto].
+        destruct (In_dec (@clock_eq_dec root) x (bt_resets t)); [left | right]; tauto. }
+      destruct (Exists_dec _ (tba_transitions A) D) as [H|H].
+      - left. apply Exists_exists in H. exact H.
+      - right. intro H'. apply H. apply Exists_exists. exact H'. }
     set (r := fun i => if dead A x (run (S i))
-                       then decide_b (P i)
+                       then (if P_dec i then true else false)
                        else ew_reset rho i x).
     exists (reset_x x r rho).
     split; [exact Hb|]. split; [exact (reset_x_consistent x r Hcc)|].
@@ -1325,14 +1341,14 @@ Proof.
       - intro Htest. simpl. rewrite clock_eqb_refl.
         exact (Hval t Ht Hs Htest). }
     destruct (dead A x (run (S i))) eqn:Hd.
-    + destruct (classic (P i)) as [HP|HnP].
+    + destruct (P_dec i) as [HP|HnP].
       * assert (HPi := HP). destruct HP as [t [Ht [Hs [Htg [[Hlab [Hguard Hres]] HxZ]]]]].
         exists t. split; [exact Ht|]. split; [exact Hs|]. split; [exact Htg|].
         rewrite prune_label in Hlab. rewrite prune_guard in Hguard.
         split; [exact Hlab|]. split; [exact (Hguard_of t Ht Hs Hguard)|].
         intro c. simpl. destruct (clock_eqb c x) eqn:E.
         -- apply clock_eqb_true in E. subst c. unfold r. rewrite Hd.
-           rewrite (proj2 (decide_b_spec (P i)) HPi).
+           destruct (P_dec i) as [_|HnP']; [|exfalso; exact (HnP' HPi)].
            split; [intros _; exact HxZ | reflexivity].
         -- apply clock_eqb_false in E.
            rewrite (Hres c), prune_resets.
@@ -1343,7 +1359,7 @@ Proof.
         split; [exact Hlab|]. split; [exact (Hguard_of t0 Hin0 Hsrc Hguard)|].
         intro c. simpl. destruct (clock_eqb c x) eqn:E.
         -- apply clock_eqb_true in E. subst c. unfold r. rewrite Hd.
-           destruct (decide_b (P i)) eqn:Ed; [exfalso; exact (HnP (proj1 (decide_b_spec (P i)) Ed))|].
+           destruct (P_dec i) as [HP'|_]; [exfalso; exact (HnP HP')|].
            split; [discriminate|]. intro HxZ. exfalso. apply HnP.
            exists t0. split; [exact Hin0|]. split; [exact Hsrc|].
            split; [exact Hdst|]. split; [|exact HxZ].
@@ -1956,7 +1972,12 @@ Proof.
     set (P := fun i s (t : tba_transition root) =>
                 bt_source t = s /\ red p q (bt_target t) = run' (S i) /\
                 tba_transition_enabled rho i t).
-    set (step := fun i s => match first_such (P i s) (tba_transitions A) with
+    assert (P_dec : forall i s t, {P i s t} + {~ P i s t}).
+    { intros i s t. unfold P.
+      destruct (Nat.eq_dec (bt_source t) s); [|right; tauto].
+      destruct (Nat.eq_dec (red p q (bt_target t)) (run' (S i))); [|right; tauto].
+      destruct (tba_transition_enabled_dec rho i t); [left | right]; tauto. }
+    set (step := fun i s => match first_such (P_dec i s) (tba_transitions A) with
                             | Some t => Some (bt_target t) | None => None end).
     set (run := build_run step (tba_init A)).
     (* the chosen transition exists at every step *)
@@ -1976,7 +1997,8 @@ Proof.
     assert (Hrun : forall i, red p q (run i) = run' i).
     { induction i as [|i IH].
       - simpl. rewrite Hinit'. reflexivity.
-      - destruct (first_such_spec (Hex i IH)) as [t [Hf [_ [_ [Hd _]]]]].
+      - destruct (@first_such_spec _ _ (P_dec i (run i)) _ (Hex i IH))
+          as [t [Hf [_ [_ [Hd _]]]]].
         change (run (S i)) with
           (match step i (run i) with Some s => s | None => tba_init A end).
         unfold step. rewrite Hf. exact Hd. }
@@ -1986,7 +2008,8 @@ Proof.
     + intro i. split.
       * destruct (Nat.eq_dec (run i) q) as [Eq|Nq]; [rewrite Eq; exact Hq|].
         rewrite (Hrun_q i Nq). exact (proj1 (Hsteps' i)).
-      * destruct (first_such_spec (Hex i (Hrun i))) as [t [Hf [Ht [Hs [_ Hen]]]]].
+      * destruct (@first_such_spec _ _ (P_dec i (run i)) _ (Hex i (Hrun i)))
+          as [t [Hf [Ht [Hs [_ Hen]]]]].
         exists t. split; [exact Ht|]. split; [exact Hs|].
         split; [|exact Hen].
         change (run (S i)) with

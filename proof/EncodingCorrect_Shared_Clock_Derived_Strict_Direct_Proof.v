@@ -35,8 +35,7 @@
 *)
 
 Require Import
-  Arith Lia List Bool Reals Lra
-  Classical ClassicalDescription.
+  Arith Lia List Bool Reals Lra.
 
 Require Import MTL_to_TBA_Shared_Clock_Derived_Strict_Direct_Core.
 
@@ -47,8 +46,10 @@ Set Implicit Arguments.
 Unset Strict Implicit.
 
 
-Definition Rle_dec' x y : x <= y \/ ~(x <= y) := classic (x <= y).
-Definition Rlt_dec' x y : x < y \/ ~(x < y) := classic (x < y).
+Definition Rle_dec' x y : x <= y \/ ~(x <= y) :=
+  match Rle_dec x y with left h => or_introl h | right h => or_intror h end.
+Definition Rlt_dec' x y : x < y \/ ~(x < y) :=
+  match Rlt_dec x y with left h => or_introl h | right h => or_intror h end.
 
 (* ====================================================================== *)
 (* 1. Structural occurrence lookup                                       *)
@@ -273,27 +274,81 @@ Definition rgt_residual
     msat w j q \/
     exists k, (i <= k < j)%nat /\ msat w k p.
 
-Definition decide (P : Prop) : bool := decide_b P.
+(* The canonical reset policy below decides the truth of MTL formulas on
+   an infinite timed word.  These propositions are decidable: the semantics
+   of MTL is decidable from the axiom [sig_forall_dec] of the library of
+   real numbers ([msat_dec]), and so are the residual obligations below.
+   [decide] turns such a decision into a boolean; no proposition is turned
+   into data by an axiom. *)
+
+Definition decide {P : Prop} (H : {P} + {~ P}) : bool := if H then true else false.
 
 Lemma decide_true :
-  forall P, decide P = true <-> P.
-Proof. intro P. exact (decide_b_spec P). Qed.
+  forall P (H : {P} + {~ P}), decide H = true <-> P.
+Proof.
+  intros P H. unfold decide. destruct H; split; intro K;
+    solve [reflexivity | assumption | discriminate | contradiction].
+Qed.
+
+Definition ule_residual_dec (w : timed_word) (i : nat) (v d : R) (p q : mtl) :
+  {ule_residual w i v d p q} + {~ ule_residual w i v d p q}.
+Proof.
+  unfold ule_residual. apply lpo_exists. intro j.
+  destruct (le_dec i j); [|dec_finish].
+  destruct (Rle_dec (v + elapsed w i j) d); [|dec_finish].
+  destruct (msat_dec w q j); [|dec_finish].
+  destruct (@forall_range_dec (fun k => msat w k p) (fun k => msat_dec w p k) i j);
+    dec_finish.
+Defined.
+
+Definition ult_residual_dec (w : timed_word) (i : nat) (v d : R) (p q : mtl) :
+  {ult_residual w i v d p q} + {~ ult_residual w i v d p q}.
+Proof.
+  unfold ult_residual. apply lpo_exists. intro j.
+  destruct (le_dec i j); [|dec_finish].
+  destruct (Rlt_dec (v + elapsed w i j) d); [|dec_finish].
+  destruct (msat_dec w q j); [|dec_finish].
+  destruct (@forall_range_dec (fun k => msat w k p) (fun k => msat_dec w p k) i j);
+    dec_finish.
+Defined.
+
+Definition rge_residual_dec (w : timed_word) (i : nat) (v d : R) (p q : mtl) :
+  {rge_residual w i v d p q} + {~ rge_residual w i v d p q}.
+Proof.
+  unfold rge_residual. apply lpo_forall. intro j.
+  destruct (le_dec i j); [|left; tauto].
+  destruct (Rle_dec d (v + elapsed w i j)); [|left; tauto].
+  destruct (msat_dec w q j); [left; tauto|].
+  destruct (@exists_range_dec (fun k => msat w k p) (fun k => msat_dec w p k) i j);
+    dec_finish.
+Defined.
+
+Definition rgt_residual_dec (w : timed_word) (i : nat) (v d : R) (p q : mtl) :
+  {rgt_residual w i v d p q} + {~ rgt_residual w i v d p q}.
+Proof.
+  unfold rgt_residual. apply lpo_forall. intro j.
+  destruct (le_dec i j); [|left; tauto].
+  destruct (Rlt_dec d (v + elapsed w i j)); [|left; tauto].
+  destruct (msat_dec w q j); [left; tauto|].
+  destruct (@exists_range_dec (fun k => msat w k p) (fun k => msat_dec w p k) i j);
+    dec_finish.
+Defined.
 
 Lemma decide_false :
-  forall P, decide P = false <-> ~ P.
+  forall P (D : {P} + {~ P}), decide D = false <-> ~ P.
 Proof.
-  intro P. pose proof (decide_true P) as HP.
-  destruct (decide P); split; intro H; try reflexivity; try discriminate.
+  intros P D. pose proof (decide_true D) as HP.
+  destruct (decide D); split; intro H; try reflexivity; try discriminate.
   - exfalso. apply H. apply HP. reflexivity.
   - intro Hp. apply HP in Hp. discriminate.
 Qed.
 
 Lemma negb_decide_false_elim :
-  forall P : Prop, negb (decide P) = false -> P.
+  forall (P : Prop) (D : {P} + {~ P}), negb (decide D) = false -> P.
 Proof.
-  intros P Hneg.
-  destruct (decide P) eqn:Hdec.
-  - apply (proj1 (@decide_true P)).
+  intros P D Hneg.
+  destruct (decide D) eqn:Hdec.
+  - apply (proj1 (@decide_true P D)).
     exact Hdec.
   - simpl in Hneg. discriminate.
 Qed.
@@ -330,40 +385,36 @@ Definition reset_policy
     (x : mtl) (i : nat) (v : R) : bool :=
   match x with
   | MUhatLe d p q =>
-      negb (decide
-        (v <= d /\
-         ule_residual w i v d p q /\
-         ~ msat w i q))
+      negb (decide (and_dec (Rle_dec v d)
+                     (and_dec (ule_residual_dec w i v d p q)
+                              (not_dec (msat_dec w q i)))))
 
   | MUhatGe d p q =>
-      decide (msat w i (MUhatGe d p q))
+      decide (msat_dec w (MUhatGe d p q) i)
 
   | MRhatLe d p q =>
-      decide (msat w i (MRhatLe d p q))
+      decide (msat_dec w (MRhatLe d p q) i)
 
   | MRhatGe d p q =>
-      negb (decide
-        (v < d /\
-         rge_residual w i v d p q /\
-         ~ msat w i p))
+      negb (decide (and_dec (Rlt_dec v d)
+                     (and_dec (rge_residual_dec w i v d p q)
+                              (not_dec (msat_dec w p i)))))
 
   | MUhatLt d p q =>
-      negb (decide
-        (v < d /\
-         ult_residual w i v d p q /\
-         ~ msat w i q))
+      negb (decide (and_dec (Rlt_dec v d)
+                     (and_dec (ult_residual_dec w i v d p q)
+                              (not_dec (msat_dec w q i)))))
 
   | MUhatGt d p q =>
-      decide (msat w i (MUhatGt d p q))
+      decide (msat_dec w (MUhatGt d p q) i)
 
   | MRhatLt d p q =>
-      decide (msat w i (MRhatLt d p q))
+      decide (msat_dec w (MRhatLt d p q) i)
 
   | MRhatGt d p q =>
-      negb (decide
-        (v <= d /\
-         rgt_residual w i v d p q /\
-         ~ msat w i p))
+      negb (decide (and_dec (Rle_dec v d)
+                     (and_dec (rgt_residual_dec w i v d p q)
+                              (not_dec (msat_dec w p i)))))
 
   | _ => true
   end.
@@ -1430,7 +1481,7 @@ Proof.
 Qed.
 
 Lemma first_occurrence_bounded :
-  forall (P : nat -> Prop) start stop,
+  forall (P : nat -> Prop) (D : forall n, {P n} + {~ P n}) start stop,
     (start <= stop)%nat ->
     P stop ->
     exists m,
@@ -1438,12 +1489,11 @@ Lemma first_occurrence_bounded :
       P m /\
       (forall k, (start <= k < m)%nat -> ~ P k).
 Proof.
-  intros P start stop.
+  intros P D start stop.
   revert start.
   induction stop using (well_founded_induction lt_wf).
   intros start Hle HP.
-  destruct (classic
-    (exists k : nat, (start <= k < stop)%nat /\ P k))
+  destruct (@exists_range_dec P D start stop)
     as [Hex | Hnone].
   - destruct Hex as [k [[Hsk Hks] HPk]].
     destruct (H k Hks start Hsk HPk)
@@ -1547,6 +1597,15 @@ Proof.
       discriminate.
 Qed.
 
+(* Whether an event occurs after position [i] is decidable when the event
+   is (limited principle of omniscience). *)
+Definition event_after_dec (E : nat -> Prop) (D : forall n, {E n} + {~ E n}) (i : nat) :
+  {exists r, (S i <= r)%nat /\ E r} + {~ exists r, (S i <= r)%nat /\ E r}.
+Proof.
+  apply lpo_exists. intro r.
+  destruct (le_dec (S i) r); [|dec_finish]. destruct (D r); dec_finish.
+Defined.
+
 Definition uhatge_event
     (root : mtl) (w : timed_word) (path : Path)
     (d : R) (p q : mtl) (n : nat) : Prop :=
@@ -1556,17 +1615,35 @@ Definition uhatge_event
     msat w m q /\
     (forall k, (n <= k < m)%nat -> msat w k p).
 
+Definition uhatge_event_dec
+    (root : mtl) (w : timed_word) (path : Path)
+    (d : R) (p q : mtl) (n : nat) :
+  {uhatge_event root w path d p q n} + {~ uhatge_event root w path d p q n} :=
+  and_dec (Rle_dec d (canonical_val root w ((MUhatGe d p q)) n)) (msat_dec w (MU p q) n).
+
 Definition rhatle_event
     (root : mtl) (w : timed_word) (path : Path)
     (d : R) (p q : mtl) (n : nat) : Prop :=
   d < canonical_val root w ((MRhatLe d p q)) n \/
   (msat w n p /\ msat w n q).
 
+Definition rhatle_event_dec
+    (root : mtl) (w : timed_word) (path : Path)
+    (d : R) (p q : mtl) (n : nat) :
+  {rhatle_event root w path d p q n} + {~ rhatle_event root w path d p q n} :=
+  or_dec (Rlt_dec d (canonical_val root w ((MRhatLe d p q)) n)) (and_dec (msat_dec w p n) (msat_dec w q n)).
+
 Definition rhatge_event
     (root : mtl) (w : timed_word) (path : Path)
     (d : R) (p q : mtl) (n : nat) : Prop :=
   msat w n (MR p q) \/
   (canonical_val root w ((MRhatGe d p q)) n < d /\ msat w n p).
+
+Definition rhatge_event_dec
+    (root : mtl) (w : timed_word) (path : Path)
+    (d : R) (p q : mtl) (n : nat) :
+  {rhatge_event root w path d p q n} + {~ rhatge_event root w path d p q n} :=
+  or_dec (msat_dec w (MR p q) n) (and_dec (Rlt_dec (canonical_val root w ((MRhatGe d p q)) n) d) (msat_dec w p n)).
 
 
 Lemma policy_UhatLt_preserve_inv :
@@ -1627,17 +1704,35 @@ Definition uhatgt_event
     msat w m q /\
     (forall k, (n <= k < m)%nat -> msat w k p).
 
+Definition uhatgt_event_dec
+    (root : mtl) (w : timed_word) (path : Path)
+    (d : R) (p q : mtl) (n : nat) :
+  {uhatgt_event root w path d p q n} + {~ uhatgt_event root w path d p q n} :=
+  and_dec (Rlt_dec d (canonical_val root w ((MUhatGt d p q)) n)) (msat_dec w (MU p q) n).
+
 Definition rhatlt_event
     (root : mtl) (w : timed_word) (path : Path)
     (d : R) (p q : mtl) (n : nat) : Prop :=
   d <= canonical_val root w ((MRhatLt d p q)) n \/
   (msat w n p /\ msat w n q).
 
+Definition rhatlt_event_dec
+    (root : mtl) (w : timed_word) (path : Path)
+    (d : R) (p q : mtl) (n : nat) :
+  {rhatlt_event root w path d p q n} + {~ rhatlt_event root w path d p q n} :=
+  or_dec (Rle_dec d (canonical_val root w ((MRhatLt d p q)) n)) (and_dec (msat_dec w p n) (msat_dec w q n)).
+
 Definition rhatgt_event
     (root : mtl) (w : timed_word) (path : Path)
     (d : R) (p q : mtl) (n : nat) : Prop :=
   msat w n (MR p q) \/
   (canonical_val root w ((MRhatGt d p q)) n <= d /\ msat w n p).
+
+Definition rhatgt_event_dec
+    (root : mtl) (w : timed_word) (path : Path)
+    (d : R) (p q : mtl) (n : nat) :
+  {rhatgt_event root w path d p q n} + {~ rhatgt_event root w path d p q n} :=
+  or_dec (msat_dec w (MR p q) n) (and_dec (Rle_dec (canonical_val root w ((MRhatGt d p q)) n) d) (msat_dec w p n)).
 
 (* ---------------------------------------------------------------------- *)
 (* U <=                                                                   *)
@@ -1665,7 +1760,7 @@ Proof.
 
   destruct
     (@first_occurrence_bounded
-       (fun n => msat w n q) (S i) j HSj Hq)
+       (fun n => msat w n q) (fun n => msat_dec w q n) (S i) j HSj Hq)
     as [j0 [[HSj0 Hj0j] [Hq0 Hnoq]]].
 
   assert (Hbound0 : elapsed w i j0 <= d).
@@ -1889,7 +1984,7 @@ Proof.
           - lia.
         }
 
-        destruct (classic (msat w (pred n) (MUhatGe d p q)))
+        destruct (msat_dec w (MUhatGe d p q) (pred n))
           as [HFk | HnotFk].
         + pose proof HFk as HFk_full.
           simpl in HFk.
@@ -1909,8 +2004,7 @@ Proof.
           assert (Hr : canonical_reset root w (pred n) ((MUhatGe d p q)) = false).
           {
             unfold canonical_reset, reset_policy; simpl.
-            apply (proj2 (decide_false
-              (msat w (pred n) (MUhatGe d p q)))).
+            apply (proj2 (decide_false (msat_dec w (MUhatGe d p q) (pred n)))).
             exact HnotFk.
           }
           unfold canonical_reset in Hr.
@@ -1922,16 +2016,13 @@ Proof.
           lra.
     }
 
-    destruct (classic
-      (exists r : nat,
-         (S i <= r)%nat /\
-         uhatge_event root w path d p q r))
+    destruct (event_after_dec (@uhatge_event_dec root w path d p q) i)
       as [Hevent | Hnever].
 
     + destruct Hevent as [r [HSr Her]].
       destruct
         (@first_occurrence_bounded
-           (uhatge_event root w path d p q) (S i) r HSr Her)
+           (uhatge_event root w path d p q) (@uhatge_event_dec root w path d p q) (S i) r HSr Her)
         as [r0 [[HSr0 Hr0r] [Her0 Hfirst]]].
       left.
       exists r0.
@@ -2068,12 +2159,12 @@ Proof.
   - change (lsat (canonical_ext root w) (S i)
       (LW
         (T_at (right_path path) q)
-        (LOr (LAtom (LCGt (exist _ (MRhatLe d p q) Hmem) d))
+        (LOr (LAtom (LCGt (mk_clock Hmem) d))
              (LAnd (T_at (left_path path) p)
                    (T_at (right_path path) q))))).
     apply (proj2 (@LW_semantics _ (canonical_ext root w) (S i)
       (T_at (right_path path) q)
-      (LOr (LAtom (LCGt (exist _ (MRhatLe d p q) Hmem) d))
+      (LOr (LAtom (LCGt (mk_clock Hmem) d))
            (LAnd (T_at (left_path path) p)
                  (T_at (right_path path) q))))).
 
@@ -2159,7 +2250,7 @@ Proof.
           split; assumption.
         }
 
-        destruct (classic (msat w (pred n) (MRhatLe d p q)))
+        destruct (msat_dec w (MRhatLe d p q) (pred n))
           as [HFk | HnotFk].
         + exists (pred n).
           repeat split; try assumption; try lia.
@@ -2176,8 +2267,7 @@ Proof.
           * assert (Hr : canonical_reset root w (pred n) ((MRhatLe d p q)) = false).
             {
               unfold canonical_reset, reset_policy.
-              apply (proj2 (decide_false
-                (msat w (pred n) (MRhatLe d p q)))).
+              apply (proj2 (decide_false (msat_dec w (MRhatLe d p q) (pred n)))).
               exact HnotFk.
             }
             unfold canonical_reset in Hr.
@@ -2193,16 +2283,13 @@ Proof.
             -- apply Hnop. lia.
     }
 
-    destruct (classic
-      (exists r : nat,
-         (S i <= r)%nat /\
-         rhatle_event root w path d p q r))
+    destruct (event_after_dec (@rhatle_event_dec root w path d p q) i)
       as [Hevent | Hnever].
 
     + destruct Hevent as [r [HSr Her]].
       destruct
         (@first_occurrence_bounded
-           (rhatle_event root w path d p q) (S i) r HSr Her)
+           (rhatle_event root w path d p q) (@rhatle_event_dec root w path d p q) (S i) r HSr Her)
         as [r0 [[HSr0 Hr0r] [Her0 Hfirst]]].
       left.
       exists r0.
@@ -2351,18 +2438,18 @@ Proof.
   simpl.
   change (lsat (canonical_ext root w) (S i)
     (LW
-      (LAnd (LAtom (LCLt (exist _ (MRhatGe d p q) Hmem) d)) (LAtom (LUnch (exist _ (MRhatGe d p q) Hmem))))
+      (LAnd (LAtom (LCLt (mk_clock Hmem) d)) (LAtom (LUnch (mk_clock Hmem))))
       (LOr
         (LRelease (T_at (left_path path) p)
                   (T_at (right_path path) q))
-        (LAnd (LAtom (LCLt (exist _ (MRhatGe d p q) Hmem) d))
+        (LAnd (LAtom (LCLt (mk_clock Hmem) d))
               (T_at (left_path path) p))))).
   apply (proj2 (@LW_semantics _ (canonical_ext root w) (S i)
-    (LAnd (LAtom (LCLt (exist _ (MRhatGe d p q) Hmem) d)) (LAtom (LUnch (exist _ (MRhatGe d p q) Hmem))))
+    (LAnd (LAtom (LCLt (mk_clock Hmem) d)) (LAtom (LUnch (mk_clock Hmem))))
     (LOr
       (LRelease (T_at (left_path path) p)
                 (T_at (right_path path) q))
-      (LAnd (LAtom (LCLt (exist _ (MRhatGe d p q) Hmem) d))
+      (LAnd (LAtom (LCLt (mk_clock Hmem) d))
             (T_at (left_path path) p))))).
 
   assert (Hactive :
@@ -2446,16 +2533,13 @@ Proof.
       exact Hshift.
   }
 
-  destruct (classic
-    (exists r : nat,
-       (S i <= r)%nat /\
-       rhatge_event root w path d p q r))
+  destruct (event_after_dec (@rhatge_event_dec root w path d p q) i)
     as [Hevent | Hnever].
 
   - destruct Hevent as [r [HSr Her]].
     destruct
       (@first_occurrence_bounded
-         (rhatge_event root w path d p q) (S i) r HSr Her)
+         (rhatge_event root w path d p q) (@rhatge_event_dec root w path d p q) (S i) r HSr Her)
       as [r0 [[HSr0 Hr0r] [Her0 Hfirst]]].
     left.
     exists r0.
@@ -2652,7 +2736,7 @@ Proof.
 
   destruct
     (@first_occurrence_bounded
-       (fun n => msat w n q) (S i) j HSj Hq)
+       (fun n => msat w n q) (fun n => msat_dec w q n) (S i) j HSj Hq)
     as [j0 [[HSj0 Hj0j] [Hq0 Hnoq]]].
 
   assert (Hbound0 : elapsed w i j0 < d).
@@ -2872,7 +2956,7 @@ Proof.
           - lia.
         }
 
-        destruct (classic (msat w (pred n) (MUhatGt d p q)))
+        destruct (msat_dec w (MUhatGt d p q) (pred n))
           as [HFk | HnotFk].
         + pose proof HFk as HFk_full.
           simpl in HFk.
@@ -2892,8 +2976,7 @@ Proof.
           assert (Hr : canonical_reset root w (pred n) ((MUhatGt d p q)) = false).
           {
             unfold canonical_reset, reset_policy; simpl.
-            apply (proj2 (decide_false
-              (msat w (pred n) (MUhatGt d p q)))).
+            apply (proj2 (decide_false (msat_dec w (MUhatGt d p q) (pred n)))).
             exact HnotFk.
           }
           unfold canonical_reset in Hr.
@@ -2905,16 +2988,13 @@ Proof.
           lra.
     }
 
-    destruct (classic
-      (exists r : nat,
-         (S i <= r)%nat /\
-         uhatgt_event root w path d p q r))
+    destruct (event_after_dec (@uhatgt_event_dec root w path d p q) i)
       as [Hevent | Hnever].
 
     + destruct Hevent as [r [HSr Her]].
       destruct
         (@first_occurrence_bounded
-           (uhatgt_event root w path d p q) (S i) r HSr Her)
+           (uhatgt_event root w path d p q) (@uhatgt_event_dec root w path d p q) (S i) r HSr Her)
         as [r0 [[HSr0 Hr0r] [Her0 Hfirst]]].
       left.
       exists r0.
@@ -3047,12 +3127,12 @@ Proof.
   - change (lsat (canonical_ext root w) (S i)
       (LW
         (T_at (right_path path) q)
-        (LOr (LAtom (LCGe (exist _ (MRhatLt d p q) Hmem) d))
+        (LOr (LAtom (LCGe (mk_clock Hmem) d))
              (LAnd (T_at (left_path path) p)
                    (T_at (right_path path) q))))).
     apply (proj2 (@LW_semantics _ (canonical_ext root w) (S i)
       (T_at (right_path path) q)
-      (LOr (LAtom (LCGe (exist _ (MRhatLt d p q) Hmem) d))
+      (LOr (LAtom (LCGe (mk_clock Hmem) d))
            (LAnd (T_at (left_path path) p)
                  (T_at (right_path path) q))))).
 
@@ -3138,7 +3218,7 @@ Proof.
           split; assumption.
         }
 
-        destruct (classic (msat w (pred n) (MRhatLt d p q)))
+        destruct (msat_dec w (MRhatLt d p q) (pred n))
           as [HFk | HnotFk].
         + exists (pred n).
           repeat split; try assumption; try lia.
@@ -3155,8 +3235,7 @@ Proof.
           * assert (Hr : canonical_reset root w (pred n) ((MRhatLt d p q)) = false).
             {
               unfold canonical_reset, reset_policy.
-              apply (proj2 (decide_false
-                (msat w (pred n) (MRhatLt d p q)))).
+              apply (proj2 (decide_false (msat_dec w (MRhatLt d p q) (pred n)))).
               exact HnotFk.
             }
             unfold canonical_reset in Hr.
@@ -3172,16 +3251,13 @@ Proof.
             -- apply Hnop. lia.
     }
 
-    destruct (classic
-      (exists r : nat,
-         (S i <= r)%nat /\
-         rhatlt_event root w path d p q r))
+    destruct (event_after_dec (@rhatlt_event_dec root w path d p q) i)
       as [Hevent | Hnever].
 
     + destruct Hevent as [r [HSr Her]].
       destruct
         (@first_occurrence_bounded
-           (rhatlt_event root w path d p q) (S i) r HSr Her)
+           (rhatlt_event root w path d p q) (@rhatlt_event_dec root w path d p q) (S i) r HSr Her)
         as [r0 [[HSr0 Hr0r] [Her0 Hfirst]]].
       left.
       exists r0.
@@ -3326,18 +3402,18 @@ Proof.
   simpl.
   change (lsat (canonical_ext root w) (S i)
     (LW
-      (LAnd (LAtom (LCLe (exist _ (MRhatGt d p q) Hmem) d)) (LAtom (LUnch (exist _ (MRhatGt d p q) Hmem))))
+      (LAnd (LAtom (LCLe (mk_clock Hmem) d)) (LAtom (LUnch (mk_clock Hmem))))
       (LOr
         (LRelease (T_at (left_path path) p)
                   (T_at (right_path path) q))
-        (LAnd (LAtom (LCLe (exist _ (MRhatGt d p q) Hmem) d))
+        (LAnd (LAtom (LCLe (mk_clock Hmem) d))
               (T_at (left_path path) p))))).
   apply (proj2 (@LW_semantics _ (canonical_ext root w) (S i)
-    (LAnd (LAtom (LCLe (exist _ (MRhatGt d p q) Hmem) d)) (LAtom (LUnch (exist _ (MRhatGt d p q) Hmem))))
+    (LAnd (LAtom (LCLe (mk_clock Hmem) d)) (LAtom (LUnch (mk_clock Hmem))))
     (LOr
       (LRelease (T_at (left_path path) p)
                 (T_at (right_path path) q))
-      (LAnd (LAtom (LCLe (exist _ (MRhatGt d p q) Hmem) d))
+      (LAnd (LAtom (LCLe (mk_clock Hmem) d))
             (T_at (left_path path) p))))).
 
   assert (Hactive :
@@ -3421,16 +3497,13 @@ Proof.
       exact Hshift.
   }
 
-  destruct (classic
-    (exists r : nat,
-       (S i <= r)%nat /\
-       rhatgt_event root w path d p q r))
+  destruct (event_after_dec (@rhatgt_event_dec root w path d p q) i)
     as [Hevent | Hnever].
 
   - destruct Hevent as [r [HSr Her]].
     destruct
       (@first_occurrence_bounded
-         (rhatgt_event root w path d p q) (S i) r HSr Her)
+         (rhatgt_event root w path d p q) (@rhatgt_event_dec root w path d p q) (S i) r HSr Her)
       as [r0 [[HSr0 Hr0r] [Her0 Hfirst]]].
     left.
     exists r0.
@@ -4104,6 +4177,7 @@ Proof.
     apply (Hsound f []); auto.
 Qed.
 
+
 (* ====================================================================== *)
 (* 12. End-to-end theorem with EncodingCorrect no longer assumed         *)
 (* ====================================================================== *)
@@ -4145,6 +4219,8 @@ Print Assumptions MTL_to_TBA_correct_with.
       Print Assumptions MTL_to_TBA_correct.
 
   EncodingCorrect_proved should have no project-specific assumptions.
-  MTL_to_TBA_correct should depend only on LTL_TO_BUCHI_CORRECT
-  (plus any standard logical principles imported from Coq.Classical).
+  MTL_to_TBA_correct should depend only on LTL_TO_BUCHI_CORRECT, plus the
+  two axioms of the library of real numbers (sig_forall_dec and
+  functional_extensionality_dep).  No excluded middle is used: the MTL
+  semantics is decidable from sig_forall_dec (msat_dec).
 *)

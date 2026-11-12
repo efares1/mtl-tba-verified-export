@@ -5,7 +5,7 @@
   is accepted by [backend f].  The run takes as required sets the closure
   subformulas that are true at each position.
 *)
-Require Import Arith Lia List Bool Classical ClassicalDescription.
+Require Import Arith Lia List Bool.
 Import ListNotations.
 Require Import MTL_to_TBA_Shared_Clock_Derived_Strict_Direct_Core.
 Require Import LTL_to_PBA_Sound LTL_to_PBA_Pack LTL_to_PBA_Concrete.
@@ -92,41 +92,30 @@ Proof.
        | intros p0 E; injection E as <-; apply subf_self ]) ].
 Qed.
 
-Lemma subsets_rep :
-  forall (A : Type) (l : list A) (P : A -> Prop),
-    (forall a, P a -> In a l) ->
-    exists m, In m (subsets l) /\ forall a, In a m <-> P a.
+(* The sublist of the elements satisfying a boolean test is one of the
+   subsets enumerated by [subsets]. *)
+Lemma filter_in_subsets :
+  forall (A : Type) (l : list A) (t : A -> bool), In (filter t l) (subsets l).
 Proof.
-  intros A l. induction l as [| b l IH]; intros P HP.
-  - exists []. split; [left; reflexivity |].
-    intro a. split; [intros [] | intro H; exact (HP a H)].
-  - destruct (IH (fun a => P a /\ In a l)) as [m [Hm Hspec]].
-    { intros a [_ H]. exact H. }
-    destruct (classic (P b /\ ~ In b l)) as [Hb | Hb].
-    + exists (b :: m). split.
-      * simpl. apply in_or_app. right. apply in_map_iff.
-        exists m. split; [reflexivity | exact Hm].
-      * intro a. simpl. split.
-        -- intros [E | H]; [subst a; exact (proj1 Hb)
-                           | exact (proj1 (proj1 (Hspec a) H))].
-        -- intro H. destruct (HP a H) as [E | E];
-             [left; exact E | right; apply Hspec; split; assumption].
-    + exists m. split.
-      * simpl. apply in_or_app. left. exact Hm.
-      * intro a. rewrite Hspec. split.
-        -- intros [H _]. exact H.
-        -- intro H. split; [exact H |].
-           destruct (HP a H) as [E | E]; [| exact E].
-           subst a. destruct (classic (In b l)) as [Hi | Hi];
-             [exact Hi | exfalso; apply Hb; split; assumption].
+  intros A l t. induction l as [| a l IH]; simpl; [left; reflexivity |].
+  destruct (t a); apply in_or_app;
+    [right; apply in_map; exact IH | left; exact IH].
 Qed.
 
+(* The representative of a decidable set included in C: computed by
+   filtering, without any choice. *)
 Definition rep_exists (C : list (ltl root)) (P : ltl root -> Prop)
+  (D : forall u, {P u} + {~ P u})
   (HP : forall u, P u -> In u C) :
   {m : list (ltl root) | In m (subsets C) /\ forall u, In u m <-> P u}.
 Proof.
-  apply (list_choice _ (subsets C) (fun m => forall u, In u m <-> P u)).
-  destruct (subsets_rep _ C P HP) as [m H]. exists m. exact H.
+  exists (filter (fun u => if D u then true else false) C).
+  split; [apply filter_in_subsets |].
+  intro u. rewrite filter_In. destruct (D u) as [H | H]; split.
+  - intros _. exact H.
+  - intro Hp. split; [exact (HP u Hp) | reflexivity].
+  - intros [_ E]. discriminate E.
+  - intro Hp. contradiction.
 Defined.
 
 (* Breakpoint obligations computed from a family of sets X. *)
@@ -156,6 +145,48 @@ Proof.
   intros i u H. destruct i as [| k]; [destruct H |].
   apply Ofun_S in H. destruct H as [[p [q [_ [Hx _]]]] _]. exact (proj1 Hx).
 Qed.
+
+(* The sets Xt and the obligations are decidable: [psat] is decidable
+   (limited principle of omniscience), and the obligations are subsets of
+   the closure. *)
+Definition Xt_dec (i : nat) (u : ltl root) : {Xt i u} + {~ Xt i u} :=
+  and_dec (In_dec (@ltl_eq_dec root) u (subf root f)) (psat_dec s u i).
+
+Definition Ofun_dec : forall i u, {Ofun Xt i u} + {~ Ofun Xt i u}.
+Proof.
+  induction i as [| k IH]; intro u.
+  - right. simpl. tauto.
+  - assert (Dno : {forall v, ~ Ofun Xt k v} + {~ forall v, ~ Ofun Xt k v}).
+    { refine (transport (B := forall v, In v (subf root f) -> ~ Ofun Xt k v) _ _).
+      - split; [intros H v _; apply H | intros H v Hv; exact (H v (O_in_C k v Hv) Hv)].
+      - apply forall_in_dec. intro v. apply not_dec. apply IH. }
+    apply (transport (Ofun_S Xt k u)).
+    apply and_dec; [| apply or_dec; [exact Dno | apply IH]].
+    destruct u as [| | a | p q | p q | p | p q | p q];
+      try (right; intros [p' [q' [E _]]]; discriminate E).
+    destruct (Xt_dec k (LUntil p q)) as [H1 | H1];
+      [| right; intros [p' [q' [E [H _]]]]; inversion E; subst; contradiction].
+    destruct (Xt_dec k q) as [H2 | H2];
+      [right; intros [p' [q' [E [_ H]]]]; inversion E; subst; contradiction |].
+    left. exists p, q. auto.
+Defined.
+
+Definition Fno_dec (j : nat) : {forall v, ~ Ofun Xt j v} + {~ forall v, ~ Ofun Xt j v}.
+Proof.
+  refine (transport (B := forall v, In v (subf root f) -> ~ Ofun Xt j v) _ _).
+  - split; [intros H v _; apply H | intros H v Hv; exact (H v (O_in_C j v Hv) Hv)].
+  - apply forall_in_dec. intro v. apply not_dec. apply Ofun_dec.
+Defined.
+
+Definition Oex_dec (j : nat) : {exists v, Ofun Xt j v} + {~ exists v, Ofun Xt j v}.
+Proof.
+  refine (transport (B := exists v, In v (subf root f) /\ Ofun Xt j v) _ _).
+  - split; [intros [v Hv]; exists v; split; [exact (O_in_C j v Hv) | exact Hv]
+           | intros [v [_ Hv]]; exists v; exact Hv].
+  - destruct (Exists_dec (Ofun Xt j) (subf root f) (Ofun_dec j)) as [H | H].
+    + left. apply Exists_exists in H. exact H.
+    + right. intro H'. apply H. apply Exists_exists. exact H'.
+Defined.
 
 Lemma O_step_back :
   forall n, (forall j, n <= j -> exists v, Ofun Xt j v) ->
@@ -199,7 +230,7 @@ Proof.
   intros n m Hn L. induction L as [| a L IH].
   - exists 0. intros u [].
   - destruct IH as [K HK].
-    destruct (classic (Ofun Xt n a)) as [Ha | Ha].
+    destruct (Ofun_dec n a) as [Ha | Ha].
     + subst n. apply Ofun_S in Ha.
       destruct Ha as [[p [q [E [Hx Hnq]]]] _].
       assert (Hx' : Xt m (LUntil p q)) by (rewrite <- E; exact Hx).
@@ -219,11 +250,12 @@ Theorem O_live :
 Proof.
   intro n. destruct n as [| m].
   - exists 0. split; [lia | intros v H; exact H].
-  - destruct (classic (exists j, S m <= j /\ forall v, ~ Ofun Xt j v))
+  - destruct (@lpo_exists (fun j => S m <= j /\ forall v, ~ Ofun Xt j v)
+                (fun j => and_dec (le_dec (S m) j) (Fno_dec j)))
       as [H | Hno]; [exact H |]. exfalso.
     assert (Hne : forall j, S m <= j -> exists v, Ofun Xt j v).
     { intros j Hj.
-      destruct (classic (exists v, Ofun Xt j v)) as [H | H]; [exact H |].
+      destruct (Oex_dec j) as [H | H]; [exact H |].
       exfalso. apply Hno. exists j. split; [exact Hj |].
       intros v Hv. apply H. exists v. exact Hv. }
     destruct (bound (S m) m eq_refl (subf root f)) as [K HK].
@@ -243,19 +275,19 @@ Section Run.
 Variable Hf : psat s 0 f.
 
 Definition repX (i : nat) : list (ltl root) :=
-  proj1_sig (rep_exists (subf root f) (Xt i) (fun u H => proj1 H)).
+  proj1_sig (rep_exists (subf root f) (Xt i) (Xt_dec i) (fun u H => proj1 H)).
 
 Definition repO (i : nat) : list (ltl root) :=
-  proj1_sig (rep_exists (subf root f) (Ofun Xt i) (O_in_C i)).
+  proj1_sig (rep_exists (subf root f) (Ofun Xt i) (Ofun_dec i) (O_in_C i)).
 
 Lemma repX_spec : forall i,
   In (repX i) (subsets (subf root f)) /\ forall u, In u (repX i) <-> Xt i u.
-Proof. intro i. exact (proj2_sig (rep_exists (subf root f) (Xt i) (fun u H => proj1 H))). Qed.
+Proof. intro i. exact (proj2_sig (rep_exists (subf root f) (Xt i) (Xt_dec i) (fun u H => proj1 H))). Qed.
 
 Lemma repO_spec : forall i,
   In (repO i) (subsets (subf root f)) /\
   forall u, In u (repO i) <-> Ofun Xt i u.
-Proof. intro i. exact (proj2_sig (rep_exists (subf root f) (Ofun Xt i) (O_in_C i))). Qed.
+Proof. intro i. exact (proj2_sig (rep_exists (subf root f) (Ofun Xt i) (Ofun_dec i) (O_in_C i))). Qed.
 
 Definition run (i : nat) : St root :=
   match i with
@@ -335,7 +367,7 @@ Proof.
     assert (Hqi : psat s i q).
     { destruct (Hps i (le_n i)) as [Hq | [k [Hk _]]]; [exact Hq | lia]. }
     split; [apply (proj2 (HX _)); split; assumption |].
-    destruct (classic (psat s i p)) as [Hp | Hp].
+    destruct (psat_dec s p i) as [Hp | Hp].
     + left. apply (proj2 (HX _)). split; assumption.
     + right. apply run_fst'. split; [exact Hc |].
       intros j Hj. destruct (Hps j ltac:(lia)) as [Hq' | [k [Hk Hpk]]];

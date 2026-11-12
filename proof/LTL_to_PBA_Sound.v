@@ -17,9 +17,10 @@
   This file is abstract: it needs no finiteness of the state space and no
   closure of subformulas.  The concrete automaton is built in
   LTL_to_PBA_Concrete.v.
-  Axioms: only [classic], already used by the Core file.
+  The sets X i are assumed decidable (they are for the concrete
+  automaton); no excluded middle is used.
 *)
-Require Import Arith Lia List Bool Classical.
+Require Import Arith Lia List Bool.
 Require Import MTL_to_TBA_Shared_Clock_Derived_Strict_Direct_Core.
 
 Open Scope nat_scope.
@@ -33,7 +34,7 @@ Definition fset : Type := ltl root -> Prop.
 Definition consistent (s : pword root) (X : nat -> fset) : Prop :=
   forall i : nat,
     ~ X i LFalse
-    /\ (forall a, X i (LAtom a) -> s i a)
+    /\ (forall a, X i (LAtom a) -> s i a = true)
     /\ (forall p q, X i (LAnd p q) -> X i p /\ X i q)
     /\ (forall p q, X i (LOr p q) -> X i p \/ X i q)
     /\ (forall p, X i (LNext p) -> X (S i) p)
@@ -56,15 +57,15 @@ Definition obl_inf (O : nat -> fset) : Prop :=
   forall n, exists j, n <= j /\ forall u, ~ O j u.
 
 Lemma least_exists :
-  forall P : nat -> Prop,
+  forall P : nat -> Prop, (forall j, {P j} + {~ P j}) ->
     (exists j, P j) -> exists j, P j /\ forall k, k < j -> ~ P k.
 Proof.
-  intros P [j Hj].
+  intros P D [j Hj].
   induction j as [j IH] using lt_wf_ind.
-  destruct (classic (exists k, k < j /\ P k)) as [[k [Hk Hpk]] | Hno].
-  - exact (IH k Hk Hpk).
+  destruct (@exists_range_dec P D 0 j) as [[k [Hk Hpk]] | Hno].
+  - exact (IH k (proj2 Hk) Hpk).
   - exists j. split; [exact Hj |].
-    intros k Hk Hp. apply Hno. exists k. split; assumption.
+    intros k Hk Hp. apply Hno. exists k. split; [lia | exact Hp].
 Qed.
 
 Lemma owed_in_X :
@@ -86,11 +87,13 @@ Qed.
 (* An owed Until is eventually discharged. *)
 Lemma owed_fulfilled :
   forall s X O,
+    (forall i u, {X i u} + {~ X i u}) ->
     consistent s X -> obl_init O -> obl_step X O -> obl_inf O ->
     forall i p q, O i (LUntil p q) -> exists j, i <= j /\ X j q.
 Proof.
-  intros s X O Hc Hi Hs Hinf i p q Ho.
-  destruct (classic (exists j, i <= j /\ X j q)) as [H | Hn].
+  intros s X O DX Hc Hi Hs Hinf i p q Ho.
+  destruct (@lpo_exists (fun j => i <= j /\ X j q)
+              (fun j => and_dec (le_dec i j) (DX j q))) as [H | Hn].
   - exact H.
   - exfalso.
     assert (Hnot : forall j, i <= j -> ~ X j q).
@@ -115,16 +118,17 @@ Qed.
 (* Every Until carried by the run is eventually discharged. *)
 Lemma until_fulfilled :
   forall s X O,
+    (forall i u, {X i u} + {~ X i u}) ->
     consistent s X -> obl_init O -> obl_step X O -> obl_inf O ->
     forall p q i, X i (LUntil p q) -> exists j, i <= j /\ X j q.
 Proof.
-  intros s X O Hc Hi Hs Hinf p q i HXi.
+  intros s X O DX Hc Hi Hs Hinf p q i HXi.
   destruct (Hinf i) as [m [Him Hempty]].
   assert (Hgen : forall d i0, i0 + d = m -> X i0 (LUntil p q) ->
                     exists j, i0 <= j /\ X j q).
   { induction d as [| d IH]; intros i0 Hd Hx.
     - destruct (Hc i0) as [_ [_ [_ [_ [_ [Hu _]]]]]].
-      destruct (classic (X i0 q)) as [Hq | Hq].
+      destruct (DX i0 q) as [Hq | Hq].
       + exists i0. split; [lia | exact Hq].
       + destruct (Hu p q Hx) as [Hq' | [_ Hn1]];
           [exfalso; exact (Hq Hq') |].
@@ -133,7 +137,7 @@ Proof.
           split.
           - exists p, q. split; [reflexivity |]. split; assumption.
           - left. replace i0 with m by lia. exact Hempty. }
-        destruct (owed_fulfilled s X O Hc Hi Hs Hinf (S i0) p q HO)
+        destruct (owed_fulfilled s X O DX Hc Hi Hs Hinf (S i0) p q HO)
           as [j [Hj Hxj]].
         exists j. split; [lia | exact Hxj].
     - destruct (Hc i0) as [_ [_ [_ [_ [_ [Hu _]]]]]].
@@ -147,10 +151,11 @@ Qed.
 (* Soundness: every formula carried by an accepting run holds. *)
 Theorem run_sound :
   forall s X O,
+    (forall i u, {X i u} + {~ X i u}) ->
     consistent s X -> obl_init O -> obl_step X O -> obl_inf O ->
     forall f i, X i f -> psat s i f.
 Proof.
-  intros s X O Hc Hi Hs Hinf f.
+  intros s X O DX Hc Hi Hs Hinf f.
   induction f as [ | | a | p IHp q IHq | p IHp q IHq | p IHp
                   | p IHp q IHq | p IHp q IHq ]; intros i Hx; simpl.
   - exact I.
@@ -165,9 +170,10 @@ Proof.
   - destruct (Hc i) as [_ [_ [_ [_ [Hnext _]]]]].
     apply IHp. exact (Hnext p Hx).
   - (* Until *)
-    destruct (until_fulfilled s X O Hc Hi Hs Hinf p q i Hx)
+    destruct (until_fulfilled s X O DX Hc Hi Hs Hinf p q i Hx)
       as [j0 [Hj0 Hxj0]].
-    destruct (least_exists (fun j => i <= j /\ X j q)
+    destruct (@least_exists (fun j => i <= j /\ X j q)
+                (fun j => and_dec (le_dec i j) (DX j q))
                 (ex_intro _ j0 (conj Hj0 Hxj0)))
       as [j [[Hij Hxj] Hmin]].
     exists j. split; [exact Hij |].

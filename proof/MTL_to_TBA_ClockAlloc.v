@@ -34,7 +34,6 @@
 *)
 
 Require Import Arith Lia List Bool Reals Lra.
-Require Import Classical ClassicalDescription.
 Require Import MTL_to_TBA_Shared_Clock_Derived_Strict_Direct_Core.
 Require Import EncodingCorrect_Shared_Clock_Derived_Strict_Direct_Proof.
 Require Import MTL_to_TBA_Invariants.
@@ -176,19 +175,18 @@ Variable A : TBA root.
 
 (* A representative class is reset when one of its members is reset. *)
 Definition fwd_reset (rho : ext_word root) (i : nat) (c : Clock root) : bool :=
-  if excluded_middle_informative
-       (exists x, alloc x = c /\ ew_reset rho i x = true)
-  then true else false.
+  existsb (fun x => clock_eqb (alloc x) c && ew_reset rho i x) (all_clocks root).
 
 Lemma fwd_reset_true :
   forall rho i c, fwd_reset rho i c = true <->
     exists x, alloc x = c /\ ew_reset rho i x = true.
 Proof.
-  intros rho i c. unfold fwd_reset.
-  destruct (excluded_middle_informative
-              (exists x, alloc x = c /\ ew_reset rho i x = true)) as [H|N];
-    split; intro H'; try assumption; try reflexivity; try discriminate.
-  exfalso. apply N. exact H'.
+  intros rho i c. unfold fwd_reset. rewrite existsb_exists. split.
+  - intros [x [_ H]]. apply andb_true_iff in H. destruct H as [H1 H2].
+    exists x. split; [exact (clock_eqb_true H1) | exact H2].
+  - intros [x [H1 H2]]. exists x. split; [apply all_clocks_complete|].
+    rewrite H2, andb_true_r. unfold clock_eqb.
+    destruct (@clock_eq_dec root (alloc x) c); [reflexivity | contradiction].
 Qed.
 
 (* Initial value of a class: the value of its (unique) live member at the
@@ -364,20 +362,22 @@ End Forward.
 
 Section Backward.
 
-(* Choice of the transition of A behind each step, without axiom beyond
-   classical logic: the first transition of the list that fits. *)
-Fixpoint pick (P : tba_transition root -> Prop) (l : list (tba_transition root))
+(* Choice of the transition of A behind each step, without axiom: the
+   first transition of the list that fits, for a decidable property. *)
+Fixpoint pick {P : tba_transition root -> Prop} (P_dec : forall t, {P t} + {~ P t})
+    (l : list (tba_transition root))
     (d : tba_transition root) : tba_transition root :=
   match l with
   | [] => d
-  | t :: l' => if excluded_middle_informative (P t) then t else pick P l' d
+  | t :: l' => if P_dec t then t else pick P_dec l' d
   end.
 
 Lemma pick_spec :
-  forall P l d, (exists t, In t l /\ P t) -> In (pick P l d) l /\ P (pick P l d).
+  forall P (P_dec : forall t, {P t} + {~ P t}) l d,
+    (exists t, In t l /\ P t) -> In (pick P_dec l d) l /\ P (pick P_dec l d).
 Proof.
-  intros P l d. induction l as [|t l IH]; intros [t0 [Hin HP]]; [contradiction|].
-  simpl. destruct (excluded_middle_informative (P t)) as [H|N].
+  intros P P_dec l d. induction l as [|t l IH]; intros [t0 [Hin HP]]; [contradiction|].
+  simpl. destruct (P_dec t) as [H|N].
   - split; [left; reflexivity | exact H].
   - destruct Hin as [->|Hin]; [contradiction|].
     destruct (IH (ex_intro _ t0 (conj Hin HP))) as [H1 H2].
@@ -440,18 +440,22 @@ Proof.
     simpl in Hin'. apply in_map_iff in Hin'. destruct Hin' as [t [<- Hin]].
     exists t. split; [exact Hin|]. split; [exact Hs|]. split; [exact Hd|]. exact He. }
   destruct (Hex 0%nat) as [t0 [Hin0 _]].
-  set (chosen := fun i => pick (fun t =>
-            bt_source t = run i /\ bt_target t = run (S i) /\
-            tba_transition_enabled rho' i (alloc_transition t))
-            (tba_transitions A) t0).
+  assert (P_dec : forall i t,
+            {bt_source t = run i /\ bt_target t = run (S i) /\
+             tba_transition_enabled rho' i (alloc_transition t)} +
+            {~ (bt_source t = run i /\ bt_target t = run (S i) /\
+                tba_transition_enabled rho' i (alloc_transition t))}).
+  { intros i t.
+    destruct (Nat.eq_dec (bt_source t) (run i)); [|right; tauto].
+    destruct (Nat.eq_dec (bt_target t) (run (S i))); [|right; tauto].
+    destruct (tba_transition_enabled_dec rho' i (alloc_transition t)); [left | right]; tauto. }
+  set (chosen := fun i => pick (P_dec i) (tba_transitions A) t0).
   assert (Hch : forall i,
             In (chosen i) (tba_transitions A) /\
             bt_source (chosen i) = run i /\ bt_target (chosen i) = run (S i) /\
             tba_transition_enabled rho' i (alloc_transition (chosen i))).
   { intro i. destruct (Hex i) as [t [Hin [Hs [Hd He]]]].
-    destruct (pick_spec (fun t =>
-            bt_source t = run i /\ bt_target t = run (S i) /\
-            tba_transition_enabled rho' i (alloc_transition t))
+    destruct (@pick_spec _ (P_dec i)
             (tba_transitions A) t0 (ex_intro _ t (conj Hin (conj Hs (conj Hd He)))))
       as [H1 [H2 [H3 H4]]].
     split; [exact H1|]. split; [exact H2|]. split; [exact H3|]. exact H4. }

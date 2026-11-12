@@ -41,7 +41,6 @@
 *)
 
 Require Import Arith Lia List Bool Reals Lra.
-Require Import Classical ClassicalDescription.
 Require Import MTL_to_TBA_Shared_Clock_Derived_Strict_Direct_Core.
 Require Import EncodingCorrect_Shared_Clock_Derived_Strict_Direct_Proof.
 Require Import MTL_to_TBA_Invariants.
@@ -274,7 +273,7 @@ Proof.
   - intros x Hx. unfold flow_ok in H6. apply andb_true_iff in H6.
     destruct H6 as [_ H6]. rewrite forallb_forall in H6.
     specialize (H6 x Hx). apply orb_true_iff in H6.
-    destruct (classic (In x (bt_resets t1))) as [E1|E1].
+    destruct (In_dec (@clock_eq_dec root) x (bt_resets t1)) as [E1|E1].
     + left. exact E1.
     + right. destruct H6 as [H6|H6].
       * exfalso. apply E1. apply clock_in_iff. exact H6.
@@ -320,18 +319,20 @@ Qed.
 (* 3. From a word of A to a word of the pruned automaton                  *)
 (* ====================================================================== *)
 
-Fixpoint pick (P : tba_transition root -> Prop) (l : list (tba_transition root))
+Fixpoint pick {P : tba_transition root -> Prop} (P_dec : forall t, {P t} + {~ P t})
+    (l : list (tba_transition root))
     (d : tba_transition root) : tba_transition root :=
   match l with
   | [] => d
-  | t :: l' => if excluded_middle_informative (P t) then t else pick P l' d
+  | t :: l' => if P_dec t then t else pick P_dec l' d
   end.
 
 Lemma pick_spec :
-  forall P l d, (exists t, In t l /\ P t) -> In (pick P l d) l /\ P (pick P l d).
+  forall P (P_dec : forall t, {P t} + {~ P t}) l d,
+    (exists t, In t l /\ P t) -> In (pick P_dec l d) l /\ P (pick P_dec l d).
 Proof.
-  intros P l d. induction l as [|t l IH]; intros [t0 [Hin HP]]; [contradiction|].
-  simpl. destruct (excluded_middle_informative (P t)) as [H|N].
+  intros P P_dec l d. induction l as [|t l IH]; intros [t0 [Hin HP]]; [contradiction|].
+  simpl. destruct (P_dec t) as [H|N].
   - split; [left; reflexivity | exact H].
   - destruct Hin as [->|Hin]; [contradiction|].
     destruct (IH (ex_intro _ t0 (conj Hin HP))) as [H1 H2].
@@ -346,13 +347,21 @@ Variable run : nat -> nat.
 Variable t0 : tba_transition root.
 
 (* the transition of A behind each step of the original run *)
+Definition T2_dec (i : nat) (t : tba_transition root) :
+  {bt_source t = run i /\ bt_target t = run (S i) /\ tba_transition_enabled rho i t} +
+  {~ (bt_source t = run i /\ bt_target t = run (S i) /\ tba_transition_enabled rho i t)}.
+Proof.
+  destruct (Nat.eq_dec (bt_source t) (run i)); [|right; tauto].
+  destruct (Nat.eq_dec (bt_target t) (run (S i))); [|right; tauto].
+  destruct (tba_transition_enabled_dec rho i t); [left | right]; tauto.
+Defined.
+
 Definition T2 (i : nat) : tba_transition root :=
-  pick (fun t => bt_source t = run i /\ bt_target t = run (S i) /\
-                 tba_transition_enabled rho i t) (tba_transitions A) t0.
+  pick (T2_dec i) (tba_transitions A) t0.
 
 (* the kept transition that answers it from the location q *)
 Definition T1 (i q : nat) : tba_transition root :=
-  pick (fun t1 => dom_step A q (cell_of A (tw_action (ew_base rho) i)) (T2 i) t1 = true)
+  pick (fun t1 => bool_dec (dom_step A q (cell_of A (tw_action (ew_base rho) i)) (T2 i) t1) true)
        (tba_transitions A) t0.
 
 Fixpoint qs (i : nat) : nat :=
@@ -432,8 +441,7 @@ Lemma T2_spec : forall i,
   tba_transition_enabled rho i (T2 i).
 Proof.
   intro i. destruct (Hsteps i) as [_ [t [Hin [Hs [Hd He]]]]].
-  destruct (pick_spec (fun t => bt_source t = run i /\ bt_target t = run (S i) /\
-                 tba_transition_enabled rho i t) (tba_transitions A) t0
+  destruct (@pick_spec _ (T2_dec i) (tba_transitions A) t0
             (ex_intro _ t (conj Hin (conj Hs (conj Hd He))))) as [H1 [H2 [H3 H4]]].
   exact (conj H1 (conj H2 (conj H3 H4))).
 Qed.
@@ -459,7 +467,8 @@ Proof.
   assert (Hl2 : label_at (cell_of A (tw_action (ew_base rho) i)) (bt_label (T2 i)) = true).
   { apply (proj2 (label_at_iff A (T2 i) _ Hin2)). exact Hlab2. }
   destruct (Hex _ (cell_of_in A _) (T2 i) Hin2 Hs2 Hl2) as [t1 [Hin1 Hd1]].
-  destruct (pick_spec (fun t1 => dom_step A (qs i) (cell_of A (tw_action (ew_base rho) i)) (T2 i) t1 = true)
+  destruct (@pick_spec _
+              (fun t1 => bool_dec (dom_step A (qs i) (cell_of A (tw_action (ew_base rho) i)) (T2 i) t1) true)
               (tba_transitions A) t0 (ex_intro _ t1 (conj Hin1 Hd1))) as [H1 H2].
   split; assumption.
 Qed.

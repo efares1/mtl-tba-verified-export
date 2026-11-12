@@ -34,7 +34,6 @@
 *)
 
 Require Import Arith Lia List Bool Reals Lra.
-Require Import Classical ClassicalDescription.
 Require Import MTL_to_TBA_Shared_Clock_Derived_Strict_Direct_Core.
 Require Import EncodingCorrect_Shared_Clock_Derived_Strict_Direct_Proof.
 Import ListNotations.
@@ -58,7 +57,7 @@ Definition is_upper (k : clock_comparison) : bool :=
   | CGe | CGt => false
   end.
 
-(* Equality test on clocks (classical, as clocks contain real bounds). *)
+(* Equality test on clocks (decided with the comparison of real bounds). *)
 Definition clock_eqb (x y : Clock root) : bool :=
   if @clock_eq_dec root x y then true else false.
 

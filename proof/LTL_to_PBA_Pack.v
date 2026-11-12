@@ -5,9 +5,10 @@
   [E] labelled by cubes taken from a finite list [cubes], and an accepting
   predicate [F] are turned into a [PBuchi] over nat-indexed states.  Its
   accepted words are exactly those with an accepting run through [U].
-  Decisions on Props use [excluded_middle_informative] (classical).
+  The equality of states, the edge relation and the accepting predicate
+  are assumed decidable; no axiom is used.
 *)
-Require Import Arith Lia List Bool Classical ClassicalDescription.
+Require Import Arith Lia List Bool.
 Import ListNotations.
 Require Import MTL_to_TBA_Shared_Clock_Derived_Strict_Direct_Core.
 
@@ -19,18 +20,17 @@ Variable s0 : St.
 Variable cubes : list (list (plit root)).
 Variable E : St -> list (plit root) -> St -> Prop.
 Variable F : St -> Prop.
+Variable St_eq_dec : forall a b : St, {a = b} + {a <> b}.
+Variable E_dec : forall x c y, {E x c y} + {~ E x c y}.
+Variable F_dec : forall x, {F x} + {~ F x}.
 
-Definition dec (P : Prop) : bool :=
-  if excluded_middle_informative P then true else false.
+Definition dec {P : Prop} (H : {P} + {~ P}) : bool := if H then true else false.
 
-Lemma dec_iff : forall P, dec P = true <-> P.
+Lemma dec_iff : forall P (H : {P} + {~ P}), dec H = true <-> P.
 Proof.
-  intro P. unfold dec. destruct (excluded_middle_informative P); split;
-    intro H; auto; discriminate.
+  intros P H. unfold dec. destruct H; split;
+    intro K; auto; discriminate.
 Qed.
-
-Definition St_eq_dec (a b : St) : {a = b} + {a <> b} :=
-  excluded_middle_informative (a = b).
 
 Fixpoint idx (l : list St) (x : St) : nat :=
   match l with
@@ -56,16 +56,21 @@ Definition cand : list (nat * nat * list (plit root)) :=
 Definition ok_cand (t : nat * nat * list (plit root)) : Prop :=
   match t with (i, j, c) => E (nth i U s0) c (nth j U s0) end.
 
+Definition ok_cand_dec (t : nat * nat * list (plit root)) : {ok_cand t} + {~ ok_cand t} :=
+  match t as t0 return {ok_cand t0} + {~ ok_cand t0} with
+  | (i, j, c) => E_dec (nth i U s0) c (nth j U s0)
+  end.
+
 Definition mk_trans (t : nat * nat * list (plit root)) : ptransition root :=
   match t with
   | (i, j, c) => {| pt_src := i; pt_label := c; pt_tgt := j |}
   end.
 
 Definition trans : list (ptransition root) :=
-  map mk_trans (filter (fun t => dec (ok_cand t)) cand).
+  map mk_trans (filter (fun t => dec (ok_cand_dec t)) cand).
 
 Definition acc : list nat :=
-  filter (fun i => dec (F (nth i U s0))) (seq 0 (length U)).
+  filter (fun i => dec (F_dec (nth i U s0))) (seq 0 (length U)).
 
 Definition pack : PBuchi root :=
   {| pb_nstates := length U; pb_init := idx U s0;

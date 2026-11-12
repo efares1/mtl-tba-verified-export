@@ -365,7 +365,192 @@ Proof.
       lia.
 Qed.
 
-Require Import Classical.
+Require Coq.Reals.ClassicalDedekindReals.
+
+
+(* ---------------------------------------------------------------------- *)
+(* Decidability of the MTL semantics                                      *)
+(* ---------------------------------------------------------------------- *)
+
+(* The library of real numbers assumes the limited principle of
+   omniscience [sig_forall_dec]: a universal quantification over nat of a
+   decidable predicate is decidable.  Atoms and time comparisons being
+   decidable, every formula built with quantifications over positions, in
+   particular the satisfaction of an MTL formula, is then decidable, with
+   no other axiom. *)
+
+Definition not_dec (P : Prop) (D : {P} + {~ P}) : {~ P} + {~ ~ P} :=
+  match D with
+  | left H => right (fun K => K H)
+  | right H => left H
+  end.
+
+Definition lpo_forall (P : nat -> Prop) (D : forall n, {P n} + {~ P n}) :
+  {forall n, P n} + {~ forall n, P n}.
+Proof.
+  destruct (ClassicalDedekindReals.sig_forall_dec P D) as [[n Hn]|H].
+  - right. intro H. exact (Hn (H n)).
+  - left. exact H.
+Defined.
+
+Definition lpo_exists (P : nat -> Prop) (D : forall n, {P n} + {~ P n}) :
+  {exists n, P n} + {~ exists n, P n}.
+Proof.
+  destruct (ClassicalDedekindReals.sig_forall_dec (fun n => ~ P n)
+              (fun n => not_dec (D n))) as [[n Hn]|H].
+  - left. exists n. destruct (D n) as [H|H]; [exact H | contradiction].
+  - right. intros [n Hn]. exact (H n Hn).
+Defined.
+
+Definition forall_range_dec (P : nat -> Prop) (D : forall n, {P n} + {~ P n})
+    (a b : nat) :
+  {forall k, (a <= k < b)%nat -> P k} + {~ forall k, (a <= k < b)%nat -> P k}.
+Proof.
+  induction b as [|b IH].
+  - left. intros k Hk. lia.
+  - destruct IH as [H|H].
+    + destruct (le_lt_dec a b) as [Hab|Hab].
+      * destruct (D b) as [Hb|Hb].
+        -- left. intros k Hk. destruct (Nat.eq_dec k b) as [->|Hne]; [exact Hb|].
+           apply H. lia.
+        -- right. intro H'. apply Hb. apply H'. lia.
+      * left. intros k Hk. apply H. lia.
+    + right. intro H'. apply H. intros k Hk. apply H'. lia.
+Defined.
+
+Definition exists_range_dec (P : nat -> Prop) (D : forall n, {P n} + {~ P n})
+    (a b : nat) :
+  {exists k, (a <= k < b)%nat /\ P k} + {~ exists k, (a <= k < b)%nat /\ P k}.
+Proof.
+  destruct (@forall_range_dec (fun k => ~ P k)
+              (fun n => not_dec (D n)) a b) as [H|H].
+  - right. intros [k [Hk HP]]. exact (H k Hk HP).
+  - left. induction b as [|b IH].
+    + exfalso. apply H. intros k Hk. lia.
+    + destruct (le_lt_dec a b) as [Hab|Hab].
+      * destruct (D b) as [Hb|Hb].
+        -- exists b. split; [lia | exact Hb].
+        -- destruct IH as [k [Hk HP]].
+           ++ intro H'. apply H. intros k Hk. destruct (Nat.eq_dec k b) as [->|Hne];
+                [exact Hb | apply H'; lia].
+           ++ exists k. split; [lia | exact HP].
+      * destruct IH as [k [Hk HP]].
+        -- intro H'. apply H. intros k Hk. apply H'. lia.
+        -- exists k. split; [lia | exact HP].
+Defined.
+
+(* Strict lower bounds: [i < k] is [S i <= k]. *)
+Definition forall_between_dec (P : nat -> Prop) (D : forall n, {P n} + {~ P n})
+    (i j : nat) :
+  {forall k, (i < k < j)%nat -> P k} + {~ forall k, (i < k < j)%nat -> P k} :=
+  @forall_range_dec P D (S i) j.
+
+Definition exists_between_dec (P : nat -> Prop) (D : forall n, {P n} + {~ P n})
+    (i j : nat) :
+  {exists k, (i < k < j)%nat /\ P k} + {~ exists k, (i < k < j)%nat /\ P k} :=
+  @exists_range_dec P D (S i) j.
+
+Ltac dec_finish := first [left; tauto | right; tauto].
+
+(* The comparison of a time difference with a bound. *)
+Ltac dec_time :=
+  match goal with
+  | |- context [Rle ?x ?y] => destruct (Rle_dec x y)
+  | |- context [Rlt ?x ?y] => destruct (Rlt_dec x y)
+  end.
+
+Definition msat_dec (w : timed_word) : forall f i, {msat w i f} + {~ msat w i f}.
+Proof.
+  intro f.
+  induction f as [ | | a | a
+                 | p IHp q IHq | p IHp q IHq | p IHp
+                 | p IHp q IHq | p IHp q IHq
+                 | d p IHp q IHq | d p IHp q IHq | d p IHp q IHq
+                 | d p IHp q IHq | d p IHp q IHq | d p IHp q IHq
+                 | d p IHp q IHq | d p IHp q IHq ];
+    intro i; simpl.
+  (* the eight hatted operators *)
+  10-17: first
+    [ (* Until shapes *)
+      apply lpo_exists; intro j;
+      destruct (lt_dec i j); [|dec_finish];
+      dec_time; [|dec_finish];
+      destruct (IHq j); [|dec_finish];
+      destruct (@forall_between_dec _ IHp i j); dec_finish
+    | (* Release shapes *)
+      apply lpo_forall; intro j;
+      destruct (lt_dec i j); [|left; tauto];
+      dec_time; [|left; tauto];
+      destruct (IHq j); [left; tauto|];
+      destruct (@exists_between_dec _ IHp i j); dec_finish ].
+  - left. exact I.
+  - right. tauto.
+  - apply Nat.eq_dec.
+  - destruct (Nat.eq_dec (tw_action w i) a); dec_finish.
+  - destruct (IHp i); [|dec_finish]. destruct (IHq i); dec_finish.
+  - destruct (IHp i); [dec_finish|]. destruct (IHq i); dec_finish.
+  - apply IHp.
+  - (* U *)
+    apply lpo_exists. intro j.
+    destruct (le_dec i j); [|dec_finish]. destruct (IHq j); [|dec_finish].
+    destruct (@forall_range_dec _ IHp i j); dec_finish.
+  - (* R *)
+    apply lpo_forall. intro j.
+    destruct (le_dec i j); [|left; tauto]. destruct (IHq j); [left; tauto|].
+    destruct (@exists_range_dec _ IHp i j); dec_finish.
+Defined.
+
+(* Connectives on decisions, and a tactic building the decision
+   procedure of a proposition made of comparisons, MTL satisfaction,
+   connectives and quantifications over positions. *)
+Definition and_dec {A B : Prop} (a : {A} + {~ A}) (b : {B} + {~ B}) :
+  {A /\ B} + {~ (A /\ B)} :=
+  match a, b with
+  | left ha, left hb => left (conj ha hb)
+  | right na, _ => right (fun h => na (proj1 h))
+  | _, right nb => right (fun h => nb (proj2 h))
+  end.
+
+Definition or_dec {A B : Prop} (a : {A} + {~ A}) (b : {B} + {~ B}) :
+  {A \/ B} + {~ (A \/ B)} :=
+  match a, b with
+  | left ha, _ => left (or_introl ha)
+  | _, left hb => left (or_intror hb)
+  | right na, right nb =>
+      right (fun h => match h with or_introl x => na x | or_intror y => nb y end)
+  end.
+
+Definition impl_dec {A B : Prop} (a : {A} + {~ A}) (b : {B} + {~ B}) :
+  {A -> B} + {~ (A -> B)} :=
+  match a, b with
+  | _, left hb => left (fun _ => hb)
+  | right na, _ => left (fun ha => match na ha with end)
+  | left ha, right nb => right (fun h => nb (h ha))
+  end.
+
+Ltac dec_auto :=
+  cbv beta;
+  match goal with
+  | |- forall _ : nat, _ => intro; dec_auto
+  | |- {_ /\ _} + {_} => apply and_dec; dec_auto
+  | |- {_ \/ _} + {_} => apply or_dec; dec_auto
+  | |- {~ _} + {_} => apply not_dec; dec_auto
+  | |- {True} + {_} => left; exact I
+  | |- {False} + {_} => right; tauto
+  | |- {msat _ _ _} + {_} => apply msat_dec
+  | |- {Rle _ _} + {_} => apply Rle_dec
+  | |- {Rlt _ _} + {_} => apply Rlt_dec
+  | |- {@eq nat _ _} + {_} => apply Nat.eq_dec
+  | |- {(_ <= _)%nat} + {_} => apply le_dec
+  | |- {(_ < _)%nat} + {_} => apply lt_dec
+  | |- {exists _ : nat, _} + {_} =>
+      first [ apply exists_between_dec | apply exists_range_dec | apply lpo_exists ];
+      dec_auto
+  | |- {_ -> _} + {_} => apply impl_dec; dec_auto
+  | |- {forall _ : nat, _} + {_} =>
+      first [ apply forall_between_dec | apply forall_range_dec | apply lpo_forall ];
+      dec_auto
+  end.
 
 Lemma MRle_derived_semantics :
   forall w i d p q,
@@ -394,7 +579,7 @@ Proof.
     }
     split.
     + exact Hqi.
-    + destruct (classic (msat w i p)) as [Hp | Hn].
+    + destruct (msat_dec w p i) as [Hp | Hn].
       * left; exact Hp.
       * right.
         intros j Hij_strict Htime.
@@ -430,7 +615,7 @@ Proof.
     destruct (H j ltac:(lia) ltac:(lra)); try tauto.
     destruct H1 as [k [H1a H1b]].
     right; exists k; split; auto; lia.
-  - destruct (classic (msat w i p)) as [Hp | Hn]; try tauto.
+  - destruct (msat_dec w p i) as [Hp | Hn]; try tauto.
     right; intros.
     destruct (H j ltac:(lia) H1); try tauto.
     destruct H2 as [k [H2a H2b]].
@@ -540,7 +725,6 @@ Proof.
       intros k Hk. apply Hpall. lia.
 Qed.
 
-Require Import Classical.
 
 Lemma MRlt_derived_semantics :
   forall w i d p q,
@@ -569,7 +753,7 @@ Proof.
     }
     split.
     + exact Hqi.
-    + destruct (classic (msat w i p)) as [Hp | Hnp].
+    + destruct (msat_dec w p i) as [Hp | Hnp].
       * left; exact Hp.
       * right.
         intros j Hij_strict Htime.
@@ -599,7 +783,7 @@ Proof.
         -- left; exact Hqj.
         -- right; exists k; split; [lia | exact Hpk].
   - intros Hsem.
-    destruct (classic (msat w i p)) as [Hp | Hnp].
+    destruct (msat_dec w p i) as [Hp | Hnp].
     + left; exact Hp.
     + right.
       intros j Hij_strict Htime.
@@ -632,26 +816,48 @@ Fixpoint timed_subformulas (f : mtl) : list mtl :=
       f :: timed_subformulas p ++ timed_subformulas q
   end.
 
-(* The clocks of a formula [root] are exactly its timed subformulas.
-   Clocks are keyed by the timed formula itself: two syntactically
-   identical timed subformulas, even at different syntax-tree paths,
-   denote the same clock.  The type is finite. *)
-Definition Clock (root : mtl) : Type :=
-  { x : mtl | In x (timed_subformulas root) }.
-
-Require Import Classical.
-
 (* Decidable equality of formulas; bounds are compared as real numbers. *)
 Definition mtl_eq_dec : forall f g : mtl, {f = g} + {f <> g}.
 Proof.
   decide equality; first [apply Nat.eq_dec | apply Req_EM_T].
 Defined.
 
+(* Boolean membership in the timed subformulas of [root]. *)
+Definition is_timed_sub (root x : mtl) : bool :=
+  if In_dec mtl_eq_dec x (timed_subformulas root) then true else false.
+
+Lemma is_timed_sub_iff :
+  forall root x, is_timed_sub root x = true <-> In x (timed_subformulas root).
+Proof.
+  intros root x. unfold is_timed_sub.
+  destruct (In_dec mtl_eq_dec x (timed_subformulas root)); split; intro H;
+    solve [reflexivity | assumption | discriminate | contradiction].
+Qed.
+
+(* The clocks of a formula [root] are exactly its timed subformulas.
+   Clocks are keyed by the timed formula itself: two syntactically
+   identical timed subformulas, even at different syntax-tree paths,
+   denote the same clock.  The type is finite.  Membership is a boolean
+   equation, whose proofs are unique without any axiom (Hedberg): two
+   clocks are equal as soon as their formulas are. *)
+Definition Clock (root : mtl) : Type :=
+  { x : mtl | is_timed_sub root x = true }.
+
+(* The clock of a timed subformula. *)
+Definition mk_clock (root F : mtl) (H : In F (timed_subformulas root)) : Clock root :=
+  exist _ F (proj2 (is_timed_sub_iff root F) H).
+
+Lemma clock_in :
+  forall root (x : Clock root), In (proj1_sig x) (timed_subformulas root).
+Proof. intros root x. apply is_timed_sub_iff. exact (proj2_sig x). Qed.
+
+Require Import Eqdep_dec.
+
 Lemma clock_eq :
   forall root (x y : Clock root), proj1_sig x = proj1_sig y -> x = y.
 Proof.
   intros root [x Hx] [y Hy] Heq. simpl in Heq. subst y.
-  f_equal. apply proof_irrelevance.
+  f_equal. apply UIP_dec. exact Bool.bool_dec.
 Qed.
 
 (* Decidable equality of clocks. *)
@@ -666,13 +872,13 @@ Defined.
    subformula of [root]. *)
 Definition clock_of (root F : mtl) : option (Clock root) :=
   match In_dec mtl_eq_dec F (timed_subformulas root) with
-  | left H => Some (exist _ F H)
+  | left H => Some (mk_clock H)
   | right _ => None
   end.
 
 Lemma clock_of_mem :
   forall root F (H : In F (timed_subformulas root)),
-    clock_of root F = Some (exist _ F H).
+    clock_of root F = Some (mk_clock H).
 Proof.
   intros root F H. unfold clock_of.
   destruct (In_dec mtl_eq_dec F (timed_subformulas root)) as [H'|Hn].
@@ -697,27 +903,6 @@ Proof.
   - discriminate.
   - intros _. assumption.
 Qed.
-
-(* Boolean reflection of a proposition, by classical reasoning.  It is used
-   only inside proofs, to build witness reset functions; it is never part of
-   the extracted code. *)
-Require Import Description.
-
-Definition bool_of_prop (P : Prop) : {b : bool | b = true <-> P}.
-Proof.
-  apply constructive_definite_description.
-  destruct (classic P) as [H|H].
-  - exists true. split; [tauto|].
-    intros b Hb. destruct b; [reflexivity|]. apply Hb in H. discriminate.
-  - exists false. split; [split; [discriminate | contradiction]|].
-    intros b Hb. destruct b; [|reflexivity].
-    exfalso. apply H. apply Hb. reflexivity.
-Defined.
-
-Definition decide_b (P : Prop) : bool := proj1_sig (bool_of_prop P).
-
-Lemma decide_b_spec : forall P, decide_b P = true <-> P.
-Proof. intro P. exact (proj2_sig (bool_of_prop P)). Qed.
 
 (* ====================================================================== *)
 (* 6. Extended words and clocks                                           *)
@@ -983,15 +1168,15 @@ Definition label_holds (ls : list alit) (le : letter) : Prop :=
   Forall (alit_holds (letter_action le)) ls.
 
 (* The LTL-to-Buchi back-end treats the atoms of the extended alphabet as
-   independent propositions.  Its input is a propositional word: a truth
-   value for every atom at every position. *)
-Definition pword : Type := nat -> latom -> Prop.
+   independent propositions.  Its input is a propositional word: a boolean
+   truth value for every atom at every position. *)
+Definition pword : Type := nat -> latom -> bool.
 
 Fixpoint psat (s : pword) (i : nat) (f : ltl) : Prop :=
   match f with
   | LTrue => True
   | LFalse => False
-  | LAtom a => s i a
+  | LAtom a => s i a = true
   | LAnd p q => psat s i p /\ psat s i q
   | LOr p q => psat s i p \/ psat s i q
   | LNext p => psat s (S i) p
@@ -1004,9 +1189,56 @@ Fixpoint psat (s : pword) (i : nat) (f : ltl) : Prop :=
         psat s j q \/ exists k, (i <= k < j)%nat /\ psat s k p
   end.
 
+(* The propositional semantics is decidable (limited principle of
+   omniscience of the library of real numbers). *)
+Definition psat_dec (s : pword) : forall f i, {psat s i f} + {~ psat s i f}.
+Proof.
+  intro f.
+  induction f as [| | a | p IHp q IHq | p IHp q IHq | p IHp | p IHp q IHq | p IHp q IHq];
+    intro i; simpl.
+  - left. exact I.
+  - right. tauto.
+  - apply bool_dec.
+  - destruct (IHp i); [|dec_finish]. destruct (IHq i); dec_finish.
+  - destruct (IHp i); [dec_finish|]. destruct (IHq i); dec_finish.
+  - apply IHp.
+  - apply lpo_exists. intro j.
+    destruct (le_dec i j); [|dec_finish]. destruct (IHq j); [|dec_finish].
+    destruct (@forall_range_dec _ IHp i j); dec_finish.
+  - apply lpo_forall. intro j.
+    destruct (le_dec i j); [|left; tauto]. destruct (IHq j); [left; tauto|].
+    destruct (@exists_range_dec _ IHp i j); dec_finish.
+Defined.
+
+(* The atoms of an extended word are decidable: actions are natural
+   numbers, clock values are real numbers, resets are booleans. *)
+Definition atom_sat_dec (rho : ext_word) (i : nat) (a : latom) :
+  {atom_sat rho i a} + {~ atom_sat rho i a}.
+Proof.
+  destruct a as [q|q|x d|x d|x d|x d|x|x]; simpl;
+    unfold c_le, c_lt, c_ge, c_gt, rst_at, unch_at.
+  - apply Nat.eq_dec.
+  - destruct (Nat.eq_dec (tw_action (ew_base rho) i) q); [right | left]; tauto.
+  - apply Rle_dec.
+  - apply Rlt_dec.
+  - apply Rle_dec.
+  - apply Rlt_dec.
+  - apply bool_dec.
+  - apply bool_dec.
+Defined.
+
 (* The propositional word of an extended word: the truth values of its
    atoms. *)
-Definition word_of (rho : ext_word) : pword := fun i a => atom_sat rho i a.
+Definition word_of (rho : ext_word) : pword :=
+  fun i a => if atom_sat_dec rho i a then true else false.
+
+Lemma word_of_iff :
+  forall rho i a, word_of rho i a = true <-> atom_sat rho i a.
+Proof.
+  intros rho i a. unfold word_of.
+  destruct (atom_sat_dec rho i a); split; intro H;
+    solve [reflexivity | assumption | discriminate | contradiction].
+Qed.
 
 Fixpoint ltl_atoms (f : ltl) : list latom :=
   match f with
@@ -1022,7 +1254,20 @@ Fixpoint ltl_atoms (f : ltl) : list latom :=
 Definition plit : Type := (latom * bool)%type.
 
 Definition plit_holds (s : pword) (i : nat) (l : plit) : Prop :=
-  if snd l then s i (fst l) else ~ s i (fst l).
+  s i (fst l) = snd l.
+
+Lemma plit_holds_word_of :
+  forall rho i a b,
+    plit_holds (word_of rho) i (a, b) <->
+    (if b then atom_sat rho i a else ~ atom_sat rho i a).
+Proof.
+  intros rho i a b. unfold plit_holds. simpl. pose proof (word_of_iff rho i a) as H.
+  destruct b, (word_of rho i a); simpl; split; intro K;
+    first [ discriminate | reflexivity | apply H; reflexivity
+          | exfalso; apply K; apply H; reflexivity
+          | exfalso; apply (proj2 H) in K; discriminate
+          | intro A; apply (proj2 H) in A; discriminate ].
+Qed.
 
 Record ptransition : Type := {
   pt_src : nat;
@@ -1212,7 +1457,7 @@ Proof.
         unfold LW, LGF, LG, LF;
         repeat (first [rewrite in_app_iff | progress simpl]);
         destruct Hx as [Hx | Hx];
-        [ assert (Hxe : x = exist _ F HF)
+        [ assert (Hxe : x = mk_clock HF)
             by (apply clock_eq; simpl; symmetry; exact Hx);
           subst x; intuition
         | apply in_app_or in Hx; destruct Hx as [Hx | Hx];
@@ -1227,7 +1472,7 @@ Proof.
   intros f x. unfold T.
   apply T_at_uses_clocks.
   - intros y Hy; exact Hy.
-  - exact (proj2_sig x).
+  - exact (clock_in x).
 Qed.
 
 Arguments word_of {root} _ _ _.
@@ -1252,7 +1497,7 @@ Proof.
     intro i; simpl.
   - tauto.
   - tauto.
-  - unfold word_of. tauto.
+  - rewrite word_of_iff. tauto.
   - rewrite IHp, IHq. tauto.
   - rewrite IHp, IHq. tauto.
   - apply IHp.
@@ -1267,7 +1512,7 @@ Qed.
 (* LTL formulas have no negation: satisfaction is monotone in the atoms. *)
 Lemma psat_mono :
   forall (f : ltl root) (s s' : pword root),
-    (forall i a, In a (ltl_atoms f) -> s i a -> s' i a) ->
+    (forall i a, In a (ltl_atoms f) -> s i a = true -> s' i a = true) ->
     forall i, psat s i f -> psat s' i f.
 Proof.
   intros f s s'.
@@ -1276,26 +1521,26 @@ Proof.
   - exact I.
   - exact H.
   - apply Hm; [left; reflexivity | exact H].
-  - assert (Hp : forall i a, In a (ltl_atoms p) -> s i a -> s' i a)
+  - assert (Hp : forall i a, In a (ltl_atoms p) -> s i a = true -> s' i a = true)
       by (intros k a Ha; apply Hm; apply in_or_app; left; exact Ha).
-    assert (Hq : forall i a, In a (ltl_atoms q) -> s i a -> s' i a)
+    assert (Hq : forall i a, In a (ltl_atoms q) -> s i a = true -> s' i a = true)
       by (intros k a Ha; apply Hm; apply in_or_app; right; exact Ha).
     destruct H as [H1 H2]. split; [exact (IHp Hp i H1) | exact (IHq Hq i H2)].
-  - assert (Hp : forall i a, In a (ltl_atoms p) -> s i a -> s' i a)
+  - assert (Hp : forall i a, In a (ltl_atoms p) -> s i a = true -> s' i a = true)
       by (intros k a Ha; apply Hm; apply in_or_app; left; exact Ha).
-    assert (Hq : forall i a, In a (ltl_atoms q) -> s i a -> s' i a)
+    assert (Hq : forall i a, In a (ltl_atoms q) -> s i a = true -> s' i a = true)
       by (intros k a Ha; apply Hm; apply in_or_app; right; exact Ha).
     destruct H as [H1|H2]; [left; exact (IHp Hp i H1) | right; exact (IHq Hq i H2)].
   - exact (IHp Hm (S i) H).
-  - assert (Hp : forall i a, In a (ltl_atoms p) -> s i a -> s' i a)
+  - assert (Hp : forall i a, In a (ltl_atoms p) -> s i a = true -> s' i a = true)
       by (intros k a Ha; apply Hm; apply in_or_app; left; exact Ha).
-    assert (Hq : forall i a, In a (ltl_atoms q) -> s i a -> s' i a)
+    assert (Hq : forall i a, In a (ltl_atoms q) -> s i a = true -> s' i a = true)
       by (intros k a Ha; apply Hm; apply in_or_app; right; exact Ha).
     destruct H as [j [Hij [Hj Hk]]]. exists j. split; [exact Hij|].
     split; [exact (IHq Hq j Hj)|]. intros k Hk'. exact (IHp Hp k (Hk k Hk')).
-  - assert (Hp : forall i a, In a (ltl_atoms p) -> s i a -> s' i a)
+  - assert (Hp : forall i a, In a (ltl_atoms p) -> s i a = true -> s' i a = true)
       by (intros k a Ha; apply Hm; apply in_or_app; left; exact Ha).
-    assert (Hq : forall i a, In a (ltl_atoms q) -> s i a -> s' i a)
+    assert (Hq : forall i a, In a (ltl_atoms q) -> s i a = true -> s' i a = true)
       by (intros k a Ha; apply Hm; apply in_or_app; right; exact Ha).
     intros j Hj. destruct (H j Hj) as [Hj' | [k [Hk Hk']]].
     + left. exact (IHq Hq j Hj').
@@ -1317,40 +1562,48 @@ Qed.
    Monotonicity (psat_mono) is used only on words that differ on the
    extended (clock and marker) atoms. *)
 Definition action_consistent (s : pword root) : Prop :=
-  forall (i : nat) (p : Action), s i (LNAct p) <-> ~ s i (LAct p).
+  forall (i : nat) (p : Action), s i (LNAct p) = negb (s i (LAct p)).
 
 Lemma word_of_action_consistent :
   forall rho : ext_word root, action_consistent (word_of rho).
 Proof.
   intros rho. unfold action_consistent. intros i p.
-  unfold word_of. simpl. split; intro H; exact H.
+  unfold word_of.
+  destruct (atom_sat_dec rho i (LNAct p)) as [H1|H1];
+    destruct (atom_sat_dec rho i (LAct p)) as [H2|H2]; simpl in *;
+    solve [reflexivity | exfalso; tauto].
 Qed.
 
 (* ====================================================================== *)
 (* 9c. Choice of a transition along a run                                 *)
 (* ====================================================================== *)
 
-(* The first element of a list that satisfies [P] (classical decision). *)
-Fixpoint first_such {A : Type} (P : A -> Prop) (l : list A) : option A :=
+(* The choice of a transition along a run uses no axiom turning a
+   proposition into a boolean: the properties of the transitions are
+   decidable, and the transition is computed by [first_such]. *)
+
+(* The first element of a list that satisfies a decidable [P]. *)
+Fixpoint first_such {A : Type} {P : A -> Prop} (P_dec: forall x, {P x}+{not (P x)}) (l : list A) : option A :=
   match l with
   | [] => None
-  | x :: l' => if decide_b (P x) then Some x else first_such P l'
+  | x :: l' => if P_dec x then Some x else first_such P_dec l'
   end.
 
 Lemma first_such_spec :
-  forall (A : Type) (P : A -> Prop) (l : list A),
+  forall (A : Type) (P : A -> Prop) (P_dec: forall x, {P x}+{not (P x)}) (l : list A),
     (exists x, In x l /\ P x) ->
-    exists x, first_such P l = Some x /\ In x l /\ P x.
+    exists x, first_such P_dec l = Some x /\ In x l /\ P x.
 Proof.
-  intros A P l. induction l as [|y l IH]; intros [x [Hx HP]]; [contradiction|].
-  simpl. destruct (decide_b (P y)) eqn:E.
+  intros A P P_dec l. induction l as [|y l IH]; intros [x [Hx HP]]; [contradiction|].
+  simpl. destruct (P_dec y) as [E | E].
   - exists y. split; [reflexivity|]. split; [left; reflexivity|].
-    apply decide_b_spec. exact E.
+    exact E.
   - destruct Hx as [<-|Hx].
-    + exfalso. apply decide_b_spec in HP. congruence.
+    + exfalso. apply  (E HP).
     + destruct (IH (ex_intro _ x (conj Hx HP))) as [z [Hz [Hin HPz]]].
       exists z. split; [exact Hz|]. split; [right; exact Hin | exact HPz].
 Qed.
+
 
 (* ====================================================================== *)
 (* 9d. Decidable equality of atoms                                        *)
@@ -1361,6 +1614,9 @@ Proof.
   decide equality;
     first [apply Nat.eq_dec | apply Req_EM_T | apply clock_eq_dec].
 Defined.
+
+Definition ltl_eq_dec : forall f g : ltl root, {f = g} + {f <> g}.
+Proof. decide equality. apply latom_eq_dec. Defined.
 
 Definition latom_eqb (a b : latom root) : bool :=
   if latom_eq_dec a b then true else false.
@@ -1411,7 +1667,7 @@ Proof.
   apply andb_true_iff in Hc. destruct Hc as [Ha Hb].
   apply latom_eqb_true in Ha. subst a'.
   unfold plit_holds in *. simpl in *.
-  destruct b, b'; simpl in Hb; try discriminate; tauto.
+  destruct b, b'; simpl in Hb; try discriminate; congruence.
 Qed.
 
 Lemma consistent_no_conflict :
@@ -1459,6 +1715,23 @@ Qed.
    original automaton on a word [s'] that differs from [s] only on extended
    atoms, which it makes false (dropped negative literals) or true (dropped
    atoms outside the formula); by monotonicity, [s] satisfies the formula. *)
+Definition plit_eq_dec : forall p q : plit root, {p = q} + {p <> q}.
+Proof.
+  intros [a b] [a' b'].
+  destruct (latom_eq_dec a a'), (bool_dec b b');
+    [left; congruence | right; congruence | right; congruence | right; congruence].
+Defined.
+
+Definition in_lit (x : plit root) (l : list (plit root)) : bool :=
+  if In_dec plit_eq_dec x l then true else false.
+
+Lemma in_lit_iff : forall x l, in_lit x l = true <-> In x l.
+Proof.
+  intros x l. unfold in_lit.
+  destruct (In_dec plit_eq_dec x l); split; intro H;
+    solve [reflexivity | assumption | discriminate | contradiction].
+Qed.
+
 Lemma relax_sound :
   forall (f : ltl root) A (s : pword root),
     action_consistent s ->
@@ -1477,12 +1750,22 @@ Proof.
     apply filter_In in Ht. destruct Ht as [Ht Hc].
     exists t. split; [exact Ht|]. split; [exact Hc|]. split; [exact Hs|].
     split; [exact Hd | exact Hl]. }
-  set (lab := fun i => match first_such (P i) (pb_trans A) with
+  (* the word being boolean, [P i] is decidable: the transition taken at
+     position [i] is computed *)
+  assert (P_dec : forall i t, {P i t} + {~ P i t}).
+  { intros i t. unfold P.
+    destruct (bool_dec (consistent (pt_label t)) true); [|right; tauto].
+    destruct (Nat.eq_dec (pt_src t) (run i)); [|right; tauto].
+    destruct (Nat.eq_dec (pt_tgt t) (run (S i))); [|right; tauto].
+    destruct (Forall_dec (plit_holds s i) (fun l => bool_dec (s i (fst l)) (snd l))
+                (pt_label (relax_trans F t))); [left | right]; tauto. }
+  set (lab := fun i => match first_such (P_dec i) (pb_trans A) with
                        | Some t => pt_label t | None => [] end).
   set (s' := fun i (a : latom root) =>
                if is_ext a
-               then (In (a, true) (lab i) /\ ~ In a F) \/ (s i a /\ ~ In (a, false) (lab i))
-                              else s i a).
+               then (in_lit (a, true) (lab i) && negb (in_atoms a F)) ||
+                    (s i a && negb (in_lit (a, false) (lab i)))
+               else s i a).
   (* the word s' differs from s on extended atoms only, so it is
      action-consistent when s is *)
   assert (Hcs' : action_consistent s').
@@ -1490,34 +1773,42 @@ Proof.
   assert (Hrun : PBA_accepts A s').
   { exists run. split; [exact Hinit|]. split; [|exact Hacc].
     intro i. split; [exact (proj1 (Hsteps i))|].
-    destruct (first_such_spec (Hex i)) as [t [Hfs [Ht [Hc [Hs [Hd Hl]]]]]].
-    exists t. split; [exact Ht|]. split; [exact Hs|]. split; [exact Hd|].
+    destruct (@first_such_spec _ _ (P_dec i) _ (Hex i)) as [t [Hfs [Ht [Hc [Hs [Hd Hl]]]]]].
     assert (Hlab : lab i = pt_label t) by (unfold lab; rewrite Hfs; reflexivity).
+    exists t. split; [exact Ht|]. split; [exact Hs|]. split; [exact Hd|].
     apply Forall_forall. intros [a b] Hab.
     rewrite Forall_forall in Hl. simpl in Hl.
     unfold plit_holds. simpl. unfold s'. rewrite Hlab.
     destruct (is_ext a) eqn:Hext.
-    - destruct b.
+    - assert (Hk : forall b', In (a, b') (pt_label t) -> in_lit (a, negb b') (pt_label t) = false).
+      { intros b' Hb'. destruct (in_lit (a, negb b') (pt_label t)) eqn:E; [|reflexivity].
+        apply in_lit_iff in E. exfalso.
+        destruct b'; simpl in E;
+          [exact (consistent_no_conflict Hc Hb' E) | exact (consistent_no_conflict Hc E Hb')]. }
+      destruct b.
       + destruct (in_atoms a F) eqn:HF.
-        * right. split.
-          -- assert (Hk : In (a, true) (filter (keep_lit F) (pt_label t))).
-             { apply filter_In. split; [exact Hab|].
-               unfold keep_lit. simpl. rewrite Hext, HF. reflexivity. }
-             exact (Hl _ Hk).
-          -- intro Hf. exact (consistent_no_conflict Hc Hab Hf).
-        * left. split; [exact Hab|]. intro Hin.
-          apply in_atoms_iff in Hin. congruence.
-      + intros [[Ht' _] | [_ Hn]].
-        * exact (consistent_no_conflict Hc Ht' Hab).
-        * exact (Hn Hab).
-    - assert (Hk : In (a, b) (filter (keep_lit F) (pt_label t))).
+        * assert (Hkept : In (a, true) (filter (keep_lit F) (pt_label t))).
+          { apply filter_In. split; [exact Hab|].
+            unfold keep_lit. simpl. rewrite Hext, HF. reflexivity. }
+          pose proof (Hl _ Hkept) as Hsa. unfold plit_holds in Hsa. simpl in Hsa.
+          pose proof (Hk true Hab) as Hk'. simpl in Hk'.
+          rewrite Hk', Hsa, andb_false_r. reflexivity.
+        * rewrite (proj2 (in_lit_iff _ _) Hab). reflexivity.
+      + pose proof (Hk false Hab) as Hk'. simpl in Hk'.
+        rewrite Hk', (proj2 (in_lit_iff _ _) Hab).
+        rewrite andb_false_l, andb_false_r. reflexivity.
+    - assert (Hkept : In (a, b) (filter (keep_lit F) (pt_label t))).
       { apply filter_In. split; [exact Hab|].
         unfold keep_lit. simpl. rewrite Hext. reflexivity. }
-      exact (Hl _ Hk). }
+      exact (Hl _ Hkept). }
   apply (psat_mono (s := s')); [|exact (Hax s' Hcs' Hrun)].
-  intros i a Ha H. unfold s' in H. destruct (is_ext a).
-  - destruct H as [[_ Hn] | [H _]]; [contradiction | exact H].
-  - exact H.
+  intros i a Ha H. unfold s' in H. destruct (is_ext a); [|exact H].
+  apply orb_true_iff in H. destruct H as [H|H]; apply andb_true_iff in H;
+    destruct H as [H1 H2].
+  - exfalso. apply negb_true_iff in H2.
+    assert (Hin : in_atoms a F = true) by (apply in_atoms_iff; exact Ha).
+    congruence.
+  - exact H1.
 Qed.
 
 (* ====================================================================== *)
@@ -1576,9 +1867,63 @@ Definition all_clocks : list (Clock root) :=
 
 Lemma all_clocks_complete : forall x, In x all_clocks.
 Proof.
-  intros [F HF]. unfold all_clocks. apply in_flat_map. exists F.
-  split; [exact HF|]. rewrite (clock_of_mem HF). left. reflexivity.
+  intro x. pose proof (clock_in x) as HF. unfold all_clocks. apply in_flat_map.
+  exists (proj1_sig x). split; [exact HF|]. rewrite (clock_of_mem HF). left.
+  apply clock_eq. reflexivity.
 Qed.
+
+(* ---------------------------------------------------------------------- *)
+(* Decidability of the enabledness of a transition                        *)
+(* ---------------------------------------------------------------------- *)
+
+(* Along an extended word, whether a transition is enabled is decidable:
+   actions are natural numbers, clock values are real numbers, resets are
+   booleans and there are finitely many clocks.  The choices of
+   transitions made in the proofs therefore need no axiom turning a
+   proposition into a boolean. *)
+
+Definition alit_holds_dec (p : Action) (l : alit) :
+  {alit_holds p l} + {~ alit_holds p l}.
+Proof.
+  destruct l as [a b]. unfold alit_holds. simpl.
+  destruct b; destruct (Nat.eq_dec p a); tauto.
+Defined.
+
+Definition label_holds_dec (ls : list alit) (le : letter) :
+  {label_holds ls le} + {~ label_holds ls le}.
+Proof. apply Forall_dec. intro l. apply alit_holds_dec. Defined.
+
+Definition guard_item_holds_dec (rho : ext_word root) (i : nat)
+    (c : option (clock_constraint root)) :
+  {guard_item_holds rho i c} + {~ guard_item_holds rho i c}.
+Proof.
+  destruct c as [k|]; simpl; [|left; exact I].
+  unfold clock_constraint_holds.
+  destruct (guard_comparison k);
+    first [apply Rle_dec | apply Rlt_dec | apply Req_EM_T].
+Defined.
+
+Definition resets_match_dec (rho : ext_word root) (i : nat) (l : list (Clock root)) :
+  {resets_match rho i l} + {~ resets_match rho i l}.
+Proof.
+  assert (D : forall x, {ew_reset rho i x = true <-> In x l} +
+                        {~ (ew_reset rho i x = true <-> In x l)}).
+  { intro x. destruct (bool_dec (ew_reset rho i x) true);
+      destruct (In_dec (@clock_eq_dec root) x l); tauto. }
+  destruct (Forall_dec _ D all_clocks) as [H|H].
+  - left. intro x. rewrite Forall_forall in H. exact (H x (all_clocks_complete x)).
+  - right. intro H'. apply H. apply Forall_forall. intros x _. exact (H' x).
+Defined.
+
+Definition tba_transition_enabled_dec (rho : ext_word root) (i : nat)
+    (t : tba_transition root) :
+  {tba_transition_enabled rho i t} + {~ tba_transition_enabled rho i t}.
+Proof.
+  unfold tba_transition_enabled.
+  destruct (label_holds_dec (bt_label t) (letter_of rho i)); [|right; tauto].
+  destruct (Forall_dec _ (guard_item_holds_dec rho i) (bt_guard t)); [|right; tauto].
+  destruct (resets_match_dec rho i (bt_resets t)); [left | right]; tauto.
+Defined.
 
 (* ====================================================================== *)
 (* 9g. Reset completion                                                   *)
@@ -1668,7 +2013,7 @@ Proof.
   intros rho i t Hok [Hlab [Hg Hres]].
   unfold complete_trans, label_holds in *. simpl in *.
   rewrite Forall_forall in Hlab, Hg. apply Forall_forall.
-  intros [a b] Hin. unfold plit_holds, word_of. simpl.
+  intros [a b] Hin. apply plit_holds_word_of.
   destruct a as [q|q|x d|x d|x d|x d|x|x].
   - assert (H : alit_holds (tw_action (ew_base rho) i) (q, b)).
     { apply Hlab. apply in_flat_map. exists (LAct q, b). split; [exact Hin|].
@@ -1755,13 +2100,21 @@ Proof.
   set (P := fun i (t : ptransition root) =>
               pt_src t = run i /\ pt_tgt t = run (S i) /\
               Forall (plit_holds (word_of rho) i) (pt_label t)).
+  (* on the propositional word of an extended word, [P i] is decidable *)
+  assert (P_dec : forall i t, {P i t} + {~ P i t}).
+  { intros i t. unfold P.
+    destruct (Nat.eq_dec (pt_src t) (run i)) as [E1|E1]; [|right; tauto].
+    destruct (Nat.eq_dec (pt_tgt t) (run (S i))) as [E2|E2]; [|right; tauto].
+    destruct (Forall_dec (plit_holds (word_of rho) i)
+                (fun l => bool_dec (word_of rho i (fst l)) (snd l)) (pt_label t)) as [E3|E3];
+      [left; tauto | right; tauto]. }
   assert (Hex : forall i, exists t, In t (pb_trans A) /\ P i t).
   { intro i. destruct (Hsteps i) as [_ [t [Ht H]]]. exists t. split; assumption. }
-  set (lab := fun i => match first_such (P i) (pb_trans A) with
+  set (lab := fun i => match first_such (P_dec i) (pb_trans A) with
                        | Some t => pt_label t | None => [] end).
-  assert (Hlab : forall i, exists t, first_such (P i) (pb_trans A) = Some t /\
+  assert (Hlab : forall i, exists t, first_such (P_dec i) (pb_trans A) = Some t /\
                    In t (pb_trans A) /\ P i t /\ lab i = pt_label t).
-  { intro i. destruct (first_such_spec (Hex i)) as [t [Hf [Ht HP]]].
+  { intro i. destruct (@first_such_spec _ _ (P_dec i) _ (Hex i)) as [t [Hf [Ht HP]]].
     exists t. split; [exact Hf|]. split; [exact Ht|]. split; [exact HP|].
     unfold lab. rewrite Hf. reflexivity. }
   set (r := fun i x => if In_dec (@clock_eq_dec root) x (comp_resets (lab i))
@@ -1791,7 +2144,7 @@ Proof.
     - destruct (ew_reset rho j x) eqn:E; [|lra].
       exfalso. assert (Hin : In x (comp_resets (lab j))).
       { apply in_comp_resets. rewrite Hx. intro HU.
-        pose proof (Hsat _ _ _ HU) as HU'. unfold plit_holds, word_of in HU'.
+        pose proof (Hsat _ _ _ HU) as HU'. apply plit_holds_word_of in HU'.
         simpl in HU'. unfold unch_at in HU'. congruence. }
       apply Hr in Hin. congruence. }
   (* restart clocks: larger values *)
@@ -1802,7 +2155,7 @@ Proof.
     pose proof (@vals_nonneg (ew_val rho 0) r (ew_base rho) (Hnn 0%nat) j x).
     destruct (r j x) eqn:Erj.
     - apply Hr in Erj. apply in_comp_resets in Erj. rewrite Hx in Erj.
-      pose proof (Hsat _ _ _ Erj) as HR. unfold plit_holds, word_of in HR.
+      pose proof (Hsat _ _ _ Erj) as HR. apply plit_holds_word_of in HR.
       simpl in HR. unfold rst_at in HR. rewrite HR. lra.
     - destruct (ew_reset rho j x); lra. }
   exists rho'. split; [reflexivity|]. split.
@@ -1819,7 +2172,7 @@ Proof.
     + (* actions *)
       unfold label_holds. simpl. apply Forall_forall. intros [q c] Hq.
       apply in_flat_map in Hq. destruct Hq as [[a b] [Hab Hq]].
-      pose proof (Hl _ Hab) as H. unfold plit_holds, word_of in H. simpl in H.
+      pose proof (Hl _ Hab) as H. apply plit_holds_word_of in H.
       unfold act_lit in Hq. simpl in Hq.
       destruct a as [q0|q0|x d|x d|x d|x d|x|x]; simpl in Hq; try contradiction.
       * destruct Hq as [Hq|[]]. injection Hq as <- <-.
@@ -1834,7 +2187,7 @@ Proof.
       unfold pos_atoms in Ha. apply in_map_iff in Ha.
       destruct Ha as [[a' b] [Ea Ha]]. simpl in Ea. subst a'.
       apply filter_In in Ha. destruct Ha as [Ha Hb]. simpl in Hb. subst b.
-      pose proof (Hl _ Ha) as H. unfold plit_holds, word_of in H. simpl in H.
+      pose proof (Hl _ Ha) as H. apply plit_holds_word_of in H.
       assert (Hin' : In (a, true) (lab i)) by (rewrite Heq; exact Ha).
       destruct a as [q|q|x d|x d|x d|x d|x|x]; simpl; try exact I;
         pose proof (proj2 (Hok' i _ _ Hin' eq_refl)) as Hk; simpl in Hk;
