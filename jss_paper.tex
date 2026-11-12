@@ -311,7 +311,7 @@ the XML/DOT printers are outside the transformation proofs. A converter from
 an external automaton format must establish its own correspondence with the
 Rocq TBA type. A clean Rocq 9.0.1 build, an independent \texttt{coqchk} run and an OCaml 5.4.0 rebuild are recorded in the artifact audit.
 
-The project-wide axiom \path{LTL_TO_BUCHI_CORRECT} states the assumed correctness of the upstream LTL-to-B\"uchi backend and is used only by convenience theorems. The theorems \path{optimize_accepts}, \path{split_accepts}, \path{export_accepts}, \path{prune_pass_accepts}, \path{try_allocate_accepts} and \path{MTL_to_exported_correct_with} do not use it: \texttt{Print Assumptions} lists only standard classical Rocq library principles (including \path{ClassicalDedekindReals.sig_forall_dec}).
+The project-wide axiom \path{LTL_TO_BUCHI_CORRECT} states the assumed correctness of the upstream LTL-to-B\"uchi backend and is used only by convenience theorems. The theorems \path{optimize_accepts}, \path{split_accepts}, \path{export_accepts}, \path{prune_pass_accepts}, \path{try_allocate_accepts} and \path{MTL_to_exported_correct_with} do not use it: \texttt{Print Assumptions} lists only two axioms of the Rocq library: \path{ClassicalDedekindReals.sig_forall_dec}, from the construction of the real numbers, and functional extensionality (no excluded middle, description or choice).
 
 In the integrated workflow the translation of~\cite{faresmtl} produces the TBA that the optimizer receives; the driver then applies export to the optimized automaton.
 

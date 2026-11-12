@@ -1,4 +1,4 @@
-# Rocq assumptions audit (2026-10-11)
+# Rocq assumptions audit (updated 2026-11-12)
 
 Source: `Print Assumptions` (logs in `output/rocq/assumptions*.txt`) and `coqchk` context summaries.
 
@@ -7,27 +7,27 @@ Source: `Print Assumptions` (logs in `output/rocq/assumptions*.txt`) and `coqchk
 | Assumption | Kind | Meaning |
 |---|---|---|
 | `LTL_TO_BUCHI_CORRECT` (project `Axiom`, Core) | **project-specific hypothesis about an external component** | states the existence of a correct LTL-to-Büchi translator; used only by the convenience theorems without the suffix `_with` (`MTL_to_TBA_correct`). The `_with` theorems take the backend contract as an explicit premise instead. It is not a mathematical axiom of the logic and is not discharged by Rocq. |
-| `ClassicalDedekindReals.sig_forall_dec` | standard library | used by the construction of the real numbers (decidable comparisons of bounds) |
+| `ClassicalDedekindReals.sig_forall_dec` | standard library | the limited principle of omniscience used by the construction of the real numbers; the development derives its decision procedures for the MTL semantics from it |
 | `FunctionalExtensionality.functional_extensionality_dep` | standard library | functional extensionality |
-| `Description.constructive_definite_description` | standard library | definite description (used by the classical Boolean reflection `decide_b`) |
-| `Classical_Prop.classic` | standard library | excluded middle |
 
-`coqchk` also lists `ClassicalDedekindReals.sig_not_dec` in the global context of the loaded
+Since commit 9edd246 the development uses no `classic`, `ClassicalDescription`, `excluded_middle_informative`, choice or `sig_not_dec`: decision procedures replace them. `coqchk` was run on an earlier version and also listed `ClassicalDedekindReals.sig_not_dec` in the global context of the loaded
 libraries; it does not appear in `Print Assumptions` of any principal theorem below.
 
 ## Principal theorems (fresh builds)
 
+"2 standard" means `sig_forall_dec` and `functional_extensionality_dep`. Re-run on 2026-11-12 for `Audit_Revision_20261010.v` and `MTL_to_TBA_CheckedPasses.v` (including `MTL_to_exported_checked_correct0_with`, `MTL_to_exported_checked_correct_recur_weak_with` and `..._correct0_recur_weak_with`) with Rocq 9.0.1. Rows not re-run individually inherit the change from the dependencies shown by `proof/ASSUMPTIONS_GENERIC.txt`.
+
 | Theorem | Project | Assumptions |
 |---|---|---|
-| `EncodingCorrect_proved`, `canonical_encoding_all` | both | 4 standard |
-| `MTL_to_TBA_correct_with` | both | 4 standard |
-| `MTL_to_TBA_correct` | both | 4 standard + `LTL_TO_BUCHI_CORRECT` |
-| `alarm_response_tba_correct_with`, `alarm_response_spot_backend_contract`, `alarm_response_spot_tba_correct`, `alarm_overlap_trace_accepted_by_spot_tba`, `alarm_response_trace_rejected_by_any_correct_backend`, `alarm_response_trace_rejected_by_spot_tba` | the earlier translation article | 4 standard |
+| `EncodingCorrect_proved`, `canonical_encoding_all` | both | 2 standard |
+| `MTL_to_TBA_correct_with` | both | 2 standard |
+| `MTL_to_TBA_correct` | both | 2 standard + `LTL_TO_BUCHI_CORRECT` |
+| `alarm_response_tba_correct_with`, `alarm_response_spot_backend_contract`, `alarm_response_spot_tba_correct`, `alarm_overlap_trace_accepted_by_spot_tba`, `alarm_response_trace_rejected_by_any_correct_backend`, `alarm_response_trace_rejected_by_spot_tba` | the earlier translation article | 2 standard |
 | `alarm_response_trace_violates`, `alarm_overlap_trace_satisfies` | the earlier translation article | `sig_forall_dec`, `functional_extensionality_dep` |
-| `optimize_accepts`, `export_accepts`, `export_all_accepts` | this article | 4 standard |
-| `split_accepts`, `split_all_accepts`, `export_guards_conjunctive`, `export_invariants_conjunctive`, `export_all_guards_conjunctive`, `export_all_invariants_conjunctive`, `symbolic_ext_accepts` | this article | `classic`, `functional_extensionality_dep`, `sig_forall_dec` |
-| `MTL_to_exported_correct_with`, `MTL_to_exported_correct0_with`, `MTL_to_exported_all_correct_with` | this article | 4 standard |
-| `MTL_to_exported_correct_recur_weak_with`, `MTL_to_exported_correct0_recur_weak_with` (default front end: recur + weak until) | this article | 4 standard |
+| `optimize_accepts`, `export_accepts`, `export_all_accepts` | this article | 2 standard |
+| `split_accepts`, `split_all_accepts`, `export_guards_conjunctive`, `export_invariants_conjunctive`, `export_all_guards_conjunctive`, `export_all_invariants_conjunctive`, `symbolic_ext_accepts` | this article | 2 standard |
+| `MTL_to_exported_correct_with`, `MTL_to_exported_correct0_with`, `MTL_to_exported_all_correct_with` | this article | 2 standard |
+| `MTL_to_exported_correct_recur_weak_with`, `MTL_to_exported_correct0_recur_weak_with` (default front end: recur + weak until) | this article | 2 standard |
 
 Before unification, the earlier translation article's copy additionally depended on
 `IndefiniteDescription.constructive_indefinite_description` (through `functional_choice`) for

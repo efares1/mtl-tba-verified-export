@@ -39,13 +39,11 @@ than N6--N8, R7 and R8, both polarities, both levels, with one and with the
 default number of rounds); the XML and DOT files are identical on 144 of them
 and differ on the others only in the order of the conjuncts of a guard or of the
 labels of a transition.
-The development still uses only standard axioms (excluded middle, functional
-extensionality, definite description and the Dedekind-real choice
-principle), and the generated automata are byte-identical to those of the
+The speedups added no axiom, and the generated automata are byte-identical to those of the
 previous implementation (UPPAAL XML, DOT and the messages of the tool) on 92
 runs: the benchmark patterns other than N6--N8, R7 and R8 (and, for the positive
 form, other than the largest ones), in both polarities, with one optimization
-round and with the default number of rounds. The effect is given in article Section~\ref{sec:speedups}.
+round and with the default number of rounds. The effect is given in article Section~\ref{sec:speedups}. The development was later reworked so that its only axioms are \path{ClassicalDedekindReals.sig_forall_dec} (from the construction of the real numbers) and functional extensionality, with decision procedures replacing excluded middle, definite description and choice; the byte-identity comparison above predates this change and was not repeated.
 
 \subsection{Input contract for an external TBA}
 \label{sec:generic-input-detail}
