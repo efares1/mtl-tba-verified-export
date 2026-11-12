@@ -242,6 +242,7 @@ untrusted certifiers are `tool/src/prune.ml` and `alloc.ml`, the checkers are ex
 | `alloc_survey.py OUT.tsv` | `-alloc` (all-copy export): clocks before and after, certificate accepted or not | `alloc_survey.tsv` |
 | `alloc_fuzz.py OUT.tsv WORDS SEEDS` | random allocations: the checker must reject every one that changes the language | `alloc_fuzz.tsv`, `alloc_fuzz.log` |
 | `alloc_timing.py` | TChecker `couvscc` on products with and without clock reuse (constructed families and benchmark requirements), median of repeated runs | `alloc_timing*.tsv`, `timing_items*.tsv`, `alloc_natural_rows.tex` |
+| `baselines/run_baselines.py 300 posbadall R2 R3 R4` with `ALLCOPY=1 ARMS=casaal_pruned OPT=<tba_opt> PRUNE_FLAG="-prune-split -prune-eq" OUTSUF=_prune_split_eq` | ablation: pruning with a certifier that demands equality on every clock read by a guard (no ordered clocks); nothing is pruned on CASAAL's automata (R5 not run) | `baselines/baselines_posbadall_allcopy_prune_split_eq.tsv` |
 | `casaal_label_redundancy.py` | reads CASAAL's own DOT files (`casaal_out/R2..R5.gv`) and counts printed locations, edges, label disjuncts, letter-level transitions and duplicates | `casaal_label_redundancy.tsv`, `casaal_label_redundancy_rows.tex` |
 | `iso_generate.py`, `iso_compare.py` | isomorphism of our automata with CASAAL's imported ones; the intermediate DOT files go to `isomorphism/dots/` (about 23 MB, regenerated, not versioned) | `isomorphism/iso_results.tsv` |
 

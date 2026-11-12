@@ -51,11 +51,14 @@ let liveness (root : mtl) (a : tBA) (eq_only : bool) : int -> clock list =
       List.filter_map (fun c -> if live.(s).(c) then Some clocks.(c) else None) (List.init n (fun c -> c))) in
   fun s -> if s < 0 || s >= nst then [] else memo.(s)
 
+(* ablation: demand equality of every clock read by any guard (no ordered clocks) *)
+let eq_only : bool ref = ref false
+
 let certify (root : mtl) (a : tBA)
   : (int -> int -> bool) * (int -> clock list) * (int -> clock list) * (tba_transition -> bool) =
   let n = max a.tba_nstates (a.tba_init + 1) in
-  let livef = liveness root a true in
   let lle = liveness root a false in
+  let livef = if !eq_only then lle else liveness root a true in
   let trs = a.tba_transitions in
   let by_src = Array.make n [] in
   List.iter (fun t -> if t.bt_source < n then by_src.(t.bt_source) <- t :: by_src.(t.bt_source)) (List.rev trs);

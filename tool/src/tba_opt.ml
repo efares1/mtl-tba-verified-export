@@ -26,6 +26,7 @@ let speclist = [
   ("-o", Arg.Set_string out, "<base> output files <base>.xml and <base>.dot");
   ("-n", Arg.Set_int rounds, "<n> maximal number of optimization rounds (0: none)");
   ("-all-copy", Arg.Set all_copy, " all-copy invariant split");
+  ("-prune-eq", Arg.Set Prune.eq_only, " with -prune: ablation, the certifier demands equality of every clock read by a guard (no ordered clocks)");
   ("-prune-split", Arg.Unit (fun () -> prune := true; prune_split := true), " like -prune, after splitting every transition by cells of letters (verified, split_cells_accepts)");
   ("-prune", Arg.Set prune, " drop dominated transitions (verified checker Optim.prune_ok)");
   ("-stats", Arg.Set stats, " one tab-separated line of measures");

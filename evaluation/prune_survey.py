@@ -10,6 +10,9 @@ COLS = ['formula_clocks', 'spot_states', 'spot_trans', 'spot_s', 'comp_locs', 'c
         'opt_locs', 'opt_trans', 'opt_clocks', 'exp_locs', 'exp_trans', 'exp_clocks', 'exp_invs', 'exp_diffs', 'opt_s',
         'exp_s', 'total_s', 'init_free', 'sym_trans']
 VARIANTS = (('plain', []), ('prune', ['-prune']), ('split', ['-prune-split']))
+if os.environ.get('EQ'):
+    # ablation: the certifier demands equality of every clock read by a guard (no ordered clocks, no lle)
+    VARIANTS = (('prune_eq', ['-prune', '-prune-eq']), ('split_eq', ['-prune-split', '-prune-eq']))
 
 
 def run(form, flags, W):

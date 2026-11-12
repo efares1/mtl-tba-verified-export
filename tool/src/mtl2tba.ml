@@ -74,6 +74,7 @@ let speclist = [
   ("-nopdf", Arg.Clear pdf, " do not run Graphviz to produce <base>.pdf from <base>.dot");
   ("-explicit-neg", Arg.Set explicit_neg, " print the negated event atom !e as the negation of the quoted atom, !\"e\" (default); Spot then knows that e and !e exclude each other. The backend contract of the proof is required only on the action-consistent words (action_consistent), in which !e is the complement of e");
   ("-indep-neg", Arg.Clear explicit_neg, " print the negated event atom !e as the independent quoted atom \"!e\" (the contract then holds on all propositional words, which is stronger than needed)");
+  ("-prune-eq", Arg.Set Prune.eq_only, " with -prune: ablation, the certifier demands equality of every clock read by a guard (no ordered clocks, no lle); the checker is unchanged");
   ("-prune-split", Arg.Unit (fun () -> prune_on := true; prune_split := true), " like -prune, but first split every transition into one transition per cell of letters (verified, split_cells_accepts); makes the domination test exact but can multiply transitions");
   ("-prune", Arg.Set prune_on, " after the optimization, drop dominated transitions (verified checker Optim.prune_pass, Coq prune_pass_accepts; the simulation in prune.ml is untrusted and its result is checked)");
   ("-alloc", Arg.Set alloc_on, " after the optimization, reuse clocks by liveness (verified checker Optim.alloc_pass, Coq alloc_pass_accepts; the colouring in alloc.ml is untrusted and its result is checked)");

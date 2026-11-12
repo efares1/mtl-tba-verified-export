@@ -23,7 +23,7 @@ sys.path.insert(0, EV)
 import tck_product as tp
 EXE = os.environ.get('EXE', os.path.join(EV, '..', 'tool', '_build', 'default', 'src', 'mtl2tba.exe'))
 OPT = os.environ.get('OPT', os.path.expanduser('~/tool_copy/_build/default/src/tba_opt.exe'))
-PRUNE = os.environ.get('PRUNE_FLAG', '-prune')  # -prune (plain) or -prune-split (split by cells first)
+PRUNE = os.environ.get('PRUNE_FLAG', '-prune').split()  # -prune (plain) or -prune-split (split by cells first); add -prune-eq for the equality-only ablation
 TCK = os.path.expanduser('~/local/bin/tck-liveness')
 LIMIT = int(sys.argv[1]); WORKLOAD = sys.argv[2]; ONLY = sys.argv[3:]
 AC = ['-all-copy'] if os.environ.get('ALLCOPY') else []
@@ -172,10 +172,10 @@ with open(OUT, 'a', encoding='utf8') as o:
                 rc, _, _ = sh([sys.executable, os.path.join(EV, os.environ.get('CAS2TBA', 'casaal_to_tba.py')), gv, tba, ','.join(events)])
                 if rc == 0:
                     rc, _, _ = sh([OPT, '-o', os.path.join(W, 'cexp'), '-n', '0'] + AC + [tba], timeout=LIMIT)
-                    rcp, _, errp = sh([OPT, '-o', os.path.join(W, 'cprune'), '-n', '0', PRUNE] + AC + [tba], timeout=LIMIT)
+                    rcp, _, errp = sh([OPT, '-o', os.path.join(W, 'cprune'), '-n', '0'] + PRUNE + AC + [tba], timeout=LIMIT)
                     if rcp == 0 and 'accepted by the checker: true' in errp:
                         arms['casaal_pruned'] = lambda: tp.from_xml('NEG', os.path.join(W, 'cprune.xml'))
-                    rcq, _, errq = sh([EXE, '-nopdf', '-v', PRUNE, '-o', os.path.join(W, 'oprune')] + AC + [FORM % ours], cwd=W, timeout=LIMIT)
+                    rcq, _, errq = sh([EXE, '-nopdf', '-v'] + PRUNE + ['-o', os.path.join(W, 'oprune')] + AC + [FORM % ours], cwd=W, timeout=LIMIT)
                     if rcq == 0 and 'accepted by the checker: true' in errq:
                         arms['ours_pruned'] = lambda: tp.from_xml('NEG', os.path.join(W, 'oprune.xml'))
                     if rc == 0:

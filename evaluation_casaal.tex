@@ -84,7 +84,7 @@ Table~\ref{tab:stress} supports four observations.
 \item The extra states are explored through dominated transitions. After the verified splitting by cells of letters and the removal of dominated transitions (Section~\ref{sec:checked}), TChecker stores exactly our counts on CASAAL's automaton for R2--R5 (70, 92, 114, 136), and R5 finishes (Section~\ref{sec:eval-checked}).
 \end{enumerate}
 
-The workload is constructed and covers the bounded-response family only; it is no general speedup. It shows that two translators whose negated automata have the same size can give positive forms that a model checker explores at very different cost.
+The workload is constructed and covers the bounded-response family only; it is no general speedup. It shows that two translators whose negated automata have the same size can give positive forms that a model checker explores at very different cost. Overlap in CASAAL's printed labels, what TChecker's inclusion subsumption removes of it, and the dominated transitions that pruning removes all contribute, and they overlap, so they are not additive shares of the gap. The comparison goes through our importer and TChecker and shows no advantage for a native CASAAL-to-UPPAAL use.
 
 \subsubsection{Sensitivity of the counts and non-empty products}
 \label{sec:tck-sensitivity}
