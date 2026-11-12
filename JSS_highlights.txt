@@ -1,5 +1,5 @@
-Modular chain from MTL to timed automata with Rocq-verified optimization/export
-Every pass preserves the timed-word language for any number of rounds
-CASAAL comparison: similar checker cost, large gap on one constructed workload
-Random-word tests miss 5 of 18 seeded defects; Rocq rejects all
-Spot is replaceable: theorems hold for any front end meeting the interface
+MTL-to-timed-automata chain with Rocq-verified optimization and UPPAAL export
+Pruning and clock reuse: untrusted analysis, verified checker, any certificate
+On a constructed workload, checked pruning closes a 1.7M vs 114 state gap
+Random-word tests miss 5 of 18 language-changing defects; Rocq rejects all 22
+Zero-initialized correctness of the full chain given a successful init_free
