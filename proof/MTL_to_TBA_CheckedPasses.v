@@ -16,6 +16,9 @@ Require Import MTL_to_TBA_Optimizations.
 Require Import MTL_to_TBA_Export.
 Require Import MTL_to_TBA_ClockAlloc.
 Require Import MTL_to_TBA_DomPrune.
+Require Import MTL_to_TBA_Initialization.
+Require Import MTL_to_TBA_Weak.
+Require Import MTL_to_TBA_Recur.
 Import ListNotations.
 
 Definition checked_passes (root : mtl) (pc : prune_certifier root)
@@ -86,3 +89,73 @@ Proof.
 Qed.
 
 Print Assumptions MTL_to_exported_checked_correct_with.
+
+(* ---------------------------------------------------------------------- *)
+(* Conventional clock initialization (all clocks 0, as in UPPAAL): the     *)
+(* same chain, under a successful init_free check on the FINAL exported    *)
+(* automaton, that is, after pruning and clock reuse.  Both certificate    *)
+(* producers remain parameters.                                            *)
+
+Lemma checked_export_accepts0 :
+  forall root pc ac n (A : TBA root) w,
+    init_free (checked_export root pc ac n A) = true ->
+    (TBA_accepts A w <-> DTA_accepts0 (checked_export root pc ac n A) w).
+Proof.
+  intros root pc ac n A w Hfree.
+  rewrite <- (@init_free_accepts0 root _ w Hfree).
+  unfold checked_export.
+  rewrite <- (export_accepts (checked_passes root pc ac n A) w).
+  apply checked_passes_accepts.
+Qed.
+
+Theorem MTL_to_exported_checked_correct0_with :
+  forall (n : nat) (f : mtl) (pc : prune_certifier f) (ac : certifier f)
+         (A : PBuchi f) (w : timed_word),
+    (forall s : pword f, action_consistent s ->
+       (PBA_accepts A s <-> psat s 0 (T f))) ->
+    well_formed f ->
+    init_free (checked_export f pc ac n (compile_with A)) = true ->
+    (msat w 0 f <->
+     DTA_accepts0 (checked_export f pc ac n (compile_with A)) w).
+Proof.
+  intros n f pc ac A w HA Hwf Hfree.
+  rewrite (@MTL_to_TBA_correct_with f A w HA Hwf).
+  apply checked_export_accepts0. exact Hfree.
+Qed.
+
+(* The statement shipped with the tool: the chain applied to recur f with  *)
+(* the weakened clocked encoding as the contract of the Spot back end.     *)
+Theorem MTL_to_exported_checked_correct_recur_weak_with :
+  forall (n : nat) (f : mtl) (pc : prune_certifier (recur f))
+         (ac : certifier (recur f)) (A : PBuchi (recur f)) (w : timed_word),
+    (forall s : pword (recur f), action_consistent s ->
+        (PBA_accepts A s <-> psat s 0 (weak (T (recur f))))) ->
+    well_formed f ->
+    (msat w 0 f <->
+     DTA_accepts (checked_export (recur f) pc ac n (compile_with A)) w).
+Proof.
+  intros n f pc ac A w HA Hwf.
+  rewrite <- (recur_correct f Hwf w 0).
+  rewrite (@MTL_to_TBA_correct_weak_with (recur f) A w HA (recur_well_formed f Hwf)).
+  unfold checked_export.
+  rewrite (checked_passes_accepts (recur f) pc ac n (compile_with A) w).
+  apply export_accepts.
+Qed.
+
+Theorem MTL_to_exported_checked_correct0_recur_weak_with :
+  forall (n : nat) (f : mtl) (pc : prune_certifier (recur f))
+         (ac : certifier (recur f)) (A : PBuchi (recur f)) (w : timed_word),
+    (forall s : pword (recur f), action_consistent s ->
+        (PBA_accepts A s <-> psat s 0 (weak (T (recur f))))) ->
+    well_formed f ->
+    init_free (checked_export (recur f) pc ac n (compile_with A)) = true ->
+    (msat w 0 f <->
+     DTA_accepts0 (checked_export (recur f) pc ac n (compile_with A)) w).
+Proof.
+  intros n f pc ac A w HA Hwf Hfree.
+  rewrite <- (recur_correct f Hwf w 0).
+  rewrite (@MTL_to_TBA_correct_weak_with (recur f) A w HA (recur_well_formed f Hwf)).
+  apply checked_export_accepts0. exact Hfree.
+Qed.
+
+Print Assumptions MTL_to_exported_checked_correct0_recur_weak_with.

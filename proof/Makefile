@@ -26,7 +26,8 @@ PROOF = EncodingCorrect_Shared_Clock_Derived_Strict_Direct_Proof
 VFILES = $(CORE).v $(PROOF).v MTL_to_TBA_Invariants.v \
          MTL_to_TBA_Optimizations.v MTL_to_TBA_Export.v \
          MTL_to_TBA_Initialization.v MTL_to_TBA_Simplify.v MTL_to_TBA_Symbolic.v \
-         MTL_to_TBA_Negation.v MTL_to_TBA_Weak.v MTL_to_TBA_Recur.v Extract_Optim.v
+         MTL_to_TBA_Negation.v MTL_to_TBA_Weak.v MTL_to_TBA_Recur.v \
+         MTL_to_TBA_ClockAlloc.v MTL_to_TBA_DomPrune.v MTL_to_TBA_CheckedPasses.v Extract_Optim.v
 ROOTS = optimized optimize alloc_pass prune_pass split_cells dom_step prune_ok label_at cells export export_all optimize_export optimize_export_all t ltl_atoms compile_with compile_with_fast init_free ltl_simp symbolic neg weak recur \
         timed_subformulas mUle mUlt mUge mUgt mRle mRlt mRge mRgt
 OPTIM = $(TOOLDIR)/src/optim.ml
@@ -56,10 +57,12 @@ MTL_to_TBA_Symbolic.vo: MTL_to_TBA_Initialization.vo
 MTL_to_TBA_Negation.vo: $(CORE).vo
 MTL_to_TBA_Weak.vo: MTL_to_TBA_Initialization.vo
 MTL_to_TBA_Recur.vo: MTL_to_TBA_Weak.vo
+MTL_to_TBA_DomPrune.vo: MTL_to_TBA_Export.vo
+MTL_to_TBA_CheckedPasses.vo: MTL_to_TBA_ClockAlloc.vo MTL_to_TBA_DomPrune.vo MTL_to_TBA_Recur.vo
 
 # Extraction, removal of the unused real-number library code, and
 # installation of the extracted module in the tool.
-$(OPTIM): Extract_Optim.v MTL_to_TBA_ClockAlloc.vo MTL_to_TBA_DomPrune.vo MTL_to_TBA_Simplify.vo MTL_to_TBA_Symbolic.vo MTL_to_TBA_Negation.vo MTL_to_TBA_Weak.vo MTL_to_TBA_Recur.vo tools/prune_extraction.py
+$(OPTIM): Extract_Optim.v MTL_to_TBA_ClockAlloc.vo MTL_to_TBA_DomPrune.vo MTL_to_TBA_Simplify.vo MTL_to_TBA_Symbolic.vo MTL_to_TBA_Negation.vo MTL_to_TBA_Weak.vo MTL_to_TBA_Recur.vo MTL_to_TBA_CheckedPasses.vo tools/prune_extraction.py
 	$(COQC) $(COQFLAGS) Extract_Optim.v
 	rm -f optim.mli
 	$(PYTHON) tools/prune_extraction.py optim.ml $(ROOTS)
