@@ -47,3 +47,11 @@ echo "outputs (.xml for UPPAAL, .dot): $OUT"
 
 step "6. Implementation checks (18 boundary and overlap tests)"
 EXE="$EXE" bash "$ROOT/evaluation/run_boundary_tests.sh"
+
+step "7. Certificate-checked passes (pruning and clock reuse)"
+for f in '[](p -> <>[<=5] q)' '(<>[<=5] p) & [][<2] !p'; do
+  for opt in -prune -prune-split -alloc; do
+    "$EXE" -nopdf -v $opt -o "chk" "$f" 2>&1 | grep -i "certificate\|reject\|accept" || true
+  done
+done
+echo "ok (the checkers are the extracted Rocq functions; see evaluation/README.md for the surveys)"

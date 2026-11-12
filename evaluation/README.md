@@ -227,3 +227,23 @@ All commands run in WSL from `evaluation/`; notes and tables are in `INVESTIGATI
 | `make_zone_table.py` | article table of the zone graphs | `zone_table.tex` |
 | `prune_casaal.py R2 [WORDS]` | removes dominated edges of CASAAL's positive automaton, counts, compares with the MTL judge | `prune_results.txt`, `prune_R*.xml` |
 | `bisim_probe.py` | syntactic bisimulation quotient (location merging probe) | `bisim_probe.tsv` |
+
+## Certificate-checked passes: pruning and clock reuse (added 2026-11-12)
+
+All commands run in WSL from `evaluation/`. The passes are `mtl2tba -prune`, `-prune-split` and `-alloc`; the
+untrusted certifiers are `tool/src/prune.ml` and `alloc.ml`, the checkers are extracted from the Rocq development
+(`proof/MTL_to_TBA_DomPrune.v`, `MTL_to_TBA_ClockAlloc.v`, `MTL_to_TBA_CheckedPasses.v`).
+
+| script | what it does | output |
+|---|---|---|
+| `prune_survey.py OUT.tsv` | `-prune` and `-prune-split` on the benchmark patterns and the 100 random formulas, both polarities: sizes, certificate accepted or not | `prune_survey.tsv` |
+| `prune_casaal.py R2 [WORDS]` | prunes CASAAL's positive automaton for R2..R5, compares with the MTL judge | `prune_results.txt`, `prune_R*.xml` |
+| `independent/run_independent.py` | both passes on the 600 TBAs of `independent/` | `independent/results/independent_prune_summary.txt` |
+| `alloc_survey.py OUT.tsv` | `-alloc` (all-copy export): clocks before and after, certificate accepted or not | `alloc_survey.tsv` |
+| `alloc_fuzz.py OUT.tsv WORDS SEEDS` | random allocations: the checker must reject every one that changes the language | `alloc_fuzz.tsv`, `alloc_fuzz.log` |
+| `alloc_timing.py` | TChecker `couvscc` on products with and without clock reuse (constructed families and benchmark requirements), median of repeated runs | `alloc_timing*.tsv`, `timing_items*.tsv`, `alloc_natural_rows.tex` |
+| `casaal_label_redundancy.py` | reads CASAAL's own DOT files (`casaal_out/R2..R5.gv`) and counts printed locations, edges, label disjuncts, letter-level transitions and duplicates | `casaal_label_redundancy.tsv`, `casaal_label_redundancy_rows.tex` |
+| `iso_generate.py`, `iso_compare.py` | isomorphism of our automata with CASAAL's imported ones; the intermediate DOT files go to `isomorphism/dots/` (about 23 MB, regenerated, not versioned) | `isomorphism/iso_results.tsv` |
+
+Timings come from one machine (`machine.txt`) and are single or median-of-few runs; the article and the supplement
+say which. `bisim_probe.py`, `alloc_probe.log` and `clock_liveness.log` are exploratory outputs.

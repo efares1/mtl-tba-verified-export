@@ -14,7 +14,10 @@ cites and does not re-prove, and on an earlier optimization article
 
 Each optimization and export pass preserves the timed-word language of every TBA over the
 formula-indexed clock interface; the optimizer does so for every number of rounds; the output of
-export has conjunctive guards and invariants. The end-to-end theorems compose these results with the
+export has conjunctive guards and invariants. Dominated-transition pruning and clock reuse are
+certificate-checked: an untrusted OCaml certifier proposes a simulation relation or a clock allocation, a
+verified boolean checker accepts or rejects it, and a rejected certificate leaves the automaton unchanged;
+the theorems hold for every certificate. The end-to-end theorems compose these results with the
 verified translation. Spot, the reader of its output, the XML printer, UPPAAL and TChecker are outside
 the proofs. `proof/Audit_Revision_20261010.v` prints the assumptions of the main theorems, and
 `ROCQ_ASSUMPTIONS_AUDIT.md` records the result.
@@ -23,13 +26,15 @@ the proofs. `proof/Audit_Revision_20261010.v` prints the assumptions of the main
 
 | Path | Content |
 |---|---|
-| `jss_paper.tex`, `jss_supp.tex` and the files they include | article and supplement sources |
+| `jss_paper.tex`, `jss_supp.tex` and the files they include | article (36 pages) and supplement (55 pages) sources |
+| `jss_paper.pdf`, `jss_supp.pdf` | the compiled article and supplement (`scripts/build_jss.sh`) |
 | `proof/` | Rocq development and extraction (`Extract_Optim.v` writes `tool/src/optim.ml`) |
 | `tool/` | `mtl2tba` and `tba_opt`: extracted optimizer/exporter and hand-written front end |
 | `evaluation/` | benchmark data, TChecker and CASAAL comparison, results and generated tables |
 | `evaluation/baselines/` | ablations: invariant-free and acceptance-converted arms, same-driver timing |
 | `evaluation/uppaal/` | 311 UPPAAL models, runner and results |
 | `evaluation/differential/` | independent MTL evaluator and the 6,160,000-word differential test |
+| `evaluation/README.md` | per-script description of every experiment, including the certificate-checked passes (pruning, clock reuse) |
 | `evaluation/mutation/` | 22 seeded defects in the extracted code; `rocq/` holds the Rocq-level rejection runs and logs |
 | `evaluation/independent/` | optimizer and export on 600 TBAs that no MTL translator produced (`run_independent.py`; results in `results/`; `reduce.py` and `trace_can.py` minimize and trace a mismatch) |
 | `scripts/`, `reproduce.sh` | build, reproduction and table scripts (`scripts/build_jss.sh` builds the article and supplement) |
@@ -40,6 +45,8 @@ the proofs. `proof/Audit_Revision_20261010.v` prints the assumptions of the main
 ```
 cd proof && make COQC=<path>/coqc      # checks the proofs and re-extracts tool/src/optim.ml
 cd tool && dune build                  # builds mtl2tba and tba_opt
+bash scripts/build_jss.sh              # builds jss_paper.pdf and jss_supp.pdf (LaTeX, bibtex, python3)
+bash reproduce.sh                      # proofs, audit, tool, examples, boundary tests, checked passes
 ```
 
 Recorded versions: Rocq 9.0.1, OCaml 5.4.0, Spot 2.16, UPPAAL 5.0.0, Ubuntu 26.04 under WSL 2.
