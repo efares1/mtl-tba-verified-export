@@ -1,0 +1,3 @@
+id	clocks_plain	clocks_alloc	verdict	stored_plain	stored_alloc	reps	median_s_plain	median_s_alloc	min_s_plain	min_s_alloc	ratio_median	peak_kb_plain	peak_kb_alloc	times_plain	times_alloc
+R2	2	1	empty	7513	7513	5	0.1523	0.1348	0.1503	0.1326	0.885	18960	17816	0.150,0.160,0.151,0.152,0.177	0.133,0.135,0.136,0.133,0.137
+R3	3	1	empty	168484	168484	5	9.1669	7.4508	8.8900	7.2202	0.813	139584	104096	9.167,9.259,9.074,9.708,8.890	8.100,7.451,7.220,7.280,9.157

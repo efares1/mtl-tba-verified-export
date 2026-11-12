@@ -1,0 +1,96 @@
+\subsection{Scheme and trusted base}
+Both passes have the same structure. An untrusted OCaml procedure (the \emph{certifier}) returns a certificate; a boolean function written in Rocq and extracted tests local conditions on it; and a \emph{try} function applies the transformation if the test returns \path{true} and returns its input otherwise. The preservation theorem is stated for an arbitrary certificate, in the form
+\[
+\forall\, \mathsf{cert}\ \mathcal A,\quad \mathcal L(\mathsf{pass}(\mathsf{cert},\mathcal A))=\mathcal L(\mathcal A),
+\]
+where the pass is \path{prune_pass} or \path{alloc_pass} and \path{prune_certifier}, \path{certifier} are the function types of the certifiers. The proof never inspects how a certificate was found, so a wrong certifier can lower the quality of the result and cannot change its language. Nothing is added to the axioms of the rest of the development. The proofs are in \path{MTL_to_TBA_DomPrune.v} (pruning and \path{split_cells}) and \path{MTL_to_TBA_ClockAlloc.v} (clock reuse), and the composition theorems are in \path{MTL_to_TBA_CheckedPasses.v}.
+
+\subsection{Removal of dominated transitions}\label{sec:prune-detail}
+\paragraph{Cells of letters.} Let $\mathit{men}(\mathcal A)$ be the actions that occur in a label of $\mathcal A$ (\path{mentioned}). A \emph{cell} is either $\mathsf{Some}\,a$ with $a\in\mathit{men}(\mathcal A)$ or $\mathsf{None}$, which stands for every action outside $\mathit{men}(\mathcal A)$; \path{cells} lists them and \path{cell_of} maps an action to its cell. A label is a conjunction of literals over actions, and with one action at each position \path{label_at} decides it on a cell: a positive literal $a$ holds on $\mathsf{Some}\,a$ only, and a negative literal $\neg a$ holds on every cell except $\mathsf{Some}\,a$. Lemma \path{label_at_iff} states that a label of $\mathcal A$ holds on an action $p$ exactly when it holds on the cell of $p$. Dominance can therefore be tested on finitely many cells and not on all letters.
+
+\paragraph{The certificate.} A certificate for $\mathcal A$ consists of a predicate $\mathit{keep}$ on transitions, a relation $\mathit{sim}$ on locations, and, for every location $q$, two lists of clocks $\mathit{live}(q)$ and $\mathit{lle}(q)$. The pruned automaton \path{prune_trans} has the same locations, initial location and accepting set as $\mathcal A$ and only the transitions that satisfy $\mathit{keep}$.
+
+\paragraph{The checker.} \path{prune_ok} returns \path{true} iff $\mathit{sim}(q_0,q_0)$ for the initial location $q_0$ and, for all locations $q_1,q_2$ with $\mathit{sim}(q_1,q_2)$:
+\begin{enumerate}[label=(P\arabic*),leftmargin=*,itemsep=0pt]
+  \item if $q_2$ is accepting then $q_1$ is accepting;
+  \item for every cell $c$ and every transition $t_2$ out of $q_2$ whose label holds on $c$, there is a transition $t_1$ out of $q_1$ (\path{dom_step}) such that
+  \begin{enumerate}[label=(\alph*),itemsep=0pt]
+    \item $\mathit{keep}(t_1)$, and the label of $t_1$ holds on $c$;
+    \item the guard of $t_2$ implies the guard of $t_1$ (\path{guard_implied}), and every atom of the guard of $t_1$ has its clock in $\mathit{live}(q_1)$, or is an upper bound ($<$ or $\le$) on a clock of $\mathit{lle}(q_1)$ (\path{guard_item_ok});
+    \item (\path{flow_ok}) every clock $x\in\mathit{live}(\mathit{tgt}(t_1))$ is reset by both $t_1$ and $t_2$, or by neither and then $x\in\mathit{live}(q_1)$; every clock $x\in\mathit{lle}(\mathit{tgt}(t_1))$ is reset by $t_1$, or is reset by neither and $x\in\mathit{lle}(q_1)\cup\mathit{live}(q_1)$;
+    \item $\mathit{sim}(\mathit{tgt}(t_1),\mathit{tgt}(t_2))$.
+  \end{enumerate}
+\end{enumerate}
+The test is a finite conjunction over locations, cells and transitions. It is written with a lazy conjunction (\path{land}) because the extracted code of \path{andb} evaluates both arguments, and the check runs on automata with thousands of transitions; \path{dom_step_spec} and \path{prune_ok_spec} give the propositional reading above.
+
+\paragraph{Meaning of $\mathit{live}$ and $\mathit{lle}$.} For two runs, one of $\mathcal A$ at a location $q_2$ and one of the pruned automaton at a location $q_1$ with $\mathit{sim}(q_1,q_2)$, the clocks of $\mathit{live}(q_1)$ will have \emph{equal} values and those of $\mathit{lle}(q_1)$ will have a value in the second run that is \emph{less than or equal} to the value in the first. Equality is needed for guards of any shape; the order is enough for upper bounds, since the run of $t_1$ satisfies $x\le c$ whenever the run of $t_2$ does and its value of $x$ is not larger. The resets of the two transitions may differ on a clock that is dead after the step, which is what lets $t_1$ dominate a transition with a different reset set; this is the difference with syntactic subsumption (article Section~\ref{sec:post}), which requires the same target and the same resets.
+
+\paragraph{The invariant.} Given a run $\pi$ of $\mathcal A$ on an extended word $\rho$ (positions $0,1,\dots$ with the actions, delays and clock values of $\rho$), the proof builds, by recursion on $i$, a run of the pruned automaton: \path{T2} $i$ is the transition of $\mathcal A$ taken at position $i$; \path{T1} $i$ $q$ is, by \path{pick}, the transition that \path{prune_ok_spec} provides for $q$, the cell of the action at $i$ and \path{T2} $i$; \path{qs} $i$ is the location reached, with $\mathsf{qs}\,0=q_0$; and the valuations \path{dpval} are those obtained by applying the resets of the chosen transitions to the delays of $\rho$. The record \path{dp_inv} states four facts at each position $i$:
+\begin{gather*}
+\mathit{sim}(\mathsf{qs}_i,\pi_i)\ \wedge\ \mathsf{qs}_i<|\mathcal A|,\\
+\forall x\in\mathit{live}(\mathsf{qs}_i),\ \mathsf{dpval}_i(x)=\rho_i(x),\qquad \forall x\in\mathit{lle}(\mathsf{qs}_i),\ \mathsf{dpval}_i(x)\le\rho_i(x).
+\end{gather*}
+\path{dp_invariant} proves it by induction: the base case is the initial condition of the check, with both valuations equal to the initial one (so $\mathit{live}$ and $\mathit{lle}$ are respected at the initial location); the step uses \path{T1_spec}, then transfers the guard of $t_2$, which holds on $\rho_i$, to the guard of $t_1$ on \path{dpval} (\path{constraint_transfer} for clocks of $\mathit{live}$, \path{constraint_transfer_le} for upper bounds on clocks of $\mathit{lle}$), and finally restores the two clock facts after the delay and the resets by the conditions of \path{flow_ok}. Acceptance follows from (P1): the run of the pruned automaton is in an accepting location whenever the original run is, hence infinitely often (\path{prune_forward_run}, \path{prune_forward_ext}). The converse inclusion is immediate, since the pruned automaton only removes transitions. \path{prune_trans_accepts} is the language equality under the hypothesis \path{prune_ok}, \path{try_prune_accepts} replaces it by the test, and \path{prune_pass_accepts} quantifies over the certifier.
+
+\paragraph{Why each condition is there.} Dropping (P1) lets an accepting run be replaced by a rejecting one. Requiring equality on every clock, without the order on $\mathit{lle}$, would be sound but would forbid the dominance of a transition whose guard is an upper bound on a clock that the two runs have not kept equal. Using $\mathit{lle}$ for a lower bound is unsound, because a smaller value can falsify $x\ge c$; hence \path{upper_cmp}. The condition on $\mathit{tgt}(t_1)$ in \path{flow_ok} propagates the two clock facts to the next position, and (d) propagates the simulation.
+
+\paragraph{Splitting by cells.} \path{split_cells} replaces every transition $t$ by one copy per cell $c$ on which its label holds, with the label \path{cell_label}~$c$: the single literal $a$ for $\mathsf{Some}\,a$ and the conjunction of all literals $\neg m$, $m\in\mathit{men}(\mathcal A)$, for $\mathsf{None}$. The guard, resets and target are those of $t$. By \path{cell_label_holds} and \path{cell_label_inv}, the copy for $c$ holds on an action exactly when the action is in the cell $c$ and $t$ holds on it, so the same words are accepted and the same runs exist (\path{split_cells_accepts}). Splitting is useful because the checker asks for a dominating transition for every cell of $t_2$ and removes $t_2$ as a whole.
+
+\paragraph{Worked example.} Let the actions be $a$, $b$ and the others. From a location $q$, three transitions go to the same location $p$ with $\mathit{sim}(p,p)$, no resets and no clocks in play except $x\in\mathit{live}(q)$: $t_3$ with label $a$ and guard $x\le5$, $t_1$ with label $\neg a$ and guard $x\le 5$, and $t_2$ with label $\neg b$ and guard $x\le 3$. On the cell $\mathsf{Some}\,a$, $t_2$ is dominated by $t_3$; on $\mathsf{None}$, by $t_1$; but on $\mathsf{Some}\,b$ the label of $t_2$ does not hold, so no obligation arises. Hence \path{prune_ok} accepts a certificate that removes $t_2$. If instead $t_1$ had guard $x\le 2$, $t_2$ would still be dominated on $a$ but not on the other actions, and could not be removed as a whole; after \path{split_cells}, its copy on $\mathsf{Some}\,a$ is removable and its copy on $\mathsf{None}$ stays. Pruning alone removed only part of the extra states of CASAAL's automaton, and the splitting brought them to ours (article Section~\ref{sec:casaal-stress}), which is consistent with labels that overlap without being nested.
+
+\paragraph{The certifier.} The OCaml certifier (\path{tool/src/prune.ml}) computes $\mathit{live}$ as the clocks read before being reset by lower bounds and equalities and $\mathit{lle}$ as those read by any guard; takes $\mathit{sim}$ as the greatest relation that satisfies (P1) and (P2) when every transition is kept; scans the transitions in order and drops one when another kept transition from the same location dominates it under $\mathit{sim}$; and recomputes $\mathit{sim}$ on the kept transitions, dropping nothing if the recomputed relation no longer contains the initial pair. It is a heuristic, and its result is validated by \path{prune_ok}.
+
+\subsection{Reuse of clocks}\label{sec:alloc-detail}
+\paragraph{The certificate and the renamed automaton.} The certificate is an allocation $\alpha$ (a function on clocks) and, for every location $q$, a list $\mathit{live}(q)$. \path{allocate_clocks} replaces every clock $x$ of a guard atom by $\alpha(x)$ (\path{alloc_item}) and the reset list of every transition by $\mathsf{nodup}(\mathsf{map}\ \alpha\ \mathit{resets})$ (\path{alloc_resets}), and leaves locations, labels, invariants, initial location and acceptance unchanged.
+
+\paragraph{The checker.} \path{alloc_ok} tests, for every transition $t$ from $q$ to $q'$, and for the initial location $q_0$:
+\begin{enumerate}[label=(\Alph*),leftmargin=*,itemsep=0pt]
+  \item[(G)] every clock of the guard of $t$ is in $\mathit{live}(q)$;
+  \item[(F)] every $x\in\mathit{live}(q')$ is reset by $t$ or belongs to $\mathit{live}(q)$;
+  \item[(R)] for every $r$ reset by $t$ and every $y\in\mathit{live}(q')$, $\alpha(r)=\alpha(y)$ implies $r=y$ (\path{same_class_eq});
+  \item[(I)] for $x,y\in\mathit{live}(q_0)$, $\alpha(x)=\alpha(y)$ implies $x=y$.
+\end{enumerate}
+\path{alloc_ok_sound} shows that a successful test yields the record \path{alloc_valid}, which has the four conditions in propositional form. No other property of $\alpha$ is needed: $\alpha$ need not be idempotent, and the sets $\mathit{live}$ may be any over-approximation that satisfies (G) and (F), so the certifier is free to be conservative.
+
+\paragraph{Forward direction.} Given a run of $\mathcal A$ on $\rho$, the word \path{fwd_word} gives to the clock $c$ of the renamed automaton the value of the clock of $\mathcal A$ that was last reset among the class of $c$ (\path{fwd_reset}, \path{init_val}); at the initial position $\alpha$ is injective on $\mathit{live}(q_0)$ by (I), so the initial values of the live clocks can be placed in their classes. \path{fwd_invariant} states that at every position every clock of $\mathit{live}$ of the current location has in the renamed word the value that it has in $\rho$. It is proved by induction: (F) says that a live clock after the step was reset (then its value is the delay) or live before (then, by induction, correct), and (R) says that resetting a class does not disturb a live clock of the same class unless it is the reset clock itself. With (G), \path{item_transfer} gives the guard of the renamed transition from the guard of the original.
+
+\paragraph{Backward direction.} Given a run of the renamed automaton, \path{bwd_word} gives to each clock of $\mathcal A$ the value of its class and \path{backward_ext} builds the run of $\mathcal A$ by choosing, at every position, the first transition of $\mathcal A$ that maps to the transition taken (\path{pick_spec}), so no choice axiom is used. \path{item_transfer_back} gives the guard of that transition from the renamed guard, using (G) so that the clocks that it reads are live and correct. Locations, labels and acceptance are the same, hence the runs have the same accepting positions. \path{allocate_clocks_accepts}, \path{try_allocate_accepts} and \path{alloc_pass_accepts} are then the language equalities under the hypothesis, under the test and for every certifier.
+
+\paragraph{The certifier.} The OCaml certifier (\path{tool/src/alloc.ml}) computes the least $\mathit{live}$ sets satisfying (G) and (F) by a fixpoint, builds the interference graph (an edge between a reset clock and each clock live at the target, and between the clocks that are live at the initial location), and colours it greedily with DSATUR; each clock goes to the first clock of its colour. It is heuristic: DSATUR does not find the fewest colours in general, and the liveness sets are over-approximations. The fuzz of the article (552 random allocations) exercises the checker, not the proof.
+
+\subsection{Composition}
+\path{MTL_to_TBA_CheckedPasses.v} states, for every pruning certifier, every allocation certifier, every $n$ and every well-formed $f$, that a timed word satisfies $f$ iff the export of the result of $\mathsf{optimize}$, then $\mathsf{split\_cells}$, $\mathsf{prune\_pass}$ and $\mathsf{alloc\_pass}$ applied to $\mathsf{compile}(f)$ accepts it (\path{MTL_to_exported_checked_correct}); the variants \path{MTL_to_exported_checked_correct_all} and \path{_with}, \path{_all_with} cover the all-copy export and the Spot-parametrized chain, with the same hypothesis on the propositional automaton as the article's Theorem~\ref{thm:composition}. The two certificate-checked developments add 1{,}462 lines and 46 lemmas and theorems to the project; \texttt{Print Assumptions} reports only the standard library principles listed in the article.
+
+\subsection{Evidence on the CASAAL workload}\label{sec:casaal-label-detail}
+The article's pruning result is on CASAAL's automaton for the positive form of the bounded responses, read by the importer of article Section~\ref{sec:casaal-size}. Two facts show that the importer's acceptance conversion is not what makes this automaton large. First, for R2--R5 CASAAL's output carries no acceptance mark, so the importer keeps the printed locations ($2^n$) and marks every state accepting, as the label of no state contains an unbounded eventuality; no location is split and no transition is dropped. Second, the redundancy is present in the printed labels. Table~\ref{tab:casaal-label} counts, from CASAAL's own DOT files (\path{evaluation/casaal_label_redundancy.py}), the printed edges, the disjuncts of their labels, the transitions between letters that these denote (with mutually exclusive actions, as in the article) and the disjuncts that are covered by the other disjuncts of the same printed edge. The transitions between letters, 51, 216, 837 and 3{,}078, are the explicit edges that TChecker receives from CASAAL's automaton (article Section~\ref{sec:casaal-stress}); 12 to 13\% of them repeat a transition of the same printed edge, and the others differ in target, guard or resets, which is the overlap that the checked pruning removes after splitting. What the importer chooses is the reading of an event literal as one letter (mutually exclusive events) and the expansion of a label into one transition per disjunct, which TChecker's input format requires.
+
+\begin{table}[tp]
+\centering
+\caption{CASAAL's automaton for the positive form of Rn, from the DOT file (acceptance marks printed: none). Letter-level transitions are the (source, target, action, guard, resets) tuples that the printed labels denote when the actions are mutually exclusive; ``covered'' counts disjuncts all of whose tuples occur in another disjunct of the same printed edge.}
+\label{tab:casaal-label}
+\small
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{@{}rrrrrrr@{}}
+\toprule
+$n$ & locations & edges & disjuncts & letter transitions & distinct & covered\\
+\midrule
+\input{evaluation/casaal_label_redundancy_rows}\\
+\bottomrule
+\end{tabular}\end{adjustbox}
+\end{table}
+
+\subsection{Clock reuse on natural benchmark automata}\label{sec:alloc-natural}
+The article reports the timing of clock reuse on constructed families. Table~\ref{tab:alloc-natural} adds the benchmark automata whose negated form loses a clock and whose product with the positive form (the reference workload) TChecker completes, measured in the same way (five interleaved runs, one core, \path{evaluation/alloc_timing.tsv} and \path{alloc_timing_natural.tsv}). The product for R4 was not run, as it needs more than the limit of 300~s per run for ten runs.
+
+\begin{table}[tp]
+\centering
+\caption{Clock reuse on the benchmark automata whose negated form loses a clock, product with the positive form, all-copy export, TChecker \texttt{couvscc}. Stored states and verdict are identical with and without reuse; the ratio is the median time with reuse over the median time without.}
+\label{tab:alloc-natural}
+\small
+\begin{adjustbox}{max width=\textwidth}\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+Req. & clocks & states & median (s) & median, reuse (s) & ratio\\
+\midrule
+\input{evaluation/alloc_natural_rows}\\
+\bottomrule
+\end{tabular}\end{adjustbox}
+\end{table}

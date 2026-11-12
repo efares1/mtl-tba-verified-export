@@ -36,7 +36,33 @@ De Wulf--Doyen--Raskin~\cite{de_wulf_doyen_raskin_fm2005} & AASAP phase copies, 
 Bodeveix--Filali~\cite{[BF03]} & Per-disjunct split of UPPAAL disjunctive invariants & Informal; PVS proof announced, ongoing & Prior splitting; no priority claim\\
 Wimmer--Lammich / MUNTA~\cite{munta_tacas18,munta_formats19} & Timed-automata reachability checking & Verified checker and executable refinement in Isabelle/HOL & Proves analysis, not TBA optimization/export\\
 Wimmer--Herbreteau--van de Pol~\cite{wimmer_herbreteau_vandepol_formats2020} & Timed B\"uchi emptiness certificates & Sound, complete certificate checking in Isabelle/HOL & Verifies checking, not automaton transformation\\
-This paper & Iterated optimizer, two split policies, conjunctive explicit/symbolic export & Rocq language preservation for each finite round/export and target-shape theorems & Every TBA of the formula-indexed clock interface; excludes adapters and XML\\
+Saeedloei--Kluźniak~\cite{saeedloei_kluzniak_hscc2018} & Clock allocation by liveness, interference graph and colouring; optimal in polynomial time for a subclass & Language-preserving allocation on paper; mechanization not reported & Same ingredients; here a Rocq-checked certificate for the Büchi semantics of the chain\\
+Clemente--Mayr~\cite{clemente_mayr_lmcs19} & Simulation-based reduction of nondeterministic Büchi automata (untimed) & Language-preserving reductions; no clocks or guards & Our pruning relates locations with two clock sets and is certificate-checked in Rocq\\
+This paper & Iterated optimizer, two split policies, conjunctive export, and two certificate-checked passes (dominated-transition removal with splitting by cells of letters, clock reuse) & Rocq language preservation for each round, for export, and for every certificate of the checked passes & Every TBA of the formula-indexed clock interface; excludes adapters and XML\\
 \bottomrule
 \end{tabular}\end{adjustbox}
+\end{table*}
+
+\begin{table*}[tp]
+\centering
+\caption{Verified optimization and export passes. Each preservation theorem quantifies over every input TBA under the Rocq timed-word semantics. Definitions and proofs are in Section~\ref{sec:passes}; the passes of Section~\ref{sec:checked-detail} are not listed.}
+\label{tab:post-passes}
+\begin{tabular}{@{}p{0.42\textwidth}p{0.52\textwidth}@{}}
+\toprule
+Pass & Rocq preservation theorem\\
+\midrule
+Upper-bound invariant synthesis; backward and forward propagation; two-sided invariants & \path{add_invariants_accepts}, \path{propagate_n_accepts}, \path{forward_accepts}, \path{add_two_sided_invariants_accepts}\\
+Removal of contradictory transitions and of the outgoing transitions of locations with no incoming transition & \path{remove_contradictory_accepts}, \path{remove_unreachable_accepts}\\
+Removal of dead resets; merging of synchronously reset clocks & \path{remove_dead_resets_accepts}, \path{merge_all_accepts}\\
+Normalization of guards; removal of unsatisfiable action labels & \path{normalize_accepts}, \path{remove_unsat_accepts}\\
+Merging of transitions; merging of equivalent locations & \path{merge_trans_accepts}, \path{merge_states_all_accepts}\\
+Iterated pipeline ($n$ rounds) & \path{optimize_accepts}\\
+Merging of transitions for export; splitting of disjunctive guards & \path{merge_transitions_accepts}, \path{explode_accepts}\\
+Maximal-delay invariant split; all-copy invariant split & \path{split_accepts}, \path{split_inv_conjunctive}; \path{split_all_accepts}, \path{split_all_inv_conjunctive}\\
+Normalization of exported guards; removal of copies never entered; merging of the initial location & \path{normalize_d_accepts}, \path{dprune_n_accepts}, \path{dmerge_states_all_accepts}\\
+Symbolic transitions & \path{symbolic_accepts}, \path{symbolic_ext_accepts}\\
+Complete export & \path{export_accepts}; shape: \path{export_guards_conjunctive}, \path{export_invariants_conjunctive}\\
+All-copy export & \path{export_all_accepts}; shape: \path{export_all_guards_conjunctive}, \path{export_all_invariants_conjunctive}\\
+\bottomrule
+\end{tabular}
 \end{table*}

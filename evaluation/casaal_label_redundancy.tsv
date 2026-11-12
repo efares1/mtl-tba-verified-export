@@ -1,0 +1,5 @@
+R	printed_locations	printed_edges	acceptance_marks	cubes	letter_tuples	distinct_letter_tuples	cubes_covered_by_siblings
+2	4	16	0	25	51	45	6
+3	8	64	0	125	216	189	27
+4	16	256	0	625	837	729	108
+5	32	1024	0	3125	3078	2673	405

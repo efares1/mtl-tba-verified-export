@@ -25,7 +25,7 @@ the output with 448 transitions. The larger explicit edge count results from
 splitting disjunctive guards and adding entry conditions for invariant copies.
 It measures the cost of the target representation, not a reversal of the
 optimizer's reduction. In the fresh run, median optimizer and export times
-are 17.807 s and 10.666 s, respectively. Figure~\ref{fig:R-transition-counts} shows the concentration on R6. The generated-group table separately reports the
+are 17.807 s and 10.666 s, respectively; these are times of the build before the verified speedups of article Section~\ref{sec:speedups}, with which the optimization of the positive form of R6 takes 0.29~s. Figure~\ref{fig:R-transition-counts} shows the concentration on R6. The generated-group table separately reports the
 stage after reset completion so that upstream processing is not folded into
 these optimizer measurements.
 
