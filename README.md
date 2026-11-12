@@ -67,10 +67,12 @@ publisher LaTeX templates (class and style files, fonts) are not covered by the 
 `CITATION.cff` carries the citation metadata; the DOI of the archived
 release is added to it once Zenodo has issued it.
 
-## Branches of this repository
+## Layout of this repository
 
-| Branch | Content |
-|---|---|
-| `main` | shared verified foundation (proofs, tool, evaluation data, scripts), no paper |
-| `jss` | this branch: `main` plus the article and supplement submitted to JSS |
-| `clockreuse` | `main` plus the pruning and clock-reuse passes and their separate paper |
+The repository has one branch, `main`, with everything that belongs to the article: the Rocq proofs
+(`proof/`), the OCaml tool (`tool/`), the evaluation scripts, inputs and raw results (`evaluation/`),
+and the article and its supplement (`jss_paper.tex`, `jss_supp.tex` and the files they include).
+The tool includes the two certificate-checked passes of the article (`mtl2tba -prune`,
+`-prune-split` and `-alloc`; their Rocq proofs are `proof/MTL_to_TBA_DomPrune.v`,
+`MTL_to_TBA_ClockAlloc.v` and `MTL_to_TBA_CheckedPasses.v`). `scripts/build_jss.sh` builds the article
+and the supplement.
