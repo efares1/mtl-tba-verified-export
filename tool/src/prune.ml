@@ -116,6 +116,9 @@ let certify (root : mtl) (a : tBA)
     let pl t = Printf.sprintf "%d->%d [%s] g%d r%d" t.bt_source t.bt_target
         (String.concat "," (List.map (fun (a, b) -> Printf.sprintf "%d%s" a (if b then "+" else "-")) t.bt_label))
         (List.length t.bt_guard) (List.length t.bt_resets) in
+    for q = 0 to n - 1 do
+      Printf.eprintf "loc %d: live=%d lle=%d\n" q (List.length (livef q)) (List.length (lle q))
+    done;
     Printf.eprintf "sim pairs kept: %d
 " (Array.fold_left (fun k r -> Array.fold_left (fun k b -> if b then k + 1 else k) k r) 0 s_kept);
     List.iter (fun c ->

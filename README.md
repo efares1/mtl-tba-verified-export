@@ -26,7 +26,7 @@ the proofs. `proof/Audit_Revision_20261010.v` prints the assumptions of the main
 
 | Path | Content |
 |---|---|
-| `jss_paper.tex`, `jss_supp.tex` and the files they include | article (36 pages) and supplement (55 pages) sources |
+| `jss_paper.tex`, `jss_supp.tex` and the files they include | article (36 pages) and supplement (56 pages) sources |
 | `jss_paper.pdf`, `jss_supp.pdf` | the compiled article and supplement (`scripts/build_jss.sh`) |
 | `proof/` | Rocq development and extraction (`Extract_Optim.v` writes `tool/src/optim.ml`) |
 | `tool/` | `mtl2tba` and `tba_opt`: extracted optimizer/exporter and hand-written front end |
