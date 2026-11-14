@@ -12,7 +12,7 @@ Aspect & Guaranteed result\\
 Timed-word language & Preserved by every optimization round and by complete export under the development's existential initial-clock semantics.\\
 Explicit guards & Conjunctions of event literals and clock comparisons; export may introduce clock-difference comparisons in entry conditions.\\
 Location invariants & Conjunctions of non-strict clock upper bounds.\\
-Symbolic output & Groups transitions with the same source, target, and reset set under Boolean labels; the symbolic automaton also preserves acceptance.\\
+Symbolic output & Groups transitions with the same source, target, and set of clocks to reset under Boolean labels; the symbolic automaton also preserves acceptance.\\
 Input adapter & A third-party parser or conversion into the Rocq TBA representation requires a separate correspondence proof to join the verified boundary.\\
 \bottomrule
 \end{tabular}\end{adjustbox}

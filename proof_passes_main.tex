@@ -93,8 +93,17 @@ until 50 rounds have been performed; the bound guarantees termination, and the
 theorem holds for every number of steps, whether or not a fixed point is
 reached. On the 29 completed optimizer inputs, the greatest observed number
 of changed rounds is six (R6).
-The invariant computation at one location is summarized in
-article Figure~\ref{fig:main-inv-unified}.
+The invariant computation at one location is summarized in Figure~\ref{fig:main-inv-unified}.
+
+\begin{figure}[t]
+\centering
+\input{figures/fig_invariant_computation}
+\caption{Invariant computation at one location. Successor invariants strengthen outgoing
+guards; upper bounds of the resulting guards resynthesize the source
+invariant. Reset sets determine which target-clock constraints become
+constant.}
+\label{fig:main-inv-unified}
+\end{figure}
 
 \paragraph{Example.}
 We illustrate the algorithm on the automaton of Fig.~\ref{fig:inv-example},
