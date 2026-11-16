@@ -7,14 +7,14 @@ CASAAL~\cite{casaal_tool} implements the MTL$_{0,\infty}$ construction of Li et 
 The conversion of CASAAL's transition acceptance to location acceptance is done
 by a small importer outside the proofs, which reads CASAAL's DOT output and, when
 CASAAL prints no acceptance mark, treats a state as accepting unless its label
-contains an unbounded eventuality. It does not convert the negated F14, which has three
-acceptance sets (the positive F14 converts). Every size and every state count of CASAAL's automata below depends on this conversion, which is not proved and is checked only indirectly, by the mutual language inclusion with ours that TChecker establishes on the small patterns and by the sampled words of Section~\ref{sec:verification-adds}; another encoding of the acceptance could give different counts.
+contains an unbounded eventuality. It cannot convert the negated F14, whose automaton has three
+acceptance sets, so the negated F14 is not compared (the positive F14 converts). Every size and every state count of CASAAL's automata below depends on this conversion, which is not proved and is checked only indirectly, by the mutual language inclusion with ours that TChecker establishes on the small patterns and by the sampled words of Section~\ref{sec:verification-adds}; another encoding of the acceptance could give different counts.
 
 \emph{Requirements as written (positive form).} On the 27 patterns that CASAAL encodes exactly and both tools completed, ours has 222 locations and 976 transitions (Spot level \texttt{small}, which produced the archived runs) against 225 and 983 for CASAAL after conversion; ours is smaller on four patterns (F8, F11, F12, F14), equal on 21 and larger on F5 and F6 (25 transitions against 22).
 
 \emph{Negated requirements (what the model checker receives).} Table~\ref{tab:same-driver} and Supplement Table~\ref{S-tab:casaal-gen} give the sizes for R2--R8 and N5--N8: ours equals CASAAL's on every one, and the optimizer's output has exactly the size of CASAAL's on the nested family (N5: 461 transitions, N6: 1,541, N7: 5,105). On the 20 patterns whose products TChecker completes (the 18 of Table~\ref{tab:tck-summary}, F14, and N4), ours is smaller on F5 and F6 (3 locations and 5 transitions against 4 and 7) and on F8 (2 and 3 against 4 and 7), and equal on the others.
 
-\emph{Isomorphism.} Equal counts do not make equal automata: up to renaming, ours is isomorphic to CASAAL's imported automaton on 11 of the 27 negated requirements whose automaton the importer converts (F1, F2, F3b, R1--R8) and not on the other 16, and the optimizer leaves CASAAL's automaton unchanged on all 27, so it is a fixed point of our passes. TChecker finds the languages mutually included on F1--F12, R1 and N1--N4 (\path{evaluation/tck_equivalence.tsv}); on the larger products equivalence rests on the sampled words of Section~\ref{sec:verification-adds}.
+\emph{Isomorphism.} Equal counts do not make equal automata: up to renaming, ours is isomorphic to CASAAL's imported automaton on 11 of the 27 negated requirements whose automaton the importer converts (F1, F2, F3b, R1--R8) and not on the other 16. This does not mean that one tool is wrong: the counts of locations, transitions and clocks are equal on 13 of the 16 (ours is smaller on F5, F6 and F8) and the differences are in labels and guards. For instance, on the negated F7 and N1 CASAAL's loop on the accepting location carries the guard $x_0\le5$ that ours omits; the guard is redundant there because the locations reachable from that one are accepting, but the check compares guards as written, so the automata count as different. The optimizer leaves CASAAL's automaton unchanged on all 27, so it is a fixed point of our passes. TChecker finds the languages mutually included on F1--F12, R1 and N1--N4 (\path{evaluation/tck_equivalence.tsv}), which excludes an error of either tool on those patterns; on the larger ones equivalence rests on the sampled words of Section~\ref{sec:verification-adds}.
 
 \subsubsection{Generation time}
 \label{sec:casaal-time}
@@ -85,6 +85,16 @@ Table~\ref{tab:stress} supports four observations.
 \end{enumerate}
 
 The workload is constructed and covers the bounded-response family only; it is no general speedup. It shows that two translators whose negated automata have the same size can give positive forms that a model checker explores at very different cost. Label overlap, TChecker's inclusion subsumption and pruning all contribute; they overlap and are not additive shares of the gap. The comparison goes through our importer and TChecker and shows no advantage for a native CASAAL-to-UPPAAL use.
+
+\subsubsection{Why the two translators differ}
+\label{sec:casaal-why}
+Spot receives the clock constraints of the clocked formula as opaque propositions, whereas CASAAL builds its automaton from the timed semantics and knows what the constraints mean. The data support two separate effects unequally.
+
+\emph{Generation time.} On nested requirements CASAAL is faster. The profile of Section~\ref{sec:casaal-time} places the cost in Spot, which receives a formula of size $\Theta(3^k)$. Whether Spot would be faster if it knew the semantics of the constraints is untested.
+
+\emph{Stored states.} Opaque constraints are not a handicap here: on the positive bounded responses CASAAL's extra states come from dominated transitions with overlapping labels (observation 4 above), a property of its construction.
+
+\emph{Clock reuse.} Clocks cannot be reused before the call to Spot in our chain: whether a clock is read before its next reset is known only on the automaton, whose transitions Spot decides. CASAAL does not reuse clocks either: on all 27 patterns its automata have as many clocks as ours before reuse (\path{evaluation/isomorphism/iso_results.tsv}). Our checked reuse (Section~\ref{sec:checked}) works on the automaton after the translation, whichever translator produced it.
 
 \subsubsection{Sensitivity of the counts and non-empty products}
 \label{sec:tck-sensitivity}
