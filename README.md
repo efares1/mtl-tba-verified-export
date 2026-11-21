@@ -7,8 +7,9 @@ inputs and the raw results behind the tables of the article and its supplement.
 
 The article builds on "A Mechanically Verified Translation of MTL<sub>0,∞</sub> into Timed Büchi
 Automata" (<https://github.com/efares1/rocq-mtl-to-tba-translation>), whose translation theorem it
-cites and does not re-prove, and on an earlier optimization article
-(<https://github.com/efares1/rocq-tba-optimization-uppaal-export>).
+cites and does not re-prove. An earlier optimization manuscript that this article extends
+was withdrawn; this article replaces it (its repository,
+<https://github.com/efares1/rocq-tba-optimization-uppaal-export>, is kept for the record).
 
 ## What is proved
 
