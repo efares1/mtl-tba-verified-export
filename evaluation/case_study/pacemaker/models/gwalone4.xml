@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+  <declaration>chan a1, b1, a2, b2, a3, b3, a4, b4; clock z;</declaration>
+  <template>
+    <name>Sys</name>
+    <declaration>clock y;</declaration>
+    <location id="idle" x="0" y="0">
+      <name>Idle</name>
+    </location>
+    <location id="b1" x="0" y="0">
+      <name>Busy1</name>
+      <label kind="invariant">y &lt;= 4</label>
+    </location>
+    <location id="b2" x="0" y="0">
+      <name>Busy2</name>
+      <label kind="invariant">y &lt;= 4</label>
+    </location>
+    <location id="b3" x="0" y="0">
+      <name>Busy3</name>
+      <label kind="invariant">y &lt;= 4</label>
+    </location>
+    <location id="b4" x="0" y="0">
+      <name>Busy4</name>
+      <label kind="invariant">y &lt;= 6</label>
+    </location>
+    <init ref="idle"/>
+    <transition>
+      <source ref="idle"/>
+      <target ref="b1"/>
+      <label kind="guard">z &gt; 0</label>
+      <label kind="synchronisation">a1!</label>
+      <label kind="assignment">y = 0, z = 0</label>
+    </transition>
+    <transition>
+      <source ref="b1"/>
+      <target ref="idle"/>
+      <label kind="guard">y &gt;= 1 &amp;&amp; z &gt; 0</label>
+      <label kind="synchronisation">b1!</label>
+      <label kind="assignment">z = 0</label>
+    </transition>
+    <transition>
+      <source ref="idle"/>
+      <target ref="b2"/>
+      <label kind="guard">z &gt; 0</label>
+      <label kind="synchronisation">a2!</label>
+      <label kind="assignment">y = 0, z = 0</label>
+    </transition>
+    <transition>
+      <source ref="b2"/>
+      <target ref="idle"/>
+      <label kind="guard">y &gt;= 1 &amp;&amp; z &gt; 0</label>
+      <label kind="synchronisation">b2!</label>
+      <label kind="assignment">z = 0</label>
+    </transition>
+    <transition>
+      <source ref="idle"/>
+      <target ref="b3"/>
+      <label kind="guard">z &gt; 0</label>
+      <label kind="synchronisation">a3!</label>
+      <label kind="assignment">y = 0, z = 0</label>
+    </transition>
+    <transition>
+      <source ref="b3"/>
+      <target ref="idle"/>
+      <label kind="guard">y &gt;= 1 &amp;&amp; z &gt; 0</label>
+      <label kind="synchronisation">b3!</label>
+      <label kind="assignment">z = 0</label>
+    </transition>
+    <transition>
+      <source ref="idle"/>
+      <target ref="b4"/>
+      <label kind="guard">z &gt; 0</label>
+      <label kind="synchronisation">a4!</label>
+      <label kind="assignment">y = 0, z = 0</label>
+    </transition>
+    <transition>
+      <source ref="b4"/>
+      <target ref="idle"/>
+      <label kind="guard">y &gt;= 1 &amp;&amp; z &gt; 0</label>
+      <label kind="synchronisation">b4!</label>
+      <label kind="assignment">z = 0</label>
+    </transition>
+  </template>
+  <template>
+    <name>Recv</name>
+    <location id="r0" x="0" y="0">
+      <name>R</name>
+    </location>
+    <init ref="r0"/>
+    <transition>
+      <source ref="r0"/>
+      <target ref="r0"/>
+      <label kind="synchronisation">a1?</label>
+    </transition>
+    <transition>
+      <source ref="r0"/>
+      <target ref="r0"/>
+      <label kind="synchronisation">b1?</label>
+    </transition>
+    <transition>
+      <source ref="r0"/>
+      <target ref="r0"/>
+      <label kind="synchronisation">a2?</label>
+    </transition>
+    <transition>
+      <source ref="r0"/>
+      <target ref="r0"/>
+      <label kind="synchronisation">b2?</label>
+    </transition>
+    <transition>
+      <source ref="r0"/>
+      <target ref="r0"/>
+      <label kind="synchronisation">a3?</label>
+    </transition>
+    <transition>
+      <source ref="r0"/>
+      <target ref="r0"/>
+      <label kind="synchronisation">b3?</label>
+    </transition>
+    <transition>
+      <source ref="r0"/>
+      <target ref="r0"/>
+      <label kind="synchronisation">a4?</label>
+    </transition>
+    <transition>
+      <source ref="r0"/>
+      <target ref="r0"/>
+      <label kind="synchronisation">b4?</label>
+    </transition>
+  </template>
+  <system>S = Sys();
+R = Recv();
+system S, R;</system>
+</nta>

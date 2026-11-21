@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+  <declaration>chan asn, apc, vsn, vpc, other; clock z;</declaration>
+  <template>
+    <name>Sys</name>
+    <declaration>clock x, u;</declaration>
+    <location id="a" x="0" y="0">
+      <name>A</name>
+      <label kind="invariant">x &lt;= 35</label>
+    </location>
+    <location id="v" x="0" y="0">
+      <name>V</name>
+      <label kind="invariant">u &lt;= 15</label>
+    </location>
+    <location id="vs" x="0" y="0">
+      <name>VS</name>
+      <label kind="invariant">u &lt;= 15</label>
+    </location>
+    <init ref="a"/>
+    <transition>
+      <source ref="a"/>
+      <target ref="vs"/>
+      <label kind="guard">x &gt;= 10 &amp;&amp; x &lt; 35 &amp;&amp; z &gt; 0</label>
+      <label kind="synchronisation">asn!</label>
+      <label kind="assignment">u = 0, z = 0</label>
+    </transition>
+    <transition>
+      <source ref="a"/>
+      <target ref="v"/>
+      <label kind="guard">x &gt;= 35 &amp;&amp; z &gt; 0</label>
+      <label kind="synchronisation">apc!</label>
+      <label kind="assignment">u = 0, z = 0</label>
+    </transition>
+    <transition>
+      <source ref="v"/>
+      <target ref="a"/>
+      <label kind="guard">u &gt;= 5 &amp;&amp; u &lt; 15 &amp;&amp; z &gt; 0</label>
+      <label kind="synchronisation">vsn!</label>
+      <label kind="assignment">x = 0, z = 0</label>
+    </transition>
+    <transition>
+      <source ref="v"/>
+      <target ref="a"/>
+      <label kind="guard">u &gt;= 15 &amp;&amp; z &gt; 0</label>
+      <label kind="synchronisation">vpc!</label>
+      <label kind="assignment">x = 0, z = 0</label>
+    </transition>
+    <transition>
+      <source ref="vs"/>
+      <target ref="a"/>
+      <label kind="guard">u &gt;= 5 &amp;&amp; u &lt; 15 &amp;&amp; z &gt; 0</label>
+      <label kind="synchronisation">vsn!</label>
+      <label kind="assignment">x = 0, z = 0</label>
+    </transition>
+    <transition>
+      <source ref="vs"/>
+      <target ref="a"/>
+      <label kind="guard">u &gt;= 15 &amp;&amp; z &gt; 0</label>
+      <label kind="synchronisation">vpc!</label>
+      <label kind="assignment">x = 0, z = 0</label>
+    </transition>
+  </template>
+  <template>
+    <name>Recv</name>
+    <location id="r0" x="0" y="0">
+      <name>R</name>
+    </location>
+    <init ref="r0"/>
+    <transition>
+      <source ref="r0"/>
+      <target ref="r0"/>
+      <label kind="synchronisation">asn?</label>
+    </transition>
+    <transition>
+      <source ref="r0"/>
+      <target ref="r0"/>
+      <label kind="synchronisation">apc?</label>
+    </transition>
+    <transition>
+      <source ref="r0"/>
+      <target ref="r0"/>
+      <label kind="synchronisation">vsn?</label>
+    </transition>
+    <transition>
+      <source ref="r0"/>
+      <target ref="r0"/>
+      <label kind="synchronisation">vpc?</label>
+    </transition>
+    <transition>
+      <source ref="r0"/>
+      <target ref="r0"/>
+      <label kind="synchronisation">other?</label>
+    </transition>
+  </template>
+  <system>S = Sys();
+R = Recv();
+system S, R;</system>
+</nta>

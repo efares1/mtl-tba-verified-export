@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+  <declaration>chan apc, asn, vpc, vsn, other; clock z;</declaration>
+  <template>
+    <name>Property</name>
+    <declaration>clock x3, x0, x1, x2;</declaration>
+    <location id="id0" x="0" y="0">
+      <name>L0</name>
+    </location>
+    <location id="id2" x="200" y="0">
+      <name>A2</name>
+    </location>
+    <location id="id4" x="400" y="0">
+      <name>A4</name>
+    </location>
+    <location id="id6" x="600" y="0">
+      <name>A6</name>
+      <label kind="invariant">x2 &lt;= 24</label>
+    </location>
+    <location id="id8" x="800" y="0">
+      <name>A8</name>
+      <label kind="invariant">x3 &lt;= 3</label>
+    </location>
+    <location id="id10" x="0" y="150">
+      <name>A10</name>
+    </location>
+    <init ref="id0"/>
+    <transition>
+      <source ref="id10"/>
+      <target ref="id10"/>
+      <label kind="synchronisation">apc?</label>
+      <label kind="assignment">x2 = 0, x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id10"/>
+      <target ref="id10"/>
+      <label kind="synchronisation">asn?</label>
+      <label kind="assignment">x2 = 0, x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id10"/>
+      <target ref="id10"/>
+      <label kind="synchronisation">vpc?</label>
+      <label kind="assignment">x2 = 0, x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id10"/>
+      <target ref="id10"/>
+      <label kind="synchronisation">vsn?</label>
+      <label kind="assignment">x2 = 0, x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id10"/>
+      <target ref="id10"/>
+      <label kind="synchronisation">other?</label>
+      <label kind="assignment">x2 = 0, x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id8"/>
+      <target ref="id10"/>
+      <label kind="guard">x3 &lt;= 3</label>
+      <label kind="synchronisation">apc?</label>
+      <label kind="assignment">x2 = 0, x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id8"/>
+      <target ref="id8"/>
+      <label kind="guard">x3 &lt;= 3</label>
+      <label kind="synchronisation">asn?</label>
+      <label kind="assignment">x2 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id8"/>
+      <target ref="id8"/>
+      <label kind="guard">x3 &lt;= 3</label>
+      <label kind="synchronisation">vpc?</label>
+      <label kind="assignment">x2 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id8"/>
+      <target ref="id8"/>
+      <label kind="guard">x3 &lt;= 3</label>
+      <label kind="synchronisation">vsn?</label>
+      <label kind="assignment">x2 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id8"/>
+      <target ref="id8"/>
+      <label kind="guard">x3 &lt;= 3</label>
+      <label kind="synchronisation">other?</label>
+      <label kind="assignment">x2 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id6"/>
+      <target ref="id10"/>
+      <label kind="guard">x2 &lt; 24</label>
+      <label kind="synchronisation">vsn?</label>
+      <label kind="assignment">x2 = 0, x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id6"/>
+      <target ref="id10"/>
+      <label kind="guard">x2 &lt; 24</label>
+      <label kind="synchronisation">vpc?</label>
+      <label kind="assignment">x2 = 0, x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id6"/>
+      <target ref="id6"/>
+      <label kind="guard">x2 &lt; 24</label>
+      <label kind="synchronisation">apc?</label>
+      <label kind="assignment">x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id6"/>
+      <target ref="id6"/>
+      <label kind="guard">x2 &lt; 24</label>
+      <label kind="synchronisation">asn?</label>
+      <label kind="assignment">x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id6"/>
+      <target ref="id6"/>
+      <label kind="guard">x2 &lt; 24</label>
+      <label kind="synchronisation">other?</label>
+      <label kind="assignment">x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id4"/>
+      <target ref="id10"/>
+      <label kind="guard">x1 &gt; 50</label>
+      <label kind="synchronisation">apc?</label>
+      <label kind="assignment">x2 = 0, x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id4"/>
+      <target ref="id10"/>
+      <label kind="guard">x1 &gt; 50</label>
+      <label kind="synchronisation">asn?</label>
+      <label kind="assignment">x2 = 0, x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id4"/>
+      <target ref="id10"/>
+      <label kind="guard">x1 &gt; 50</label>
+      <label kind="synchronisation">vpc?</label>
+      <label kind="assignment">x2 = 0, x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id4"/>
+      <target ref="id10"/>
+      <label kind="guard">x1 &gt; 50</label>
+      <label kind="synchronisation">vsn?</label>
+      <label kind="assignment">x2 = 0, x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id4"/>
+      <target ref="id10"/>
+      <label kind="guard">x1 &gt; 50</label>
+      <label kind="synchronisation">other?</label>
+      <label kind="assignment">x2 = 0, x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id4"/>
+      <target ref="id4"/>
+      <label kind="synchronisation">vpc?</label>
+      <label kind="assignment">x2 = 0, x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id4"/>
+      <target ref="id4"/>
+      <label kind="synchronisation">vsn?</label>
+      <label kind="assignment">x2 = 0, x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id4"/>
+      <target ref="id4"/>
+      <label kind="synchronisation">other?</label>
+      <label kind="assignment">x2 = 0, x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id2"/>
+      <target ref="id10"/>
+      <label kind="guard">x0 &gt; 15</label>
+      <label kind="synchronisation">apc?</label>
+      <label kind="assignment">x2 = 0, x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id2"/>
+      <target ref="id10"/>
+      <label kind="guard">x0 &gt; 15</label>
+      <label kind="synchronisation">asn?</label>
+      <label kind="assignment">x2 = 0, x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id2"/>
+      <target ref="id10"/>
+      <label kind="guard">x0 &gt; 15</label>
+      <label kind="synchronisation">vpc?</label>
+      <label kind="assignment">x2 = 0, x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id2"/>
+      <target ref="id10"/>
+      <label kind="guard">x0 &gt; 15</label>
+      <label kind="synchronisation">vsn?</label>
+      <label kind="assignment">x2 = 0, x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id2"/>
+      <target ref="id10"/>
+      <label kind="guard">x0 &gt; 15</label>
+      <label kind="synchronisation">other?</label>
+      <label kind="assignment">x2 = 0, x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id2"/>
+      <target ref="id2"/>
+      <label kind="synchronisation">apc?</label>
+      <label kind="assignment">x2 = 0, x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id2"/>
+      <target ref="id2"/>
+      <label kind="synchronisation">asn?</label>
+      <label kind="assignment">x2 = 0, x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id2"/>
+      <target ref="id2"/>
+      <label kind="synchronisation">other?</label>
+      <label kind="assignment">x2 = 0, x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id0"/>
+      <target ref="id8"/>
+      <label kind="synchronisation">asn?</label>
+      <label kind="assignment">x2 = 0, x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id0"/>
+      <target ref="id6"/>
+      <label kind="synchronisation">vsn?</label>
+      <label kind="assignment">x2 = 0, x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id0"/>
+      <target ref="id6"/>
+      <label kind="synchronisation">vpc?</label>
+      <label kind="assignment">x2 = 0, x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id0"/>
+      <target ref="id4"/>
+      <label kind="synchronisation">vsn?</label>
+      <label kind="assignment">x1 = 0, x2 = 0, x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id0"/>
+      <target ref="id4"/>
+      <label kind="synchronisation">vpc?</label>
+      <label kind="assignment">x1 = 0, x2 = 0, x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id0"/>
+      <target ref="id2"/>
+      <label kind="synchronisation">asn?</label>
+      <label kind="assignment">x0 = 0, x2 = 0, x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id0"/>
+      <target ref="id2"/>
+      <label kind="synchronisation">apc?</label>
+      <label kind="assignment">x0 = 0, x2 = 0, x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id0"/>
+      <target ref="id0"/>
+      <label kind="synchronisation">apc?</label>
+      <label kind="assignment">x2 = 0, x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id0"/>
+      <target ref="id0"/>
+      <label kind="synchronisation">asn?</label>
+      <label kind="assignment">x2 = 0, x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id0"/>
+      <target ref="id0"/>
+      <label kind="synchronisation">vpc?</label>
+      <label kind="assignment">x2 = 0, x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id0"/>
+      <target ref="id0"/>
+      <label kind="synchronisation">vsn?</label>
+      <label kind="assignment">x2 = 0, x3 = 0</label>
+    </transition>
+    <transition>
+      <source ref="id0"/>
+      <target ref="id0"/>
+      <label kind="synchronisation">other?</label>
+      <label kind="assignment">x2 = 0, x3 = 0</label>
+    </transition>
+  </template>
+  <template>
+    <name>Sys</name>
+    <declaration>clock x, u;</declaration>
+    <location id="a" x="0" y="0">
+      <name>A</name>
+      <label kind="invariant">x &lt;= 35</label>
+    </location>
+    <location id="v" x="0" y="0">
+      <name>V</name>
+      <label kind="invariant">u &lt;= 20</label>
+    </location>
+    <location id="vs" x="0" y="0">
+      <name>VS</name>
+      <label kind="invariant">u &lt;= 20</label>
+    </location>
+    <init ref="a"/>
+    <transition>
+      <source ref="a"/>
+      <target ref="vs"/>
+      <label kind="guard">x &gt;= 20 &amp;&amp; x &lt; 35 &amp;&amp; z &gt; 0</label>
+      <label kind="synchronisation">asn!</label>
+      <label kind="assignment">u = 0, z = 0</label>
+    </transition>
+    <transition>
+      <source ref="a"/>
+      <target ref="v"/>
+      <label kind="guard">x &gt;= 35 &amp;&amp; z &gt; 0</label>
+      <label kind="synchronisation">apc!</label>
+      <label kind="assignment">u = 0, z = 0</label>
+    </transition>
+    <transition>
+      <source ref="v"/>
+      <target ref="a"/>
+      <label kind="guard">u &gt;= 5 &amp;&amp; u &lt; 20 &amp;&amp; z &gt; 0</label>
+      <label kind="synchronisation">vsn!</label>
+      <label kind="assignment">x = 0, z = 0</label>
+    </transition>
+    <transition>
+      <source ref="v"/>
+      <target ref="a"/>
+      <label kind="guard">u &gt;= 20 &amp;&amp; z &gt; 0</label>
+      <label kind="synchronisation">vpc!</label>
+      <label kind="assignment">x = 0, z = 0</label>
+    </transition>
+    <transition>
+      <source ref="vs"/>
+      <target ref="a"/>
+      <label kind="guard">u &gt;= 5 &amp;&amp; u &lt; 20 &amp;&amp; z &gt; 0</label>
+      <label kind="synchronisation">vsn!</label>
+      <label kind="assignment">x = 0, z = 0</label>
+    </transition>
+    <transition>
+      <source ref="vs"/>
+      <target ref="a"/>
+      <label kind="guard">u &gt;= 20 &amp;&amp; z &gt; 0</label>
+      <label kind="synchronisation">vpc!</label>
+      <label kind="assignment">x = 0, z = 0</label>
+    </transition>
+  </template>
+  <system>P = Property();
+S = Sys();
+system P, S;</system>
+</nta>
