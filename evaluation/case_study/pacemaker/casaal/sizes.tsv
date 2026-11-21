@@ -1,0 +1,5 @@
+k	status	seconds	locations	transitions	clocks
+2	ok	0.3	12	52	3
+3	ok	0.1	24	136	4
+4	ok	0.2	48	336	5
+5	ok	0.6	96	800	6

@@ -1,0 +1,30 @@
+k	automaton	locs	sym_trans	clocks	system	verdict	expected	stored	visited_trans	seconds
+2	ours_n0	12	125	3	ok	empty	empty	8875	18982	0.123735
+2	ours	12	90	3	ok	empty	empty	8875	18982	0.131869
+2	ours_checked	12	52	3	ok	empty	empty	18	26	0.0001672
+2	casaal	12	52	3	ok	empty	empty	20	28	0.0002
+2	ours_n0	12	125	3	bad	nonempty	nonempty	2007	3290	0.0242276
+2	ours	12	90	3	bad	nonempty	nonempty	2007	3290	0.0235886
+2	ours_checked	12	52	3	bad	nonempty	nonempty	20	24	0.000161
+2	casaal	12	52	3	bad	nonempty	nonempty	21	22	0.0001582
+3	ours_n0	24	625	4	ok	empty	empty	132438	329916	3.03448
+3	ours	24	342	4	ok	empty	empty	132438	329916	3.06081
+3	ours_checked	24	136	4	ok	empty	empty	21	32	0.0001932
+3	casaal	24	136	4	ok	empty	empty	23	34	0.0002766
+3	ours_n0	24	625	4	bad	nonempty	nonempty	68183	150814	1.42889
+3	ours	24	342	4	bad	nonempty	nonempty	68183	150814	1.4138
+3	ours_checked	24	136	4	bad	nonempty	nonempty	22	27	0.0001936
+3	casaal	24	136	4	bad	nonempty	nonempty	23	24	0.0001808
+4	ours_n0	NA	NA	NA	-	gen-fail				
+4	ours	48	1242	5	ok	empty	empty	1706718	4845362	85.4444
+4	ours_checked	48	336	5	ok	empty	empty	24	38	0.000312
+4	casaal	48	336	5	ok	empty	empty	26	40	0.0002732
+4	ours	48	1242	5	bad	nonempty	nonempty	1701566	4556140	78.7614
+4	ours_checked	48	336	5	bad	nonempty	nonempty	24	30	0.0002429
+4	casaal	48	336	5	bad	nonempty	nonempty	25	26	0.0002138
+5	ours_n0	NA	NA	NA	-	gen-fail				
+5	ours	NA	NA	NA	-	gen-fail				
+5	ours_checked	96	800	6	ok	empty	empty	27	44	0.0003768
+5	casaal	96	800	6	ok	timeout	empty	NA	NA	NA
+5	ours_checked	96	800	6	bad	nonempty	nonempty	26	33	0.0002896
+5	casaal	96	800	6	bad	timeout	nonempty	NA	NA	NA

@@ -92,7 +92,7 @@ Spot receives the clock constraints of the clocked formula as opaque proposition
 
 \emph{Generation time.} On nested requirements CASAAL is faster. The profile of Section~\ref{sec:casaal-time} places the cost in Spot, which receives a formula of size $\Theta(3^k)$. Whether Spot would be faster if it knew the semantics of the constraints is untested.
 
-\emph{Stored states.} Opaque constraints are not a handicap here: on the positive bounded responses CASAAL's extra states come from dominated transitions with overlapping labels (observation 4 above), a property of its construction.
+\emph{Stored states.} Opaque constraints are not a handicap here: on the positive bounded responses CASAAL's extra states come from dominated transitions with overlapping labels (observation 4 above), a property of its construction. The reverse holds on requirements under assumptions (Section~\ref{sec:verification-adds}): there our automaton has the overlapping transitions and the checked pruning removes them.
 
 \emph{Clock reuse.} Clocks cannot be reused before the call to Spot in our chain: whether a clock is read before its next reset is known only on the automaton, whose transitions Spot decides. CASAAL does not reuse clocks either: on all 27 patterns its automata have as many clocks as ours before reuse (\path{evaluation/isomorphism/iso_results.tsv}). Our checked reuse (Section~\ref{sec:checked}) works on the automaton after the translation, whichever translator produced it.
 
