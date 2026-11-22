@@ -1,5 +1,5 @@
-"""Slicing by the tool: one automaton for A_1 & ... & A_k & !G, translated without and with `-slice a1,b1,done`
-(the system synchronizes on a_i, b_j, done and treats a_j, b_j, j >= 2, uniformly), then composed with the system.
+"""Slicing by the tool: one automaton for A_1 & ... & A_k & !G, translated without and with `-slice-system sys.xml`
+(the tool reads from the system file that it constrains only b1 and done, and checks that every location ignores the other events), then composed with the system.
 Usage (WSL): python3 compose_toolslice.py [LIMIT]   Writes compose_toolslice_results.tsv"""
 import os, sys, tempfile, csv, shutil
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
@@ -16,7 +16,8 @@ def main():
         events = [f'a{i}' for i in range(1, k + 1)] + [f'b{i}' for i in range(1, k + 1)] + ['done']
         ev = ','.join(events)
         form = c.assume(k) + ' & ' + c.NEG
-        for name, flags in (('unsliced', ['-all-copy']), ('sliced', ['-all-copy', '-slice', 'a1,b1,done'])):
+        open(os.path.join(W, 'sys.xml'), 'w').write(c.system_xml(k, 2))
+        for name, flags in (('unsliced', ['-all-copy']), ('sliced', ['-all-copy', '-slice-system', os.path.join(W, 'sys.xml')])):
             if name == 'unsliced' and k > 5:
                 continue
             a = c.gen_ours(W, name, flags, form, 'X', timeout=300)

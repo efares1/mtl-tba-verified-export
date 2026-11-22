@@ -35,6 +35,7 @@ let prune_split = ref false
 let alloc_fuzz = ref 0
 let slice_on = ref false
 let slice_sys = ref ""
+let slice_file = ref ""
 let prune_fuzz = ref 0
 let prune_unchecked = ref false
 let alloc_unchecked = ref false
@@ -86,6 +87,7 @@ let speclist = [
   ("-prune-fuzz", Arg.Set_int prune_fuzz, "<seed> (testing of the checker) with -prune, corrupt the certificate: drop a random sixth of the kept transitions and add random pairs to the simulation; the checker should reject unsound certificates");
   ("-prune-unchecked", Arg.Set prune_unchecked, " (testing of the checker) with -prune, apply the certificate even when the checker rejects it; UNSOUND, never use");
   ("-slice", Arg.String (fun s -> slice_on := true; slice_sys := s), "<events> slice the conjuncts of the formula that the environment cannot distinguish: <events> is the comma-separated list of events the system constrains (they are never sliced away); a conjunct is dropped when no kept conjunct and no listed event shares a letter with it and it holds on every word without its letters (verified checker, Coq slice_sound). Sound for a satisfiability check against a system that treats the other letters uniformly");
+  ("-slice-system", Arg.String (fun f -> slice_on := true; slice_file := f), "<file.xml> with -slice (or alone): read the events the system constrains from the plain system model (UPPAAL XML): an event is unconstrained when every location has an unguarded self-loop without assignment on it; fails unless every location has one on the event other. This checks the closure hypothesis of the slicing theorem");
   ("-alloc-unchecked", Arg.Set alloc_unchecked, " (testing of the checker) with -alloc, apply the allocation even when the checker rejects it; UNSOUND, never use for results");
   ("-all-copy", Arg.Set all_copy_export, " use the separately verified nondeterministic all-copy invariant split for export (experimental comparison mode)");
   ("-dot", Arg.Set_string dot_cmd, "<cmd> Graphviz command (default: dot)");
@@ -370,6 +372,89 @@ let size_tba (a : tBA) =
            t.bt_resets @ List.filter_map (Option.map (fun k -> k.guard_clock)) t.bt_guard) trs) in
   (List.length locs, List.length trs, List.length clks)
 
+(* Closure check of the slicing (Coq slice_sound): the plain system model (UPPAAL XML) in which
+   every location has an unguarded self-loop without assignment on an event ignores that event.
+   The events that some location does not ignore are the events the system constrains. *)
+let find_sub s sub from =
+  let n = String.length s and m = String.length sub in
+  let rec go i = if i + m > n then -1 else if String.sub s i m = sub then i else go (i + 1) in
+  if from < 0 then -1 else go from
+
+let attr_after s pos name =
+  let key = name ^ "=" ^ String.make 1 '"' in
+  let i = find_sub s key pos in
+  if i < 0 then None
+  else begin
+    let st = i + String.length key in
+    match String.index_from_opt s st '"' with
+    | Some e -> Some (String.sub s st (e - st))
+    | None -> None
+  end
+
+let system_constrained_events file =
+  let s = In_channel.with_open_bin file In_channel.input_all in
+  let templates =
+    let rec go pos acc =
+      let i = find_sub s "<template>" pos in
+      if i < 0 then List.rev acc
+      else
+        let j = find_sub s "</template>" i in
+        if j < 0 then List.rev acc else go (j + 11) (String.sub s i (j - i) :: acc) in
+    go 0 [] in
+  if templates = [] then failwith "slice-system: no template in the system file";
+  let constrained = Hashtbl.create 16 and seen = Hashtbl.create 16 in
+  let other_ok = ref true in
+  List.iter (fun t ->
+      let locs =
+        let rec go pos acc =
+          let i = find_sub t "<location " pos in
+          if i < 0 then List.rev acc
+          else (match attr_after t i "id" with
+              | Some id -> go (i + 9) (id :: acc)
+              | None -> go (i + 9) acc) in
+        go 0 [] in
+      let trans =
+        let rec go pos acc =
+          let i = find_sub t "<transition" pos in
+          if i < 0 then List.rev acc
+          else
+            let j = find_sub t "</transition>" i in
+            let j = if j < 0 then String.length t else j in
+            let b = String.sub t i (j - i) in
+            let src = attr_after b 0 "source ref" |> fun x -> (match x with Some v -> v | None -> "") in
+            let src = (match attr_after b 0 "ref" with Some v -> v | None -> src) in
+            let tgt =
+              (match find_sub b "<target" 0 with
+               | -1 -> "" | k -> (match attr_after b k "ref" with Some v -> v | None -> "")) in
+            let src =
+              (match find_sub b "<source" 0 with
+               | -1 -> "" | k -> (match attr_after b k "ref" with Some v -> v | None -> "")) in
+            let sync = ref "" and plain = ref true in
+            let rec labels pos =
+              let k = find_sub b "<label kind=" pos in
+              if k >= 0 then begin
+                let kind = (match attr_after b k "kind" with Some v -> v | None -> "") in
+                let c0 = (match String.index_from_opt b k '>' with Some x -> x + 1 | None -> String.length b) in
+                let c1 = (let x = find_sub b "</label>" c0 in if x < 0 then String.length b else x) in
+                let content = String.trim (String.sub b c0 (c1 - c0)) in
+                if kind = "synchronisation" then
+                  sync := (if content <> "" && (content.[String.length content - 1] = '?' || content.[String.length content - 1] = '!')
+                           then String.sub content 0 (String.length content - 1) else content)
+                else if (kind = "guard" || kind = "assignment") && content <> "" then plain := false;
+                labels (c1 + 8)
+              end in
+            labels 0;
+            go (j + 13) ((src, tgt, !sync, !plain) :: acc) in
+        go 0 [] in
+      List.iter (fun (_, _, e, _) -> if e <> "" then Hashtbl.replace seen e ()) trans;
+      let ignores e l = List.exists (fun (s, g, ev, plain) -> s = l && g = l && ev = e && plain) trans in
+      Hashtbl.iter (fun e () -> if not (List.for_all (ignores e) locs) then Hashtbl.replace constrained e ()) seen;
+      if not (List.for_all (ignores "other") locs) then other_ok := false) templates;
+  if not !other_ok then
+    failwith "slice-system: some location of the system has no plain self-loop on the event other, so the sliced letters are not ignored";
+  Hashtbl.fold (fun e () l -> e :: l) constrained []
+
+
 let () =
   Arg.parse speclist (fun s -> formula := s) usage;
   if !formula = "" then (Arg.usage speclist usage; exit 1);
@@ -385,8 +470,11 @@ let () =
   let root =
     if not !slice_on then root
     else begin
-      let sys = List.filter_map (fun e -> if e = "" then None else Some (event e))
-          (String.split_on_char ',' !slice_sys) in
+      let listed = String.split_on_char ',' !slice_sys in
+      let from_file = if !slice_file = "" then [] else system_constrained_events !slice_file in
+      if !slice_file <> "" then
+        log "slicing: system file constrains %s" (String.concat "," from_file);
+      let sys = List.filter_map (fun e -> Hashtbl.find_opt event_tbl e) (listed @ from_file) in
       let all = List.sort_uniq compare (Optim.atoms root) in
       let d = ref (List.filter (fun a -> not (List.mem a sys)) all) in
       let changed = ref true in
