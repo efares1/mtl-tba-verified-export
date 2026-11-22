@@ -1,0 +1,13 @@
+k	variant	system	verdict	expected	stored	search_s	wall_s	peak_mb
+2	sep	ok	empty	empty	11777	0.526335	0.55	20
+2	sep	bad	nonempty	nonempty	96	0.0025436	0.02	8
+2	sep_checked	ok	empty	empty	11777	0.501256	0.53	20
+2	sep_checked	bad	nonempty	nonempty	96	0.001746	0.01	8
+3	sep	ok	empty	empty	160309	16.3746	16.81	121
+3	sep	bad	nonempty	nonempty	176	0.0060347	0.02	8
+3	sep_checked	ok	empty	empty	160309	14.8969	15.35	119
+3	sep_checked	bad	nonempty	nonempty	176	0.0068198	0.02	8
+4	sep	ok	timeout	empty	NA	NA	120.10	NA
+4	sep	bad	nonempty	nonempty	290	0.0114878	0.03	9
+4	sep_checked	ok	timeout	empty	NA	NA	120.10	NA
+4	sep_checked	bad	nonempty	nonempty	290	0.0173335	0.03	9

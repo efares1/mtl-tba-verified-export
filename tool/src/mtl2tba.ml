@@ -33,6 +33,10 @@ let alloc_on = ref false
 let prune_on = ref false
 let prune_split = ref false
 let alloc_fuzz = ref 0
+let slice_on = ref false
+let slice_sys = ref ""
+let prune_fuzz = ref 0
+let prune_unchecked = ref false
 let alloc_unchecked = ref false
 let verbose = ref false
 let dump_tba = ref false
@@ -79,6 +83,9 @@ let speclist = [
   ("-prune", Arg.Set prune_on, " after the optimization, drop dominated transitions (verified checker Optim.prune_pass, Coq prune_pass_accepts; the simulation in prune.ml is untrusted and its result is checked)");
   ("-alloc", Arg.Set alloc_on, " after the optimization, reuse clocks by liveness (verified checker Optim.alloc_pass, Coq alloc_pass_accepts; the colouring in alloc.ml is untrusted and its result is checked)");
   ("-alloc-fuzz", Arg.Set_int alloc_fuzz, "<seed> (testing of the checker) with -alloc, replace the allocation by a random one with this seed; the checker still decides");
+  ("-prune-fuzz", Arg.Set_int prune_fuzz, "<seed> (testing of the checker) with -prune, corrupt the certificate: drop a random sixth of the kept transitions and add random pairs to the simulation; the checker should reject unsound certificates");
+  ("-prune-unchecked", Arg.Set prune_unchecked, " (testing of the checker) with -prune, apply the certificate even when the checker rejects it; UNSOUND, never use");
+  ("-slice", Arg.String (fun s -> slice_on := true; slice_sys := s), "<events> slice the conjuncts of the formula that the environment cannot distinguish: <events> is the comma-separated list of events the system constrains (they are never sliced away); a conjunct is dropped when no kept conjunct and no listed event shares a letter with it and it holds on every word without its letters (verified checker, Coq slice_sound). Sound for a satisfiability check against a system that treats the other letters uniformly");
   ("-alloc-unchecked", Arg.Set alloc_unchecked, " (testing of the checker) with -alloc, apply the allocation even when the checker rejects it; UNSOUND, never use for results");
   ("-all-copy", Arg.Set all_copy_export, " use the separately verified nondeterministic all-copy invariant split for export (experimental comparison mode)");
   ("-dot", Arg.Set_string dot_cmd, "<cmd> Graphviz command (default: dot)");
@@ -375,6 +382,28 @@ let () =
   let root = conv f in
   if not (well_formed root) then
     fail "the formula is not well formed (bounds [<0] and [>0] are not allowed)";
+  let root =
+    if not !slice_on then root
+    else begin
+      let sys = List.filter_map (fun e -> if e = "" then None else Some (event e))
+          (String.split_on_char ',' !slice_sys) in
+      let all = List.sort_uniq compare (Optim.atoms root) in
+      let d = ref (List.filter (fun a -> not (List.mem a sys)) all) in
+      let changed = ref true in
+      while !changed do
+        changed := false;
+        List.iter (fun c ->
+            if not (Optim.dropb !d c) then
+              List.iter (fun a ->
+                  if List.mem a !d then begin d := List.filter ((<>) a) !d; changed := true end)
+                (Optim.atoms c)) (Optim.conjuncts root)
+      done;
+      let sliced = Optim.slice !d root in
+      let n0 = List.length (Optim.conjuncts root) and n1 = List.length (Optim.conjuncts sliced) in
+      log "slicing: %d of %d conjuncts kept, %d letters sliced away, certificate accepted by the checker: %b"
+        (max 0 (n1 - 1)) n0 (List.length !d) (Optim.slice_ok !d root);
+      sliced
+    end in
   (* proved rewriting of the lower bounds under []<> and <>[]
      (Coq: recur_correct, MTL_to_exported_correct0_recur_weak_with) *)
   let root = if !recur_on then recur root else root in
@@ -469,8 +498,25 @@ let () =
       let opt = if !prune_split then split_cells root opt else opt in
       let (_, post_split, _) = size_tba opt in
       let (s, l, l2, kp) = Prune.certify root opt in
+      let (s, kp) =
+        if !prune_fuzz = 0 then (s, kp)
+        else begin
+          Random.init !prune_fuzz;
+          let drop = Hashtbl.create 64 and extra = Hashtbl.create 64 in
+          let kp' t =
+            kp t && (match Hashtbl.find_opt drop t with
+                | Some b -> not b
+                | None -> let b = Random.int 6 = 0 in Hashtbl.add drop t b; not b) in
+          let s' q1 q2 =
+            s q1 q2 || (match Hashtbl.find_opt extra (q1, q2) with
+                | Some b -> b
+                | None -> let b = Random.int 4 = 0 in Hashtbl.add extra (q1, q2) b; b) in
+          (s', kp')
+        end in
       log "dominated-transition pruning: certificate accepted by the checker: %b" (prune_ok root s l l2 kp opt);
-      let opt = prune_pass root (fun _ -> (((s, l), l2), kp)) opt in
+      let opt =
+        if !prune_unchecked then prune_trans root kp opt
+        else prune_pass root (fun _ -> (((s, l), l2), kp)) opt in
       let (_, fin, _) = size_tba opt in
       Printf.eprintf "PRUNESTATS	%d	%d	%d	%d
 " pre post_split (post_split - fin) fin;

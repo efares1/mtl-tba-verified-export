@@ -27,9 +27,9 @@ VFILES = $(CORE).v $(PROOF).v MTL_to_TBA_Invariants.v \
          MTL_to_TBA_Optimizations.v MTL_to_TBA_Export.v \
          MTL_to_TBA_Initialization.v MTL_to_TBA_Simplify.v MTL_to_TBA_Symbolic.v \
          MTL_to_TBA_Negation.v MTL_to_TBA_Weak.v MTL_to_TBA_Recur.v \
-         MTL_to_TBA_ClockAlloc.v MTL_to_TBA_DomPrune.v MTL_to_TBA_CheckedPasses.v Extract_Optim.v
+         MTL_to_TBA_ClockAlloc.v MTL_to_TBA_DomPrune.v MTL_to_TBA_Slice.v MTL_to_TBA_CheckedPasses.v Extract_Optim.v
 ROOTS = optimized optimize alloc_pass prune_pass split_cells dom_step prune_ok label_at cells export export_all optimize_export optimize_export_all t ltl_atoms compile_with compile_with_fast init_free ltl_simp symbolic neg weak recur \
-        timed_subformulas mUle mUlt mUge mUgt mRle mRlt mRge mRgt
+        timed_subformulas mUle mUlt mUge mUgt mRle mRlt mRge mRgt slice atoms conjuncts dropb ev
 OPTIM = $(TOOLDIR)/src/optim.ml
 TOOLFILES = $(addprefix $(TOOLDIR)/, dune-project src/dune src/mtl.ml src/lexer.mll \
             src/parser.mly src/mtl2mtl.ml src/lbtt_read.ml src/output.ml \
@@ -58,11 +58,12 @@ MTL_to_TBA_Negation.vo: $(CORE).vo
 MTL_to_TBA_Weak.vo: MTL_to_TBA_Initialization.vo
 MTL_to_TBA_Recur.vo: MTL_to_TBA_Weak.vo
 MTL_to_TBA_DomPrune.vo: MTL_to_TBA_Export.vo
+MTL_to_TBA_Slice.vo: $(CORE).vo
 MTL_to_TBA_CheckedPasses.vo: MTL_to_TBA_ClockAlloc.vo MTL_to_TBA_DomPrune.vo MTL_to_TBA_Recur.vo
 
 # Extraction, removal of the unused real-number library code, and
 # installation of the extracted module in the tool.
-$(OPTIM): Extract_Optim.v MTL_to_TBA_ClockAlloc.vo MTL_to_TBA_DomPrune.vo MTL_to_TBA_Simplify.vo MTL_to_TBA_Symbolic.vo MTL_to_TBA_Negation.vo MTL_to_TBA_Weak.vo MTL_to_TBA_Recur.vo MTL_to_TBA_CheckedPasses.vo tools/prune_extraction.py
+$(OPTIM): Extract_Optim.v MTL_to_TBA_ClockAlloc.vo MTL_to_TBA_DomPrune.vo MTL_to_TBA_Simplify.vo MTL_to_TBA_Symbolic.vo MTL_to_TBA_Negation.vo MTL_to_TBA_Weak.vo MTL_to_TBA_Recur.vo MTL_to_TBA_Slice.vo MTL_to_TBA_CheckedPasses.vo tools/prune_extraction.py
 	$(COQC) $(COQFLAGS) Extract_Optim.v
 	rm -f optim.mli
 	$(PYTHON) tools/prune_extraction.py optim.ml $(ROOTS)

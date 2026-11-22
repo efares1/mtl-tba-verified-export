@@ -1,0 +1,33 @@
+k	configuration	sym_trans	clocks	gen_s	system	verdict	stored	search_s	wall_s	peak_mb
+2	none	125	3	0.4	ok	empty	8875	0.126932	0.16	17
+2	optimizer	90	3	0.1	ok	empty	8875	0.129688	0.15	17
+2	pruning	52	3	0.1	ok	empty	18	0.0001575	0.01	8
+2	prune+reuse	52	3	0.1	ok	empty	18	0.0001528	0.01	8
+2	none	125	3	0.3	bad	nonempty	2007	0.0255406	0.04	13
+2	optimizer	90	3	0.1	bad	nonempty	2007	0.0219222	0.04	13
+2	pruning	52	3	0.1	bad	nonempty	20	0.0001631	0.01	8
+2	prune+reuse	52	3	0.1	bad	nonempty	20	0.0001436	0.01	8
+3	none	625	4	40.6	ok	empty	132438	3.10413	3.29	75
+3	optimizer	342	4	3.7	ok	empty	132438	3.08129	3.27	75
+3	pruning	136	4	1.0	ok	empty	21	0.0002685	0.02	8
+3	prune+reuse	136	4	1.0	ok	empty	21	0.000229901	0.02	8
+3	none	625	4	39.5	bad	nonempty	68183	1.40949	1.52	47
+3	optimizer	342	4	3.6	bad	nonempty	68183	1.41735	1.52	47
+3	pruning	136	4	1.0	bad	nonempty	22	0.0001963	0.02	8
+3	prune+reuse	136	4	1.0	bad	nonempty	22	0.0001589	0.02	8
+4	none	NA	NA	skipped	ok	skipped				
+4	optimizer	1242	5	135.3	ok	empty	1706718	99.2267	103.34	818
+4	pruning	336	5	15.7	ok	empty	24	0.0003903	0.07	10
+4	prune+reuse	336	5	14.9	ok	empty	24	0.0005669	0.07	10
+4	none	NA	NA	skipped	bad	skipped				
+4	optimizer	1242	5	156.1	bad	nonempty	1701566	82.0511	85.13	775
+4	pruning	336	5	12.9	bad	nonempty	24	0.0002966	0.06	10
+4	prune+reuse	336	5	12.6	bad	nonempty	24	0.0002202	0.06	10
+5	none	NA	NA	skipped	ok	skipped				
+5	optimizer	NA	NA	>300	ok	gen-fail				
+5	pruning	800	6	225.5	ok	empty	27	0.0005668	0.36	18
+5	prune+reuse	800	6	278.1	ok	empty	27	0.0004688	0.32	18
+5	none	NA	NA	skipped	bad	skipped				
+5	optimizer	NA	NA	>300	bad	gen-fail				
+5	pruning	800	6	292.5	bad	nonempty	26	0.0006487	0.38	18
+5	prune+reuse	NA	NA	>300	bad	gen-fail				

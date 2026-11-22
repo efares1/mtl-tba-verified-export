@@ -98,3 +98,22 @@ Req. & clocks & states & median (s) & median, reuse (s) & ratio\\
 \bottomrule
 \end{tabular}\end{adjustbox}
 \end{table}
+
+\subsection{Ablation on the assumption-guarantee case}\label{sec:ag-ablation}
+Table~\ref{tab:ag-ablation} gives, for the gateway requirement under assumptions of Section~\ref{sec:uppaal-check} with $k$ assumptions and the correct system, four configurations of our pipeline with the all-copy export: no optimization (\texttt{-n 0}), the default optimizer, checked pruning after splitting (\texttt{-prune-split}), and checked pruning with checked clock reuse (\texttt{-alloc}). The columns are the symbolic transitions and the clocks of the exported automaton, generation time, TChecker stored states, search time and peak memory of \texttt{tck-liveness} (script \path{evaluation/case_study/workload/ag_ablate.py}, results in \path{ag_ablate_results.tsv}, which also has the faulty system). The pruning alone gives the whole reduction of stored states. Clock reuse leaves the number of clocks at $k+1$, since each assumption keeps a response timer that is live while the others run, and it changes no state count. Generation of the pruned automaton is faster than that of the default one at $k=4$ because the all-copy export of the unpruned relation dominates; at $k=5$ it takes 226 to 278~s.
+\begin{table}[tp]
+\centering
+\caption{Ablation on the gateway assumption-guarantee requirement, correct system, one run per cell, limit 300~s for generation and 120~s for TChecker. ``--'': not run (no optimization for $k\ge 4$) or generation did not finish.}
+\label{tab:ag-ablation}
+\small
+\begin{tabular}{rlrrrrrr}
+\toprule
+$k$ & configuration & trans. & clocks & gen.\ (s) & stored & search (s) & peak (MB)\\
+\midrule
+\input{evaluation/case_study/workload/ag_ablate_rows}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Slicing: proof outline and tool}\label{sec:slice-detail}
+The development is \path{proof/MTL_to_TBA_Slice.v} (about 270 lines, depends only on the semantics file). \path{atoms} lists the letters of a formula; \path{relabel D eps w} replaces every letter of \path{D} by \path{eps} in a timed word and keeps the times. \path{msat_ext} shows by induction on the formula that \path{msat} depends only on the times and on whether the letter at each position is one of the formula's letters, and \path{msat_relabel} specializes it to relabelling. \path{ev} evaluates a formula on words that show none of its letters (atoms false, negated atoms true; the rules are conservative, for instance a bounded until is only decided when its right operand is false), and \path{ev_sound} proves that a formula it folds to true holds at every position of every such word and one it folds to false holds at none. \path{conjuncts} flattens the top-level conjunction, and \path{conj_list_sat} and \path{conjuncts_sat} relate its semantics to that of the list. \path{slice_sound} then follows: from a word $w\in S$ that satisfies the kept conjuncts, the relabelled word is in $S$ by hypothesis, still satisfies the kept conjuncts, and satisfies each dropped conjunct by \path{ev_sound}; the other direction only uses that the kept conjuncts are among the conjuncts of the input. The untrusted set $D$ is computed in \path{tool/src/mtl2tba.ml} (flag \texttt{-slice <events>}, the events the system constrains), and \texttt{-v} reports the number of kept conjuncts and whether \path{slice_ok} accepted. The extracted code of \path{slice}, \path{slice_ok}, \path{dropb}, \path{ev}, \path{atoms} and \path{conjuncts} is in \path{tool/src/optim.ml}. The experiments are \path{compose_toolslice.py} (one automaton for the conjunction, without and with slicing; results in \path{compose_toolslice_results.tsv}) and, for the check of the other formulations, \path{compose.py} and \path{compose_sep.py}.

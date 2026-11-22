@@ -1,0 +1,13 @@
+k	kept_assumptions	system	verdict	expected	stored	search_s	wall_s	peak_mb
+2	1	ok	empty	empty	966	0.0368162	0.05	12
+2	1	bad	nonempty	nonempty	39	0.0004967	0.01	7
+3	1	ok	empty	empty	966	0.050449	0.07	13
+3	1	bad	nonempty	nonempty	39	0.0011881	0.02	8
+4	1	ok	empty	empty	966	0.0497376	0.07	13
+4	1	bad	nonempty	nonempty	39	0.0008296	0.01	7
+5	1	ok	empty	empty	966	0.049203	0.07	14
+5	1	bad	nonempty	nonempty	39	0.0010962	0.02	8
+6	1	ok	empty	empty	966	0.0623352	0.08	14
+6	1	bad	nonempty	nonempty	39	0.0011099	0.01	8
+8	1	ok	empty	empty	966	0.0863269	0.11	14
+8	1	bad	nonempty	nonempty	39	0.0027118	0.02	8

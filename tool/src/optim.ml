@@ -20,7 +20,7 @@ let rec remove eq_dec x = function
 let rec fold_left f l a0 =
   match l with
   | [] -> a0
-  | b :: t0 -> fold_left f t0 (f a0 b)
+  | b :: l0 -> fold_left f l0 (f a0 b)
 
 (** val find : ('a1 -> bool) -> 'a1 list -> 'a1 option **)
 
@@ -979,7 +979,8 @@ let reset_clocks root a =
 let merge_all root a =
   merge_pairs root
     ((fun l1 l2 -> List.concat_map (fun x -> List.map (fun y -> (x, y)) l2) l1)
-      (reset_clocks root a) (reset_clocks root a)) a
+      (reset_clocks root a) (reset_clocks root a))
+    a
 
 (** val tests : mtl -> clock -> tba_transition -> bool **)
 
@@ -1318,7 +1319,8 @@ let resolve_lab l1 l2 =
   match find (fun x ->
           (&&) (List.exists (beq alit_dec (neg_alit x)) l2)
             (set_eqb alit_dec (remove_item alit_dec x l1)
-              (remove_item alit_dec (neg_alit x) l2))) l1 with
+              (remove_item alit_dec (neg_alit x) l2)))
+          l1 with
   | Some x -> Some (remove_item alit_dec x l1)
   | None -> None
 
@@ -1422,7 +1424,8 @@ let entry_clocks_w root inc l =
   nodup (clock_eq_dec root)
     (List.concat_map (fun t0 ->
       List.append t0.bt_resets
-        (List.concat_map (lower_clocks root) t0.bt_guard)) (inc l))
+        (List.concat_map (lower_clocks root) t0.bt_guard))
+      (inc l))
 
 (** val entry_lb_w :
     mtl -> tBA -> (int -> tba_transition list) -> int -> clock -> float option **)
@@ -1553,8 +1556,9 @@ let complete_fast root a =
     (List.filter (fun x ->
       if is_restart root x
       then has_pos root (LRst x) t0.pt_label
-      else not (has_pos root (LUnch x) t0.pt_label)) cl); bt_target =
-    t0.pt_tgt }) a.pb_trans); tba_accepting = a.pb_accepting }
+      else not (has_pos root (LUnch x) t0.pt_label)) cl);
+    bt_target = t0.pt_tgt }) a.pb_trans);
+  tba_accepting = a.pb_accepting }
 
 (** val compile_with_fast : mtl -> pBuchi -> tBA **)
 
@@ -1658,7 +1662,8 @@ let rec ub_conj root = function
      List.append
        (if is_upper k.guard_comparison
         then (k.guard_clock, k.guard_bound) :: []
-        else []) (ub_conj root c')
+        else [])
+       (ub_conj root c')
    | DDiff (_, _, _) -> ub_conj root c')
 
 (** val outgoing_d : mtl -> dTA -> int -> dtrans list **)
@@ -1671,7 +1676,8 @@ let outgoing_d _ d l =
 let uimplies root u u' =
   List.for_all (fun p ->
     List.exists (fun q0 ->
-      (&&) (clock_eqb root (fst q0) (fst p)) ( ((<=) (snd q0) (snd p)))) u) u'
+      (&&) (clock_eqb root (fst q0) (fst p)) ( ((<=) (snd q0) (snd p)))) u)
+    u'
 
 (** val insert_u : mtl -> uinv -> uinv list -> uinv list **)
 
@@ -1806,7 +1812,8 @@ let split_inv root d s =
   then None
   else (match List.nth_opt
                 (disj_inv root d
-                  ((fun n m -> if m = 0 then 0 else n / m) s (kp root d))) k with
+                  ((fun n m -> if m = 0 then 0 else n / m) s (kp root d)))
+                k with
         | Some u -> Some (u :: [])
         | None -> None)
 
@@ -1830,7 +1837,8 @@ let split_all root d =
     (List.concat_map (fun l ->
       List.map (enc root d l)
         ((fun s n -> List.init n (fun i -> s + i)) 0 (kp root d)))
-      d.dta_accepting); dta_inv = (split_inv root d) }
+      d.dta_accepting);
+    dta_inv = (split_inv root d) }
 
 (** val explode : mtl -> dtrans -> dtrans list **)
 
@@ -1930,7 +1938,8 @@ let dprune root d =
   { dta_nstates = d.dta_nstates; dta_init = d.dta_init; dta_trans =
     (List.filter (fun t0 ->
       (||) ((=) t0.dt_src d.dta_init) (dhas_incoming root d t0.dt_src))
-      d.dta_trans); dta_accepting = d.dta_accepting; dta_inv = d.dta_inv }
+      d.dta_trans);
+    dta_accepting = d.dta_accepting; dta_inv = d.dta_inv }
 
 (** val dprune_n : mtl -> int -> dTA -> dTA **)
 
@@ -2039,7 +2048,9 @@ let dstates_mergeable root d p q0 =
         (if oinv_dec root (inv_norm root (d.dta_inv p))
               (inv_norm root (d.dta_inv q0))
          then true
-         else false)) (dcovers root d p q0 q0 p)) (dcovers root d p q0 p q0)
+         else false))
+      (dcovers root d p q0 q0 p))
+    (dcovers root d p q0 p q0)
 
 (** val dmerge_states : mtl -> int -> int -> dTA -> dTA **)
 
@@ -2113,7 +2124,8 @@ let split_w root k kmx di d =
     (List.concat_map (split_trans_w root k di) d.dta_trans); dta_accepting =
     (List.concat_map (fun l ->
       List.map (enc_w k l) ((fun s n -> List.init n (fun i -> s + i)) 0 k))
-      d.dta_accepting); dta_inv = (split_inv_w root k kmx di) }
+      d.dta_accepting);
+    dta_inv = (split_inv_w root k kmx di) }
 
 (** val kmax_w : mtl -> (int -> uinv list) -> dTA -> int **)
 
@@ -2203,7 +2215,8 @@ let live_step0 root d x s frontier =
       (List.map (fun t0 -> t0.dt_src)
         (List.filter (fun t0 ->
           (&&) (in_nat t0.dt_tgt frontier)
-            (not (mem_clock root x t0.dt_resets))) d.dta_trans)))
+            (not (mem_clock root x t0.dt_resets)))
+          d.dta_trans)))
 
 (** val live_search :
     mtl -> dTA -> clock -> int -> int list -> int list -> int list **)
@@ -2236,7 +2249,8 @@ let live_ok root d tbl x s =
           (not
             (mem_clock root x
               ((fun n l d -> match List.nth_opt l n with Some x -> x | None -> d)
-                s0 tbl []))) (in_nat s0 s))
+                s0 tbl [])))
+          (in_nat s0 s))
         ((fun s n -> List.init n (fun i -> s + i)) 0 d.dta_nstates)))
     (List.for_all (fun t0 ->
       (&&)
@@ -2244,7 +2258,8 @@ let live_ok root d tbl x s =
           (in_nat t0.dt_src s))
         ((||)
           ((||) (mem_clock root x t0.dt_resets) (not (in_nat t0.dt_tgt s)))
-          (in_nat t0.dt_src s))) d.dta_trans)
+          (in_nat t0.dt_src s)))
+      d.dta_trans)
 
 (** val init_free : mtl -> dTA -> bool **)
 
@@ -2594,10 +2609,13 @@ let alloc_ok root alloc live1 a =
             (guard_clocks root t0.bt_guard))
           (List.for_all (fun x ->
             (||) (clock_in root x t0.bt_resets)
-              (clock_in root x (live1 t0.bt_source))) (live1 t0.bt_target)))
+              (clock_in root x (live1 t0.bt_source)))
+            (live1 t0.bt_target)))
         (List.for_all (fun r ->
           List.for_all (fun y -> same_class_eq root alloc r y)
-            (live1 t0.bt_target)) t0.bt_resets)) a.tba_transitions)
+            (live1 t0.bt_target))
+          t0.bt_resets))
+      a.tba_transitions)
     (List.for_all (fun x ->
       List.for_all (fun y -> same_class_eq root alloc x y) (live1 a.tba_init))
       (live1 a.tba_init))
@@ -2648,7 +2666,8 @@ let flow_ok root live1 lle q1 t1 t2 =
         ((&&)
           ((&&) (not (clock_in root x t1.bt_resets))
             (not (clock_in root x t2.bt_resets)))
-          (clock_in root x (live1 q1)))) (live1 t1.bt_target))
+          (clock_in root x (live1 q1))))
+      (live1 t1.bt_target))
     (List.for_all (fun x ->
       (||) (clock_in root x t1.bt_resets)
         ((&&) (not (clock_in root x t2.bt_resets))
@@ -2722,7 +2741,8 @@ let prune_ok root sim0 live1 lle keep a =
                    then List.exists (fun t1 ->
                           dom_step root sim0 live1 lle keep a q1 c t2 t1)
                           a.tba_transitions
-                   else true) a.tba_transitions) (cells root a))
+                   else true) a.tba_transitions)
+                 (cells root a))
         else true) ((fun s n -> List.init n (fun i -> s + i)) 0 a.tba_nstates))
       ((fun s n -> List.init n (fun i -> s + i)) 0 a.tba_nstates))
 
@@ -2759,6 +2779,119 @@ let split_cells root a =
       List.map (fun c -> relabel root t0 (cell_label root a c))
         (List.filter (fun c -> label_at c t0.bt_label) (cells root a)))
       a.tba_transitions)
+
+(** val atoms : mtl -> action list **)
+
+let rec atoms = function
+| MAtom a -> a :: []
+| MNotAtom a -> a :: []
+| MAnd (p, q0) -> List.append (atoms p) (atoms q0)
+| MOr (p, q0) -> List.append (atoms p) (atoms q0)
+| MNext p -> atoms p
+| MU (p, q0) -> List.append (atoms p) (atoms q0)
+| MR (p, q0) -> List.append (atoms p) (atoms q0)
+| MUhatLe (_, p, q0) -> List.append (atoms p) (atoms q0)
+| MUhatGe (_, p, q0) -> List.append (atoms p) (atoms q0)
+| MRhatLe (_, p, q0) -> List.append (atoms p) (atoms q0)
+| MRhatGe (_, p, q0) -> List.append (atoms p) (atoms q0)
+| MUhatLt (_, p, q0) -> List.append (atoms p) (atoms q0)
+| MUhatGt (_, p, q0) -> List.append (atoms p) (atoms q0)
+| MRhatLt (_, p, q0) -> List.append (atoms p) (atoms q0)
+| MRhatGt (_, p, q0) -> List.append (atoms p) (atoms q0)
+| _ -> []
+
+(** val inb : action -> action list -> bool **)
+
+let inb a d =
+  List.exists ((=) a) d
+
+type tri =
+| TT
+| TF
+| TU
+
+(** val ev : mtl -> tri **)
+
+let rec ev = function
+| MTrue -> TT
+| MNotAtom _ -> TT
+| MAnd (p, q0) ->
+  (match ev p with
+   | TT -> ev q0
+   | TF -> TF
+   | TU -> (match ev q0 with
+            | TT -> TU
+            | x -> x))
+| MOr (p, q0) ->
+  (match ev p with
+   | TT -> TT
+   | TF -> ev q0
+   | TU -> (match ev q0 with
+            | TT -> TT
+            | _ -> TU))
+| MNext p -> ev p
+| MU (_, q0) -> ev q0
+| MR (_, q0) -> ev q0
+| MUhatLe (_, _, q0) -> (match ev q0 with
+                         | TT -> TU
+                         | x -> x)
+| MUhatGe (_, _, q0) -> (match ev q0 with
+                         | TT -> TU
+                         | x -> x)
+| MRhatLe (_, _, q0) -> (match ev q0 with
+                         | TT -> TT
+                         | _ -> TU)
+| MRhatGe (_, _, q0) -> (match ev q0 with
+                         | TT -> TT
+                         | _ -> TU)
+| MUhatLt (_, _, q0) -> (match ev q0 with
+                         | TT -> TU
+                         | x -> x)
+| MUhatGt (_, _, q0) -> (match ev q0 with
+                         | TT -> TU
+                         | x -> x)
+| MRhatLt (_, _, q0) -> (match ev q0 with
+                         | TT -> TT
+                         | _ -> TU)
+| MRhatGt (_, _, q0) -> (match ev q0 with
+                         | TT -> TT
+                         | _ -> TU)
+| _ -> TF
+
+(** val conjuncts : mtl -> mtl list **)
+
+let rec conjuncts f = match f with
+| MAnd (p, q0) -> List.append (conjuncts p) (conjuncts q0)
+| _ -> f :: []
+
+(** val conj_list : mtl list -> mtl **)
+
+let conj_list l =
+  (fun f a l -> List.fold_right f l a) (fun x x0 -> MAnd (x, x0)) MTrue l
+
+(** val dropb : action list -> mtl -> bool **)
+
+let dropb d c =
+  (&&) (List.for_all (fun a -> inb a d) (atoms c))
+    (match ev c with
+     | TT -> true
+     | _ -> false)
+
+(** val kept : action list -> mtl -> mtl list **)
+
+let kept d f =
+  List.filter (fun c -> not (dropb d c)) (conjuncts f)
+
+(** val slice_ok : action list -> mtl -> bool **)
+
+let slice_ok d f =
+  List.for_all (fun c -> List.for_all (fun a -> not (inb a d)) (atoms c))
+    (kept d f)
+
+(** val slice : action list -> mtl -> mtl **)
+
+let slice d f =
+  if slice_ok d f then conj_list (kept d f) else f
 
 (** val optimize_export : mtl -> int -> tBA -> dTA **)
 
