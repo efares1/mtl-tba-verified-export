@@ -1,0 +1,6 @@
+name	status	seconds	locations	transitions	clocks
+N	ok	0.5	3	5	1
+A2	ok	0.1	4	12	2
+A3	ok	0.1	8	32	3
+A4	ok	0.1	16	80	4
+A5	ok	0.2	32	192	5

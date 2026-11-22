@@ -1,0 +1,81 @@
+family	k	automaton	locs	sym_trans	clocks	gen_s	system	verdict	expected	stored	tck_s	peak_mb
+gateway	2	ours_n0	12	125	3	0.3	ok	empty	empty	8875	0.15	17
+gateway	2	ours	12	90	3	0.2	ok	empty	empty	8875	0.14	17
+gateway	2	ours_checked	12	52	3	0.1	ok	empty	empty	18	0.01	8
+gateway	2	casaal	12	52	3	0.3	ok	empty	empty	20	0.11	9
+gateway	2	ours_n0	12	125	3	0.3	bad	nonempty	nonempty	2007	0.04	13
+gateway	2	ours	12	90	3	0.2	bad	nonempty	nonempty	2007	0.04	13
+gateway	2	ours_checked	12	52	3	0.1	bad	nonempty	nonempty	20	0.01	8
+gateway	2	casaal	NA	NA	NA	NA	bad	nonempty	nonempty	21	0.11	9
+gateway	3	ours_n0	24	625	4	37.0	ok	empty	empty	132438	3.14	75
+gateway	3	ours	24	342	4	3.4	ok	empty	empty	132438	3.12	75
+gateway	3	ours_checked	24	136	4	1.0	ok	empty	empty	21	0.02	8
+gateway	3	casaal	24	136	4	0.1	ok	empty	empty	23	2.47	46
+gateway	3	ours_n0	24	625	4	38.1	bad	nonempty	nonempty	68183	1.48	47
+gateway	3	ours	24	342	4	3.5	bad	nonempty	nonempty	68183	1.51	47
+gateway	3	ours_checked	24	136	4	1.0	bad	nonempty	nonempty	22	0.02	8
+gateway	3	casaal	NA	NA	NA	NA	bad	nonempty	nonempty	23	2.49	46
+gateway	4	ours_n0	NA	NA	NA	skipped	ok	skipped				
+gateway	4	ours	48	1242	5	125.4	ok	empty	empty	1706718	89.61	818
+gateway	4	ours_checked	48	336	5	13.7	ok	empty	empty	24	0.06	10
+gateway	4	casaal	48	336	5	0.3	ok	empty	empty	26	37.53	330
+gateway	4	ours_n0	NA	NA	NA	skipped	bad	skipped				
+gateway	4	ours	48	1242	5	126.2	bad	nonempty	nonempty	1701566	81.03	775
+gateway	4	ours_checked	48	336	5	11.7	bad	nonempty	nonempty	24	0.06	10
+gateway	4	casaal	NA	NA	NA	NA	bad	nonempty	nonempty	25	37.66	330
+gateway	5	ours_n0	NA	NA	NA	skipped	ok	skipped				
+gateway	5	ours	NA	NA	NA	>300	ok	gen-fail				
+gateway	5	ours_checked	96	800	6	207.4	ok	empty	empty	27	0.30	18
+gateway	5	casaal	96	800	6	0.9	ok	timeout	empty	NA	120.10	NA
+gateway	5	ours_n0	NA	NA	NA	skipped	bad	skipped				
+gateway	5	ours	NA	NA	NA	>300	bad	gen-fail				
+gateway	5	ours_checked	96	800	6	287.3	bad	nonempty	nonempty	26	0.42	18
+gateway	5	casaal	NA	NA	NA	NA	bad	timeout	nonempty	NA	120.08	NA
+pipeline	2	ours_n0	11	53	3	0.1	ok	empty	empty	556	0.03	9
+pipeline	2	ours	11	43	3	0.1	ok	empty	empty	556	0.03	9
+pipeline	2	ours_checked	11	40	3	0.1	ok	empty	empty	15	0.02	8
+pipeline	2	casaal	11	40	3	0.0	ok	empty	empty	17	0.05	8
+pipeline	2	ours_n0	11	53	3	0.1	bad	nonempty	nonempty	197	0.03	8
+pipeline	2	ours	11	43	3	0.1	bad	nonempty	nonempty	197	0.02	8
+pipeline	2	ours_checked	11	40	3	0.1	bad	nonempty	nonempty	18	0.02	8
+pipeline	2	casaal	11	40	3	0.0	bad	nonempty	nonempty	19	0.03	8
+pipeline	3	ours_n0	23	201	4	1.5	ok	empty	empty	2238	0.10	13
+pipeline	3	ours	23	124	4	0.5	ok	empty	empty	2238	0.11	13
+pipeline	3	ours_checked	23	108	4	0.5	ok	empty	empty	21	0.03	8
+pipeline	3	casaal	23	108	4	0.1	ok	empty	empty	24	0.44	16
+pipeline	3	ours_n0	23	201	4	1.7	bad	nonempty	nonempty	641	0.06	9
+pipeline	3	ours	23	124	4	0.4	bad	nonempty	nonempty	641	0.04	9
+pipeline	3	ours_checked	23	108	4	0.6	bad	nonempty	nonempty	24	0.03	8
+pipeline	3	casaal	23	108	4	0.1	bad	nonempty	nonempty	25	0.45	16
+pipeline	4	ours_n0	NA	NA	NA	skipped	ok	skipped				
+pipeline	4	ours	47	326	5	4.3	ok	empty	empty	460	0.14	11
+pipeline	4	ours_checked	47	270	5	5.5	ok	empty	empty	27	0.10	9
+pipeline	4	casaal	47	270	5	0.1	ok	empty	empty	31	8.05	91
+pipeline	4	ours_n0	NA	NA	NA	skipped	bad	skipped				
+pipeline	4	ours	47	326	5	4.1	bad	nonempty	nonempty	541	0.09	11
+pipeline	4	ours_checked	47	270	5	5.4	bad	nonempty	nonempty	30	0.09	9
+pipeline	4	casaal	47	270	5	0.1	bad	nonempty	nonempty	31	7.77	91
+pipeline	5	ours_n0	NA	NA	NA	skipped	ok	skipped				
+pipeline	5	ours	95	806	6	44.1	ok	empty	empty	551	0.43	18
+pipeline	5	ours_checked	95	644	6	53.1	ok	empty	empty	33	0.37	15
+pipeline	5	casaal	95	644	6	0.2	ok	timeout	empty	NA	120.07	NA
+pipeline	5	ours_n0	NA	NA	NA	skipped	bad	skipped				
+pipeline	5	ours	95	806	6	44.9	bad	nonempty	nonempty	547	0.44	18
+pipeline	5	ours_checked	95	644	6	53.1	bad	nonempty	nonempty	36	0.36	15
+pipeline	5	casaal	95	644	6	0.2	bad	nonempty	nonempty	37	108.82	604
+twosided	3	ours_n0	32	1000	5	240.4	ok	empty	empty	177541	8.46	102
+twosided	3	ours	32	522	5	18.4	ok	empty	empty	177541	8.44	102
+twosided	3	ours_checked	32	208	4	6.3	ok	empty	empty	30	0.05	9
+twosided	3	casaal	32	208	5	0.2	ok	empty	empty	34	25.01	188
+twosided	3	ours_n0	32	1000	5	233.6	bad	nonempty	nonempty	107438	4.54	66
+twosided	3	ours	32	522	5	19.1	bad	nonempty	nonempty	107438	4.80	66
+twosided	3	ours_checked	32	208	4	6.2	bad	nonempty	nonempty	23	0.04	9
+twosided	3	casaal	NA	NA	NA	NA	bad	nonempty	nonempty	24	25.04	188
+twosided	4	ours_n0	NA	NA	NA	skipped	ok	skipped				
+twosided	4	ours	NA	NA	NA	>300	ok	gen-fail				
+twosided	4	ours_checked	64	512	5	74.2	ok	empty	empty	33	0.22	11
+twosided	4	casaal	64	512	6	0.5	ok	timeout	empty	NA	120.09	NA
+twosided	4	ours_n0	NA	NA	NA	skipped	bad	skipped				
+twosided	4	ours	NA	NA	NA	>300	bad	gen-fail				
+twosided	4	ours_checked	64	512	5	82.4	bad	nonempty	nonempty	25	0.19	12
+twosided	4	casaal	NA	NA	NA	NA	bad	timeout	nonempty	NA	120.10	NA

@@ -1,0 +1,31 @@
+k	variant	locs	sym_trans	gen_s	system	verdict	expected	stored	search_s	wall_s	peak_mb
+2	ours_n0	7	21	0.1	ok	empty	empty	11777	0.73778	0.77	20
+2	ours	7	17	0.1	ok	empty	empty	11777	0.654903	0.69	20
+2	ours_checked	7	17	0.1	ok	empty	empty	11777	0.701717	0.75	20
+2	casaal	NA	NA	0.0	ok	empty	empty	24063	0.93801	0.99	24
+2	ours_n0	7	21	0.1	bad	nonempty	nonempty	96	0.0030601	0.02	8
+2	ours	7	17	0.1	bad	nonempty	nonempty	96	0.0031031	0.02	8
+2	ours_checked	7	17	0.1	bad	nonempty	nonempty	96	0.0017117	0.02	8
+2	casaal	NA	NA	0.0	bad	nonempty	nonempty	213	0.0044921	0.03	8
+3	ours_n0	11	69	0.4	ok	empty	empty	160309	20.9787	21.60	121
+3	ours	11	37	0.1	ok	empty	empty	160309	20.1787	20.75	122
+3	ours_checked	11	37	0.1	ok	empty	empty	160309	18.5571	19.11	119
+3	casaal	NA	NA	0.0	ok	empty	empty	415960	30.5848	31.57	199
+3	ours_n0	11	69	0.4	bad	nonempty	nonempty	176	0.004862	0.02	8
+3	ours	11	37	0.1	bad	nonempty	nonempty	176	0.0045307	0.02	8
+3	ours_checked	11	37	0.1	bad	nonempty	nonempty	176	0.0069654	0.03	8
+3	casaal	NA	NA	0.0	bad	nonempty	nonempty	468	0.0116316	0.06	9
+4	ours_n0	NA	NA	skipped	-	skipped					
+4	ours	19	85	0.4	ok	timeout	empty	NA	NA	120.10	NA
+4	ours_checked	19	85	0.7	ok	timeout	empty	NA	NA	120.10	NA
+4	casaal	NA	NA	0.0	ok	timeout	empty	NA	NA	120.11	NA
+4	ours	19	85	0.4	bad	nonempty	nonempty	290	0.0209175	0.07	9
+4	ours_checked	19	85	0.7	bad	nonempty	nonempty	290	0.0194906	0.07	9
+4	casaal	NA	NA	0.0	bad	nonempty	nonempty	871	0.0331898	0.18	10
+5	ours_n0	NA	NA	skipped	-	skipped					
+5	ours	35	197	4.7	ok	timeout	empty	NA	NA	120.10	NA
+5	ours_checked	35	197	8.8	ok	timeout	empty	NA	NA	120.10	NA
+5	casaal	NA	NA	0.0	ok	timeout	empty	NA	NA	120.11	NA
+5	ours	35	197	4.7	bad	nonempty	nonempty	445	0.0581285	0.34	11
+5	ours_checked	35	197	8.8	bad	nonempty	nonempty	445	0.0467518	0.28	11
+5	casaal	NA	NA	0.0	bad	nonempty	nonempty	1461	0.0642635	0.62	13

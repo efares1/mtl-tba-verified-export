@@ -1,0 +1,12 @@
+digraph G {
+  0 [label="", style=invis, height=0]
+  0 -> 1
+  1 [label="G(!a1 | !done) & F(a1 & (0R[x<=5]!done))"]
+  1 -> 1 [label="!a1 | !done\n"]
+  1 -> 2 [label="a1 & !done & reset(x0)\n{Acc[a1 & (0R[x<=5]!done)]}"]
+  2 [label="(G(!a1 | !done) & (0R[x<=5-x0]!done)) | (G(!a1 | !done) & !\"x0<=5\")"]
+  2 -> 3 [label="(!a1 & !\"x0<=5\") | (!done & !\"x0<=5\")\n{Acc[a1 & (0R[x<=5]!done)]}"]
+  2 -> 2 [label="!done\n{Acc[a1 & (0R[x<=5]!done)]}"]
+  3 [label="G(!a1 | !done)"]
+  3 -> 3 [label="!a1 | !done\n{Acc[a1 & (0R[x<=5]!done)]}"]
+}

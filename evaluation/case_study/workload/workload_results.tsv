@@ -1,0 +1,101 @@
+family	k	automaton	locs	sym_trans	clocks	gen_s	system	verdict	expected	stored	search_s	wall_s	peak_mb
+gateway	2	ours_n0	12	125	3	0.3	ok	empty	empty	8875	0.116805	0.14	17
+gateway	2	ours	12	90	3	0.1	ok	empty	empty	8875	0.118826	0.14	17
+gateway	2	ours_checked	12	52	3	0.1	ok	empty	empty	18	0.0001924	0.01	8
+gateway	2	casaal	12	52	3	0.3	ok	empty	empty	20	0.0002128	0.11	9
+gateway	2	casaal_x	12	52	3	0.3	ok	empty	empty	18	0.0001614	0.01	8
+gateway	2	ours_n0	12	125	3	0.4	bad	nonempty	nonempty	2007	0.0231221	0.05	13
+gateway	2	ours	12	90	3	0.1	bad	nonempty	nonempty	2007	0.024476	0.04	13
+gateway	2	ours_checked	12	52	3	0.1	bad	nonempty	nonempty	20	0.0001329	0.01	8
+gateway	2	casaal	NA	NA	NA	NA	bad	nonempty	nonempty	21	0.0001836	0.11	10
+gateway	2	casaal_x	NA	NA	NA	NA	bad	nonempty	nonempty	20	0.0001271	0.01	8
+gateway	3	ours_n0	24	625	4	37.7	ok	empty	empty	132438	2.99535	3.18	75
+gateway	3	ours	24	342	4	3.5	ok	empty	empty	132438	2.96528	3.14	75
+gateway	3	ours_checked	24	136	4	1.0	ok	empty	empty	21	0.000247	0.02	8
+gateway	3	casaal	24	136	4	0.1	ok	empty	empty	23	0.0002215	2.56	46
+gateway	3	casaal_x	24	136	4	0.1	ok	empty	empty	21	0.0001927	0.02	8
+gateway	3	ours_n0	24	625	4	38.8	bad	nonempty	nonempty	68183	1.39439	1.50	47
+gateway	3	ours	24	342	4	3.5	bad	nonempty	nonempty	68183	1.38871	1.49	47
+gateway	3	ours_checked	24	136	4	1.0	bad	nonempty	nonempty	22	0.000183	0.02	8
+gateway	3	casaal	NA	NA	NA	NA	bad	nonempty	nonempty	23	0.0001867	2.50	46
+gateway	3	casaal_x	NA	NA	NA	NA	bad	nonempty	nonempty	22	0.000166	0.02	8
+gateway	4	ours_n0	NA	NA	NA	skipped	ok	skipped					
+gateway	4	ours	48	1242	5	125.2	ok	empty	empty	1706718	85.8349	89.24	819
+gateway	4	ours_checked	48	336	5	14.3	ok	empty	empty	24	0.0003186	0.06	10
+gateway	4	casaal	48	336	5	0.3	ok	empty	empty	26	0.0002746	38.23	330
+gateway	4	casaal_x	48	336	5	0.3	ok	empty	empty	24	0.0003362	0.06	10
+gateway	4	ours_n0	NA	NA	NA	skipped	bad	skipped					
+gateway	4	ours	48	1242	5	126.4	bad	nonempty	nonempty	1701566	78.2765	81.37	774
+gateway	4	ours_checked	48	336	5	11.9	bad	nonempty	nonempty	24	0.0002628	0.07	10
+gateway	4	casaal	NA	NA	NA	NA	bad	nonempty	nonempty	25	0.0001843	37.54	330
+gateway	4	casaal_x	NA	NA	NA	NA	bad	nonempty	nonempty	24	0.0002014	0.06	10
+gateway	5	ours_n0	NA	NA	NA	skipped	ok	skipped					
+gateway	5	ours	NA	NA	NA	>300	ok	gen-fail					
+gateway	5	ours_checked	96	800	6	212.4	ok	empty	empty	27	0.0004198	0.31	18
+gateway	5	casaal	96	800	6	0.9	ok	timeout	empty	NA	NA	120.10	NA
+gateway	5	casaal_x	96	800	6	0.9	ok	empty	empty	27	0.0004666	0.40	19
+gateway	5	ours_n0	NA	NA	NA	skipped	bad	skipped					
+gateway	5	ours	NA	NA	NA	>300	bad	gen-fail					
+gateway	5	ours_checked	NA	NA	NA	>300	bad	gen-fail					
+gateway	5	casaal	NA	NA	NA	NA	bad	timeout	nonempty	NA	NA	120.11	NA
+gateway	5	casaal_x	NA	NA	NA	NA	bad	nonempty	nonempty	26	0.000641901	0.86	19
+pipeline	2	ours_n0	11	53	3	0.1	ok	empty	empty	556	0.0388186	0.11	9
+pipeline	2	ours	11	43	3	0.1	ok	empty	empty	556	0.0231812	0.08	9
+pipeline	2	ours_checked	11	40	3	0.1	ok	empty	empty	15	0.0003629	0.03	8
+pipeline	2	casaal	11	40	3	0.0	ok	empty	empty	17	0.0004262	0.12	8
+pipeline	2	casaal_x	11	40	3	0.0	ok	empty	empty	15	0.0046762	0.05	8
+pipeline	2	ours_n0	11	53	3	0.2	bad	nonempty	nonempty	197	0.0089367	0.05	8
+pipeline	2	ours	11	43	3	0.2	bad	nonempty	nonempty	197	0.0050026	0.06	8
+pipeline	2	ours_checked	11	40	3	0.3	bad	nonempty	nonempty	18	0.0003062	0.02	8
+pipeline	2	casaal	11	40	3	0.0	bad	nonempty	nonempty	19	0.0003713	0.15	8
+pipeline	2	casaal_x	11	40	3	0.0	bad	nonempty	nonempty	18	0.0003402	0.06	8
+pipeline	3	ours_n0	23	201	4	2.5	ok	empty	empty	2238	0.0850505	0.17	13
+pipeline	3	ours	23	124	4	0.7	ok	empty	empty	2238	0.17544	0.29	13
+pipeline	3	ours_checked	23	108	4	1.0	ok	empty	empty	21	0.0004939	0.04	8
+pipeline	3	casaal	23	108	4	0.1	ok	empty	empty	24	0.000552	0.72	16
+pipeline	3	casaal_x	23	108	4	0.1	ok	empty	empty	21	0.0005214	0.07	8
+pipeline	3	ours_n0	23	201	4	2.7	bad	nonempty	nonempty	641	0.0267245	0.13	9
+pipeline	3	ours	23	124	4	0.7	bad	nonempty	nonempty	641	0.0201757	0.10	9
+pipeline	3	ours_checked	23	108	4	0.9	bad	nonempty	nonempty	24	0.0004556	0.04	8
+pipeline	3	casaal	23	108	4	0.1	bad	nonempty	nonempty	25	0.0004682	0.63	16
+pipeline	3	casaal_x	23	108	4	0.1	bad	nonempty	nonempty	24	0.0004256	0.07	8
+pipeline	4	ours_n0	NA	NA	NA	skipped	ok	skipped					
+pipeline	4	ours	47	326	5	6.8	ok	empty	empty	460	0.017715	0.17	11
+pipeline	4	ours_checked	47	270	5	9.0	ok	empty	empty	27	0.0009172	0.15	9
+pipeline	4	casaal	47	270	5	0.1	ok	empty	empty	31	0.0008336	12.92	91
+pipeline	4	casaal_x	47	270	5	0.1	ok	empty	empty	27	0.0007148	0.22	9
+pipeline	4	ours_n0	NA	NA	NA	skipped	bad	skipped					
+pipeline	4	ours	47	326	5	6.6	bad	nonempty	nonempty	541	0.0243532	0.20	11
+pipeline	4	ours_checked	47	270	5	8.3	bad	nonempty	nonempty	30	0.0006952	0.13	9
+pipeline	4	casaal	47	270	5	0.1	bad	nonempty	nonempty	31	0.0005198	14.89	91
+pipeline	4	casaal_x	47	270	5	0.1	bad	nonempty	nonempty	30	0.0006492	0.15	9
+pipeline	5	ours_n0	NA	NA	NA	skipped	ok	skipped					
+pipeline	5	ours	95	806	6	88.1	ok	empty	empty	551	0.0125853	0.47	17
+pipeline	5	ours_checked	95	644	6	113.9	ok	empty	empty	33	0.0009138	0.32	15
+pipeline	5	casaal	95	644	6	0.2	ok	empty	empty	38	0.000553	116.57	604
+pipeline	5	casaal_x	95	644	6	0.2	ok	empty	empty	33	0.0005348	0.36	15
+pipeline	5	ours_n0	NA	NA	NA	skipped	bad	skipped					
+pipeline	5	ours	95	806	6	42.0	bad	nonempty	nonempty	547	0.0118555	0.33	18
+pipeline	5	ours_checked	95	644	6	47.6	bad	nonempty	nonempty	36	0.0004592	0.29	15
+pipeline	5	casaal	95	644	6	0.2	bad	nonempty	nonempty	37	0.0006997	109.88	604
+pipeline	5	casaal_x	95	644	6	0.2	bad	nonempty	nonempty	36	0.0007193	0.37	15
+twosided	3	ours_n0	32	1000	5	248.0	ok	empty	empty	177541	8.01749	8.47	102
+twosided	3	ours	32	522	5	18.6	ok	empty	empty	177541	8.42223	8.86	102
+twosided	3	ours_checked	32	208	4	6.4	ok	empty	empty	30	0.0006296	0.06	9
+twosided	3	casaal	32	208	5	0.2	ok	empty	empty	34	0.0007086	25.38	188
+twosided	3	casaal_x	32	208	5	0.2	ok	empty	empty	30	0.0006782	0.06	9
+twosided	3	ours_n0	32	1000	5	235.2	bad	nonempty	nonempty	107438	4.30136	4.58	66
+twosided	3	ours	32	522	5	18.6	bad	nonempty	nonempty	107438	4.53989	4.82	66
+twosided	3	ours_checked	32	208	4	6.0	bad	nonempty	nonempty	23	0.0003808	0.05	9
+twosided	3	casaal	NA	NA	NA	NA	bad	nonempty	nonempty	24	0.0002543	25.60	188
+twosided	3	casaal_x	NA	NA	NA	NA	bad	nonempty	nonempty	23	0.0003386	0.06	9
+twosided	4	ours_n0	NA	NA	NA	skipped	ok	skipped					
+twosided	4	ours	NA	NA	NA	>300	ok	gen-fail					
+twosided	4	ours_checked	64	512	5	80.1	ok	empty	empty	33	0.0008594	0.22	11
+twosided	4	casaal	64	512	6	0.5	ok	timeout	empty	NA	NA	120.10	NA
+twosided	4	casaal_x	64	512	6	0.5	ok	empty	empty	33	0.0005748	0.20	13
+twosided	4	ours_n0	NA	NA	NA	skipped	bad	skipped					
+twosided	4	ours	NA	NA	NA	>300	bad	gen-fail					
+twosided	4	ours_checked	64	512	5	84.1	bad	nonempty	nonempty	25	0.0004045	0.20	11
+twosided	4	casaal	NA	NA	NA	NA	bad	timeout	nonempty	NA	NA	120.01	NA
+twosided	4	casaal_x	NA	NA	NA	NA	bad	nonempty	nonempty	25	0.0003153	0.25	13

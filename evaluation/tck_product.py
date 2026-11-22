@@ -292,8 +292,13 @@ def write(out, autos, events):
         L.append(f'edge:D:wait:seen:{e}{{}}')
         L.append(f'edge:D:seen:seen:{e}{{}}')
     L.append('')
+    def ev_of(a, e):
+        # an automaton of mtl2tba reads the events of its formula and `other`:
+        # every event outside its alphabet is read as `other`
+        alpha = {x[2] for x in a.edges}
+        return e if (e in alpha or 'other' not in alpha or e == 'other') else 'other'
     for e in evs:
-        L.append('sync:' + ':'.join(f'{a.name}@{e}' for a in autos) + f':Z@{e}:D@{e}')
+        L.append('sync:' + ':'.join(f'{a.name}@{ev_of(a, e)}' for a in autos) + f':Z@{e}:D@{e}')
     open(out, 'w').write('\n'.join(L) + '\n')
 
 

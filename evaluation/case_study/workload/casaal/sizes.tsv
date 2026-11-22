@@ -1,0 +1,15 @@
+family	k	variant	status	seconds	locations	transitions	clocks
+gateway	2	ok	ok	0.3	12	52	3
+gateway	3	ok	ok	0.1	24	136	4
+gateway	4	ok	ok	0.3	48	336	5
+gateway	5	ok	ok	0.9	96	800	6
+pipeline	2	ok	ok	0.0	11	40	3
+pipeline	2	bad	ok	0.0	11	40	3
+pipeline	3	ok	ok	0.1	23	108	4
+pipeline	3	bad	ok	0.1	23	108	4
+pipeline	4	ok	ok	0.1	47	270	5
+pipeline	4	bad	ok	0.1	47	270	5
+pipeline	5	ok	ok	0.2	95	644	6
+pipeline	5	bad	ok	0.2	95	644	6
+twosided	3	ok	ok	0.2	32	208	5
+twosided	4	ok	ok	0.5	64	512	6
