@@ -39,6 +39,7 @@ def system_xml(k, d):
     for j in range(2, k + 1):
         s += tr('i', 'i', f'b{j}') + tr('w', 'w', f'b{j}')
     s += tr('i', 'w', 'b1', reset=True) + tr('w', 'w', 'b1')
+    s += tr('i', 'i', 'other') + tr('w', 'w', 'other')
     s += tr('w', 'i', 'done', 'x0 &gt;= 1')
     return s + '</template></nta>\n'
 

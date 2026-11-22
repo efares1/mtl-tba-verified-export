@@ -330,3 +330,16 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+def ignores(path, letters):
+    """Closure check for slicing (Coq slice_sound): True iff every location of the plain system XML at `path` has an
+    unguarded self-loop without resets on every letter of `letters` and on `other` (the letter eps), so that replacing
+    these letters by `other` in an accepted word gives an accepted word."""
+    a = from_xml('SYS', path)
+    need = set(letters) | {'other'}
+    for lid in a.locs:
+        have = {e for (s, t, e, g, r, _) in a.edges if s == lid and t == lid and not g and not r}
+        if not need <= have:
+            return False
+    return True

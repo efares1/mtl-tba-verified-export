@@ -6,6 +6,8 @@ HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
 sys.argv, ARGS = sys.argv[:1], sys.argv[1:]
 sys.argv = ['x', ARGS[0] if ARGS else '120']
 import run_tck as r, compose as c
+sys.path.insert(0, r.EV)
+import tck_product
 
 def main():
     rows = [['k', 'variant', 'sym_trans', 'gen_s', 'system', 'verdict', 'expected', 'stored', 'search_s', 'wall_s', 'peak_mb']]
@@ -22,6 +24,9 @@ def main():
                 rows.append([k, name, 'NA', 'NA', '-', 'gen-fail', '', '', '', '', '']); continue
             for sysname, d in (('ok', 2), ('bad', 4)):
                 open(os.path.join(W, 'sys.xml'), 'w').write(c.system_xml(k, d))
+                if name == 'sliced':
+                    dl = [f'{x}{i}' for i in range(2, k + 1) for x in 'ab']
+                    assert tck_product.ignores(os.path.join(W, 'sys.xml'), dl), 'system does not ignore the sliced letters'
                 v, st, se, wall, peak, _ = r.tck(ev, W, [f'X:{a[0]}', 'SYS:' + os.path.join(W, 'sys.xml')])
                 rows.append([k, name, a[2], '%.1f' % a[3], sysname, v, 'empty' if sysname == 'ok' else 'nonempty', st, se, wall, peak])
                 print(rows[-1], flush=True)
