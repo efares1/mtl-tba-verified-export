@@ -1,5 +1,5 @@
-MTL-to-timed-automata chain with Rocq-verified optimization and UPPAAL export
+Verified optimization and UPPAAL export of timed Büchi automata in Rocq
 Pruning and clock reuse: untrusted analysis, verified checker, any certificate
-On a constructed workload, checked pruning closes a 1.7M vs 114 state gap
-Random-word tests miss 5 of 18 language-changing defects; Rocq rejects all 22
-Zero-initialized correctness of the full chain given a successful init_free
+Checked pruning cuts a gateway check from 132,438 to 21 TChecker states
+Shipped guarantee is conditional on Spot's contract and a successful init_free
+Same size as CASAAL on negated requirements; no model-checking gain there

@@ -1,4 +1,4 @@
-# Verified optimization, export and evaluation of a translation from real-time requirements to timed Büchi automata
+# Verified optimization and export of timed Büchi automata with certificate-checked reductions
 
 Artifact of the article submitted to the Journal of Systems and Software by
 Elie Fares, Jean-Paul Bodeveix, Hussain Al-Aqrabi and Azar Salami.
@@ -72,8 +72,8 @@ Spot (called by `mtl2tba`), TChecker, UPPAAL (free for academic use only) and CA
 `evaluation/casaal_out/` are outputs of CASAAL on our inputs, kept for reproducibility. Files from
 publisher LaTeX templates (class and style files, fonts) are not covered by the MIT licence.
 
-`CITATION.cff` carries the citation metadata; the DOI of the archived
-release is added to it once Zenodo has issued it.
+`CITATION.cff` carries the citation metadata and the DOI of the archived
+release (https://doi.org/10.5281/zenodo.24437828).
 
 ## Layout of this repository
 
