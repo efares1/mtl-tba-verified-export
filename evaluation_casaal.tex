@@ -1,6 +1,6 @@
 \subsection{Comparison with CASAAL: the whole translation}
 \label{sec:casaal-eval}
-CASAAL~\cite{casaal_tool} implements the MTL$_{0,\infty}$ construction of Li et al.~\cite{li_spin7}. It builds its own automata, so it is a reference for the whole translation, not for the optimization passes alone. We compare the size of the automaton, the generation time and the states a timed model checker stores. CASAAL ran with mutually exclusive events, which matches our one-event-per-position words, and its transition acceptance is converted to location acceptance, the form TChecker reads (Section~\ref{sec:casaal-size}). \emph{Auto} is our default (Spot at level \texttt{low} for at most 5~s, then level \texttt{any} with Spot's simulation reductions off, Section~\ref{sec:spot-level}); \emph{manual} is the faster of the explicit settings \texttt{-simp -spot-level any -spot-x ba-simul=0} and \texttt{-spot-level low}. Both give automata of the same size on every pattern compared and differ in time only.
+CASAAL~\cite{casaal_tool} implements the MTL$_{0,\infty}$ construction of Li et al.~\cite{li_spin7}. It builds its own automata, so it is a reference for the whole translation. We compare size, generation time and the states a timed model checker stores. CASAAL ran with mutually exclusive events, which matches our one-event-per-position words, and its transition acceptance is converted to location acceptance, the form TChecker reads (Section~\ref{sec:casaal-size}). \emph{Auto} is our default (Spot at level \texttt{low} for at most 5~s, then level \texttt{any} with Spot's simulation reductions off, Section~\ref{sec:spot-level}); \emph{manual} is the faster of the explicit settings \texttt{-simp -spot-level any -spot-x ba-simul=0} and \texttt{-spot-level low}. Both give automata of the same size on every pattern compared and differ in time only.
 
 \subsubsection{Size}
 \label{sec:casaal-size}
@@ -31,7 +31,7 @@ gives earlier runs, with the manual setting.}
 \small
 \input{evaluation/baselines/same_driver_table}
 \end{table}
-Table~\ref{tab:same-driver} reports the wall-clock time of the whole translation of the negated requirement with one driver for both tools (\path{evaluation/baselines/time_same_driver.py}). Ours runs under WSL~2 and CASAAL as a Windows executable, so the comparison carries the overhead of the virtual machine for our tool. On the bounded-response family and the small patterns both tools finish in under 0.3~s. CASAAL is faster from five nesting levels: 0.44~s against 0.85~s on N5, 2.6~s against 6.7~s on N6 and 17~s against 31~s on N7; on N8, one run of each took 74~s and 307~s. The manual setting is faster on seven levels (15.1~s, Supplement Table~\ref{S-tab:casaal-gen}), since the automatic mode first runs Spot for up to 5~s at level \texttt{low}.
+Table~\ref{tab:same-driver} reports the wall-clock time of the whole translation of the negated requirement with one driver for both tools (\path{evaluation/baselines/time_same_driver.py}). Ours runs under WSL~2 and CASAAL as a Windows executable, so the comparison carries the overhead of the virtual machine for our tool. CASAAL is faster from five nesting levels: 0.44~s against 0.85~s on N5, 2.6~s against 6.7~s on N6 and 17~s against 31~s on N7; on N8, one run of each took 74~s and 307~s. The manual setting is faster on seven levels (15.1~s, Supplement Table~\ref{S-tab:casaal-gen}), since the automatic mode first runs Spot for up to 5~s at level \texttt{low}.
 
 On N7 about 10 of the 15~s of the manual setting are Spot's: a bounded eventuality repeats the translation of its operand three times, so the clocked formula has size $\Theta(3^k)$ in the nesting depth $k$. The slow part appears to be Spot with the formula that the verified translation hands to it, not the verified stages (Supplement Section~\ref{S-sec:deep-nests}).
 
@@ -58,7 +58,7 @@ be generated within the limit, so nothing is claimed for those.
 
 \subsubsection{A workload on which the automata differ}
 \label{sec:casaal-stress}
-The comparison above gives almost equal costs. The positive-form workload of Section~\ref{sec:export-policies} shows a large difference, but its first version exercised one response only. We therefore used a system that makes and answers in time the requests of the responses $2,\dots,n$ and then makes the request of the first response and never answers it, so that all $n$ responses of Rn are exercised and the product is empty (Supplement Table~\ref{S-tab:baseline-posbadall}).
+The comparison above gives almost equal costs. The positive-form workload of Section~\ref{sec:export-policies} shows a large difference, but exercised one response only, so we used a system that makes and answers in time the requests of the responses $2,\dots,n$ and then makes the request of the first response and never answers it, so that all $n$ responses of Rn are exercised and the product is empty (Supplement Table~\ref{S-tab:baseline-posbadall}).
 
 \begin{table}[tp]
 \centering
