@@ -1,4 +1,4 @@
-\subsection{Certificate-checked passes (RQ5)}
+\subsection{Certificate-checked passes (RQ2)}
 \label{sec:eval-checked}
 \emph{Pruning on the translator's own automata.} We ran \texttt{mtl2tba -prune} (without splitting) on the 29 benchmark configurations and the 100 random formulas, in both polarities (\path{evaluation/prune_survey.tsv}); the checker accepted every certificate. On the requirements as written, the explicit transitions of the exported automaton fall from 1{,}504 to 1{,}025 on the benchmark (15 of 29 automata reduced; R6 640 to 448) and from 2{,}384 to 1{,}979 on the random formulas (21 of 100 reduced, none increased). On the negated requirements the effect is small (913 to 912 and 1{,}203 to 1{,}142). TChecker stores the same states with and without pruning on the reference products of R2--R4 (70, 92, 114): like the optimizer, pruning shrinks our own automata without changing what the checker explores.
 
