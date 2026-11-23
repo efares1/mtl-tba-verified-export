@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use this artifact, please cite the article."
 title: "Verified optimization and export of timed Büchi automata with certificate-checked reductions (artifact)"
 type: software
-doi: 10.5281/zenodo.24438136
+doi: 10.5281/zenodo.24478303
 authors:
   - family-names: Fares
     given-names: Elie

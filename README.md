@@ -73,7 +73,7 @@ Spot (called by `mtl2tba`), TChecker, UPPAAL (free for academic use only) and CA
 publisher LaTeX templates (class and style files, fonts) are not covered by the MIT licence.
 
 `CITATION.cff` carries the citation metadata and the DOI of the archived
-release (https://doi.org/10.5281/zenodo.24438136).
+release (https://doi.org/10.5281/zenodo.24478303).
 
 ## Layout of this repository
 
