@@ -23,13 +23,13 @@ invariants from outgoing upper bounds and propagate successor requirements
 backward, using location invariants to constrain admissible time elapse as in
 standard UPPAAL models~\cite{[BGD04]}.
 
-\paragraph{Upper bound of a guard.}
+\paragraph{Upper bound of a guard}
 For a conjunctive guard $g$ and a clock $x$, let $\mathit{ub}_x(g)$ be the
 smallest bound $m$ of the constraints $x\le m$, $x<m$, and $x=m$ occurring in
 $g$, and $+\infty$ if $g$ contains none.  Other constraints are ignored.  A
 valuation satisfying $g$ satisfies $x\le\mathit{ub}_x(g)$.
 
-\paragraph{Invariant synthesis.}
+\paragraph{Invariant synthesis}
 For a location $\ell$ with outgoing transitions
 $\ell\xrightarrow{g_i,Z_i}\ell_i$, $i=1,\dots,m$, the synthesized invariant is
 \[
@@ -55,7 +55,7 @@ $\mathit{Inv}(r(i))(x)$.  By the lemma \texttt{inv\_\allowbreak{}during\_\allowb
 the whole stay.  (Rocq: \texttt{add\_\allowbreak{}invariants\_\allowbreak{}correct}.)
 \end{proof}
 
-\paragraph{Backward propagation.}
+\paragraph{Backward propagation}
 One propagation step strengthens every transition
 $\ell\xrightarrow{g,Z}\ell'$ with the invariant of its target after the
 resets:
@@ -105,7 +105,7 @@ constant.}
 \label{fig:main-inv-unified}
 \end{figure}
 
-\paragraph{Example.}
+\paragraph{Example}
 We illustrate the algorithm on the automaton of Fig.~\ref{fig:inv-example},
 which contains a two-location cycle $\ell_1\to\ell_2\to\ell_1$ and a self-loop
 at $\ell_2$.  It has one clock $x$, the initial location $\ell_0$, and the
@@ -163,7 +163,7 @@ do not change its language.
 
 \subsection{Forward propagation of lower bounds and simplification}
 \label{sec:forward}\label{sec:main-forward}
-\paragraph{Entry bounds.}
+\paragraph{Entry bounds}
 Dually, for a transition $t=\ell\xrightarrow{g,Z}\ell'$ and a clock $x$, the
 \emph{entry bound} of $x$ along $t$ is $0$ if $x\in Z$ and otherwise the
 largest bound $\mathit{lb}_x(g)$ of the constraints $x\ge m$, $x>m$, and $x=m$
@@ -175,7 +175,7 @@ Since clocks are nonnegative and do not decrease while time elapses, every
 clock with entry bound $m$ at $\ell'$ satisfies $x\ge m$ during every stay in
 $\ell'$.
 
-\paragraph{Forward propagation.}
+\paragraph{Forward propagation}
 The forward step adds $x\ge m$ to the guard of every transition leaving
 $\ell'$, for every clock $x$ with entry bound $m$ at $\ell'$ (Rocq:
 \texttt{forward\_\allowbreak{}accepts}).  The entry bounds can also be read as lower-bound
@@ -187,7 +187,7 @@ transitions visible: after forward and backward propagation, a transition whose
 source location bounds a clock from below and whose target bounds it from above
 carries both bounds in its guard.
 
-\paragraph{Simplification.}
+\paragraph{Simplification}
 Three simplifications follow.  First, a transition whose guard contains
 contradictory constraints is removed: a lower bound and an upper bound on the
 same clock with $u<l$, or with $u=l$ and one of them strict, or an upper bound
@@ -211,7 +211,7 @@ transition that can never be taken would otherwise prevent it.
 
 \subsection{Dead resets and merging of synchronously reset clocks}
 \label{sec:dead-merge}\label{sec:main-dead-merge}
-\paragraph{Dead resets.}
+\paragraph{Dead resets}
 A clock $x$ is \emph{live} at a location $\ell$ if some transition that tests
 $x$ in its guard can be taken from $\ell$, possibly after other transitions.
 The live locations are computed as a backward closure, along all
@@ -227,7 +227,7 @@ in the reset decisions of $x$, and conversely (Rocq:
 \texttt{remove\_\allowbreak{}dead\_\allowbreak{}resets\_\allowbreak{}clock\_\allowbreak{}accepts}).  The pass is applied
 to every clock (\texttt{remove\_\allowbreak{}dead\_\allowbreak{}resets\_\allowbreak{}accepts}).
 
-\paragraph{Synchronous clocks.}
+\paragraph{Synchronous clocks}
 The verified translation shares the clock of syntactically identical timed
 subformulas.  Clocks of \emph{different} subformulas can also be merged when
 they are reset synchronously.  Two clocks $x\neq y$ are \emph{mergeable} if
@@ -263,7 +263,7 @@ of clock values, so the theorem is stated on timed words (Rocq:
 
 \subsection{Merging of transitions and of locations}
 \label{sec:merge-ts}\label{sec:main-merge-ts}
-\paragraph{Transitions.}
+\paragraph{Transitions}
 Two transitions with the same source, target, and resets are merged when the
 union of their enabling conditions is again a conjunction.  A transition is
 removed when another transition with the same source, target, and resets is
@@ -277,7 +277,7 @@ source and target, and conversely (Rocq: \texttt{merge\_\allowbreak{}trans\_\all
 The other unions are disjunctive; they are formed by the export
 (article Section~\ref{subsec:split-construction}).
 
-\paragraph{Locations.}
+\paragraph{Locations}
 A location $\ell'$ is merged into a location $\ell$ when both are accepting or
 both are not, and when (i) every transition leaving $\ell'$ is subsumed by a
 transition leaving $\ell$, and (ii) every transition leaving $\ell$ is subsumed
