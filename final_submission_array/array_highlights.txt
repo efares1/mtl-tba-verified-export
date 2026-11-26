@@ -1,0 +1,5 @@
+Verified optimization and UPPAAL export of timed Büchi automata in Rocq
+Pruning and clock reuse: untrusted analysis, verified checker, any certificate
+TChecker train_gate: checked pruning cuts 6,036,642 states to 16,299, 368 s to 0.3 s
+Shipped guarantee is conditional on Spot's contract and a successful init_free
+Same size as CASAAL on negated requirements; no model-checking gain there

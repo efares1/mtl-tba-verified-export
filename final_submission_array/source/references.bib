@@ -1,0 +1,263 @@
+@InProceedings{[BF03],
+author = {Bodeveix, Jean-Paul and Filali, Mamoun},
+title = {About disjunctive invariants in {UPPAAL}},
+booktitle = {15th {N}ordic Workshop on Programming Theory ({NWPT})},
+address = {Turku, Finland},
+year = {2003},
+month = oct,
+note = {Workshop presentation, 29--31 October 2003},
+URL = {http://www.abo.fi/~Kaisa.Sere/15NWPT.html}
+}
+
+@misc{tchecker,
+  author       = {Fr{\'{e}}d{\'{e}}ric Herbreteau and Gerald Point},
+  title        = {{TChecker}: model checker for timed automata},
+  howpublished = {\url{https://github.com/ticktac-project/tchecker}},
+  note         = {Version 0.8},
+  year         = {2025}
+}
+
+@incollection{[BGD04],
+  author    = {Behrmann, Gerd and David, Alexandre and Larsen, Kim G.},
+  title     = {A Tutorial on {UPPAAL}},
+  booktitle = {Formal Methods for the Design of Real-Time Systems},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {3185},
+  pages     = {200--236},
+  publisher = {Springer},
+  year      = {2004},
+  doi       = {10.1007/978-3-540-30080-9_7}
+}
+
+
+@InProceedings{spot,
+  author	= {Alexandre Duret-Lutz and Alexandre Lewkowicz and Amaury
+		  Fauchille and Thibaud Michaud and Etienne Renault and
+		  Laurent Xu},
+  title		= {Spot 2.0 --- a framework for {LTL} and $\omega$-automata
+		  manipulation},
+  booktitle	= {Proceedings of the 14th International Symposium on
+		  Automated Technology for Verification and Analysis
+		  (ATVA'16)},
+  series	= {Lecture Notes in Computer Science},
+  publisher	= {Springer},
+  volume	= {9938},
+  pages		= {122--129},
+  year		= {2016},
+  month		= oct,
+  abstract	= {We present Spot 2.0, a C++ library with Python bindings
+		  and an assortment of command-line tools designed to
+		  manipulate LTL and $\omega$-automata in batch. New
+		  automata-manipulation tools were introduced in Spot 2.0;
+		  they support arbitrary acceptance conditions, as
+		  expressible in the Hanoi Omega Automaton format. Besides
+		  being useful to researchers who have automata to process,
+		  its Python bindings can also be used in interactive
+		  environments to teach $\omega$-automata and model checking.}
+}
+@misc{casaal_tool,
+  author= {Li, Guangyuan},
+  title = {{CASAAL}: A tool for translating {MTL}$_{0,\infty}$ into timed {B{\"u}chi} automata},
+  howpublished = {Online},
+  note         = {Available at the CASAAL tool page},
+  year = {2017},
+  url={https://lcs.ios.ac.cn/~ligy/tools/CASAAL/}
+}
+
+@inproceedings{li_spin7,
+author = {Li, Guangyuan and Jensen, Peter Gj\o{}l and Larsen, Kim Guldstrand and Legay, Axel and Poulsen, Danny B\o{}gsted},
+title = {Practical controller synthesis for {MTL}$_{0,\infty}$},
+year = {2017},
+isbn = {9781450350778},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3092282.3092303},
+doi = {10.1145/3092282.3092303},
+abstract = {Metric Temporal Logic MTL0,$\infty$ is a timed extension of linear temporal logic, LTL, with time intervals whose left endpoints are zero or whose right endpoints are infinity. Whereas the satisfiability and model-checking problems for MTL0,∞ are both decidable, we note that the controller synthesis problem for MTL0,$\infty$ is unfortunately undecidable. As a remedy of this we propose an approximate method to the synthesis problem, which we demonstrate to be adequate and scalable to practical examples. We define a method for converting MTL0,∞ formulas into (nondeterministic) Timed Game B\"{u}chi Automata and furthermore show how to construct determinized over- and underapproximation of a such. For the proposed method, we present a toolchain seamlessly integrating the needed components for practical MTL0,∞ synthesis. Lastly we demonstrate on a pair of case-studies the applicability and scalability of the proposed method.},
+booktitle = {Proceedings of the 24th ACM SIGSOFT International SPIN Symposium on Model Checking of Software},
+pages = {102--111},
+numpages = {10},
+keywords = {Controller Synthesis, Metric Temporal Logic, Timed B\"{u}chi Automata},
+location = {Santa Barbara, CA, USA},
+series = {SPIN 2017}
+}
+
+
+@InProceedings{mightyl_paper17,
+author="Brihaye, Thomas
+and Geeraerts, Gilles
+and Ho, Hsi-Ming
+and Monmege, Benjamin",
+editor="Majumdar, Rupak
+and Kun{\v{c}}ak, Viktor",
+title="{MightyL}: A Compositional Translation from {MITL} to Timed Automata",
+booktitle="Computer Aided Verification",
+year="2017",
+publisher="Springer International Publishing",
+address="Cham",
+pages="421--440",
+abstract="Metric Interval Temporal Logic (MITL ) was first proposed in the early 1990s as a specification formalism for real-time systems. Apart from its appealing intuitive syntax, there are also theoretical evidences that make MITL a prime real-time counterpart of Linear Temporal Logic (LTL ). Unfortunately, the tool support for MITL verification is still lacking to this day. In this paper, we propose a new construction from MITL to timed automata via very-weak one-clock alternating timed automata. Our construction subsumes the well-known construction from LTL to B{\"u}chi automata by Gastin and Oddoux and yet has the additional benefits of being compositional and integrating easily with existing tools. We implement the construction in our new tool MightyL and report on experiments using Uppaal and LTSmin as back-ends.",
+isbn="978-3-319-63387-9"
+}
+
+
+@inproceedings{badban_etal_wing2010,
+  author    = {Bahareh Badban and Stefan Leue and Jan-Georg Smaus},
+  title     = {Automated Invariant Generation for the Verification of Real-Time Systems},
+  booktitle = {WING 2010: Workshop on Invariant Generation 2010},
+  editor    = {Andrei Voronkov and Laura Kovacs and Nikolaj Bjorner},
+  series    = {EPiC Series in Computing},
+  volume    = {1},
+  pages     = {44--58},
+  publisher = {EasyChair},
+  year      = {2012},
+  doi       = {10.29007/npn7},
+  url       = {https://doi.org/10.29007/npn7}
+}
+
+@inproceedings{daws_yovine_rtss1996,
+  author    = {Conrado Daws and Sergio Yovine},
+  title     = {Reducing the Number of Clock Variables of Timed Automata},
+  booktitle = {Proceedings of the 17th IEEE Real-Time Systems Symposium},
+  pages     = {73--81},
+  publisher = {IEEE Computer Society},
+  year      = {1996},
+  doi       = {10.1109/REAL.1996.563702},
+  url       = {https://doi.org/10.1109/REAL.1996.563702}
+}
+
+@inproceedings{herrera_westphal_podelski_tacas2014,
+  author    = {Christian Herrera and Bernd Westphal and Andreas Podelski},
+  title     = {Quasi-Equal Clock Reduction: More Networks, More Queries},
+  booktitle = {Proc. TACAS},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {8413},
+  pages     = {295--309},
+  publisher = {Springer},
+  year      = {2014},
+  doi       = {10.1007/978-3-642-54862-8_20}
+}
+
+@inproceedings{munta_tacas18,
+  author    = {Simon Wimmer and Peter Lammich},
+  title     = {Verified Model Checking of Timed Automata},
+  booktitle = {Tools and Algorithms for the Construction and Analysis of Systems (TACAS 2018)},
+  series    = {Lecture Notes in Computer Science},
+  pages     = {61--78},
+  publisher = {Springer},
+  year      = {2018}
+}
+
+@inproceedings{munta_formats19,
+  author    = {Simon Wimmer},
+  title     = {Munta: A Verified Model Checker for Timed Automata},
+  booktitle = {Formal Modeling and Analysis of Timed Systems (FORMATS 2019)},
+  series    = {Lecture Notes in Computer Science},
+  pages     = {236--243},
+  publisher = {Springer},
+  year      = {2019},
+  doi       = {10.1007/978-3-030-29662-9_14}
+}
+
+@inproceedings{wimmer_herbreteau_vandepol_formats2020,
+  author    = {Simon Wimmer and Fr\'ed\'eric Herbreteau and Jaco van de Pol},
+  title     = {Certifying Emptiness of Timed {B}{\"u}chi Automata},
+  booktitle = {Formal Modeling and Analysis of Timed Systems ({FORMATS} 2020)},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {12288},
+  pages     = {58--75},
+  publisher = {Springer},
+  year      = {2020},
+  doi       = {10.1007/978-3-030-57628-8_4}
+}
+
+@inproceedings{de_wulf_doyen_raskin_fm2005,
+  author    = {Martin De Wulf and Laurent Doyen and Jean-Fran\c{c}ois Raskin},
+  title     = {Systematic Implementation of Real-Time Models},
+  booktitle = {{FM} 2005: Formal Methods},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {3582},
+  pages     = {139--156},
+  publisher = {Springer},
+  year      = {2005},
+  doi       = {10.1007/11526841_11}
+}
+
+@inproceedings{guha_narayan_arunkumar_concur2014,
+  author    = {Shibashis Guha and Chinmay Narayan and S. Arun-Kumar},
+  title     = {Reducing Clocks in Timed Automata while Preserving Bisimulation},
+  booktitle = {CONCUR 2014---Concurrency Theory},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {8704},
+  pages     = {527--543},
+  publisher = {Springer},
+  year      = {2014},
+  doi       = {10.1007/978-3-662-44584-6_36}
+}
+
+@inproceedings{yalcinkaya_aydin_gol_formalise2019,
+  author    = {Beyazit Yalcinkaya and Ebru Aydin Gol},
+  title     = {Clock Reduction in Timed Automata while Preserving Design Parameters},
+  booktitle = {Proceedings of the 7th International Workshop on Formal Methods in Software Engineering},
+  pages     = {11--20},
+  year      = {2019},
+  doi       = {10.1109/FormaliSE.2019.00010}
+}
+
+@misc{faresmtl,
+  author = {Elie Fares and Jean-Paul Bodeveix and Hussain Al-Aqrabi and Azar Salami},
+  title  = {A Mechanically Checked Translation of {MTL}$_{0,\infty}$ into Timed {B\"{u}chi} Automata via Clocked {LTL}},
+  year   = {2026},
+  howpublished = {Manuscript submitted for publication},
+  note   = {Rocq development at \url{https://doi.org/10.5281/zenodo.23916521}}
+}
+
+@inproceedings{schimpf_smaus_ila2015,
+  author    = {Alexander Schimpf and Jan-Georg Smaus},
+  title     = {{B}{\"u}chi Automata Optimisations Formalised in {Isabelle/HOL}},
+  booktitle = {Logic and Its Applications (ICLA 2015)},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {8923},
+  pages     = {158--169},
+  publisher = {Springer},
+  year      = {2015}
+}
+
+@inproceedings{rideau_leroy_cc2010,
+  author    = {Silvain Rideau and Xavier Leroy},
+  title     = {Validating Register Allocation and Spilling},
+  booktitle = {Compiler Construction ({CC} 2010)},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {6011},
+  pages     = {224--243},
+  publisher = {Springer},
+  year      = {2010}
+}
+
+@article{brelaz_cacm79,
+  author    = {Daniel Br{\'e}laz},
+  title     = {New Methods to Color the Vertices of a Graph},
+  journal   = {Communications of the {ACM}},
+  volume    = {22},
+  number    = {4},
+  pages     = {251--256},
+  year      = {1979}
+}
+
+@article{clemente_mayr_lmcs19,
+  author    = {Lorenzo Clemente and Richard Mayr},
+  title     = {Efficient Reduction of Nondeterministic Automata with Application to Language Inclusion Testing},
+  journal   = {Logical Methods in Computer Science},
+  volume    = {15},
+  number    = {1},
+  year      = {2019}
+}
+
+@inproceedings{saeedloei_kluzniak_hscc2018,
+  author    = {Neda Saeedloei and Feliks Klu{\'z}niak},
+  title     = {Clock Allocation in Timed Automata and Graph Colouring},
+  booktitle = {Proceedings of the 21st International Conference on Hybrid Systems: Computation and Control (HSCC)},
+  pages     = {71--80},
+  year      = {2018},
+  doi       = {10.1145/3178126.3178138}
+}

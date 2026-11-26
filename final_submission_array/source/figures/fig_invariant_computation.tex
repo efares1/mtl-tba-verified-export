@@ -1,0 +1,13 @@
+\begin{tikzpicture}[node distance=20mm]
+  \node[fmstate] (L) at (0,0) {$\ell$};
+  \node[fmstate] (S1) at (3.0,1.15) {$\ell_1$};
+  \node[fmstate] (S2) at (3.0,-1.15) {$\ell_2$};
+  \coordinate (P1) at (-2.6,1.15);
+  \coordinate (P2) at (-2.6,-1.15);
+  \draw[fmedge] (P1) -- node[fmlabel,above] {$g'_1,Z'_1$} (L);
+  \draw[fmedge] (P2) -- node[fmlabel,below] {$g'_2,Z'_2$} (L);
+  \draw[fmedge] (L) -- node[fmlabel,above] {$g_1,Z_1$} (S1);
+  \draw[fmedge] (L) -- node[fmlabel,below] {$g_2,Z_2$} (S2);
+  \node[fmnote] at (0.20,2.20) {backward propagation: $g_i:=g_i\land \mathit{Inv}(\ell_i)[Z_i:=0]$};
+  \node[fmnote] at (0.20,-2.20) {invariant synthesis: $\mathit{Inv}(\ell)(x)=\max(\mathit{ub}_x(g_1),\mathit{ub}_x(g_2))$};
+\end{tikzpicture}

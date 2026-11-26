@@ -1,0 +1,76 @@
+\subsection{Questions, evidence, and setup}
+This section evaluates the whole translation from an MTL requirement to the automaton given to a timed model checker, and the passes inside it. Section~\ref{sec:casaal-eval} compares the translation with CASAAL in size, generation time and stored states (RQ3); Section~\ref{sec:eval-checked} evaluates the checked passes (RQ2); Section~\ref{sec:export-policies} the export policies (RQ2), and Section~\ref{sec:spot-level} the Spot settings (RQ3); Section~\ref{sec:verification-adds} checks the extracted code and the exported automata against the semantics (RQ1).
+
+We retain the 31-attempt F/R/N benchmark: F is the group of single requirement patterns from the literature, R$n$ the conjunction of $n$ bounded responses and N$n$ the nest of bounded eventualities of depth $n$; ``positive form'' is the requirement as written and ``negated'' the form given to the model checker. Of the 31 attempts, 29 completed the upstream stage and supplied an optimizer input (R7 and R8 timed out; with Section~\ref{sec:speedups} their positive forms take 14~s and 90~s). All experiments ran on Ubuntu 26.04/WSL~2 (Intel Core i7-8650U, 11.7~GB), OCaml 5.4.0, Rocq 9.0.1 and Spot 2.16, with a 300~s limit unless stated. Generation times are medians of five runs, TChecker state counts are exact, and UPPAAL times are medians of three runs. The generated-group numbers come from an earlier build (Spot level \texttt{small}) and are never added to those of another build. Across the 29 completed inputs the reachable transitions fall from 20,204 after reset completion to 1,500 after optimization, and export grows the explicit transitions to 3,209 (Supplement Sections~\ref{S-sec:generated} and~\ref{S-sec:eval-extra}).
+
+\input{evaluation_casaal}
+
+\input{evaluation_checked}
+
+\subsection{Matched comparison of the two export policies}
+\label{sec:export-policies}
+Holding the optimized automaton fixed on R2--R6, all-copy export adds no explicit edges beyond the optimized relation and no diagonal guards, while maximal-delay export adds edges in each case and between 2 and 3,360 diagonal guard atoms per formula (4,464 in total); location, clock and invariant counts are the same (Supplement Table~\ref{S-tab:generated-export-policy}).
+
+  TChecker's liveness algorithms (\texttt{tck-liveness -a couvscc}) reject diagonal constraints (``unsupported diagonal constraints''). On the negated requirements the two policies give identical automata and TChecker counts; on the positive forms the maximal-delay export contains diagonal guards from R2 on, and TChecker stops with this error on each, while the all-copy export is accepted. 
+
+\emph{Effect of the optimizer on the export.}  On the positive forms of R2--R6 (wall-clock times of single runs, limit 300~s; Supplement Table~\ref{S-tab:export-scalability}), the all-copy export of R4 takes 44.0~s without the optimizer (625 edges) and 0.7~s with it (112 edges), and the all-copy exports of R5 and R6 do not finish in 300~s without it and finish in 5.7 and 55.5~s with it. Only the optimized all-copy export both is accepted by TChecker's liveness algorithms and finishes on all five requirements.
+
+\emph{Which passes are not redundant.} A leave-one-out ablation on the 25 fast benchmark configurations and the 100 random formulas (Supplement Table~\ref{S-tab:pass-ablation}) shows which passes are not redundant on these inputs. Removing the elimination of unsatisfiable guards has the largest effect (4{,}183 transitions instead of 670 on the benchmark); removing invariant or forward propagation changes none of the 125 results.
+
+\subsection{Translator-independent synthetic suite}
+\label{sec:synthetic}
+To exercise the interface without the MTL translator, we run the optimizer and export on 16 small synthetic TBAs and on parameterized families. On the 100 random formulas of the translation article it reduces transitions on 50 (3,980 to 2,366 in total) and increases none (Supplement Sections~\ref{S-sec:random} and~\ref{S-sec:synthetic-detail}).
+
+\emph{Independently generated TBAs.} We generated 300 random timed B\"uchi graphs (6 to 12 locations, 2 to 4 clocks) and 300 specification-style monitors with redundant clocks, dead resets and duplicate edges, and exported each with both policies; all 1{,}200 runs complete. The bounded word test of Section~\ref{sec:verification-adds} finds no difference between an input and its optimized or exported automaton, and the optimizer removes 2{,}046 of 7{,}562 transitions, on 534 of the 600 inputs.  The inputs are ours, not a third-party corpus (Supplement Section~\ref{S-sec:independent-detail}).
+
+\subsection{Model checking and agreement with the semantics}
+\label{sec:verification-adds}
+\emph{UPPAAL.} We generated 311 UPPAAL~5.0.0 models: the negated requirement in seven variants (ours with the default export, with \texttt{-n 0} and with the all-copy export; CASAAL's converted automaton plain and through our export in the same three ways) composed with small systems. All 296 runs with an expected verdict return it and the stored states are identical in all variants except on F5 and F8 (ours 3 and 2 states against 4 and 4). These small reachability checks show equal verdicts, not a speedup (Supplement Section~\ref{S-sec:uppaal-check}).
+
+\emph{Case study.} A dual-chamber pacemaker (four timing requirements, alone and conjoined; Figure~\ref{fig:pacemaker}) and a single-threaded gateway with 2 to 6 conjoined bounded responses, each negated requirement translated in four ways, composed with correct and faulty systems and decided by UPPAAL; all 150 runs return the expected verdict. These negated requirements are already minimal, so the optimizer changes neither size nor stored states; clock reuse reduces the clocks from 4 to 1 (pacemaker) and from 6 to 1 (gateway, 6 channels). A requirement under assumptions on the environment is different: the negation of ``if each of $k$ requests is answered within 5, request 1 is followed by \emph{done} within 5'' contains the $k$ assumptions as a conjunction. UPPAAL cannot decide it (it needs a B\"uchi emptiness check), so we use TChecker with the all-copy export on the gateway. For the correct system and $k=3,4$ (all $k$ from 2 to 5 in Supplement Table~\ref{S-tab:ag-ablation}) CASAAL's automaton (converted, no optimization) costs TChecker 21 and 24 states. After the checked pruning our automaton has CASAAL's size (136 and 336 transitions) and the same 21 and 24 states; checked clock reuse on top changes none of these numbers, since the clocks stay $k+1$. The pruning removes the redundant nondeterministic copies of the pending-response guesses (136 of 342 transitions kept for $k=3$). The composition of the system with an automaton that accepts every word stores 10, 11, 12 and 13 states for $k=2,\dots,5$, so no reduction of the requirement automaton can go below these counts, and the pruned automaton is within 8 to 14 states of them. Without the optimizer the export does not finish for $k=4$, and the default optimizer alone does not for $k=5$, where the pruned automaton stores 27 states, as CASAAL's does. Every finished run returns the expected verdict. The checked pruning brings us to CASAAL's cost, not below it. When several assumptions are irrelevant to the guarantee, the slicing of Section~\ref{sec:slicing} reduces the check itself (Section~\ref{sec:eval-slicing}). \emph{A system we did not write.} The gateway is ours, so we repeat the experiment on the \texttt{train\_gate} example shipped with TChecker (Supplement Section~\ref{S-sec:train-gate}): the gate may delay a restart for ever, so the natural requirement is again under an assumption, ``if the gate restarts every stopped train within 5, every stopped train leaves within $D$'', for $N$ trains; $D=25$ holds and $D=24$ does not, and all variants return these verdicts. When the bound holds, the whole product is explored (Table~\ref{tab:train-gate}): the optimizer alone leaves the stored states unchanged (6{,}036{,}642 for $N=3$), and the checked pruning and clock reuse bring them to 16{,}299, and the search from 368~s and 1.9~GB to 0.3~s and 21~MB. CASAAL's converted automaton is larger here than ours (1{,}932 transitions against 280) and does not finish for $N=3$; this depends on our importer, and we did not look for a more compact conversion. For $N=4$ only the checked configuration finishes: generation with the default optimizer or without optimization does not finish in 600~s, and generating the checked automaton takes 5~minutes. The system restricts the observed events to strictly increasing timestamps, for every variant alike.
+
+\begin{table}[tbp]
+\centering
+\caption{TChecker's \texttt{train\_gate} with $N$ trains: if the gate restarts every stopped train within 5, every stopped train leaves within 25 (the bound holds, so the whole product is explored). All-copy export, one run per cell, limit 900~s and 3~GB. ``memory'': allocation failed. CASAAL's automaton is converted by our importer.}
+\label{tab:train-gate}
+\small
+\begin{tabular}{rlrrrr}
+\toprule
+$N$ & configuration & trans. & stored & search (s) & peak (MB)\\
+\midrule
+2 & default optimizer & 138 & 26{,}536 & 0.41 & 25\\
+2 & + checked pruning and reuse & 80 & 500 & 0.005 & 9\\
+2 & CASAAL, converted & 468 & 59{,}332 & 0.69 & 35\\
+\addlinespace
+3 & default optimizer & 702 & 6{,}036{,}642 & 368 & 1{,}865\\
+3 & + checked pruning and reuse & 280 & 16{,}299 & 0.30 & 21\\
+3 & CASAAL, converted & 1{,}932 & timeout & -- & --\\
+\addlinespace
+4 & + checked pruning and reuse & 864 & 504{,}608 & 20.8 & 173\\
+4 & CASAAL, converted & 6{,}560 & memory & -- & --\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[node distance=32mm]
+\node[fmstate,initial,initial text=] (l0) {$L_0$};
+\node[fmaccept,right=of l0] (a2) {$A_2$};
+\node[fmaccept,right=of a2] (a4) {$A_4$};
+\draw[fmedge] (l0) edge[loop above] node[fmlabel] {any event} (l0);
+\draw[fmedge] (l0) -- node[fmlabel,above] {\textit{asn}, \textit{apc}} node[fminvariant,below] {$x_0:=0$} (a2);
+\draw[fmedge] (a2) edge[loop above] node[fmlabel] {\textit{asn}, \textit{apc}, \textit{other}} (a2);
+\draw[fmedge] (a2) -- node[fmlabel,above] {any event} node[fminvariant,below] {$x_0>15$} (a4);
+\draw[fmedge] (a4) edge[loop above] node[fmlabel] {any event} (a4);
+\end{tikzpicture}
+\caption{Automaton for the negation of ``every atrial event (\textit{asn}, \textit{apc}) is followed by a ventricular event (\textit{vsn}, \textit{vpc}) within 15''. UPPAAL finds $A_4$ unreachable with pacemaker delay 15 and reachable with 20.}
+\label{fig:pacemaker}
+\end{figure}
+\emph{Agreement with the semantics.} An independent evaluator of the pointwise MTL semantics, transcribed from the Rocq definition, together with acceptance evaluators for our UPPAAL XML and for CASAAL's DOT output, was run on random ultimately periodic timed words (22 benchmark patterns with 20{,}000 words each and 100 random formulas with 6{,}000 words each, both polarities). Our tool with both export policies and CASAAL (20 patterns) agree with the evaluator on all 6{,}160{,}000 word checks (122 inputs), and the evaluator rejects 11 of 13 deliberately wrong formulas for our tool and 7 of 7 for CASAAL. This is agreement on a finite sample, and the evaluator shares its source with the proofs (Supplement Section~\ref{S-sec:differential}).
+
+\emph{Added assurance of the proofs.} We seeded 22 plausible defects, one at a time, in a scratch copy of the extracted optimizer and exporter . Eighteen change the language of some automaton. The random-word test detects 13 of the 18, a larger fuzz and an exhaustive short-word check four more, and the last needed a generator written for that pass. The Rocq development with the same mistakes applied rejects all 22 at a named lemma.  The defects are ours, and a rejection is only as strong as the specification (Supplement Section~\ref{S-sec:mutation}).
+
+\emph{Hypotheses of the shipped theorem.} The shipped theorem assumes that Spot's automaton accepts the action-consistent words that satisfy the weakened clocked encoding of $\mathsf{recur}(f)$ (Section~\ref{sec:composition}), and its guarantee for UPPAAL needs the initial-value check to succeed. We tested the first hypothesis by translation validation with an independent translator (ltl2ba) and two emptiness checks with Spot's tools: of 31 benchmark configurations 25 validated and 6 timed out, of 100 random formulas 98 validated and 2 timed out, with no counterexample.   The initial-value check succeeded on F1--F14, R1--R6, N1--N5 and the case studies, and failed on 4 of the 100 random formulas (nested lower-bounded operators) and on 423 of the 600 independently generated TBAs; the tool then warns that the result for clocks starting at 0 is not covered.
+\subsection{Limitations}
+TChecker states and UPPAAL verdicts are measured on small products: on the negated products, R4--R7 and N5--N6 did not finish for TChecker within 300~s, and for R8, N7 and N8 no product could be generated. CASAAL's sizes and state counts depend on our importer, which is outside the proofs. The large counts on the positive-form workload, which is constructed and covers one family, are explained by the pruning; the overlap is in CASAAL's printed automaton. Pruning is weak on generic graphs, and the timing gain of clock reuse is measured on constructed families with one checker. The theorems cover words that are infinite, time-divergent and have one event per position; the UPPAAL checks are reachability of an accepting sink, and no theorem relates the exported automaton to the semantics of UPPAAL or TChecker.

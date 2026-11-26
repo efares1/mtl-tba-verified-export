@@ -1,0 +1,10 @@
+\begin{tikzpicture}[node distance=21mm]
+  \node[fmstate] (l0) {$\ell_0$};
+  \node[fmstate,right=of l0] (l1) {$\ell_1$};
+  \node[fmstate,right=of l1] (l2) {$\ell_2$};
+  \draw[fmedge] ([xshift=-7mm]l0.west) -- (l0.west);
+  \draw[fmedge] (l0) -- node[fmlabel,above] {$a\;/\;\mathsf{rst}(x)$} (l1);
+  \draw[fmedge] (l1) to[bend left=18] node[fmlabel,above] {$x\le2,\;b$} (l2);
+  \draw[fmedge] (l2) to[bend left=18] node[fmlabel,below] {$c$} (l1);
+  \draw[fmedge] (l2) edge[loop above] node[fmlabel] {$x\le1,\;d$} (l2);
+\end{tikzpicture}

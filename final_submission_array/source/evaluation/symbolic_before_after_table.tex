@@ -1,0 +1,42 @@
+\begin{table}[t]
+\centering
+\caption{Transitions before and after optimization. Comp.: explicit transitions of the optimizer input; Sym. no opt. and Sym. opt.: symbolic transitions of the exported automaton with the optimizer disabled (\texttt{-n 0}) and enabled; Opt.: explicit transitions after optimization; CASAAL: symbolic transitions of its output with mutually exclusive events (-- if not encodable). A bound of 300 s means that the unoptimized export did not finish within 300 seconds. R7 and R8 do not complete.}
+\label{tab:symbolic-before-after}
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+ID & Comp. & Sym. no opt. & Sym. opt. & Opt. & CASAAL\\
+\midrule
+F1 & 5 & 4 & 4 & 5 & 4\\
+F2 & 5 & 5 & 1 & 1 & 1\\
+F3 & 5 & 5 & 5 & 5 & --\\
+F3b & 1 & 1 & 1 & 1 & 1\\
+F4 & 5 & 4 & 4 & 5 & 4\\
+F5 & 38 & 34 & 25 & 25 & 15\\
+F6 & 38 & 34 & 25 & 25 & 15\\
+F7 & 4 & 4 & 4 & 4 & 4\\
+F8 & 4 & 4 & 4 & 4 & 4\\
+F9 & 9 & 9 & 9 & 9 & 9\\
+F10 & 13 & 12 & 12 & 13 & 12\\
+F11 & 7 & 7 & 4 & 4 & 7\\
+F12 & 9 & 9 & 5 & 5 & 9\\
+F13 & 6 & 6 & 3 & 3 & --\\
+F14 & 23 & 18 & 14 & 17 & 18\\
+R1 & 5 & 4 & 4 & 5 & 4\\
+R2 & 25 & 16 & 12 & 16 & 12\\
+R3 & 125 & 64 & 32 & 44 & 32\\
+R4 & 625 & 256 & 80 & 112 & 80\\
+R5 & 3125 & $>$300 s & 192 & 272 & 192\\
+R6 & 15625 & $>$300 s & 448 & 640 & 448\\
+N1 & 5 & 5 & 5 & 5 & 5\\
+N2 & 11 & 9 & 7 & 9 & 7\\
+N3 & 21 & 14 & 9 & 16 & 9\\
+N4 & 36 & 20 & 11 & 25 & 11\\
+N5 & 57 & 27 & 13 & 36 & 13\\
+N6 & 85 & 35 & 15 & 49 & 15\\
+N7 & 121 & 44 & 17 & 64 & 17\\
+N8 & 166 & 54 & 19 & 81 & 19\\
+\bottomrule
+\end{tabular}
+\end{table}

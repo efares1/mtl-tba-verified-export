@@ -1,0 +1,27 @@
+\begin{table}[t]
+\centering
+\caption{Effect of the weak until (default; disabled by the option \texttt{-noweak}), on the configurations whose sizes change.  Spot: states of the automaton returned by Spot; Sym.: symbolic transitions; Time: median of five runs, in seconds; TO: more than 300~s; CASAAL: states/transitions on the common domain, $^\dagger$ as in Table~\ref{tab:evaluation}.  The clocks do not change.}
+\label{tab:weak}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lrrrrrrr@{}}
+\toprule
+ & \multicolumn{3}{c}{\texttt{-noweak}} & \multicolumn{3}{c}{default} & \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+Id & Spot & Sym. & Time & Spot & Sym. & Time & CASAAL\\
+\midrule
+F1 & 3 & 6 & 0.03 & 2 & 4 & 0.03 & 2/4\\
+F4 & 3 & 6 & 0.04 & 2 & 4 & 0.03 & 2/4\\
+F7 & 3 & 6 & 0.03 & 2 & 4 & 0.03 & 2/4\\
+F12 & 4 & 8 & 0.02 & 3 & 5 & 0.03 & 3/9\\
+F13 & 4 & 5 & 0.02 & 3 & 3 & 0.03 & 4/7$^\dagger$\\
+F14 & 7 & 17 & 0.03 & 6 & 14 & 0.04 & 8/18\\
+R1 & 3 & 6 & 0.02 & 2 & 4 & 0.03 & 2/4\\
+R2 & 8 & 21 & 0.03 & 4 & 12 & 0.03 & 4/12\\
+R3 & 20 & 68 & 0.12 & 8 & 32 & 0.06 & 8/32\\
+R4 & 48 & 205 & 1.82 & 16 & 80 & 0.38 & 16/80\\
+R5 & 112 & 582 & 32.68 & 32 & 192 & 3.63 & 32/192\\
+R6 & \multicolumn{3}{c}{TO} & 64 & 448 & 39.00 & 64/448\\
+\bottomrule
+\end{tabular}
+\end{table}
